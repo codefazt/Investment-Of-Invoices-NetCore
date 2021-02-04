@@ -1,0 +1,71 @@
+﻿@model TuFactoring.Pages.Shared.Components.DebtorQuotas.DebtorQuotasViewComponent.Modelo
+@{
+    var symbol = "";
+    var iso_4217 = "";
+}
+
+@if ( Model.Person != null && Model.Person.Quotas != null)
+{
+    @if (Model.Person.Quotas.Count > 0)
+    {
+<!-- Content Row -->
+<div class="row">
+    <!-- Content Column -->
+    <div class="col-lg-6 mb-4">
+        <!-- Project Card Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Limites Asignados</h6>
+            </div>
+            <div class="card-body">
+                @foreach (var quota in Model.Person.Quotas)
+                {
+                    @if (quota.Abbreviation == "CREDIT")
+                    {
+                        var percentaje = (quota.Usage / quota.Available * 100.00);
+                        var indicator = "success";
+
+                        @if (percentaje > 30)
+                        {
+                            indicator = "info";
+                        }
+
+                        @if (percentaje > 60)
+                        {
+                            indicator = "warning";
+                        }
+
+                        @if (percentaje > 80)
+                        {
+                            indicator = "danger";
+                        }
+
+                        @foreach(var currency in Model.Country.Currencies)
+                        {
+                            @if (currency.Id ==  quota.Currency)
+                            {
+                                symbol = currency.Symbol;
+                                iso_4217 = currency.Iso_4217;
+                            }
+                        }
+
+                        <h4 style="font-size: 80%;" class="small font-weight-bold">
+                            <span class="badge badge-pill badge-secondary">@iso_4217</span>
+                            @quota.Entity.Person.Name
+                            <span class="float-right">@String.Format("{0:0.00}", percentaje) %</span>
+                        </h4>
+                        <div class="progress mb-1">
+                            <div class="progress-bar bg-@indicator" role="progressbar" style="width: @String.Format("{0:0}", percentaje)%" aria-valuenow="@quota.Usage" aria-valuemin="0" aria-valuemax="@quota.Available"></div>
+                        </div>
+                        <h5 class="mb-3 small font-weight-bold">
+                            @symbol @String.Format("{0:#,##0.00}", quota.Usage)
+                            <span class="float-right">@symbol @String.Format("{0:#,##0.00}", quota.Available)</span>
+                        </h5>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+    }
+}

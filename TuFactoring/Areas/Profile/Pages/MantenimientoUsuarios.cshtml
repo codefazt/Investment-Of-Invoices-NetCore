@@ -1,0 +1,207 @@
+﻿@page
+@model TuFactoring.Areas.Profile.Pages.MantenimientoUsuariosModel
+@{
+    ViewData["Title"] = Localizer.Text("titleGestionUsuarios");
+
+    switch (@Model.Participant)
+    {
+        case "CONFIRMANT":
+            ViewData["Sidebar"] = "dark";
+            break;
+        case "DEBTOR":
+            ViewData["Sidebar"] = "primary";
+            break;
+        case "FACTOR":
+            ViewData["Sidebar"] = "warning";
+            break;
+        case "SUPPLIER":
+            ViewData["Sidebar"] = "purple";
+            break;
+        default:
+            ViewData["Sidebar"] = "navy";
+            break;
+    }
+    
+
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<v-app id="app" hidden>
+    @Html.AntiForgeryToken()
+
+    @await Html.PartialAsync("_ModalLogoutPartial", 1)
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">
+            <a href="#" class="btn btn-success btn-circle">
+                <i class="@Localizer.Text("iconUser") text-white"></i>
+            </a>
+            @Localizer.Text("titleUserManagement")
+        </h1>
+        <span>
+            <v-btn dark color="green" class="float-right" @@click="limpiar(); invitar = true">
+                <i class="@Localizer.Text("iconAdd")"></i>&nbsp;@Localizer.Text("buttonInvite")
+            </v-btn>
+        </span>
+    </div>
+    <p class="mb-4">
+        @Localizer.Text("textoMantenimiento" + Model.Participant)
+        <br /> <br />
+        @Localizer.Text("textoPress") <a href="#" @@click="dialogAyuda = true">@Localizer.Text("textoHere")</a> @Localizer.Text("textoMoreInformation")
+    </p>
+
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <v-row>
+                <v-col md="12" sm="12" lg="12" cols="12">
+                    <v-data-table :headers="header"
+                                  :mobile-breakpoint="widthTelefono"
+                                  :loading="loading"
+                                  :items="personal"
+                                  class="elevation-1">
+                        <template v-slot:item.n="props">
+                            {{personal.indexOf(props.item)+1}}
+                        </template>
+                        <template v-slot:item.name="props">
+                            <div class="text-left">
+                                {{props.item.name}}
+                            </div>
+                        </template>
+                        <template v-slot:item.email="props">
+                            <div class="text-left">
+                                {{props.item.email}}
+                            </div>
+                        </template>
+                        <template v-slot:item.foto="props">
+                            <div class="text-center justify-content-center">
+                                <v-img :src="props.item.foto" max-width="5rem"></v-img>
+                            </div>
+                        </template>
+                        <template v-slot:item.created_at="props">
+                            {{backEndDateFormat(props.item.createdAt)}}
+                        </template>
+                        <template v-slot:item.opciones="props">
+                            <v-btn color="green" small @@click="editar(personal.indexOf(props.item)); invitar = true" class="text-white" :disabled="enviando">
+                                <i class="@Localizer.Text("iconEdit")"></i>&nbsp;@Localizer.Text("buttonEdit")
+                            </v-btn>
+                            <v-btn :color="props.item.state == 'active'? 'blue':'red'" small class="text-white" :disabled="enviando" @@click="indice = personal.indexOf(props.item); bloquear = true" v-if="props.item.state != 'invite'">
+                                <i class="@Localizer.Text("iconCancel")"></i>&nbsp;{{ props.item.state == 'active' ? '@Localizer.Text("buttonBlock") ' : '@Localizer.Text("buttonUnlock") '}}
+                            </v-btn>
+                        </template>
+                    </v-data-table>
+                </v-col>
+            </v-row>
+        </div>
+    </div>
+
+    <v-dialog v-model="invitar" max-width="400" transition="dialog-bottom-transition">
+        <v-card>
+            <v-card-title>
+                <h4 class="modal-title">@Localizer.Text("titleUserData")</h4>
+                <v-spacer></v-spacer>
+                <v-btn icon @@click="invitar = false;">
+                    <v-icon>@Localizer.Text("iconCloseMDI")</v-icon>
+                </v-btn>
+            </v-card-title>
+            <v-card-text>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12" style="padding:0">
+                        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                            <label>@Localizer.Text("textoOneName")</label>
+                            <div class="input-group" style="width:100%">
+                                <input type="text" placeholder="@Localizer.Text("placeholderName")" v-model="nuevo.name" maxlength="255" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                            <label>@Localizer.Text("textoEmail")</label>
+                            <div class="input-group" style="width:100%">
+                                <input type="text" placeholder="@Localizer.Text("placeholderEmail")" v-model="nuevo.email" maxlength="255" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <v-expansion-panels>
+                            <v-expansion-panel>
+                                <v-expansion-panel-header v-slot="{ open }">
+                                    <v-col>
+                                        <span>@Localizer.Text("textoRoles")</span>
+                                    </v-col>
+
+                                </v-expansion-panel-header>
+                                <v-expansion-panel-content>
+                                    <div v-for="(item,index) in roles" class="form-check">
+                                        <v-divider v-if="index != 0"></v-divider>
+                                        <v-checkbox v-model="nuevo.roles_id" :value="item.id" :label="item.name" color="#5867dd" hide-details></v-checkbox>
+                                    </div>
+                                </v-expansion-panel-content>
+                            </v-expansion-panel>
+                        </v-expansion-panels>
+                    </div>
+
+                </div>
+            </v-card-text>
+            <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="green" @@click="procesoUsuario(); " :disabled="enviando" class="text-white">{{indice == -1 ? '@Localizer.Text("buttonCreate")' : '@Localizer.Text("buttonUpdate")'}}</v-btn>
+                <v-btn color="red" @@click="invitar = false" class="text-white">@Localizer.Text("buttonClose")</v-btn>
+            </v-card-actions>
+        </v-card>
+    </v-dialog>
+
+    <v-dialog v-model="bloquear" max-width="400" transition="dialog-bottom-transition">
+        <v-card>
+            <v-card-title>
+                <h4 class="modal-title">@Localizer.Text("titleSystemTuFact")</h4>
+                <v-spacer></v-spacer>
+                <v-btn icon @@click="bloquear = false; indice = -1">
+                    <v-icon>
+                        @Localizer.Text("iconCloseMDI")
+                    </v-icon>
+                </v-btn>
+            </v-card-title>
+            <v-card-text>
+                <p> @Localizer.Text("textoSecureUser") <strong>{{indice == -1 ? '': personal[indice].name}}</strong></p>
+            </v-card-text>
+            <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="green" @@click="blockPersonal(indice);" class="text-white" :disabled="enviando">@Localizer.Text("buttonAcept")</v-btn>
+                <v-btn color="red" @@click="bloquear = false" class="text-white">@Localizer.Text("buttonClose")</v-btn>
+            </v-card-actions>
+        </v-card>
+    </v-dialog>
+
+    <v-dialog v-model="dialogAyuda" max-width="500" transition="dialog-bottom-transition">
+        <v-card>
+            <v-card-title>
+                <v-spacer></v-spacer>
+                <v-btn icon @@click="dialogAyuda = false">
+                    <v-icon>@Localizer.Text("iconCloseMDI")</v-icon>
+                </v-btn>
+            </v-card-title>
+            <v-card-text>
+                <v-container>
+                    <v-row>
+                        <v-col cols="12" sm="12" lg="12" md="12">
+                            @Localizer.Text("textoSeguridadInformation1")<br />
+
+                            @Localizer.Text("textoSeguridadInformation2")<br />
+                            @Localizer.Text("textoSeguridadInformation3")<br /><br />
+                            @Localizer.Text("textoSeguridadInformation4")<br />
+
+                            @Localizer.Text("textoSeguridadInformation5")<br /><br />
+
+                            @Localizer.Text("textoSeguridadInformation6")<br />
+                            @Localizer.Text("textoSeguridadInformation7")<br /><br />
+                            @Localizer.Text("textoSeguridadInformation8")
+
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-card-text>
+        </v-card>
+    </v-dialog>
+
+</v-app>
+
+@section scripts{
+    <script src="~/js/Operativo/mantenimientoUsuarios.js" asp-append-version="true"></script>
+}

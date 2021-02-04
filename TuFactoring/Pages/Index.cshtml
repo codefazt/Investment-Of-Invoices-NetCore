@@ -1,0 +1,449 @@
+﻿@page
+@using System.Globalization;
+@model IndexModel
+
+@{
+    ViewData["Title"] = Localizer.Text("Home page");
+    Layout = "~/Pages/Shared/_PublicLayout.cshtml";
+
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+    ViewData["Country"] = Model.Country;
+
+}
+
+<div hidden id="mensajesPoppup">
+
+    @if (Model.mensajeError != null)
+    {
+        <input value="@Localizer.Text(Model.mensajeError)" id="mensajeError" />
+    }
+
+    @if (Model.mensajeExito != null)
+    {
+        <input value="@Localizer.Text(Model.mensajeExito)" id="mensajeExito" />
+    }
+</div>
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <header class="masthead slider1">
+                <div class="container h-100">
+                    <div class="row h-100">
+                        <div class="col-12 col-xl-6 my-auto">
+                            <div class="header-content mx-auto centered">
+                                <br class="d-none d-xl-block">
+                                <br class="d-none d-xl-block">
+                                <br class="d-none d-xl-block">
+                                <br class="d-none d-xl-block">
+                                <br class="">
+                                <h1 class="">@Localizer.Text("branding") <span class="d-lg-none"> <span style="font-size: 1.1em;font-weight: 200;">|</span> @Localizer.Text("Es momento")<br /> @Localizer.Text("de ganar")</span></h1>
+                                <h5>@Localizer.Text("Mercado de Facturas")</h5>
+                                <a href="#how_does_it_work" class="btn btn-outline btn-xl js-scroll-trigger d-lg-none">@Localizer.Text("Comenzar")</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-1 my-auto centered d-none d-md-none d-xl-block">
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <h4 style="font-size: 80px">|</h4>
+                        </div>
+                        <div class="col-lg-5 my-auto d-none d-md-none d-xl-block">
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="header-content mx-auto">
+                                <h2>@Localizer.Text("Es momento")</h2>
+                                <h2>@Localizer.Text("de ganar")</h2>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 d-none d-lg-block">
+                            <a href="#how_does_it_work" class="btn btn-outline btn-xl js-scroll-trigger">@Localizer.Text("Comenzar")</a>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="carousel-item">
+            <header class="masthead slider2">
+                <div class="container h-100">
+                    <div class="row h-100">
+                        <div class="col-lg-12 my-auto">
+                            <div class="header-content mx-auto centered">
+                                <br class="d-md-none">
+                                <h1 class="">@Localizer.Text("El apoyo ideal para el crecimiento de su negocio")</h1>
+                                <h5>@Localizer.Text("Comience a trabajar con nosotros").</h5>
+                                <br>
+                                <a href="#about_us" class="btn btn-outline btn-xl js-scroll-trigger">@Localizer.Text("Quienes somos")</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="carousel-item">
+            <header class="masthead slider3">
+                <div class="container h-100">
+                    <div class="row h-100">
+                        <div class="col-lg-12 my-auto">
+                            <div class="header-content mx-auto centered">
+                                <br class="d-md-none">
+                                <h1 class="tituloTamanio">@Localizer.Text("El mejor aliado")</h1>
+                                <h5>@Localizer.Text("Para su negocio en crecimiento")</h5>
+                                <br>
+                                <a href="#services" class="btn btn-outline btn-xl js-scroll-trigger">@Localizer.Text("Ir a servicios")</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<section class="download text-center" id="about_us">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <h2 class="section-heading">@Localizer.Text("branding") </h2>
+                <h3 style="margin-bottom: 50px;">@Localizer.Text("Mercado de Facturas")</h3>
+                <p></p>
+                <p style="text-align: justify;">@Localizer.Text("::Introduccion")</p>
+
+                <button type="button" class="btn btn-primary btn-xl mt-3" id="verVideo1" data-toggle="modal" data-target="#videoModal">
+                    @Localizer.Text("Ver video")
+                </button>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="call-to-action text-white text-center" id="how_does_it_work">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-9 mx-auto">
+                <h2 class="mb-4 text-uppercase" style="color: white;font-weight: 700;">@Localizer.Text("Como funciona")</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    @@media only screen and (min-width: 990px) {
+    }
+</style>
+
+<!-- Features -->
+<section class="features" id="features" style="padding-top: 50px !important">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 my-auto">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="feature-item ">
+                                <i class="icon-lock text-info " data-toggle="collapse" data-target="#collapseItem1" aria-controls="collapseItem1" aria-expanded="false"></i>
+                                <h3>@Localizer.Text("Seguridad en tu inversión")</h3>
+                                <p class="collapse collapse-lg text-justify" id="collapseItem1" aria-expanded="false">@Localizer.Text("::Resumen caracteristica 1")</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="feature-item">
+                                <i class="icon-diamond text-primary" data-toggle="collapse" data-target="#collapseItem2" aria-expanded="true"></i>
+                                <h3>@Localizer.Text("Extraordinarios beneficios")</h3>
+                                <p class=" collapse collapse-lg text-justify" id="collapseItem2" aria-expanded="true">@Localizer.Text("::Resumen caracteristica 2")</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="feature-item">
+                                <i class="icon-briefcase text-primary" data-toggle="collapse" data-target="#collapseItem3"></i>
+                                <h3>@Localizer.Text("Gestión de cuentas por pagar")</h3>
+                                <p class=" collapse collapse-lg text-justify" id="collapseItem3">@Localizer.Text("::Resumen caracteristica 3").</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services -->
+<section class="call-to-action text-white text-center" id="services">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-10 mx-auto">
+                <h2 class="mb-4 text-uppercase" style="color: white;font-weight: 700;">@Localizer.Text("Servicios")</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Image Showcases -->
+<section class="showcase pt-5 pb-5">
+    <div class="container mb-5 mt-0">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <p class=" mt-0 lead text-justify text-gray-200">@Localizer.Text("Servicios subtitulo")</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="showcase pt-0 mb-0">
+    <div class="container">
+        <div class="row d-flex flex-nowrap pb-4" id="service_1">
+            <div class="col-lg-6 mr-1">
+                <h5><strong>@Localizer.Text("Acceso a la app")</strong></h5>
+                <hr style="max-width: 100% !important" class="pb-1" />
+
+                <p class="mt-3 mb1-0 text-justify">@Localizer.Text("::Resumen servicio 1")</p>
+                <span id="dots1"></span>
+                <p class="mt-3 text-justify" style="display: none" id="more1">@Localizer.Text("::Detalle servicio 1")</p>
+                <p>
+                    <button class=" btn btn-text" onclick="myFunction('1')" id="myBtn1"><small>Ver más</small></button>
+                    <button type="button" class="btn btn-primary btn-xl" id="verVideo2" data-toggle="modal" data-target="#videoModal">
+                        @Localizer.Text("Ver video")
+                    </button>
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <div class="col-lg-12 text-white showcase-img services1"></div>
+            </div>
+        </div>
+
+        <div class="row d-flex flex-nowrap mt-4 pb-4" id="service_2">
+            <div class="col-lg-6">
+                <div class="col-lg-12 text-white showcase-img services2"></div>
+            </div>
+            <div class="col-lg-6 mr-1">
+                <h5><strong>@Localizer.Text("Negociación")</strong></h5>
+                <hr style="max-width: 100% !important" class="pb-1" />
+
+                <p class="mt-3 mb1-0 text-justify">@Localizer.Text("::Resumen servicio 2")</p>
+                <span id="dots2"></span>
+                <p class="mt-3 text-justify" style="display: none" id="more2">@Localizer.Text("::Detalle servicio 2")</p>
+                <p>
+                    <button class=" btn btn-text" onclick="myFunction('2')" id="myBtn2"><small>Ver más</small></button>
+                    <button type="button" class="btn btn-primary btn-xl" id="verVideo3" data-toggle="modal" data-target="#videoModal">
+                        @Localizer.Text("Ver video")
+                    </button>
+                </p>
+            </div>
+        </div>
+
+        <div class="row d-flex flex-nowrap mt-4 pb-4" id="service_3">
+            <div class="col-lg-6 mr-1">
+                <h5><strong>@Localizer.Text("Inversores")</strong></h5>
+                <hr style="max-width: 100% !important" class="pb-1" />
+
+
+                <p class="mt-3 mb1-0 text-justify">@Localizer.Text("::Resumen servicio 3")</p>
+                <span id="dots3"></span>
+                <p class="mt-3 text-justify" style="display: none" id="more3">@Localizer.Text("::Detalle servicio 3")</p>
+                <p>
+                    <button class=" btn btn-text" onclick="myFunction('3')" id="myBtn3"><small>Ver más</small></button>
+                    <button type="button" class="btn btn-primary btn-xl" id="verVideo4" data-toggle="modal" data-target="#videoModal">
+                        @Localizer.Text("Ver video")
+                    </button>
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <div class="col-lg-12 text-white showcase-img services3"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services -->
+<section class="call-to-contact text-white text-center" id="contact">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-10 mx-auto">
+                <h2 class="mb-4 text-uppercase" style="color: white;font-weight: 700;">@Localizer.Text("Contactanos")</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- -->
+<!-- Contact-->
+<section class="page-section mb-3 pb-5 id="contact">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <p class="text-muted mb-5">@Localizer.Text("Resumen Contactanos")</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
+                <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
+                <div>+1 (555) 123-4567</div>
+            </div>
+            <div class="col-lg-4 mr-auto text-center">
+                <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
+                <!-- Make sure to change the email address in BOTH the anchor text and the link target below!-->
+                <a class="d-block" href="mailto:contact@tufactoring.com">contact@tufactoring.com</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact mt-0 pt-0" id="contact">
+    <div class="container">
+        <h2>@Localizer.Text("Síguenos")</h2>
+        <ul class="list-inline list-social">
+            <li class="list-inline-item social-twitter">
+                <a href="#">
+                    <i class="fab fa-twitter"></i>
+                </a>
+            </li>
+            <li class="list-inline-item social-instagram">
+                <a href="#">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </li>
+            <li class="list-inline-item social-facebook">
+                <a href="#">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+            </li>
+            <li class="list-inline-item social-google-plus">
+                <a href="#">
+                    <i class="fab fa-google-plus-g"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <!--<div class="modal-header">
+                <h5 class="modal-title" id="videoModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>-->
+            <div class="modal-body">
+                <div class="embed-responsive embed-responsive-4by3">
+                    <iframe class="embed-responsive-item" src="" id="iframeVideo" allow="autoplay; fullscreen"></iframe>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">@Localizer.Text("buttonClose")</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function myFunction(control) {
+        xControl = "dots" + control;
+        var dots = document.getElementById(xControl);
+        xControl = "more" + control;
+        var moreText = document.getElementById(xControl);
+        xControl = "myBtn" + control;
+        var btnText = document.getElementById(xControl);
+
+        if (dots.style.display === "none") {
+            dots.style.display = "block";
+            btnText.innerHTML = "<small>Ver más</small>";
+            moreText.style.display = "none";
+        } else {
+            dots.style.display = "none";
+            btnText.innerHTML = "<small>Ver menos</small>";
+            moreText.style.display = "block";
+        }
+    }
+</script>
+
+<script src="~/js/translate/recursos.js" type="text/javascript" asp-append-version="true"></script>
+
+@section Scripts {
+<script>
+    var video;
+    $(document).ready(function () {
+        $('#verVideo1').on('click', function (e) {
+            e.preventDefault();
+            video = 1;
+            var url = "#about_us";
+            $('html,body').animate({ scrollTop: $(url).offset().top - 120 }, 'slow');
+            var src = "https://www.youtube.com/embed/2qes9Q48DbQ?autoplay=1&controls=0&showinfo=0&rel=0&modestbranding=1";
+            $('#videoModal iframe').attr('src', src);
+            $('#videoModal').modal('show');
+        });
+        $('#verVideo2').on('click', function (e) {
+            e.preventDefault();
+            video = 2;
+            var url = "#service_1";
+            $('html,body').animate({ scrollTop: $(url).offset().top - 120 }, 'slow');
+            var src = "https://www.youtube.com/embed/rX9aQg092kc?autoplay=1&controls=0&showinfo=0&rel=0&modestbranding=1";
+            $('#videoModal iframe').attr('src', src);
+            $('#videoModal').modal('show');
+        });
+        $('#verVideo3').on('click', function (e) {
+            e.preventDefault();
+            video = 3;
+            var url = "#service_2";
+            $('html,body').animate({ scrollTop: $(url).offset().top - 120 }, 'slow');
+            var src = "https://www.youtube.com/embed/8QMarMTl_Ns?autoplay=1&controls=0&showinfo=0&rel=0&modestbranding=1";
+            $('#videoModal iframe').attr('src', src);
+            $('#videoModal').modal('show');
+        });
+        $('#verVideo4').on('click', function (e) {
+            e.preventDefault();
+            video = 4;
+            var url = "#service_3";
+            $('html,body').animate({ scrollTop: $(url).offset().top - 120 }, 'slow');
+            var src = "https://www.youtube.com/embed/rKL-lykjJAg?autoplay=1&controls=0&showinfo=0&rel=0&modestbranding=1";
+            $('#videoModal iframe').attr('src', src);
+            $('#videoModal').modal('show');
+        });
+        //auto close or pause on model hide
+        $("#videoModal").on('hidden.bs.modal', function (e) {
+            $("#videoModal iframe").attr("src", '');
+            if (video == 1) {
+                var url = "#about_us";
+                $('html,body').animate({ scrollTop: $(url).offset().top - 120 }, 'slow');
+            }
+            if (video == 2) {
+                var url = "#service_1";
+                $('html,body').animate({ scrollTop: $(url).offset().top - 120}, 'slow');
+            }
+            if (video == 3) {
+                var url = "#service_2";
+                $('html,body').animate({ scrollTop: $(url).offset().top - 120 }, 'slow');
+            }
+            if (video == 4) {
+                var url = "#service_3";
+                $('html,body').animate({ scrollTop: $(url).offset().top - 120 }, 'slow');
+            }
+        });
+
+    });
+</script>
+}

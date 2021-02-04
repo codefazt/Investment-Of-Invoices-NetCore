@@ -1,0 +1,531 @@
+﻿@page
+@model TuFactoring.Areas.Factor.Pages.MercadoFacturasModel
+@{
+    ViewData["Title"] = Localizer.Text("titleMarketInvoice");
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+    <v-app id="appMercadoFacturas" hidden>
+        @Html.AntiForgeryToken()
+        @await Html.PartialAsync("_ModalLogoutPartial", 4)
+
+        <div id="eliminarData">
+            <input hidden id="filterData" value="@Model.dataFilter" />
+            <input hidden id="factor" value="@Model.dataJsonFactor" />
+            <input hidden id="token" value="@Model.dataToken" />
+        </div>
+
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">
+                <a href="#" class="btn btn-success btn-circle">
+                    <i class="@Localizer.Text("iconMarket")" style="color:white"></i>
+                </a>
+                @Localizer.Text("titleMarketInvoice")
+            </h1>
+            <span>
+                <div class="temporizador" :class="tamanoTlf() == 0 ? 'temporizadorTLF':''" v-if="auction.state == 'opened' ">
+                    <v-card id="temporizador" class="btn-radius-left">
+                        <v-card-text style="line-height: 1 !important">
+                            <div class="justify-content-betwee flex-column">
+                                <table border="0">
+                                    <tr>
+                                        <td><i class="@Localizer.Text("iconMarketCounter")" style="color: white; font-size:32px"></i></td>
+                                        <td>&nbsp;&nbsp;</td>
+                                        <td id="w-2"><small class="text-white">@Localizer.Text("textoMarketCounter"): </small></td>
+                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td><span class="gold imgContador pt text-center"><h2 style="margin-bottom: 0px !important"><strong id="time" class="">00:00:00</strong></h2></span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </v-card-text>
+                    </v-card>
+
+                    <div class="text-right">
+                        <button type="button" id="sidebarCollapse" class="btn btn-info btn-radius-left" title="@Localizer.Text("tipFilter")" data-toggle="modal" data-target="#modalFilter">
+                            <i class="@Localizer.Text("iconFilter")"></i>
+                        </button>
+                    </div>
+                    <div class="text-right">
+                        <a id="refreshFilt" title="@Localizer.Text("tipClearFilter")" class="btn btn-danger btn-radius-left" asp-page="MercadoFacturas">
+                            <i class="@Localizer.Text("iconClear")"></i>
+                        </a>
+                    </div>
+                </div>
+            </span>
+        </div>
+        <p class="mb-4">
+            @Localizer.Text("textoMercadoFacturasFactor")
+            <br><br />
+            @Localizer.Text("textoMercadoFacturasFactor2")
+        </p>
+        <span class="d-flex justify-content-between" v-if="tamanoTlf()">
+            <p><span class="text-danger">@Localizer.Text("factorMarketRedColor")</span>: <span>@Localizer.Text("factorMarketNotOffered")</span></p><p><span class="text-success">@Localizer.Text("factorMarketGreenColor")</span>: <span>@Localizer.Text("factorMarketBestOffer")</span></p><br />
+
+            <p><span class="text-warning">@Localizer.Text("factorMarketYellowColor")</span>: <span>@Localizer.Text("factorMarketBestOfferAnotherFactor")</span></p><p><span class="text-primary">@Localizer.Text("factorMarketBlueColor")</span>: <span>@Localizer.Text("factorMarketCounterOffer")</span></p>
+        </span>
+        <span v-else>
+            <p><span class="text-danger">@Localizer.Text("factorMarketRedColor")</span>: <span>@Localizer.Text("factorMarketNotOffered")</span></p>
+            <p><span class="text-success">@Localizer.Text("factorMarketGreenColor")</span>: <span>@Localizer.Text("factorMarketBestOffer")</span></p>
+            <p><span class="text-warning">@Localizer.Text("factorMarketYellowColor")</span>: <span>@Localizer.Text("factorMarketBestOfferAnotherFactor")</span></p>
+            <p><span class="text-primary">@Localizer.Text("factorMarketBlueColor")</span>: <span>@Localizer.Text("factorMarketCounterOffer")</span></p>
+        </span>
+        <p class="mb-4">
+            @Localizer.Text("textoPress") <a href="#" @@click="dialogAyuda = true">@Localizer.Text("textoHere")</a> @Localizer.Text("textoMoreInformation")
+        </p>
+
+        <v-data-iterator :items="facturasFiltradas"
+                         :loading="loading"
+                         :options.sync="options"
+                         :items-per-page.sync="perPage"
+                         :hide-default-footer="facturasFiltradas.length <= perPage"
+                         :footer-props="{ itemsPerPageOptions }"
+                         v-if="auction.state == 'opened' ">
+            <template v-slot:default="props">
+                <v-row>
+                    <v-col v-for="(item,index) in props.items" :key="index" cols="12" md="4" lg="4" sm="4" v-if="item != null">
+                        <a href="#3867-71822170" style="cursor: pointer; text-decoration: none;" data-toggle="modal" data-target="#discountModal" @@click="limpiarOferta(); indexActivo = facturasFiltradas.indexOf(item)">
+                            <!-- Basic Card Example -->
+                            <div class="card shadow mb-3">
+
+                                <div class="card-header py-3" :class="{'border-left-success': item.bids.length != 0 ? item.bids[0].factor.id == idFactor: '','border-left-primary': item.bids.length != 0 ? item.bids[0].factor.id != idFactor && item.isOffered == true || item.bids[0].factor.id != idFactor && offeredByFactor == true  : '','border-left-warning': item.bids.length != 0 ? item.bids[0].factor.id != idFactor && item.isOffered == false : '', 'border-left-danger': item.bids.length == 0}" id="3867-71822170">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-0">
+                                                {{item.invoice.supplier.name}}
+                                            </div>
+                                            <p class="text-xs text-muted" style="margin-bottom: 0px !important">
+                                                {{item.invoice.number}} <span class="text-xs badge badge-primary" title="@Localizer.Text("tipExpirationDays")">{{item.invoice.term_days}} @Localizer.Text("textoDays")</span>
+                                            </p>
+                                            <div class="h6 mb-0 font-weight-bold text-gray-800">
+                                                {{item.currency.symbol}}&nbsp;{{formatoMonedaInput(item.invoice.amount,lang,item.currency.digits)}}
+                                                &nbsp;
+                                                <v-chip x-small style="max-width:3rem;justify-content:center">
+                                                    {{item.currency.iso_4217}}
+                                                </v-chip>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <img :src="'/img/banks/' + item.entity.routing_number + '.png'" height="48" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </v-col>
+                </v-row>
+            </template>
+        </v-data-iterator>
+        <span v-if="marketNotOpened">
+            <p class="text-danger">@Localizer.Text("textoMarketNotActivated")</p>
+        </span>
+
+        <div class="modal fade" id="discountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-body text-center" v-if="facturasFiltradas[indexActivo] != null">
+                        <div class="icon text-danger text-lg" style="font-size:3rem">
+                            <img v-if="facturasFiltradas[indexActivo] != null" :src="'/img/banks/' + facturasFiltradas[indexActivo].entity.routing_number + '.png'" height="48" alt="">
+                            <v-btn icon data-toggle="modal" data-target="#discountModal" style="position:absolute; right:10px">
+                                <v-icon>
+                                    @Localizer.Text("iconCloseMDI")
+                                </v-icon>
+                            </v-btn>
+                        </div>
+                        <div class="notice">
+                            <p class="font-weight-bold text-success text-uppercase mb-1" style="font-size:13px"> {{facturasFiltradas[indexActivo].invoice.supplier.name}}</p>
+                            <p class="text-xs font-weight-bold text-primary text-uppercase mb-1"> {{facturasFiltradas[indexActivo].invoice.debtor.name}}</p>
+                            <h5>{{facturasFiltradas[indexActivo].invoice.number}}</h5>
+                            &nbsp;
+                            <li class="list-group-item d-flex w-100 justify-content-between">
+                                <span class="text-xs text-muted">@Localizer.Text("textoDateExpiration")</span>
+                                <span class="font-weight text-uppercase">
+                                    {{backEndDateFormat(facturasFiltradas[indexActivo].invoice.expiration_date)}}&nbsp;
+                                </span>
+                            </li>
+                            <li class="list-group-item d-flex w-100 justify-content-between">
+                                <span class="text-xs text-muted">@Localizer.Text("textoDaysExpiration")</span>
+                                <span class="text-xs badge badge-primary badge-pill">
+                                    {{facturasFiltradas[indexActivo].invoice.term_days}}
+                                    @Localizer.Text("textoDays")
+                                </span>
+                            </li>
+                            <li class="list-group-item d-flex w-100 justify-content-between">
+                                <span class="text-xs text-muted">@Localizer.Text("textoOffertPro")</span>
+                                <span class="font-weight-bold text-uppercase">
+                                    <v-chip :color="facturasFiltradas[indexActivo].bids.length != 0 ? facturasFiltradas[indexActivo].bids[0].factor.id == idFactor ? 'green': 'orange' : ''" v-if="facturasFiltradas[indexActivo] == undefined? '':facturasFiltradas[indexActivo].discount > 0" small class="text-white" style="max-width:4rem;justify-content:center">
+                                        <strong>{{formatoMonedaInput(facturasFiltradas[indexActivo].discount,lang,facturasFiltradas[indexActivo].currency.digits)}}&nbsp;%</strong>
+                                    </v-chip>
+                                    <span v-else style="color: red">@Localizer.Text("textoNotOffert")</span>
+                                </span>
+                            </li>
+
+                            <li class="list-group-item d-flex w-100 justify-content-between">
+                                <span class="text-xs text-muted">@Localizer.Text("titleNominalAmount")</span>
+                                <span class="font-weight-bold text-uppercase">
+                                    {{facturasFiltradas[indexActivo].currency.symbol}}&nbsp;{{formatoMonedaInput(facturasFiltradas[indexActivo] == undefined? '': facturasFiltradas[indexActivo].invoice.original_amount,lang,facturasFiltradas[indexActivo] == undefined? '': facturasFiltradas[indexActivo].currency.digits)}}
+                                    &nbsp;&nbsp;
+                                    <v-chip x-small style="max-width:3rem;justify-content:center">
+                                        {{facturasFiltradas[indexActivo].currency.iso_4217}}
+                                    </v-chip>
+                                </span>
+                            </li>
+
+                            <li class="list-group-item d-flex w-100 justify-content-between">
+                                <span class="text-xs text-muted">@Localizer.Text("textoAmountNet")</span>
+                                <span class="font-weight-bold text-uppercase">
+                                    {{facturasFiltradas[indexActivo].currency.symbol}}&nbsp;{{formatoMonedaInput(facturasFiltradas[indexActivo] == undefined? '': facturasFiltradas[indexActivo].invoice.amount,lang,facturasFiltradas[indexActivo] == undefined? '': facturasFiltradas[indexActivo].currency.digits)}}
+                                    &nbsp;&nbsp;
+                                    <v-chip x-small style="max-width:3rem;justify-content:center">
+                                        {{facturasFiltradas[indexActivo].currency.iso_4217}}
+                                    </v-chip>
+                                </span>
+                            </li>
+                            <li class="list-group-item d-flex w-100 justify-content-between">
+                                <span class="text-xs text-muted">@Localizer.Text("textoGain")</span>
+                                <span class="font-weight-bold text-uppercase" v-if="ofertaMostrar.earnings != null" style="color:black">
+                                    {{facturasFiltradas[indexActivo].currency.symbol}}&nbsp;{{formatoMonedaInput(ofertaMostrar.earnings,lang,facturasFiltradas[indexActivo].currency.digits)}}
+                                    &nbsp;&nbsp;
+                                    <v-chip x-small style="max-width:3rem;justify-content:center">
+                                        {{facturasFiltradas[indexActivo].currency.iso_4217}}
+                                    </v-chip>
+                                </span>
+                                <span class="font-weight-bold text-uppercase" v-else>
+                                    {{facturasFiltradas[indexActivo].discount > 0 ? facturasFiltradas[indexActivo].currency.symbol : ""}}&nbsp;{{(facturasFiltradas[indexActivo].earnings == null || facturasFiltradas[indexActivo].earnings == 0 || facturasFiltradas[indexActivo].earnings == "") ? "-":formatoMonedaInput(facturasFiltradas[indexActivo].earnings,lang,facturasFiltradas[indexActivo].currency.digits)}}
+                                </span>
+                            </li>
+                            <li class="list-group-item d-flex w-100 justify-content-between">
+                                <span class="text-xs text-muted">@Localizer.Text("textoAnnualizedProfitability")</span>
+                                <span class="font-weight-bold text-uppercase mb-1" v-if="ofertaMostrar.profitability != null" style="color:black">
+                                    {{ formatoMonedaInput(ofertaMostrar.profitability,lang,facturasFiltradas[indexActivo].currency.digits)+" %" }}
+                                </span>
+                                <span class="font-weight-bold text-uppercase mb-1" v-else>
+                                    {{ (facturasFiltradas[indexActivo].profitability == null || facturasFiltradas[indexActivo].profitability == 0 || facturasFiltradas[indexActivo].profitability == "") ? "-": formatoMonedaInput(facturasFiltradas[indexActivo].profitability,lang,facturasFiltradas[indexActivo].currency.digits)+" %" }}
+                                </span>
+                            </li>
+                            <li class="list-group-item d-flex w-100 justify-content-between">
+                                <span class="text-xs text-muted">@Localizer.Text("textoAmountPayable")</span>
+                                <span class="font-weight-bold text-uppercase mb-1" v-if="ofertaMostrar.payable != null">
+                                    <v-chip small style="justify-content: center;background:royalblue; color: white">
+                                        {{facturasFiltradas[indexActivo].currency.symbol}}&nbsp;{{formatoMonedaInput(ofertaMostrar.payable,lang,facturasFiltradas[indexActivo].currency.digits )}}
+                                    </v-chip>
+                                    &nbsp;&nbsp;
+                                    <v-chip x-small style="max-width:3rem;justify-content:center">
+                                        {{facturasFiltradas[indexActivo].currency.iso_4217}}
+                                    </v-chip>
+                                </span>
+                                <span class="font-weight-bold text-uppercase mb-1" v-else>
+                                    <v-chip small style="justify-content: center;" :style="{background: facturasFiltradas[indexActivo].discount > 0 ? 'royalblue':'none', color: facturasFiltradas[indexActivo].discount > 0 ? 'white':'black' }">
+                                        {{facturasFiltradas[indexActivo].currency.symbol}}&nbsp;{{formatoMonedaInput(facturasFiltradas[indexActivo].payable,lang,facturasFiltradas[indexActivo].currency.digits )}}
+                                    </v-chip>
+                                </span>
+                            </li>
+
+                            <li class="list-group-item">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                    <input class="form-control text-right porcentaje" v-model="ofertaActual"
+                                           type="text" maxlength="5"
+                                           v-on:keypress="validarInputOfertar"
+                                           v-on:keyup="validarCantidadActual()" v-on:blur="formatoInputActual()"
+                                           v-on:keyup.enter="formatoMoneda(ofertarActual(facturasFiltradas[indexActivo]),lang,facturasFiltradas[indexActivo].currency.digits)"
+                                           placeholder="@Localizer.Text("placeholderNumberFormatPorcentage")">
+                                </div>
+                                <br />
+                                <span class="text-danger" :hidden="ofertaActual == 0 || ofertaActual == '' ||  facturasFiltradas[indexActivo].discount == 0 || formatoMoneda(ofertaActual,lang,facturasFiltradas[indexActivo].currency.digits) < facturasFiltradas[indexActivo].discount ">
+
+                                    @Localizer.Text("textoMejorarOfertaMercado")
+                                    <v-chip :color="facturasFiltradas[indexActivo].bids.length != 0 ? facturasFiltradas[indexActivo].bids[0].factor.id == idFactor ? 'green': 'orange' : ''" v-if="facturasFiltradas[indexActivo] == undefined? '':facturasFiltradas[indexActivo].discount > 0" small class="text-white" style="max-width:4rem;justify-content:center">
+                                        <strong>{{formatoMonedaInput(facturasFiltradas[indexActivo].discount,lang,facturasFiltradas[indexActivo].currency.digits)}}&nbsp;%</strong>
+                                    </v-chip>
+                                </span>
+                            </li>
+                        </div>
+                    </div>
+                    <div class="modal-footer" v-if="facturasFiltradas[indexActivo] != null">
+                        <a data-toggle="modal" data-target="#discountModal" class="btn-block">
+                            <button class="btn btn-success btn btn-block"
+                                    @@click="dialogOfertarFactura = true" :disabled="ofertaActual == '' || ofertaActual == 0 || formatoMoneda(ofertaActual,lang,facturasFiltradas[indexActivo].currency.digits) >= facturasFiltradas[indexActivo].discount && facturasFiltradas[indexActivo].discount != 0"
+                                    data-dismiss="modal">
+                                <span class="icons text-white-50" style="font-size:1.25rem">
+                                    <i class="@Localizer.Text("buttonOffert")"></i>
+                                </span>
+                                <span class="text text-white">
+                                    @Localizer.Text("buttonOffert")
+                                </span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <v-dialog v-model="dialogOfertarFactura" transition="dialog-bottom-transition" max-width="700" v-if="facturasFiltradas[indexActivo] != null">
+            <v-card>
+                <v-card-title class="headline">
+                    <h4>
+                        @Localizer.Text("titleModalOfertarMercadoFactor")
+                    </h4>
+                    <v-spacer></v-spacer>
+                    <v-btn icon @@click="dialogOfertarFactura = false">
+                        <v-icon>@Localizer.Text("iconCloseMDI")</v-icon>
+                    </v-btn>
+                </v-card-title>
+
+                <v-card-text>
+
+                    <v-row>
+                        <v-col cols="12" md="12" sm="12">
+                            <p>
+                                @Localizer.Text("textoModalOfertarMercadoFactor")&nbsp;<strong>{{facturasFiltradas[indexActivo].invoice.number}}</strong>
+                                @Localizer.Text("textoModalOfertarMercadoFactor2")<br />
+                                @Localizer.Text("textoModalOfertarMercadoFactor3")&nbsp;<strong>
+                                    {{facturasFiltradas[indexActivo].currency.symbol}}&nbsp;{{formatoMonedaInput(ofertaMostrar.payable,lang,facturasFiltradas[indexActivo].currency.digits )}}&nbsp;<v-chip x-small style="max-width:3rem;justify-content:center">
+                                        {{facturasFiltradas[indexActivo].currency.iso_4217}}
+                                    </v-chip>@Localizer.Text("interrogationSign")
+                            </p>
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                        <v-col cols="12" md="12" sm="12">
+                            <span class="float-right">
+                                <v-btn dark color="green" @@click="ofertarActual(facturasFiltradas[indexActivo]); dialogOfertarFactura = false">@Localizer.Text("buttonAcept")</v-btn>
+                                <v-btn dark color="red" @@click="dialogOfertarFactura = false">@Localizer.Text("buttonCancel")</v-btn>
+                            </span>
+                        </v-col>
+                    </v-row>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
+
+        <div class="modal" tabindex="-1" role="dialog" id="modalFilter">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"><i class="@Localizer.Text("iconFilter")"></i>&nbsp;@Localizer.Text("titlefilter")</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post">
+                            <div class="row">
+                                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                    <label>@Localizer.Text("titleConfirmant")</label>
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i class="@Localizer.Text("iconProvider")"></i></span>
+                                        </div>
+                                        <input asp-for="filter.Confirmant_id" class="form-control" maxlength="255" placeholder="@Localizer.Text("placeholderConfirmant")" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                    <label>@Localizer.Text("titleInvoiceNumber")</label>
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="@Localizer.Text("iconInvoiceNumber")"></i></span>
+                                        </div>
+                                        <input type="text" maxlength="255" id="txtFactura" class="form-control" asp-for="filter.Number"
+                                               placeholder="@Localizer.Text("placeholderNDocument")" onKeypress="if (event.keyCode == 32) event.returnValue = false;" maxlength="255">
+                                    </div>
+                                    <span class="help-block text-danger" asp-validation-for="filter.Number"></span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                    <label>@Localizer.Text("titleCurrencyType")</label>
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="@Localizer.Text("iconCurrency")"></i></span>
+                                        </div>
+                                        <select id="lstTipoFactura" asp-for="filter.Currency_id" asp-items="Model.Currency_options" class="form-control">
+                                            <option>@Localizer.Text("selectInvoiceCurrency")</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                    <label>@Localizer.Text("titleDebtor")</label>
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i class="@Localizer.Text("iconUser")"></i></span>
+                                        </div>
+                                        <input asp-for="filter.Debtor_id" class="form-control" maxlength="255" placeholder="@Localizer.Text("placeholderDebtor")" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                    <label>@Localizer.Text("titleIssuedFrom")</label>
+                                    <div class="input-group input-group-sm date" data-date-format="dd-mm-yyyy">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="@Localizer.Text("iconDate")"></i></span>
+                                        </div>
+                                        <input :max="moment().format('YYYY-MM-DD')" :min="moment().subtract(100,'years').format('YYYY-MM-DD')"
+                                               asp-for="filter.IssuedFrom" type="date" class="form-control pull-right" placeholder="dd-mm-yyyy" onkeypress="return false">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                    <label>@Localizer.Text("titleIssuedTo")</label>
+                                    <div class="input-group input-group-sm date" data-date-format="dd/mm/yyyy">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="@Localizer.Text("iconDate")"></i></span>
+                                        </div>
+                                        <input :max="moment().format('YYYY-MM-DD')" :min="moment().subtract(100,'years').format('YYYY-MM-DD')" type="date"
+                                               class="form-control pull-right" asp-for="filter.IssuedTo" onkeypress="return false">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                    <label>@Localizer.Text("titleExpirationFrom")</label>
+                                    <div class="input-group input-group-sm date" data-date-format="dd-mm-yyyy">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="@Localizer.Text("iconDate")"></i></span>
+                                        </div>
+                                        <input :max="moment().add(100,'years').format('YYYY-MM-DD')" :min="moment().format('YYYY-MM-DD')" asp-for="filter.ExpirationFrom"
+                                               type="date" class="form-control pull-right" placeholder="dd-mm-yyyy" onkeypress="return false">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                    <label>@Localizer.Text("titleExpirationTo")</label>
+                                    <div class="input-group input-group-sm date" data-date-format="dd/mm/yyyy">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="@Localizer.Text("iconDate")"></i></span>
+                                        </div>
+                                        <input :max="moment().add(100,'years').format('YYYY-MM-DD')" :min="moment().format('YYYY-MM-DD')" type="date"
+                                               class="form-control pull-right" asp-for="filter.ExpirationTo" onkeypress="return false">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                    <label>@Localizer.Text("titleAmountFrom")</label>
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text" id="basic-addon1"><i class="@Localizer.Text("iconNominalAmount")"></i></div>
+                                        </div>
+                                        <input onblur="formatoAmount('amountFrom')" placeholder="@Localizer.Text("placeholderNumberFormat")" id="amountFrom" asp-for="filter.AmountFrom" class="form-control text-right">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                    <label>@Localizer.Text("titleAmountTo")</label>
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text" id="basic-addon1"><i class="@Localizer.Text("iconNominalAmount")"></i></div>
+                                        </div>
+                                        <input onblur="formatoAmount('amountTo')" asp-for="filter.AmountTo" id="amountTo" placeholder="@Localizer.Text("placeholderNumberFormat")" class="form-control text-right">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12 col-sm-12">
+                                    <div class="input-group input-group-sm">
+                                        <div class="custom-control custom-radio custom-control-inline">
+
+                                            @if (@Model.OfferedNull == null)
+                                            {
+                                                <input type="radio" id="checkFinanced2" class="custom-control-input" asp-for="filter.IsOffered" value="null" checked />
+                                            }
+                                            else
+                                            {
+                                                <input type="radio" id="checkFinanced2" class="custom-control-input" asp-for="filter.IsOffered" value="null" />
+                                            }
+
+                                            <label class="custom-control-label" for="checkFinanced2">@Localizer.Text("textAllFinanced")</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" id="checkFinanced3" class="custom-control-input" asp-for="filter.IsOffered" value="true" />
+                                            <label class="custom-control-label" for="checkFinanced3">@Localizer.Text("filterOffered")</label>
+                                        </div>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" id="checkFinanced" class="custom-control-input" asp-for="filter.IsOffered" value="false" />
+                                            <label class="custom-control-label" for="checkFinanced">@Localizer.Text("filterNotOffered")</label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 align-self-end">
+                                    <button type="submit" class="btn btn-block btn-success " :disabled="envio">
+                                        <i class="@Localizer.Text("iconFilter")"></i>
+                                        <span>@Localizer.Text("buttonFilter")</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <v-dialog v-model="dialogAyuda" max-width="500" transition="dialog-bottom-transition">
+            <v-card>
+                <v-card-title>
+                    <v-spacer></v-spacer>
+                    <v-btn icon @@click="dialogAyuda = false">
+                        <v-icon>@Localizer.Text("iconCloseMDI")</v-icon>
+                    </v-btn>
+                </v-card-title>
+                <v-card-text>
+                    <v-container>
+                        <v-row>
+                            <v-col cols="12" sm="12" lg="12" md="12">
+                                @Localizer.Text("textoMercadoFactorInformation1")<br /><br />
+
+                                @Localizer.Text("textoMercadoFactorInformation2")<br />
+                                @Localizer.Text("textoMercadoFactorInformation3")<br /><br />
+
+                                <strong>@Localizer.Text("textNote"):</strong> @Localizer.Text("textoMercadoFactorInformation4")
+
+                            </v-col>
+                        </v-row>
+                    </v-container>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
+    </v-app>
+
+@section CSS{
+    <link rel="stylesheet" type="text/css" href="~/css/contador.css" asp-append-version="true" />
+}
+
+@section scripts{
+    <script>
+        function startTimer(duration, display) {
+            var timer = duration, minutes, seconds;
+            var intervalo = setInterval(function () {
+                hours = parseInt(timer / 3600, 10);
+                minutes = parseInt((timer - (hours * 3600)) / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                hours = hours < 10 ? "0" + hours : hours
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                if (timer <= 0) {
+
+                    display.textContent = "00:00:00";
+                    clearInterval(intervalo)
+                    window.location.reload()
+                    return
+                }
+
+                display.textContent = hours + ":" + minutes + ":" + seconds;
+
+                timer--
+            }, 1000);
+        }
+
+    </script>
+
+
+    <script src="~/lib/@@aspnet/signalr/dist/browser/signalr.js" asp-append-version="true"></script>
+    <script src="~/js/Inversionista/MercadoFacturas.js" asp-append-version="true"></script>
+    <partial name="_ValidationScriptsPartial" />
+}

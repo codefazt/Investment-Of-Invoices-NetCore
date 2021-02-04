@@ -1,0 +1,99 @@
+﻿@page
+@namespace TuFactoring.Areas.Profile.Asociados
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject Utilities.CultureLocalizer Localizer
+@model TuFactoring.Areas.Profile.Pages.UsuariosModel
+@using System.Globalization;
+@{
+    ViewData["Title"] = "Usuarios";
+
+    switch (@Model.TipoParticipante)
+    {
+        case "CONFIRMANT":
+            ViewData["Sidebar"] = "dark";
+            break;
+        case "DEBTOR":
+            ViewData["Sidebar"] = "primary";
+            break;
+        case "FACTOR":
+            ViewData["Sidebar"] = "warning";
+            break;
+        case "SUPPLIER":
+            ViewData["Sidebar"] = "purple";
+            break;
+        default:
+            ViewData["Sidebar"] = "navy";
+            break;
+    }
+
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+}
+
+<v-app id="appUsers">
+    <div class="mt-5">
+        @Html.AntiForgeryToken()
+        <input hidden id="contenidoRaw" value="@Model.UserJson" />
+
+        <div class="modal fade in fa fa-spinner" v-if="cargando" role="dialog">
+            <div class="modal-dialog text-center">
+
+                <h2 style="color:#000"><span id="cargando">Cargando...</span></h2>
+            </div>
+        </div>
+
+        <div id="contenido" hidden>
+
+            <div class="col-lg-12">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">
+                            <i class="@Localizer.Text("iconCommercialData") logoColor"></i> &nbsp;
+                            <span>@Localizer.Text("textoDatosUsuario")</span>
+
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+
+                            <div class="from-group col-sm-12">
+                                <label>@Localizer.Text("textonameSurname")</label>
+                                <input maxlength="255" v-on:blur="validarNombres" v-model="user.name" :class="[errorName,'form-control']" placeholder="@Localizer.Text("textonameSurname")">
+                                <span class="text-danger">{{ errorNameText }}</span>
+                            </div>
+
+                            <div class="from-group col-sm-12">
+                                <label for="email">@Localizer.Text("textoEmail")</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                    </div>
+                                    <input onPaste="return false" maxlength="60" v-on:blur="validarEmail" v-model="user.email" :class="['form-control',errorEmail]" placeholder="@Localizer.Text("placeholderEmail")">
+                                </div>
+                                <span class="text-danger">{{errorEmailText}}</span>
+                            </div>
+
+                            <div  class="from-group col-sm-12">
+                                <label>@Localizer.Text("textoRoles")</label>
+                                <input v-for="rol in user.roles" disabled maxlength="255" v-on:blur="" v-model="rol.name" :class="['form-control', 'mb-5']" placeholder="@Localizer.Text("textoRoles")">
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-4"><button :disabled="habilitarBoton" v-on:click="actualizarUser" class="btn btn-primary btn-block"><i class="fa fa-edit"></i> Actualizar</button></div>
+                                <div class="col-md-4"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @await Html.PartialAsync("_ModalLogoutPartial", Model.NRol)
+        </div>
+    </div>
+</v-app>
+
+@section Scripts
+    {
+    <script src="~/js/Operativo/vueUsers.js" asp-append-version="true"></script>
+}

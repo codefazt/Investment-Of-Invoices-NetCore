@@ -1,0 +1,346 @@
+﻿@page
+@model TuFactoring.Areas.Backoffice.Pages.ContabilidadModel
+@{
+    ViewData["Title"] = Localizer.Text("titleAccounting");
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<v-app id="app" hidden>
+    @Html.AntiForgeryToken()
+    @await Html.PartialAsync("_ModalLogoutPartial", 5)
+
+    <div id="eliminarData">
+        <input hidden id="filterData" value="@Model.filterData" />
+    </div>
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">
+            <a href="#" class="btn btn-success btn-circle">
+                <i class="fas fa-stream"></i>
+            </a>
+            @Localizer.Text("titleAccounting")
+        </h1>
+        <span>
+            <v-btn @@click="limpiar(); edit =true" dark color="green" class="float-right">
+                <i class="@Localizer.Text("iconAdd")"></i>&nbsp;@Localizer.Text("buttonCreate")
+            </v-btn>
+        </span>
+    </div>
+
+    <p class="mb-4">
+        @Localizer.Text("textoAyudaContabilidad")
+    </p>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h4 class="m-0 font-weight-bold text-primary">
+                @Localizer.Text("titleAccounting")
+            </h4>
+            <div class="dropdown no-arrow">
+                <span class="font-weight-bold text-primary">@Localizer.Text("buttonOptions")</span>
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                    <button class="dropdown-item btn-link"
+                            data-toggle="modal" data-target="#modalFilter">
+                        <i class="@Localizer.Text("iconFilter")"></i>
+                        @Localizer.Text("buttonFilter")
+                    </button>
+                    <a class="dropdown-item btn-link" style="color:black !important" asp-page="#">
+                        <i class="@Localizer.Text("iconClear")"></i>
+                        @Localizer.Text("buttoClearFilter")
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <v-row>
+                <v-col cols="12" md="12" lg="12" sm="12">
+                    <v-data-table :headers="header"
+                                  :items="groups"
+                                  :loading="loading"
+                                  class="elevation-1">
+                        <template v-slot:item.n="props">
+                            {{groups.indexOf(props.item) + 1}}
+                        </template>
+                        <template v-slot:item.name="{item}">
+                            <div class="text-left">
+                                {{item.name}}
+                            </div>
+                        </template>
+
+                        <template v-slot:item.status="{item}">
+                            {{  i18n.t(item.status+'')  }}
+                        </template>
+                        <template v-slot:item.detail="{ item }">
+                            <button type="button" v-on:click="detallesGroup(item)" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></button>
+                        </template>
+
+                        <template v-slot:item.opciones="props">
+                            <v-btn dark color="green" small @@click="editar(groups.indexOf(props.item)); edit = true">
+                                <i class="@Localizer.Text("iconEdit")"></i>&nbsp;@Localizer.Text("buttonEditGroup")
+                            </v-btn>
+                        </template>
+                    </v-data-table>
+                </v-col>
+            </v-row>
+        </div>
+    </div>
+
+    <v-dialog v-model="edit" max-width="750">
+        <v-card>
+            <v-card-title>
+                <h4 class="modal-title">{{estadoCarga == 0 ? '@Localizer.Text("titleGroupData")': '@Localizer.Text("titleDetails")'}}</h4>
+                <v-spacer></v-spacer>
+                <v-btn icon @@click="edit = false">
+                    <v-icon>
+                        @Localizer.Text("iconCloseMDI")
+                    </v-icon>
+                </v-btn>
+            </v-card-title>
+            <v-card-text>
+                <div v-if="estadoCarga == 0">
+                    <v-row>
+                        <v-col cols="6" md="6" sm="12" lg="6">
+                            <label>@Localizer.Text("textoOneName")</label>
+                            <div class="input-group" style="width:100%">
+                                <input type="text" placeholder="@Localizer.Text("placeholderNameGroup")" v-model="nuevo.name" maxlength="255" class="form-control" />
+                            </div>
+                        </v-col>
+                        <v-col cols="6" md="6" sm="12" lg="6">
+                            <label>@Localizer.Text("textoAbbreviation")</label>
+                            <div class="input-group" style="width:100%">
+                                <input type="text" :disabled="indice != -1" placeholder="@Localizer.Text("placeholderAbbreviation")" v-model="nuevo.abbreviation" maxlength="255" class="form-control" />
+                            </div>
+                        </v-col>
+                    </v-row>
+
+                    <v-row>
+                        <v-col cols="6" md="6" sm="12" lg="6">
+                            <label>@Localizer.Text("textoProgram")</label>
+                            <select v-model="nuevo.program.id" class="form-control">
+                                <option value="" v-if="nuevo.program.id == ''" selected>@Localizer.Text("selectInvoiceCurrency")</option>
+                                <option v-for="item in programs" :value="item.id">{{item.name}}</option>
+                            </select>
+                        </v-col>
+
+                        <v-col cols="6" md="6" sm="12" lg="6">
+                            <label>@Localizer.Text("titleCurrencyType")</label>
+                            <select v-model="nuevo.currency.id" class="form-control">
+                                <option value="" v-if="nuevo.currency.id == ''" selected>@Localizer.Text("selectInvoiceCurrency")</option>
+                                <option v-for="item in currencies" :value="item.id">{{item.name}}</option>
+                            </select>
+                        </v-col>
+                    </v-row>
+
+                    <v-row>
+                        <v-col cols="12" md="12" sm="12" lg="12">
+                            <label>@Localizer.Text("textoDescription")</label>
+                            <div class="input-group" style="width:100%">
+                                <textarea placeholder="@Localizer.Text("placeholderDescript")" v-model="nuevo.description" maxlength="255" class="form-control"> </textarea>
+                            </div>
+                        </v-col>
+                    </v-row>
+                </div>
+
+                <div v-if="estadoCarga != 0">
+                    <v-row>
+                        <v-col cols="12" md="6" lg="6" sm="12">
+                            <label>@Localizer.Text("textoEvent")</label>
+                            <div class="input-group" style="width:100%">
+                                <input type="text" placeholder="@Localizer.Text("placeholderEvent")" v-model="detail.event" maxlength="255" class="form-control" />
+                            </div>
+                        </v-col>
+                        <v-col cols="12" md="6" lg="6" sm="12">
+                            <label>@Localizer.Text("textoConcept")</label>
+                            <div class="input-group" style="width:100%">
+                                <input type="text" placeholder="@Localizer.Text("placeholderConcept")" v-model="detail.concept" maxlength="255" class="form-control" />
+                            </div>
+                        </v-col>
+                    </v-row>
+
+                    <v-row>
+                        <v-col cols="12" md="6" lg="6" sm="12">
+                            <label>@Localizer.Text("textoAccount")</label>
+                            <div class="input-group" style="width:100%">
+                                <input type="text" placeholder="@Localizer.Text("placeholderAccount")" v-model="detail.account" maxlength="255" class="form-control" />
+                            </div>
+                        </v-col>
+                        <v-col cols="12" md="6" lg="6" sm="12">
+                            <label>@Localizer.Text("textoCategory")</label>
+                            <div class="input-group" style="width:100%">
+                                <select v-model="detail.category" class="form-control">
+                                    <option value="" v-if="detail.category == ''" selected>@Localizer.Text("selectInvoiceCurrency")</option>
+                                    <option v-for="item in categories" :value="item" :label="i18n.t(item)"></option>
+                                </select>
+                            </div>
+                        </v-col>
+                    </v-row>
+
+
+                    <v-row>
+                        <v-col cols="12" md="12" sm="12" lg="12">
+                            <v-data-table :headers="headerDetails2"
+                                          :items="nuevo.details"
+                                          :mobile-breakpoint="widthTelefono"
+                                          class="elevation-1"
+                                          item-key="detalles">
+                                <template v-slot:item.n="{item}">
+                                    {{nuevo.details.indexOf(item) +1}}
+                                </template>
+                                <template v-slot:item.category="{item}">
+                                    {{i18n.t(item.category)}}
+                                </template>
+                                <template v-slot:item.opciones="props">
+                                    <v-btn dark color="green" small @@click="editarDetail(nuevo.details.indexOf(props.item));">
+                                        @Localizer.Text("buttonEdit")
+                                    </v-btn>
+                                    <v-btn dark color="red" small @@click="eliminarDetail(props.item);">
+                                        @Localizer.Text("buttonDelete")
+                                    </v-btn>
+                                </template>
+                            </v-data-table>
+                        </v-col>
+                    </v-row>
+                </div>
+
+                <div>
+                    <v-row>
+                        <v-col cols="12" md="12" lg="12" sm="12" class="text-right">
+                            <v-btn color="primary"  @@click="addDetail()" v-if="estadoCarga == 1" :disabled="enviando" >
+                                {{indiceDetail == -1 ? '@Localizer.Text("buttonAdd")' : '@Localizer.Text("buttonUpdate")'}}
+                            </v-btn>
+                            <v-btn :color="estadoCarga == 0 ? 'primary':'green'"  @@click=" estadoCarga == 0? estadoCarga = 1: estadoCarga = 0" class="text-white">
+                                {{estadoCarga == 0 ? '@Localizer.Text("buttonAddDetails")' : '@Localizer.Text("buttonVolver")'}}
+                            </v-btn>
+                            <v-btn color="green"  @@click="procesoGroup(); " v-if="estadoCarga == 0" :disabled="enviando" class="text-white">
+                                {{indice == -1 ? '@Localizer.Text("buttonCreate")' : '@Localizer.Text("buttonUpdate")'}}
+                            </v-btn>
+                        </v-col>
+                    </v-row>
+                </div>
+            </v-card-text>
+        </v-card>
+    </v-dialog>
+
+    <v-dialog v-model="dialogDetails" max-width="1200">
+        <v-card>
+            <v-card-title class="headline">
+                <h4><i class="fa fa-university logoColor"></i> &nbsp;@Localizer.Text("titleDetailGroup")</h4>
+                <v-spacer></v-spacer>
+                <v-btn icon @@click="dialogDetails = false">
+                    <i class="fa fa-close"></i>
+                </v-btn>
+            </v-card-title>
+            <v-card-text>
+                <v-data-table :headers="headerDetails"
+                              :items="details"
+                              :mobile-breakpoint="widthTelefono"
+                              class="elevation-1"
+                              item-key="detalles">
+                    <template v-slot:item.n="{item}">
+                        {{details.indexOf(item) +1}}
+                    </template>
+                    <template v-slot:item.category="{item}">
+                        {{i18n.t(item.category)}}
+                    </template>
+                </v-data-table>
+            </v-card-text>
+        </v-card>
+    </v-dialog>
+
+    <!--Modal d Flitro de los Clientes-->
+    <div class="modal" tabindex="-1" role="dialog" id="modalFilter">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="@Localizer.Text("iconFilter")"></i>&nbsp;@Localizer.Text("titlefilter")</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                <label>@Localizer.Text("textoOneName")</label>
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i class="@Localizer.Text("iconProvider")"></i></span>
+                                    </div>
+                                    <input placeholder="@Localizer.Text("placeholderAddName")" asp-for="filter.Name" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                <label>@Localizer.Text("textoAbbreviation")</label>
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
+                                    </div>
+                                    <input placeholder="@Localizer.Text("placeholderAddAbbreviation")" asp-for="filter.Abbreviation" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                <label>@Localizer.Text("textoAccount")</label>
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="@Localizer.Text("iconInvoiceNumber")"></i></span>
+                                    </div>
+                                    <input type="text" maxlength="255" id="txtFactura" class="form-control" asp-for="filter.Account"
+                                           placeholder="@Localizer.Text("placeholderAccount")">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                <label>@Localizer.Text("textoEvent")</label>
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text" id="basic-addon1"><i class="@Localizer.Text("iconCity")"></i></div>
+                                    </div>
+                                    <input type="text" maxlength="255" id="txtFactura" class="form-control" asp-for="filter.Event"
+                                           placeholder="@Localizer.Text("placeholderEvent")">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                <label>@Localizer.Text("titleFilterStatus")</label>
+                                <div class="input-group input-group-sm">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i class="@Localizer.Text("iconInvoiceNumber")"></i></span>
+                                    </div>
+
+                                    <select asp-for="filter.Status" class="form-control">
+                                        <option value="">@Localizer.Text("placeholderSelect")</option>
+                                        @foreach (var item in Model._status_options)
+                                        {
+                                            <option value="@item.Value">@Localizer.Text(item.Text)</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 align-self-end">
+                                <button type="submit" class="btn btn-block btn-success" >
+                                    <i class="@Localizer.Text("iconFilter")"></i>
+                                    <span>@Localizer.Text("buttonFilter")</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</v-app>
+
+@section scripts{
+
+    <script src="~/js/Operativo/contabilidad.js" asp-append-version="true"></script>
+}

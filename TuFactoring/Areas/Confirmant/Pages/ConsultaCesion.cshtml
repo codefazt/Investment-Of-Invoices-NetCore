@@ -1,0 +1,110 @@
+﻿@page
+@model TuFactoring.Areas.Confirmant.Pages.ConsultaCesionModel
+@{
+
+    ViewData["Title"] = Localizer.Text("titleQueriesCesion");
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<v-app id="appConsultasCesion">
+    @Html.AntiForgeryToken()
+
+    <div class="modal fade in fa fa-spinner" v-if="cargando" role="dialog">
+        <div class="modal-dialog text-center">
+
+            <h2 style="color:#000"><span id="cargando">@Localizer.Text("load")</span></h2>
+        </div>
+    </div>
+
+    <div id="contenido" hidden class="row">
+        @await Html.PartialAsync("_ModalLogoutPartial", 5)
+        <div class="col-sm-12">
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">
+                    <a href="#" style="color:#fff !important" class="btn btn-success btn-circle">
+                        <i class="far fa-file-alt"></i>
+                    </a>
+                    &nbsp;@Localizer.Text("titleQueriesCesion")
+                </h1>
+            </div>
+            <p class="mb-4">
+                @Localizer.Text("textInformationCesionBank")
+            </p>
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h4 class="m-0 font-weight-bold text-primary">
+                        @Localizer.Text("textContratoCesionDerechos")
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!------------------------------------------- Tabla de Consultas ---------------------------------------------->
+                            <v-data-table :headers="headerInvoices"
+                                          :items="facturas"
+                                          :items-per-page="10"
+                                          :mobile-breakpoint="widthTelefono"
+                                          :options.sync="options"
+                                          :loading="loading"
+                                          class="elevation-1">
+                                <template v-slot:item.n="{ item }">
+                                    <div class="text-center">
+                                        {{facturas.indexOf(item) + 1}}
+                                    </div>
+                                </template>
+
+                                <template v-slot:item.debtor="props">
+                                    <div class="text-left" v-if="tamanoTlf()">
+                                        {{ props.item.invoice.debtor.name }}
+                                    </div>
+                                    <div class="text-right" v-else>
+                                        <p class="text-sm-right">{{ props.item.invoice.debtor.name }}</p>
+                                    </div>
+                                </template>
+
+                                <template v-slot:item.supplier="props">
+                                    <div class="text-left" v-if="tamanoTlf()">
+                                        {{ props.item.invoice.supplier.name }}
+                                    </div>
+                                    <div class="text-right" v-else>
+                                        <p class="text-sm-right">{{ props.item.invoice.supplier.name }}</p>
+                                    </div>
+                                </template>
+
+                                <template v-slot:item.expiration_date="props">
+                                    <div class="text-center">
+                                        {{ backEndDateFormat(props.item.invoice.expiration_date) }}
+                                        <v-chip x-small
+                                                label>
+                                            {{props.item.invoice.term_days}}
+                                        </v-chip>
+                                    </div>
+                                </template>
+                                <template v-slot:item.changelogs="props">
+                                    <div class="text-center">
+                                        {{ backEndDateFormat(props.item.changelogs[0].changedAt) }}
+                                    </div>
+                                </template>
+                                <template v-slot:item.amount="props">
+                                    <div class="text-right">{{ props.item.currency.symbol }} {{ formatoMonedaInput(props.item.invoice.amount,lang,digits) }} <span class="text-xs badge bg-gray-200">{{ props.item.currency.iso_4217 }}</span></div>
+                                </template>
+                                <template v-slot:item.status="props">
+                                    <div class="text-center">{{ estado_factura(props.item.state) }}</div>
+                                </template>
+
+                                <template v-slot:item.options="props">
+                                    <button type="button" v-on:click="getFile(props.item)" class="btn btn-sm btn-success" title="@Localizer.Text("textoVerDocumentoCesion")"><i class="fa fa-eye"></i></button>
+                                </template>
+                            </v-data-table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</v-app>
+@section Scripts{
+    <script src="~/js/Bancos/consultaCesionConfirmant.js" asp-append-version="true"></script>
+}

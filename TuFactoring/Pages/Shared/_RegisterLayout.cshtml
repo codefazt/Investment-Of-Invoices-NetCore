@@ -1,0 +1,198 @@
+﻿@using System.Globalization;
+@{
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+}
+<!DOCTYPE html>
+<html lang="@CultureInfo.CurrentCulture.ThreeLetterWindowsLanguageName">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>@ViewData["Title"] - @Localizer.Text("branding")</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="~/css/sb-admin-2.css" rel="stylesheet">
+    <link href="~/css/Resource/vuetify.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@@mdi/font@3.x/css/materialdesignicons.min.css" rel="stylesheet">
+
+    <script>
+        //Add this below content to your HTML page, or add the js file to your page at the very top to register service worker
+        if (navigator.serviceWorker.controller) {
+            console.log('[PWA] active service worker found, no need to register');
+        } else {
+
+            //Register the ServiceWorker
+            navigator.serviceWorker.register('~/sw.js', {
+                scope: './'
+            }).then(function (reg) {
+                console.log('Service worker has been registered for scope:' + reg.scope);
+            });
+        }
+
+    </script>
+    <link rel="manifest" href="~/manifest.json">
+    <meta name="theme-color" content="#317EFB">
+
+
+    <!--]*********************************************-->
+    <link href="https://cdn.jsdelivr.net/npm/@@mdi/font@3.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="~/css/Resource/vuetify.min.css" rel="stylesheet">
+    <link href="~/css/Resource/resource.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/StyleMenuVue/StiloHeaderAsideBar.css" rel="stylesheet" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/toastr.css">
+    <!--]*********************************************-->
+
+    @RenderSection("CSS", required: false)
+
+</head>
+<body id="page-top">
+
+    <div id="@ViewData["_LayoutRegistro"]">
+        <div class="modal fade in fa fa-spinner" v-if="cargando" role="dialog">
+            <div class="modal-dialog text-center">
+
+                <h2 style="color:#f1f1f1"><span id="cargando">Cargando...</span></h2>
+            </div>
+        </div>
+        <div id="contenido" hidden>
+            <!-- Page Wrapper -->
+            <div id="wrapper">
+
+                <!-- Sidebar -->
+                <ul :class="['navbar-nav bg-gradient-primary sidebar sidebar-dark accordion', toggledSlideBar]" id="accordionSidebar">
+
+                    <!-- Sidebar - Brand -->
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/index.html">
+                        <div class="sidebar-brand-icon rotate-n-151">
+                            <img src="~/img/logo.jpg" class="rounded-circle border-0 img-circle" height="38" alt="User Image">
+                        </div>
+                        <div class="sidebar-brand-text mx-3">@Localizer.Text("branding")</div>
+                    </a>
+
+                    <hr class="sidebar-divider d-none d-md-block">
+
+                    <!-- Sidebar Toggler (Sidebar) -->
+                    <div class="text-center d-none d-md-inline">
+                        <button v-on:click="toggledSlideBar=='toggled' ? toggledSlideBar = '' : toggledSlideBar = 'toggled'" class="rounded-circle border-0" id="sidebarToggle"></button>
+                    </div>
+
+                </ul>
+                <!-- End of Sidebar -->
+                <!-- Content Wrapper -->
+                <div id="content-wrapper" class="d-flex flex-column">
+
+                    <!-- Main Content -->
+                    <div id="content">
+
+                        <!-- Topbar -->
+                        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                            <!-- Sidebar Toggle (Topbar) -->
+                            <button id="sidebarToggleTop" v-on:click="toggledSlideBar=='toggled' ? toggledSlideBar = '' : toggledSlideBar = 'toggled'" class="btn btn-link d-md-none rounded-circle mr-3">
+                                <i class="fa fa-bars"></i>
+                            </button>
+
+                            <!-- Topbar Navbar -->
+                            <ul class="navbar-nav ml-auto">
+
+                                <div class="topbar-divider d-none d-sm-block"></div>
+
+                                <!-- Nav Item - User Information -->
+                                <li class="nav-item no-arrow">
+                                    <a style="color:#000 !important;" class="nav-link" asp-route-culture="@culture" asp-page="/Index"><v-icon color="#5867dd">@Localizer.Text("iconHomeMDI")</v-icon> @Localizer.Text("Inicio")</a>
+                                </li>
+
+                            </ul>
+
+                        </nav>
+                        <!-- End of Topbar -->
+                        <!-- Begin Page Content -->
+                        <div class="container-fluid">
+
+                            @RenderBody()
+
+                        </div>
+                        <!-- /.container-fluid -->
+
+                    </div>
+                    <!-- End of Main Content -->
+                    <!-- Footer -->
+                    <footer class="sticky-footer bg-white">
+                        <div class="container my-auto">
+                            <div class="copyright text-center my-auto">
+                                <span>
+                                    &copy; @Localizer.Text("branding") 2020. @Localizer.Text("Derechos reservados").
+                                </span>
+                                <br>
+                                <ul class="list-inline">
+                                    <li class="list-inline-item">
+                                        <a href="#">@Localizer.Text("Privacidad")</a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">@Localizer.Text("Terminos y Condiciones")</a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="#">@Localizer.Text("Preguntas frecuentes")</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- End of Footer -->
+
+                </div>
+                <!-- End of Content Wrapper -->
+
+            </div>
+            <!-- End of Page Wrapper -->
+        </div>
+    </div>
+
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/vendor/jquery/jquery.min.js"></script>
+    <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="~/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="~/js/sb-admin-2.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/translate/recursos.js" asp-append-version="true"></script>
+
+    <script src="~/js/Resource/fontAwesome.js"></script>
+    <script src="~/js/Resource/popper.min.js"></script>
+
+    <script src="~/js/Vue/vue.js"></script>
+    <script src="~/js/Vue/vuexJs.js" asp-append-version="true"></script>
+    <script src="~/js/Vue/Axios.js" asp-append-version="true"></script>
+    <script src="~/js/Vue/vuetify.min.js" asp-append-version="true"></script>
+    <script src="~/js/Vue/vuei18n.min.js" asp-append-version="true"></script>
+
+    <script src="~/js/moment.min.js" asp-append-version="true"></script>
+
+    <script src="~/js/toastr.js" asp-append-version="true"></script>
+    <script src="~/js/Vue/VuexLayout.js" asp-append-version="true"></script>
+    <script src="~/js/translate/idiomas/es.js" asp-append-version="true"></script>
+    <script src="~/js/translate/idiomas/es-VE.js" asp-append-version="true"></script>
+    <script src="~/js/translate/idiomas/es-DO.js" asp-append-version="true"></script>
+    <script src="~/js/translate/idiomas/en.js" asp-append-version="true"></script>
+    <script src="~/js/translate/idiomas/pt,js.js" asp-append-version="true"></script>
+    <script src="~/js/translate/diccionario.js" asp-append-version="true"></script>
+    <script src="~/lib/@@aspnet/signalr/dist/browser/signalr.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+

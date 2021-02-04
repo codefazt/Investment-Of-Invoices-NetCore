@@ -1,0 +1,58 @@
+﻿@using System.Globalization;
+@using Microsoft.AspNetCore.Builder;
+@using Microsoft.Extensions.Options
+@inject IOptions<RequestLocalizationOptions> LocOps
+
+@{
+    var requestCulture = CultureInfo.CurrentCulture;
+
+    var supportedCultures = LocOps.Value.SupportedUICultures
+        .Select(c => new SelectListItem
+        {
+            Value = c.Name,
+            Text = $"{c.DisplayName}"
+        }).ToList();
+
+    var routeData = new Dictionary<string, string>();
+
+    // capture all route parameters
+    // necessary for "Page Route" opioon
+    foreach (var r in ViewContext.RouteData.Values)
+    {
+        routeData.Add(r.Key, r.Value.ToString());
+    }
+
+    foreach (var qs in Context.Request.Query)
+    {
+        routeData.Add(qs.Key, qs.Value);
+    }
+}
+
+<!--
+<nav class="navbar navbar-nav" id="lang-bar">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+    -->
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        @($"{requestCulture.DisplayName}")
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        @foreach (var culture in supportedCultures)
+        {
+            if (culture.Value.ToLower() != requestCulture.Name.ToLower())
+            {
+                routeData["culture"] = culture.Value;
+                <a class="dropdown-item" asp-all-route-data="@routeData"
+                   asp-route-returnUrl="@(Context.Request.Query["returnUrl"])">
+                    @culture.Text
+                </a>
+            }
+        }
+    </div>
+</li>
+<!--
+        </ul>
+    </div>
+</nav>
+    -->

@@ -1,0 +1,55 @@
+﻿
+.v-data-table-header span{
+    /*background: linear-gradient(90deg, rgba(33,33,34,1) 99%, rgba(39,52,62,1) 100%, rgba(20,78,78,1) 100%);*/
+    font-size:1.3em;
+}
+
+.v-navigation-drawer__content {
+    background-color: #242939;
+}
+
+.v-toolbar__content {
+    background-color: #fff !important;
+}
+
+.magenCards {
+    /*background-color: #5867dd !important;*/
+    margin-top: 2em !important;
+}
+
+.btnColor {
+    background-color: #5867dd !important;
+}
+
+.logoColor {
+    color: #5867dd !important;
+}
+
+.botonInmovil {
+    position: absolute !important;
+    bottom: 1em !important;
+    right: 1em !important;
+        
+}
+
+.marginIcon {
+    margin-right: 1em !important;
+}
+
+.linksBlancos a {
+    color: #FFF !important;
+}
+    
+small a, small a:visited {
+    color: #989eb3 !important;
+}
+
+small a:hover {
+    color: white !important;
+}
+
+.input-group-prepend .input-group-text{
+    color: #5867dd !important;
+}
+
+

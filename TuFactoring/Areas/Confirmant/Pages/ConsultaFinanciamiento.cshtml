@@ -1,0 +1,328 @@
+﻿@page
+@model TuFactoring.Areas.Confirmant.Pages.ConsultaFinanciamientoModel
+@{
+
+    ViewData["Title"] = Localizer.Text("titleQueryFinancing");
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<v-app id="appConsultasFinanciamiento">
+    @Html.AntiForgeryToken()
+    <input hidden id="contenidoRaw" value="@Model.dataJsonFactura" />
+    <input hidden id="listadosInicialesJson" value="@Model.listadosInicialesJson" />
+    <div id="eliminarData">
+        @for (var i = 0; i < Model.dataFilter.Count; i++)
+        {
+            <input hidden id="filterData+@i" value="@Model.dataFilter[i]" />
+        }
+        <input hidden id="currenciesData" value="@Model.dataJsonCurrencies" />
+    </div>
+
+    <div class="modal fade in fa fa-spinner" v-if="cargando" role="dialog">
+        <div class="modal-dialog text-center">
+
+            <h2 style="color:#000"><span id="cargando">Cargando...</span></h2>
+        </div>
+    </div>
+
+    <div id="contenido" hidden class="row">
+
+        <div class="col-sm-12">
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">
+                    <a href="#" style="color:#fff !important" class="btn btn-success btn-circle">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </a>
+                    &nbsp;@Localizer.Text("titleQueryFinancing")
+                </h1>
+                <span style="display: none;">
+                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                </span>
+            </div>
+            <p class="mb-4">
+                @Localizer.Text("textoConsultaFinanciamiento")
+            </p>
+
+            <div v-for="(datos, index) in arrayClientes" class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <div v-if="datos != null">
+                        <h4 v-if="datos[0] != null" class="m-0 font-weight-bold text-primary">
+                            <span>@Localizer.Text("titleAmountTotal") {{datos[0].currency}} {{formatoMonedaInput(montoTotalInvoices(datos),lang,2) != 0 ? formatoMonedaInput(montoTotalInvoices(datos),lang,2) : '0,00'}} {{datos[0].abbreviation}} </span> <span>|</span> <span> @Localizer.Text("titleModalAmountFinanced") {{datos[0].currency}} {{formatoMonedaInput(montoTotalInvoicesFinancieds(datos),lang,2) != 0 ? formatoMonedaInput(montoTotalInvoicesFinancieds(datos),lang,2) : '0,00'}} {{datos[0].abbreviation}}</span>
+                        </h4>
+                        <h4 v-else class="m-0 font-weight-bold text-primary">
+                            <span> @Localizer.Text("titleSecundarioConsultaClientes")</span>
+                        </h4>
+                    </div>
+                    <div class="dropdown no-arrow">
+                        <span class="font-weight-bold text-primary">@Localizer.Text("buttonOptions")</span>
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+
+                            <button class="dropdown-item btn-link" data-toggle="modal" :data-target="'#modalFilter-'+index">
+                                <i class="@Localizer.Text("iconFilter")"></i>
+                                @Localizer.Text("buttonFilter")
+                            </button>
+                            <button type="submit" form="filters" :value="index" class="dropdown-item btn-link" style="color:rgb(58,59,69) !important" :id="'buttonFilterClear-'+index">
+                                <i class="@Localizer.Text("iconClear")"></i>
+                                @Localizer.Text("buttoClearFilter")
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!------------------------------------------- Tabla de Consultas ---------------------------------------------->
+                            <v-data-table v-if="clientes != []"
+                                          item-key="CliCon"
+                                          :headers="headerConsulta"
+                                          :items="datos"
+                                          :items-per-page="10"
+                                          :options.sync="listaOptions[index]"
+                                          :loading="listaLoading[index]"
+                                          class="elevation-1">
+
+                                <template v-slot:item.n="{ item }">
+                                    {{datos.indexOf(item) + 1}}
+                                </template>
+
+                                <template v-slot:item.finans="{ item }">
+
+                                    <span v-if="item.financiamiento == 'CREDIT'">@Localizer.Text("textoLimiteCreditoSinFinaciacion")</span>
+                                    <span v-if="item.financiamiento == 'FINANCING' || item.financiamiento == 'Financing'">@Localizer.Text("textoLimiteCreditoConFinaciacion")</span>
+
+                                </template>
+
+                                <template v-slot:item.tipomoneda="{ item }">
+
+                                    <span class="text-xs badge bg-gray-200">
+                                        {{item.abbreviation}}
+                                    </span>
+
+                                </template>
+
+                                <template v-slot:item.available="{ item }">
+
+                                    <div v-if="item.available < 1" class="text-right">
+                                        {{item.currency}}&nbsp;&nbsp;<span>0,00</span>
+                                    </div>
+                                    <div v-else class="text-right">
+                                        <div>
+                                            {{item.currency}}&nbsp;&nbsp;{{ formatoMonedaInput(item.available,lang,2) }}
+                                        </div>
+                                    </div>
+                                </template>
+                                <template v-slot:item.usage="{ item }">
+                                    <div v-if="item.usage == 0" class="text-right">
+                                        {{item.currency}}&nbsp;&nbsp;<span>0,00</span>
+                                    </div>
+                                    <div v-else-if="item.available == item.usage" class="text-right">
+                                        <div v-if="item.usage > 0">
+                                            {{item.currency}}&nbsp;&nbsp;{{ formatoMonedaInput(item.available,lang,2) }}
+                                        </div>
+                                    </div>
+                                    <div v-else class="text-right">
+                                        <div v-if="item.usage > 0">
+                                            {{item.currency}}&nbsp;&nbsp;{{ formatoMonedaInput(item.usage,lang,2) }}
+                                        </div>
+                                        <div v-else>{{item.currency}}&nbsp;&nbsp;{{ '0,00' }}</div>
+                                    </div>
+                                </template>
+
+                                <template v-slot:item.financied="{ item }">
+                                    <div v-if="item.sumAccountantsInvoices < 1" class="text-right">
+                                        {{item.currency}}&nbsp;&nbsp;<span>0,00</span>
+                                    </div>
+                                    <div v-else class="text-right">
+                                        <div>
+                                            {{item.currency}}&nbsp;&nbsp;{{ formatoMonedaInput(item.sumAccountantsInvoices,lang,2) }}
+                                        </div>
+                                    </div>
+                                </template>
+
+                                <template v-slot:item.action="{ item }">
+                                    <button v-on:click="detalles_cliente(item, index)" class="btn btn-sm btn-success"><i class="fa fa-eye"></i> @Localizer.Text("buttonDetalles")</button>
+                                </template>
+                            </v-data-table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div v-if="arrayClientes.length <= 0" class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <div>
+                        <h4 class="m-0 font-weight-bold text-primary">
+                            <span> @Localizer.Text("titleAmountTotal") </span>0,00 <span>|</span> <span> @Localizer.Text("titleModalAmountFinanced")</span> 0,00
+                        </h4>
+                    </div>
+                    <div class="dropdown no-arrow">
+                        <span class="font-weight-bold text-primary">@Localizer.Text("buttonOptions")</span>
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+
+                            <button class="dropdown-item btn-link" data-toggle="modal" data-target="#modalFilter">
+                                <i class="@Localizer.Text("iconFilter")"></i>
+                                @Localizer.Text("buttonFilter")
+                            </button>
+                            <a class="dropdown-item btn-link" style="color:black !important" asp-page="#">
+                                <i class="@Localizer.Text("iconClear")"></i>
+                                @Localizer.Text("buttoClearFilter")
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!------------------------------------------- Tabla de Consultas ---------------------------------------------->
+                            <v-data-table item-key="CliCon2"
+                                          :headers="headerConsulta"
+                                          :items="[]"
+                                          :items-per-page="5"
+                                          :loading="loading"
+                                          class="elevation-1">
+
+                            </v-data-table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Modal d Detalle de la Factura-->
+        <v-dialog v-model="abrirModal" max-width="900">
+            <v-card>
+                <v-card-title class="headline">
+                    <h4 v-if="montoTotalPagar > 0">
+                        <i class="fa fa-university logoColor"></i> &nbsp;@Localizer.Text("titleAmountTotal") {{symbol}} <strong>{{montoTotalPagar > 0 ? formatoMonedaInput(montoTotalPagar,lang,2) : '0,00'}}</strong> {{iso_4217}} | @Localizer.Text("titleModalAmountFinanced") {{symbol}} <strong>{{montoTotalFinanciado > 0 ? formatoMonedaInput(montoTotalFinanciado,lang,2) : '0,00'}}</strong> {{iso_4217}}
+                    </h4>
+                    <h4 v-else>
+                        <i class="fa fa-university logoColor"></i> &nbsp;@Localizer.Text("titleAmountTotal") <strong>@Localizer.Text("placeholderNumberFormatPorcentage")</strong> | @Localizer.Text("titleModalAmountFinanced") <strong>@Localizer.Text("placeholderNumberFormatPorcentage")</strong> 
+                    </h4>
+                    <v-spacer></v-spacer>
+                    <v-btn icon @@click="abrirModal = false">
+                        <i class="fa fa-close"></i>
+                    </v-btn>
+                </v-card-title>
+
+                <v-card-text>
+                    <v-data-table v-if="facturas != []"
+                                  item-key="CONFIRMANT"
+                                  :headers="headerConsultaC"
+                                  :items="facturas"
+                                  :items-per-page="5"
+                                  :options.sync="options2"
+                                  :loading="loading2"
+                                  :disable-filtering="true"
+                                  :disable-sort="true"
+                                  class="elevation-1">
+
+                        <template v-slot:item.expiration_date="{ item }">
+                            <div class="text-center">
+                                {{ backEndDateFormat(item.expiration_date) }}
+                                <v-chip x-small
+                                        label>
+                                    {{item.term_days}}
+                                </v-chip>
+                            </div>
+                        </template>
+                        <template v-slot:item.amount="{ item }">
+                            <div class="text-right">{{ item.currency.symbol }} {{ formatoMonedaInput(item.amount,lang,2) }} <span class="text-xs badge bg-gray-200">{{ item.currency.iso_4217 }}</span></div>
+                        </template>
+
+                        <template v-slot:item.original_amount="{ item }">
+                            <div class="text-right">{{ item.currency.symbol }} {{ formatoMonedaInput(item.original_amount,lang,2) }} <span class="text-xs badge bg-gray-200">{{ item.currency.iso_4217 }}</span></div>
+                        </template>
+
+                        <template v-slot:item.request_financing="{ item }">
+                            <i :style="{'color': item.request_financing ? 'green':'gray'}" :title="item.request_financing ? '@Localizer.Text("tipFinancing")' : '@Localizer.Text("tipNoFinancing")'" class="@Localizer.Text("iconFinancing")"></i>
+                        </template>
+
+                    </v-data-table>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
+        <!-- Modal de Cargando Detalles -->
+        <!--Modal d Flitro de los Clientes-->
+        <form id="filters" method="post">
+            @for (var i = 0; i < Model.dataFilter.Count; i++)
+            {
+                <div class="modal" tabindex="-1" role="dialog" id="modalFilter-@i">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title"><i class="@Localizer.Text("iconFilter")"></i>&nbsp;@Localizer.Text("titlefilter")</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                        <label>@Localizer.Text("titleClient")</label>
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1"><i class="@Localizer.Text("iconProvider")"></i></span>
+                                            </div>
+                                            <input placeholder="@Localizer.Text("selectTypeDebtor")" asp-for="filter[i].Debtor" class="form-control clear-@i">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                        <label>@Localizer.Text("titleExpirationFrom")</label>
+                                        <div class="input-group input-group-sm date" data-date-format="dd-mm-yyyy">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="@Localizer.Text("iconDate")"></i></span>
+                                            </div>
+                                            <input :max="moment().add(100,'years').format('YYYY-MM-DD')" id="dateFrom-@i" :min="moment().format('YYYY-MM-DD')" asp-for="filter[i].ExpirationFrom" onkeypress="return false"
+                                                   type="date" class="form-control pull-right clear-@i" placeholder="dd-mm-yyyy">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                        <label>@Localizer.Text("titleExpirationTo")</label>
+                                        <div class="input-group input-group-sm date" data-date-format="dd/mm/yyyy">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="@Localizer.Text("iconDate")"></i></span>
+                                            </div>
+                                            <input :max="moment().add(100,'years').format('YYYY-MM-DD')" :min="moment().format('YYYY-MM-DD')" type="date" onkeypress="return false"
+                                                   class="form-control pull-right clear-@i" asp-for="filter[i].ExpirationTo">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 align-self-end">
+                                        <button type="submit" class="btn btn-block btn-success " :disabled="envio">
+                                            <i class="@Localizer.Text("iconFilter")"></i>
+                                            <span>@Localizer.Text("buttonFilter")</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </form>
+
+        <v-dialog v-model="modalCargandoDetalle" persistent max-width="700">
+            <v-card color="primary" dark>
+                <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
+            </v-card>
+        </v-dialog>
+        @await Html.PartialAsync("_ModalLogoutPartial", 5)
+    </div>
+
+</v-app>
+@section Scripts{
+    <script src="~/js/Consultas/ConsultaBancoFinanciamiento.js" asp-append-version="true"></script>
+    <partial name="_ValidationScriptsPartial" />
+}

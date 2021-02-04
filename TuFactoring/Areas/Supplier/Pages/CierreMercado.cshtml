@@ -1,0 +1,484 @@
+﻿@page
+@model TuFactoring.Areas.Supplier.Pages.CierreMercadoModel
+@{
+    ViewData["Title"] = Localizer.Text("titleCloseMarket");
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+    <v-app id="appCierreMercado" hidden>
+        @Html.AntiForgeryToken()
+        <div id="eliminarData">
+            @for (var i = 0; i < Model.dataJsonFilter.Count; i++)
+            {
+                <input hidden id="filterData+@i" value="@Model.dataJsonFilter[i]" />
+            }
+
+            <input hidden id="currenciesData" value="@Model.dataJsonCurrencies" />
+        </div>
+        <input hidden id="Auction" value="@Model.dataJsonAuction" />
+
+
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">
+                <a href="#" class="btn btn-success btn-circle">
+                    <i class="@Localizer.Text("iconCloseMarket")" style="color:white"></i>
+                </a>
+                @Localizer.Text("titleCloseMarket")
+            </h1>
+            <span>
+                <div class="temporizador" v-if="auction.state == 'closed'" :class="tamanoTlf() == 0 ? 'temporizadorTLF':''">
+                    <v-card id="temporizador" style="border-radius: 6px 0px 0px 6px;">
+                        <v-card-text style="line-height: 1 !important">
+                            <div class="justify-content-betwee flex-column">
+                                <table border="0">
+                                    <tr>
+                                        <td><i class="@Localizer.Text("iconMarketCounter")" style="color: white; font-size:32px"></i></td>
+                                        <td>&nbsp;&nbsp;</td>
+                                        <td id="w-2"><small class="text-white">@Localizer.Text("textoMarketCounter"): </small></td>
+                                        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                        <td><span class="gold imgContador pt text-center"><h2 style="margin-bottom: 0px !important"><strong id="time" class="">00:00:00</strong></h2></span></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </v-card-text>
+                    </v-card>
+                </div>
+            </span>
+        </div>
+        <p class="mb-4">
+            @Localizer.Text("textoCierreMercadoProveedores")
+            <br /><br />
+            @Localizer.Text("textoCierreMercadoProveedores2")
+            <br><br />
+            @Localizer.Text("textoPress") <a href="#" @@click="dialogAyuda = true">@Localizer.Text("textoHere")</a> @Localizer.Text("textoMoreInformation")
+        </p>
+
+        <div v-if="marketNotClosed">
+            <p class="text-danger">@Localizer.Text("textoCloseMarketNot")</p>
+        </div>
+
+        <div v-if="!marketNotClosed && facturas.length == 0 && arrayCondition(buscarFacturas,false) && filtersIsEmpty(filter)">
+            <p class="text-danger">@Localizer.Text("textoNotResultadoFacturas")</p>
+        </div>
+
+        <div class="card shadow mb-4" v-for="(item,index) in currencies" v-if="(methodPublicationsCurrency(item.id).length > 0 || !filterIsEmpty(filter[index]) ) && auction.state == 'closed'">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between" v-if="methodPublicationsCurrency(item.id).length > 0 || !filterIsEmpty(filter[index])">
+                <h4 class="m-0 font-weight-bold text-primary">
+                    @Localizer.Text("titleInvoiceGain") @Localizer.Text("inText") {{item.iso_4217}}
+                </h4>
+                <div class="dropdown no-arrow">
+                    <span class="font-weight-bold text-primary">@Localizer.Text("buttonOptions")</span>
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                        <div class="dropdown-header">@Localizer.Text("buttonOptions"):</div>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item btn-link"
+                                data-toggle="modal" :data-target="'#modalFilter-'+index">
+                            <i class="@Localizer.Text("iconFilter")"></i>
+                            @Localizer.Text("buttonFilter")
+                        </button>
+                        <button type="submit" form="filters" :value="index" class="dropdown-item btn-link" style="color:rgb(58,59,69) !important" :id="'buttonFilterClear-'+index">
+                            <i class="@Localizer.Text("iconClear")"></i>
+                            @Localizer.Text("buttoClearFilter")
+                        </button>
+                        <div class="dropdown-divider"></div>
+                        <button class="dropdown-item btn-link" @@click="funcionIntermedia(item.id)"
+                                v-bind:disabled="envio || facturas.length == 0 || auction.state != 'closed'">
+                            <i class="@Localizer.Text("iconCheck")"></i> @Localizer.Text("buttonAceptAll")
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body" v-if="methodPublicationsCurrency(item.id).length > 0">
+                <v-data-iterator :items="methodPublicationsCurrency(item.id)"
+                                 :items-per-page.sync="perPage"
+                                 :options.sync="options[index]"
+                                 :loading="loading[index]"
+                                 :hide-default-footer="methodPublicationsCurrency(item.id).length <= perPage"
+                                 :footer-props="{ itemsPerPageOptions }">
+                    <template v-slot:default="props">
+                        <v-row>
+                            <v-col v-for="(item,indexInvoice) in props.items" cols="12" md="4" sm="6" lg="4">
+                                <a :href="'#'+indexInvoice" style="cursor: pointer; text-decoration: none;" data-toggle="modal" data-target="#discountModal" @@click=" indexActual = facturas.indexOf(item)">
+                                    <!-- Basic Card Example -->
+                                    <div class="card shadow mb-3">
+                                        <div class="card-header  border-left-warning py-3" :id="indexInvoice">
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col mr-2">
+                                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-0">
+                                                        {{item.invoice.debtor.name}}
+                                                    </div>
+                                                    <p class="text-xs text-muted" style="margin-bottom: 0px !important">
+                                                        {{item.invoice.number}} <span class="text-xs badge badge-primary" title="@Localizer.Text("tipExpirationDays")">{{item.invoice.term_days}} @Localizer.Text("textoDays")</span>
+                                                    </p>
+                                                    <div class="h6 mb-0 font-weight-bold text-gray-800">
+                                                        {{item.currency.symbol}}&nbsp;{{formatoMonedaInput(item.invoice.amount,lang,item.currency.digits)}}&nbsp;&nbsp;
+                                                        <span class="text-xs badge bg-gray-200">
+                                                            {{item.currency.iso_4217}}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <img :src="'/img/banks/' + item.entity.routing_number + '.png'" height="48" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </v-col>
+                        </v-row>
+                    </template>
+                </v-data-iterator>
+            </div>
+            <div v-else-if="!filterIsEmpty(filter[index]) && !buscarFacturas[index]">
+                <p class="ml-4 mt-2 mb-4 text-danger">
+                    @Localizer.Text("textFilterIsEmpty")
+                </p>
+            </div>
+        </div>
+
+        <div class="modal fade" id="discountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content" style="width:104%">
+                    <div class="modal-body text-center">
+                        <div class="icon text-danger text-lg" style="font-size:3rem">
+                            <img v-if="facturas[indexActual] != null" :src="'/img/banks/' + facturas[indexActual].entity.routing_number + '.png'" height="48" alt="">
+                            <v-btn icon data-toggle="modal" data-target="#discountModal" style="position:absolute; right:10px">
+                                <v-icon>
+                                    @Localizer.Text("iconCloseMDI")
+                                </v-icon>
+                            </v-btn>
+                        </div>
+                        <div class="notice" v-if="facturas[indexActual] != null">
+                            <p class="text-xs font-weight-bold text-success text-uppercase mb-1"> {{ facturas[indexActual].invoice.debtor.name}}</p>
+                            <h5>{{facturas[indexActual].invoice.number}}</h5>
+                            <p>
+                                <span class="text-xs font-weight-bold text-capitalize mb-1" v-if="facturas[indexActual].bids[0].factor.discriminator == 'LEGAL'">
+                                    {{(facturas[indexActual].bids.length >= 1 && facturas[indexActual].bids[0].factor.name != null) ? facturas[indexActual].bids[0].factor.name + (facturas[indexActual].bids[0].factor.discriminator == 'LEGAL'? '': '&nbsp;'+facturas[indexActual].bids[0].factor.lastName): ''}}
+                                </span>
+                                <span class="text-xs font-weight-bold text-capitalize mb-1" v-else>
+                                    {{(facturas[indexActual].bids.length >= 1 && facturas[indexActual].bids[0].factor.name != null) ? facturas[indexActual].bids[0].factor.name : '' }}
+                                </span>
+                            </p>
+
+                            <li class="list-group-item d-flex w-100 justify-content-between">
+                                <span class="text-xs text-muted">@Localizer.Text("textoDateExpiration")</span>
+                                <span class="font-weight text-uppercase">
+                                    {{backEndDateFormat(facturas[indexActual].invoice.expiration_date)}}&nbsp;
+                                </span>
+                            </li>
+                            <li class="list-group-item d-flex w-100 justify-content-between">
+                                <span class="text-xs text-muted">@Localizer.Text("textoDaysExpiration")</span>
+                                <span class="text-xs text-center badge badge-primary badge-pill">
+                                    {{facturas[indexActual].invoice.term_days}}
+                                    dias
+                                </span>
+                            </li>
+                            <li class="list-group-item d-flex w-100 justify-content-between">
+                                <span class="text-xs text-muted">@Localizer.Text("textoOffert")</span>
+                                <span class="font-weight-bold text-uppercase">
+                                    <v-chip color="green" small class="text-white" style="max-width:4rem;justify-content:center">
+                                        <strong>{{formatoMonedaInput(facturas[indexActual].discount,lang, facturas[indexActual].currency.digits)}}&nbsp;%</strong>
+                                    </v-chip>
+                                </span>
+                            </li>
+
+                            <li class="list-group-item d-flex w-100 justify-content-between">
+                                <span class="text-xs text-muted">@Localizer.Text("titleNominalAmount")</span>
+                                <span class="font-weight-bold text-uppercase">
+                                    {{ facturas[indexActual].currency.symbol}}&nbsp;{{formatoMonedaInput(facturas[indexActual].invoice.original_amount,lang,facturas[indexActual].currency.digits)}}
+                                    &nbsp;&nbsp;
+                                    <v-chip x-small style="max-width:3rem;justify-content:center">
+                                        {{ facturas[indexActual].currency.iso_4217}}
+                                    </v-chip>
+                                </span>
+                            </li>
+
+                            <li class="list-group-item d-flex w-100 justify-content-between">
+                                <span class="text-xs text-muted">@Localizer.Text("textoAmountNet")</span>
+                                <span class="font-weight-bold text-uppercase">
+                                    {{ facturas[indexActual].currency.symbol}}&nbsp;{{formatoMonedaInput(facturas[indexActual].invoice.amount,lang,facturas[indexActual].currency.digits)}}
+                                    &nbsp;&nbsp;
+                                    <v-chip x-small style="max-width:3rem;justify-content:center">
+                                        {{ facturas[indexActual].currency.iso_4217}}
+                                    </v-chip>
+                                </span>
+                            </li>
+                            <li class="list-group-item d-flex w-100 justify-content-between">
+                                <span class="text-xs text-muted">@Localizer.Text("textoAmountDiscount")</span>
+                                <span class="font-weight-bold text-uppercase">
+                                    <span style="font-size:14px;font-weight:normal" :style="{color: facturas[indexActual] == undefined ? '' : facturas[indexActual].discount > 0 ? 'black':'red'}">
+                                        {{facturas[indexActual].discount > 0 ? facturas[indexActual].currency.symbol : ""}}&nbsp;{{( facturas[indexActual].earnings == null || facturas[indexActual].earnings == 0 || facturas[indexActual].earnings == "") ? "-": formatoMonedaInput(facturas[indexActual].earnings,lang,facturas[indexActual].currency.digits)}}
+                                    </span>
+                                </span>
+                            </li>
+                            <li class="list-group-item d-flex w-100 justify-content-between">
+                                <span class="text-xs text-muted">@Localizer.Text("textoAnnualizedCost")</span>
+                                <span class="font-weight-bold text-uppercase mb-1">
+                                    <span style="font-size:14px;font-weight:normal; justify-content:center" :style="{color: facturas[indexActual] == undefined ? '' : facturas[indexActual].discount > 0 ? 'black':'red'}">
+                                        {{ (facturas[indexActual].profitability == null ||  facturas[indexActual].profitability == 0 ||  facturas[indexActual].profitability == "") ? "-": formatoMonedaInput(facturas[indexActual] == undefined ? '' : facturas[indexActual].profitability,lang,facturas[indexActual] == undefined ? '' : facturas[indexActual].currency.digits)+" %" }}
+                                    </span>
+                                </span>
+                            </li>
+                            <li class="list-group-item d-flex w-100 justify-content-between">
+                                <span class="text-xs text-muted">@Localizer.Text("textoComissionServiceCierre")</span>
+                                <span class="font-weight-bold text-uppercase mb-1">
+                                    {{facturas[indexActual].currency.symbol}}&nbsp;{{facturas[indexActual].commission== 0? 0:formatoMonedaInput(facturas[indexActual].commission,lang,facturas[indexActual].currency.digits)}}
+                                </span>
+                            </li>
+                            <li class="list-group-item d-flex w-100 justify-content-between">
+                                <span class="text-xs text-muted">@Localizer.Text("textoAmountRecib")</span>
+                                <span class="font-weight-bold text-uppercase mb-1">
+                                    <v-chip small style="font-size:14px;font-weight:normal" :style="{background: facturas[indexActual].discount > 0 ? 'royalblue':'none', color: facturas[indexActual].discount > 0 ? 'white':'black' }">
+                                        {{facturas[indexActual].currency.symbol}}&nbsp;{{formatoMonedaInput(facturas[indexActual].receivable,lang,facturas[indexActual].currency.digits)  }}
+                                    </v-chip>
+                                </span>
+                            </li>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <a data-toggle="modal" data-target="#discountModal">
+                            <button class="btn-icon-split btn btn-sm btn-success " @@click="aComprar(indexActual); vender();" :disabled="envio"
+                                    data-toggle="tooltip" data-placement="top" title="@Localizer.Text("buttonAceptOffert")">
+                                <span class="icon text-white-50">
+                                    <i class="@Localizer.Text("iconCheck")"></i>
+                                </span>
+                                <span class="text">@Localizer.Text("buttonAcept")</span>
+                            </button>
+                        </a>
+
+                        <a data-toggle="modal" data-target="#discountModal">
+                            <button class="btn-icon-split btn btn-sm btn-danger " @@click="aComprar(indexActual); rechazar();" data-dismiss="modal" :disabled="envio"
+                                    data-toggle="tooltip" data-placement="bottom" title="@Localizer.Text("textoRefused")">
+                                <span class="icon text-white-50">
+                                    <i class="@Localizer.Text("iconCancel")"></i>
+                                </span>
+                                <span class="text">@Localizer.Text("textoRefused")</span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <v-dialog v-model="dialogSeguro" max-width="420">
+            <v-card>
+                <v-card-title class="headline">
+                    <h4 class="modal-title">@Localizer.Text("titleModalAcceptAllOffersCierreMercado")</h4>
+                    <v-spacer></v-spacer>
+                    <v-btn icon @@click="dialogSeguro = false"><v-icon>@Localizer.Text("iconCloseMDI")</v-icon></v-btn>
+                </v-card-title>
+                <v-card-text>
+                    <v-row>
+                        <v-col cols="12" md="12" sm="12" lg="12">
+                            <p>@Localizer.Text("textoModalAcceptAllOffersCierreMercado")</p>
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                        <v-col cols="12" md="12" sm="12" lg="12">
+                            <span class="float-right">
+                                <v-btn @@click="venderAll(idCurrency); dialogSeguro = false" dark color="green">@Localizer.Text("buttonAcept")</v-btn>
+                                <v-btn @@click="dialogSeguro = false" dark color="red">@Localizer.Text("buttonCancel")</v-btn>
+                            </span>
+                        </v-col>
+                    </v-row>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
+
+
+        <form method="post" id="filters">
+            @for (var i = 0; i < Model.dataJsonFilter.Count; i++)
+            {
+                <div class="modal" tabindex="-1" role="dialog" id="modalFilter-@i">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title"><i class="@Localizer.Text("iconFilter")"></i>&nbsp;@Localizer.Text("titlefilter")</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                        <label>@Localizer.Text("titleConfirmant")</label>
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1"><i class="@Localizer.Text("iconProvider")"></i></span>
+                                            </div>
+                                            <input asp-for="filter[i].Confirmant_id" class="form-control clear-@i" maxlength="255" placeholder="@Localizer.Text("placeholderConfirmant")" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                        <label>@Localizer.Text("titleInvoiceNumber")</label>
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="@Localizer.Text("iconInvoiceNumber")"></i></span>
+                                            </div>
+                                            <input type="text" maxlength="255" id="txtFactura" class="form-control clear-@i" asp-for="filter[i].Number"
+                                                   placeholder="@Localizer.Text("placeholderNDocument")" onKeypress="if (event.keyCode == 32) event.returnValue = false;" maxlength="255">
+                                        </div>
+                                        <span class="help-block text-danger" asp-validation-for="filter[i].Number"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                        <label>@Localizer.Text("titleDebtor")</label>
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1"><i class="@Localizer.Text("iconUser")"></i></span>
+                                            </div>
+                                            <input asp-for="filter[i].Debtor_id" class="form-control clear-@i" maxlength="255" placeholder="@Localizer.Text("placeholderDebtor")" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                        <label>@Localizer.Text("titleIssuedFrom")</label>
+                                        <div class="input-group input-group-sm date" data-date-format="dd-mm-yyyy">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="@Localizer.Text("iconDate")"></i></span>
+                                            </div>
+                                            <input :max="moment().format('YYYY-MM-DD')" :min="moment().subtract(100,'years').format('YYYY-MM-DD')"
+                                                   asp-for="filter[i].IssuedFrom" type="date" class="form-control pull-right clear-@i" placeholder="dd-mm-yyyy" onkeypress="return false">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                        <label>@Localizer.Text("titleIssuedTo")</label>
+                                        <div class="input-group input-group-sm date" data-date-format="dd/mm/yyyy">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="@Localizer.Text("iconDate")"></i></span>
+                                            </div>
+                                            <input :max="moment().format('YYYY-MM-DD')" :min="moment().subtract(100,'years').format('YYYY-MM-DD')" type="date"
+                                                   class="form-control pull-right clear-@i" asp-for="filter[i].IssuedTo" onkeypress="return false">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                        <label>@Localizer.Text("titleExpirationFrom")</label>
+                                        <div class="input-group input-group-sm date" data-date-format="dd-mm-yyyy">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="@Localizer.Text("iconDate")"></i></span>
+                                            </div>
+                                            <input :max="moment().add(100,'years').format('YYYY-MM-DD')" :min="moment().format('YYYY-MM-DD')" asp-for="filter[i].ExpirationFrom"
+                                                   type="date" class="form-control pull-right clear-@i" placeholder="dd-mm-yyyy" onkeypress="return false">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                        <label>@Localizer.Text("titleExpirationTo")</label>
+                                        <div class="input-group input-group-sm date" data-date-format="dd/mm/yyyy">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="@Localizer.Text("iconDate")"></i></span>
+                                            </div>
+                                            <input :max="moment().add(100,'years').format('YYYY-MM-DD')" :min="moment().format('YYYY-MM-DD')" type="date"
+                                                   class="form-control pull-right clear-@i" asp-for="filter[i].ExpirationTo" onkeypress="return false">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                        <label>@Localizer.Text("titleAmountFrom")</label>
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text" id="basic-addon1"><i class="@Localizer.Text("iconNominalAmount")"></i></div>
+                                            </div>
+                                            <input onblur="formatoAmount('amountFrom')" placeholder="@Localizer.Text("placeholderNumberFormat")" id="amountFrom"
+                                                   asp-for="filter[i].AmountFrom" class="form-control text-right clear-@i">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                        <label>@Localizer.Text("titleAmountTo")</label>
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text" id="basic-addon1"><i class="@Localizer.Text("iconNominalAmount")"></i></div>
+                                            </div>
+                                            <input onblur="formatoAmount('amountTo')" asp-for="filter[i].AmountTo" id="amountTo"
+                                                   placeholder="@Localizer.Text("placeholderNumberFormat")" class="form-control text-right clear-@i">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 align-self-end">
+                                        <button type="submit" class="btn btn-block btn-success " :disabled="envio">
+                                            <i class="@Localizer.Text("iconFilter")"></i>
+                                            <span>@Localizer.Text("buttonFilter")</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </form>
+
+        <v-dialog v-model="dialogAyuda" max-width="500" transition="dialog-bottom-transition">
+            <v-card>
+                <v-card-title>
+                    <v-spacer></v-spacer>
+                    <v-btn icon @@click="dialogAyuda = false">
+                        <v-icon>@Localizer.Text("iconCloseMDI")</v-icon>
+                    </v-btn>
+                </v-card-title>
+                <v-card-text>
+                    <v-container>
+                        <v-row>
+                            <v-col cols="12" sm="12" lg="12" md="12">
+                                @Localizer.Text("textoFor") <strong>@Localizer.Text("textoCierreMercado0")</strong> @Localizer.Text("textoCierreMercado0.1")<br /><br />
+                                @Localizer.Text("textoCierreMercado1") <strong>@Localizer.Text("textoCierreMercado1.1")</strong><br /><br />
+                                @Localizer.Text("textoCierreMercado2")<br />
+                            </v-col>
+                        </v-row>
+                    </v-container>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
+
+        @await Html.PartialAsync("_ModalLogoutPartial", 2)
+
+    </v-app>
+
+@section CSS{
+    <link rel="stylesheet" type="text/css" href="~/css/contador.css" asp-append-version="true" />
+}
+
+@section scripts{
+
+    <script>
+        function startTimer(duration, display) {
+            var timer = duration, minutes, seconds;
+            var intervalo = setInterval(function () {
+                hours = parseInt(timer / 3600, 10);
+                minutes = parseInt((timer - (hours * 3600)) / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                hours = hours < 10 ? "0" + hours : hours
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                if (timer <= 0) {
+
+                    display.textContent = "00:00:00";
+                    clearInterval(intervalo)
+                    window.location.reload()
+                    return
+                }
+
+                display.textContent = hours + ":" + minutes + ":" + seconds;
+
+                timer--
+            }, 1000);
+        }
+
+    </script>
+    <script src="~/js/Proveedor/CierreMercado.js" asp-append-version="true"></script>
+    <partial name="_ValidationScriptsPartial" />
+}

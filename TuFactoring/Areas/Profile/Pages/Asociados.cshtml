@@ -1,0 +1,429 @@
+﻿@page
+@namespace TuFactoring.Areas.Profile.Asociados
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@inject Utilities.CultureLocalizer Localizer
+@model TuFactoring.Areas.Profile.Pages.AsociadosModel
+@using System.Globalization;
+@{
+    ViewData["Title"] = "Perfil";
+
+    switch (@Model.TipoParticipante)
+    {
+        case "CONFIRMANT":
+            ViewData["Sidebar"] = "dark";
+            break;
+        case "DEBTOR":
+            ViewData["Sidebar"] = "primary";
+            break;
+        case "FACTOR":
+            ViewData["Sidebar"] = "warning";
+            break;
+        case "SUPPLIER":
+            ViewData["Sidebar"] = "purple";
+            break;
+        default:
+            ViewData["Sidebar"] = "navy";
+            break;
+    }
+
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+}
+
+<v-app id="appAsociados">
+    <div class="mt-5">
+        @Html.AntiForgeryToken()
+        <input hidden id="contenidoRaw" value="@Model.registroJson" />
+
+        <div class="modal fade in fa fa-spinner" v-if="cargando" role="dialog">
+            <div class="modal-dialog text-center">
+
+                <h2 style="color:#000"><span id="cargando">Cargando...</span></h2>
+            </div>
+        </div>
+
+        <div id="contenido" hidden>
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">
+                    <a href="#" style="color:#fff !important" class="btn btn-success btn-circle">
+                        <i class="@Localizer.Text("iconAssociated")"></i>
+                    </a>
+                    &nbsp;
+                    <span v-if="TitularAsociado == 'Proveedores'">
+                        @Localizer.Text("titleMainSuppliers")
+                    </span>
+                    <span v-else>
+                        @Localizer.Text("textomainCustomers")
+                    </span>
+                </h1>
+                <span style="display: none;">
+                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                </span>
+            </div>
+            <p class="mb-4">
+                <span v-if="registro.user.participant == 'DEBTOR'">@Localizer.Text("textoAyudaPrincipalesProveedores")</span>
+                <span v-if="registro.user.participant == 'FACTOR' && registro.user.discriminator=='LEGAL'">@Localizer.Text("textoAyudaPerfilInversionista")</span>
+                <span v-if="registro.user.participant == 'FACTOR' && registro.user.discriminator=='PERSON'">@Localizer.Text("textoAyudaPerfilInversionista")</span>
+                <span v-if="registro.user.participant == 'SUPPLIER'">@Localizer.Text("textoAyudaPrincipalesEmpresas")</span>
+                <span v-if="registro.user.participant == 'CONFIRMANT'">@Localizer.Text("textoAyudaPerfilBanco")</span>
+                <br />
+                <br />@Localizer.Text("textoPress")<a v-on:click="dialogAyuda=true" href="#" class="font-weight-bold"> @Localizer.Text("textoHere")</a> @Localizer.Text("textoMoreInformation")
+            </p>
+            <v-dialog v-model="dialogAyuda" max-width="500" transition="dialog-bottom-transition">
+                <v-card>
+                    <v-card-title>
+                        <v-spacer></v-spacer>
+                        <v-btn icon @@click="dialogAyuda = false">
+                            <v-icon>@Localizer.Text("iconCloseMDI")</v-icon>
+                        </v-btn>
+                    </v-card-title>
+                    <v-card-text>
+                        <v-container>
+                            <v-row>
+                                <v-col cols="12" sm="12" lg="12" md="12">
+
+                                    <div v-if="registro.user.participant == 'DEBTOR'">
+                                        <p>
+                                            @Localizer.Text("textoModalAyudaPrincipalesProveedoresTexto1")<br />
+                                            @Localizer.Text("textoModalAyudaPrincipalesProveedoresTexto2")<br />
+                                            3. @Localizer.Text("textoModalAyudaPrincipalesProveedoresTexto3")
+                                        </p>
+                                    </div>
+
+                                    <div v-if="registro.user.participant == 'SUPPLIER'">
+                                        <p>
+                                            @Localizer.Text("textoModalAyudaPrincipalesClientesTexto1")<br />
+                                            @Localizer.Text("textoModalAyudaPrincipalesClientesTexto2")<br />
+                                            @Localizer.Text("textoAyudaAsociadosComplementacion")
+                                        </p>
+                                    </div>
+
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                    </v-card-text>
+                </v-card>
+            </v-dialog>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="">
+
+                        <!---------------------------------------------- Panel Clientes --------------------------------------------------------------------->
+
+                        <div class="card shadow mb-4">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h4 class="m-0 font-weight-bold text-primary">
+                                    <i class="@Localizer.Text("iconAssociated")"></i>
+
+                                    <span v-if="TitularAsociado == 'Proveedores'">
+                                        @Localizer.Text("titleMainSuppliers")
+                                    </span>
+                                    <span v-else>
+                                        @Localizer.Text("textomainCustomers")
+                                    </span>
+                                </h4>
+                                <div v-if="registro.user.participant == 'DEBTOR' || registro.user.participant == 'SUPPLIER'" class="dropdown no-arrow">
+                                    <span class="font-weight-bold text-primary">@Localizer.Text("buttonOptions")</span>
+                                    <a class="dropdown-toggle font-weight-bold" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+
+                                        <button :disabled="registro.authRol == false" class="dropdown-item btn-link" @@click="reseteo(); dialogAsociado = true">
+                                            <i class="@Localizer.Text("iconAdd")"></i> @Localizer.Text("buttonAdd")
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+                                        <v-data-table v-if="registro.user.participant == 'DEBTOR'"
+                                                      :headers="headersSupplier"
+                                                      :items="registro.registrarse.suppliers"
+                                                      :items-per-page="5"
+                                                      class="elevation-1">
+
+                                            <template v-slot:item.email="{ item }">
+                                                <div class="text-center" v-if="tamanoTlf()">
+                                                    <span>{{item.email}}</span>
+                                                </div>
+                                                <div class="text-right emailText" v-else>
+                                                    <span>{{CutEmail(item.email)}}</span>
+                                                </div>
+                                            </template>
+
+                                            <template v-slot:item.number="{ item }">
+
+                                                <span v-for="iden in dataPaises.identifications" v-if="iden.default && iden.discriminator == 'LEGAL'">
+                                                    <span v-if="iden.prefix">
+                                                        <span v-for="pref in iden.prefixes" v-if="pref.id == item.prefix">
+                                                            <span v-if="item.person != null">
+                                                                <span v-if="item.person.documents != null">{{pref.abbreviation}} - {{item.person.documents[0].number}}</span>
+                                                            </span>
+                                                            <span v-else>
+                                                                <span>{{pref.abbreviation}} - {{item.number}}</span>
+                                                            </span>
+                                                        </span>
+                                                    </span>
+                                                    <span v-else>
+                                                        <span v-if="item.person != null">
+                                                            <span v-if="item.person.documents != null">{{iden.abbreviation}} - {{item.person.documents[0].number}}</span>
+                                                        </span>
+                                                        <span v-else>
+                                                            <span>{{iden.abbreviation}} - {{item.number}}</span>
+                                                        </span>
+                                                    </span>
+                                                </span>
+
+
+                                            </template>
+
+                                            <template v-slot:item.estado="{ item }">
+
+                                                <span title="Activo" v-if="item.state == 'active'">Activo</span>
+                                                <span title="Invitado" v-if="item.state == 'invited'">Invitado</span>
+                                                <span title="Invitado" v-if="item.state == 'draft'">Invitado</span>
+                                                <span title="Cancelado" v-if="item.state == 'canceled'">Cancelado</span>
+                                                <span title="Inhabilitado" v-if="item.state == 'inactive'">Inhabilitado</span>
+                                                <span title="Rechazado" v-if="item.state == 'rejected'">Rechazado</span>
+
+                                            </template>
+
+                                            <template v-slot:item.action="{ item }">
+                                                <span v-if="item.invited == true && item.state == 'invited'">
+                                                    <button :disabled="registro.authRol == false" v-on:click="AcceptInvitation(item)" class="btn btn-sm btn-success my-0"><small><i class="fa fa-thumbs-o-up"></i> @Localizer.Text("buttonAccept")</small></button>
+                                                    <button :disabled="registro.authRol == false" v-on:click="RejectInvitation(item)" class="btn btn-sm btn-danger my-0"><small><i class="fa fa-thumbs-o-down"></i> @Localizer.Text("buttonReject")</small></button>
+                                                </span>
+
+                                                <button :disabled="registro.authRol == false" v-show="item.state == 'inactive'" v-on:click="ToggleInvitation(item)" class="btn btn-sm btn-success my-0"><small><i class="fa fa-thumbs-o-up"></i> @Localizer.Text("buttonToggleActivo")</small></button>
+                                                <button :disabled="registro.authRol == false" v-show="item.state == 'active'" v-on:click="ToggleInvitation(item)" class="btn btn-sm btn-danger my-0"><small><i class="fa fa-thumbs-o-down"></i> @Localizer.Text("buttonToggleInactivo")</small></button>
+
+                                                <button :disabled="registro.authRol == false" v-show="item.state == 'drafts' && item.person == null" v-on:click="seleccionAsociado(item, registro.registrarse.suppliers.indexOf(item))" class="btn btn-sm my-0 btn-primary"><small><i class="@Localizer.Text("iconEdit")"></i> @Localizer.Text("buttonEdit")</small></button>
+                                                <button :disabled="registro.authRol == false" v-show="(item.state == 'draft' || item.state == 'invited') && item.invited == false" v-on:click="CancelInvitation(item)" class="btn btn-sm btn-danger my-0"><small><i class="@Localizer.Text("iconDelete")"></i> @Localizer.Text("buttonCancelar")</small></button>
+                                                <button :disabled="registro.authRol == false" v-show="(item.state == 'canceled' || item.state == 'rejected') && item.invited == false" v-on:click="SendInvitation(item)" class="btn btn-sm my-0 btn-success"><small><i class="fa fa-send"></i> @Localizer.Text("buttonSendInvited")</small></button>
+                                            </template>
+
+                                        </v-data-table>
+
+                                        <v-data-table v-if="registro.user.participant == 'SUPPLIER'"
+                                                      :headers="headersAsociado"
+                                                      :items="registro.registrarse.customers"
+                                                      :items-per-page="5"
+                                                      class="elevation-1">
+
+                                            <template v-slot:item.email="{ item }">
+                                                <div class="text-center" v-if="tamanoTlf()">
+                                                    <span>{{item.email}}</span>
+                                                </div>
+                                                <div class="text-right emailText" v-else>
+                                                    <span>{{CutEmail(item.email)}}</span>
+                                                </div>
+                                            </template>
+
+                                            <template v-slot:item.number="{ item }">
+
+                                                <span v-for="iden in dataPaises.identifications" v-if="iden.default && iden.discriminator == 'LEGAL'">
+                                                    <span v-if="iden.prefix">
+                                                        <span v-for="pref in iden.prefixes" v-if="pref.id == item.prefix">
+                                                            <span v-if="item.person != null">
+                                                                <span v-if="item.person.documents != null">{{pref.abbreviation}} - {{item.person.documents[0].number}}</span>
+                                                            </span>
+                                                            <span v-else>
+                                                                <span>{{pref.abbreviation}} - {{item.number}}</span>
+                                                            </span>
+                                                        </span>
+                                                    </span>
+                                                    <span v-else>
+                                                        <span v-if="item.person != null">
+                                                            <span v-if="item.person.documents != null">{{iden.abbreviation}} - {{item.person.documents[0].number}}</span>
+                                                        </span>
+                                                        <span v-else>
+                                                            <span>{{iden.abbreviation}} - {{item.number}}</span>
+                                                        </span>
+                                                    </span>
+                                                </span>
+
+                                            </template>
+
+                                            <template v-slot:item.estado="{ item }">
+
+                                                <span title="Activo" v-if="item.state == 'active'">Activo</span>
+                                                <span title="Invitado" v-if="item.state == 'invited'">Invitado</span>
+                                                <span title="Invitado" v-if="item.state == 'draft'">Invitado</span>
+                                                <span title="Cancelado" v-if="item.state == 'canceled'">Cancelado</span>
+                                                <span title="Inhabilitado" v-if="item.state == 'inactive'">Inhabilitado</span>
+                                                <span title="Rechazado" v-if="item.state == 'rejected'">Rechazado</span>
+                                            </template>
+
+                                            <template v-slot:item.action="{ item }">
+
+                                                <span v-if="item.invited == true && item.state == 'invited'">
+                                                    <button :disabled="registro.authRol == false" v-on:click="AcceptInvitation(item)" class="btn btn-micro btn-sm my-0 btn-success"><small><i class="fa fa-thumbs-o-up"></i> @Localizer.Text("buttonAccept")</small></button>
+                                                    <button :disabled="registro.authRol == false" v-on:click="RejectInvitation(item)" class="btn btn-micro btn-sm my-0 btn-danger"><small><i class="fa fa-thumbs-o-down"></i> @Localizer.Text("buttonReject")</small></button>
+                                                </span>
+                                                <button :disabled="registro.authRol == false" v-show="item.state == 'inactive'" v-on:click="ToggleInvitation(item)" class="btn btn-sm my-0 btn-success"><small><i class="fa fa-thumbs-o-up"></i> @Localizer.Text("buttonToggleActivo")</small></button>
+                                                <button v-show="item.state == 'active'" v-on:click="ToggleInvitation(item)" class="btn btn-sm my-0 btn-danger"><small><i class="fa fa-thumbs-o-down"></i> @Localizer.Text("buttonToggleInactivo")</small></button>
+
+                                                <button :disabled="registro.authRol == false" v-show="item.state == 'drafts' && item.person == null" v-on:click="seleccionAsociado(item, registro.registrarse.suppliers.indexOf(item))" class="btn btn-sm my-0 btn-primary"><small><i class="@Localizer.Text("iconEdit")"></i> @Localizer.Text("buttonEdit")</small></button>
+                                                <button :disabled="registro.authRol == false" v-show="(item.state == 'draft' || item.state == 'invited') && item.invited == false" v-on:click="CancelInvitation(item)" class="btn btn-sm my-0 btn-danger"><small><i class="@Localizer.Text("iconDelete")"></i> @Localizer.Text("buttonCancelar")</small></button>
+
+                                            </template>
+                                        </v-data-table>
+
+                                    </div>
+                                </div>
+                                <!------------------------- Modal de Cliente -------------------------------------------->
+                            </div>
+                        </div>
+                        <!----------------------------------------------- Modal Asociado--------------------------------------------------------------->
+
+                        <v-dialog v-model="dialogAsociado" persistent max-width="550">
+                            <v-card>
+                                <v-card-title class="headline">
+                                    <h4>
+                                        <span v-if="TitularAsociado == 'Proveedores'">
+                                            @Localizer.Text("titleMainSuppliers")
+                                        </span>
+                                        <span v-else>
+                                            @Localizer.Text("textomainCustomers")
+                                        </span>
+                                    </h4>
+                                    <v-spacer></v-spacer>
+                                    <v-btn icon @@click="dialogAsociado = false">
+                                        <v-icon v-on:click="reseteo()">@Localizer.Text("iconCloseMDI")</v-icon>
+                                    </v-btn>
+                                </v-card-title>
+
+                                <v-card-text>
+                                    <div class="row">
+                                        <div class="col-sm-12" v-for="iden in dataPaises.identifications" v-if="iden.default && iden.discriminator == 'LEGAL'">
+
+                                            <span v-if="iden.id !== 999 ? registro.asociadoActual.identification = iden.id : iden.id = 1 "></span>
+
+                                            <div class="from-group">
+                                                <label for="doc">{{iden.name}}</label>
+                                                <div class="input-group">
+                                                    <div v-if="iden.prefix" class="input-group-append">
+                                                        <select v-on:change="validarDocumentoAsociado(iden.regexp, iden.mask_edit)" v-model="registro.asociadoActual.prefix" class="input-group-text">
+                                                            <option v-for="pref in iden.prefixes" v-if="pref.status == true" :value="pref.id">{{pref.abbreviation}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <div v-else class="input-group-append">
+                                                        <select disabled v-on:change="validarDocumentoAsociado(iden.regexp, iden.mask_edit)" class="input-group-text">
+                                                            <option selected :value="registro.asociadoActual.prefix = null">{{iden.abbreviation}}</option>
+                                                        </select>
+                                                    </div>
+                                                    <input onPaste="return false" :maxlength="iden.digits" :class="['form-control', errorDocumentoAsociado]" v-on:blur="validarDocumentoAsociado(iden.regexp, iden.mask_edit)" v-model="registro.asociadoActual.number" :placeholder="iden.mask_edit">
+                                                </div>
+                                                <span class="text-danger">{{errorDocumentoAsociadoTexto}}</span>
+                                            </div>
+
+                                        </div>
+                                        <div class="from-group col-sm-12">
+                                            <label for="legal">@Localizer.Text("textocompanyName")</label>
+                                            <input :disabled="blockAsociado" maxlength="255" v-on:keyup="validarNombreLegalAsociado()" v-model="registro.asociadoActual.company" :class="['form-control', errorNombreLegalAsociado]" placeholder="@Localizer.Text("placeholderNombreLegal")">
+                                            <span class="text-danger">{{errorNombreLegalAsociadoTexto}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class='col-sm-12'>
+                                            <hr>
+                                            <label>@Localizer.Text("textoContactPerson")</label>
+                                        </div>
+
+                                        <div class="from-group col-sm-12">
+                                            <label for="legal">@Localizer.Text("textonameSurname")</label>
+                                            <input :disabled="blockAsociado" maxlength="255" v-on:keyup="validarNombresAsociadoContacto()" v-model="registro.asociadoActual.name" :class="['form-control', errorNombreContacto]" placeholder="@Localizer.Text("placeholderName")">
+                                            <span class="text-danger">{{errorNombreContactoTexto}}</span>
+                                        </div>
+
+
+                                        <div class="from-group col-sm-12">
+                                            <label for="telefonoL">@Localizer.Text("textophone")</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="@Localizer.Text("iconPhone")"></i></span>
+                                                </div>
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">+{{dataPaises.calling_code}}</span>
+                                                    <input type="hidden" v-model="registro.asociadoActual.phoneNumber" />
+                                                </div>
+                                                <input :disabled="blockAsociado" onPaste="return false" maxlength="255" :class="['form-control', errorTelefonoContacto]" v-on:keyup="validarTelefonoContacto()" v-model="registro.asociadoActual.phoneNumber" type="text" :placeholder="placeholderTelefono">
+                                            </div>
+                                            <span class="text-danger">{{errorTelefonoContactoTexto}}</span>
+                                        </div>
+
+
+                                        <div class="from-group col-sm-12">
+                                            <label for="email">@Localizer.Text("textoEmail")</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="@Localizer.Text("iconEmail")"></i></span>
+                                                </div>
+                                                <input :disabled="blockAsociado" onPaste="return false" maxlength="60" v-on:keyup="validarEmailContacto()" v-model="registro.asociadoActual.email" :class="['form-control', errorEmailContacto]" placeholder="@Localizer.Text("placeholderEmail")">
+                                            </div>
+                                            <span class="text-danger">{{errorEmailContactoTexto}}</span>
+                                        </div>
+                                    </div>
+                                </v-card-text>
+
+                                <v-card-actions>
+                                    <v-spacer></v-spacer>
+                                    <button type="button" class="btn btn-danger mr-2" v-on:click="reseteo()">@Localizer.Text("buttonClose")</button>
+
+                                    <button type="button" v-if="TitularAsociado == 'Proveedores'" :disabled="habilitarGuardarAsociado" v-on:click="guardarAsociado()" class="btn btn-success">@Localizer.Text("buttonSaveSupplier")</button>
+                                    <button type="button" v-else :disabled="habilitarGuardarAsociado" v-on:click="guardarAsociado()" class="btn btn-success">@Localizer.Text("buttonSaveDebtor")</button>
+
+                                </v-card-actions>
+                            </v-card>
+                        </v-dialog>
+                        <!----------------------------------------------- Modal Contratos--------------------------------------------------------------->
+
+                    </div>
+                    <v-dialog v-model="dialogBorrarAsociado" transition="dialog-bottom-transition" max-width="700">
+                        <v-card>
+                            <v-card-title class="headline">
+                                <h4>
+                                    @Localizer.Text("textoDeleteAsoc")
+                                </h4>
+                                <v-spacer></v-spacer>
+                                <v-btn icon @@click="dialogBorrarAsociado = false">
+                                    <v-icon>@Localizer.Text("iconCloseMDI")</v-icon>
+                                </v-btn>
+                            </v-card-title>
+
+                            <v-card-text>
+
+                                <v-row>
+                                    <v-col cols="12" md="12" sm="12">
+                                        <p>@Localizer.Text("textoEstaSeguroAccion")</p>
+                                        <p>Se eliminará al {{ TitularAsociado == 'Proveedores' ? 'Proveedor' : 'Cliente' }} selecionado de forma permanente.</p>
+                                    </v-col>
+                                </v-row>
+                                <v-row>
+                                    <v-col cols="12" md="12" sm="12">
+                                        <span class="float-right">
+                                            <v-btn dark color="green" @@click="borrarAsociado(borrarCuentaSelect); dialogBorrarAsociado = false">@Localizer.Text("buttonAcept")</v-btn>
+                                            <v-btn dark color="red" @@click="dialogBorrarAsociado = false">@Localizer.Text("buttonClose")</v-btn>
+                                        </span>
+                                    </v-col>
+                                </v-row>
+                            </v-card-text>
+                        </v-card>
+                    </v-dialog>
+                </div>
+
+            </div>
+            @await Html.PartialAsync("_ModalLogoutPartial", Model.NRol)
+        </div>
+    </div>
+</v-app>
+
+@section Scripts
+    {
+    <script src="~/js/VueRegistros/ActualizacionInformacion/VuexActualizarInfo.js" asp-append-version="true"></script>
+    <script src="~/js/VueRegistros/ActualizacionInformacion/vueAsociados.js" asp-append-version="true"></script>
+}

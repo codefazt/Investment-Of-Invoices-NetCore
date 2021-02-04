@@ -1,0 +1,70 @@
+﻿@page
+@using System.Globalization;
+
+@model TuFactoring.Areas.Backoffice.Pages.IndexModel
+@{
+    ViewData["Title"] = Localizer.Text("Home page");
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@{
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+}
+
+<v-app id="appHome">
+
+    @Html.AntiForgeryToken()
+    <input hidden value="@ViewData["id"]" id="People" />
+    <input hidden id="contenidoRaw" value="@Model.ContratoJson" />
+
+    <div class="modal fade in fa fa-spinner" v-if="cargado" role="dialog">
+        <div class="modal-dialog text-center">
+
+            <h2 style="color:#f1f1f1"><span id="cargando">Cargando...</span></h2>
+        </div>
+    </div>
+
+    <div id="contenido" hidden>
+        @await Html.PartialAsync("_ModalLogoutPartial", 5)
+        <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800">@Localizer.Text("Welcome")</h1>
+        <p class="mb-4">
+            <strong>@Localizer.Text("branding")</strong> @Localizer.Text("indexTuFactoringAllParticipants") <em>@Localizer.Text("headersConfirmingBank")</em>.
+        </p>
+
+        @await Component.InvokeAsync("BackofficeWidgets")
+        <!--await Component.InvokeAsync("BackofficeInvoiceWidgets")-->
+
+        <div class="row mb-5 ">
+            <div class="card mb-3 col-md-6">
+                <img src="~/bolsa.jpg" style="height: 350px;" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text"><small class="text-muted">Ultima actualizacion hace 3 minutos</small></p>
+                </div>
+            </div>
+            <div class="card mb-3 col-md-6">
+                <img src="~/indice.jpg" style="height: 350px;" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text"><small class="text-muted">Ultima actualizacion hace 3 minutos</small></p>
+                </div>
+            </div>
+            <div class="card col-md-12">
+                <img src="~/series.jpg" class="card-img-top" style="max-height: 350px;" alt="...">
+                <div class="card-body">
+                    <p class="card-text"><small class="text-muted">Ultima actualizacion hace 3 minutos</small></p>
+                </div>
+            </div>
+        </div>
+
+
+        <p>Current culture : @CultureInfo.CurrentCulture.DisplayName (@CultureInfo.CurrentCulture.NativeName)</p>
+
+        <p>@Localizer.Text(" Current date") : @DateTime.Now</p>
+    </div>
+</v-app>
+
+@section Scripts{
+
+    <script src="~/js/Home/vueHome.js" asp-append-version="true"></script>
+
+}

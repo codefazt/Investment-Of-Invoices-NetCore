@@ -1,0 +1,52 @@
+﻿<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+<!-- cldr scripts (needed for globalize) -->
+<script src="~/lib/cldrjs/dist/cldr.js"></script>
+<script src="~/lib/cldrjs/dist/cldr/event.js"></script>
+<script src="~/lib/cldrjs/dist/cldr/supplemental.js"></script>
+
+<!-- globalize scripts -->
+<script src="~/lib/globalize/dist/globalize.js"></script>
+<script src="~/lib/globalize/dist/globalize/number.js"></script>
+<script src="~/lib/globalize/dist/globalize/date.js"></script>
+
+<script src="~/lib/jquery-validation-globalize/jquery.validate.globalize.js"></script>
+
+@inject Microsoft.AspNetCore.Hosting.IHostingEnvironment HostingEnvironment
+@{
+    string GetDefaultLocale()
+    {
+        const string localePattern = "lib\\cldr-data\\main\\{0}";
+        var currentCulture = System.Globalization.CultureInfo.CurrentCulture;
+        var cultureToUse = "en"; //Default regionalisation to use
+
+        if (System.IO.Directory.Exists(System.IO.Path.Combine(HostingEnvironment.WebRootPath, string.Format(localePattern, currentCulture.Name))))
+            cultureToUse = currentCulture.Name;
+        else if (System.IO.Directory.Exists(System.IO.Path.Combine(HostingEnvironment.WebRootPath, string.Format(localePattern, currentCulture.TwoLetterISOLanguageName))))
+            cultureToUse = currentCulture.TwoLetterISOLanguageName;
+
+        return cultureToUse;
+    }
+}
+
+<script type="text/javascript">
+    var culture = "@GetDefaultLocale()";
+    $.when(
+        $.get("/lib/cldr-data/supplemental/likelySubtags.json"),
+        $.get("/lib/cldr-data/main/" + culture + "/numbers.json"),
+        $.get("/lib/cldr-data/supplemental/numberingSystems.json"),
+        $.get("/lib/cldr-data/main/" + culture + "/ca-gregorian.json"),
+        $.get("/lib/cldr-data/main/" + culture +"/timeZoneNames.json"),
+        $.get("/lib/cldr-data/supplemental/timeData.json"),
+        $.get("/lib/cldr-data/supplemental/weekData.json"),
+        $.get("/sw.js"),
+    ).then(function () {
+        // Normalize $.get results, we only need the JSON, not the request statuses.
+        return [].slice.apply(arguments, [0]).map(function (result) {
+            return result[0];
+        });
+    }).then(Globalize.load).then(function () {
+        Globalize.locale(culture);
+    });
+</script>

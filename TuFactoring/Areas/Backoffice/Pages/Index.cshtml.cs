@@ -1,0 +1,92 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
+using TuFactoringModels;
+using TuFactoring.Services;
+using Microsoft.AspNetCore.Identity;
+using TuFactoringModels.nuevaVersion;
+using Microsoft.AspNetCore.Http;
+using System.Globalization;
+
+namespace TuFactoring.Areas.Backoffice.Pages
+{
+    public class IndexModel : PageModel
+    {
+        private readonly IInvoiceService _iS;
+        private readonly IPeopleService _peopleService;
+        private readonly IAuthService _aS;
+        private readonly SignInManager<User> _signInManager;
+        [BindProperty]
+        public string ContratoJson { get; set; }
+        private string Participant { get; set; }
+        private string Owner { get; set; }
+        private string Country { get; set; }
+        private string TerminoCondiciones { get; set; }
+        private string ContratoProveedor { get; set; }
+
+
+        public IndexModel(IInvoiceService iS, SignInManager<User> signInManager, IPeopleService peopleService, IAuthService aS)
+        {
+            _peopleService = peopleService;
+            _signInManager = signInManager;
+            _iS = iS;
+            this._aS = aS;
+        }
+
+        public async Task<IActionResult> OnGet()
+        {
+            var token = HttpContext.Session.GetString("token");
+            if (token == null || token == "" || token == "null") return RedirectToPage("/logout");
+
+            Participant = User.Claims.Where(x => x.Type == "Participant").Select(x => x.Value).SingleOrDefault();
+            TerminoCondiciones = User.Claims.Where(x => x.Type == "TerminoCondiciones").Select(x => x.Value).SingleOrDefault();
+            ContratoProveedor = User.Claims.Where(x => x.Type == "ContratoProveedor").Select(x => x.Value).SingleOrDefault();
+
+            User Contrato = new User();
+            Contrato.Participant = Participant;
+            Contrato.TerminoCondiciones = TerminoCondiciones;
+            Contrato.ContratoProveedor = ContratoProveedor;
+            ContratoJson = JsonConvert.SerializeObject(Contrato);
+
+            #region RefreshToken
+            var id = User.Claims.Where(x => x.Type == "Id").Select(x => x.Value).SingleOrDefault();
+            var l = await this._aS.RefreshToken(id, CultureInfo.CurrentCulture.Name, "BACKOFFICE", token);
+
+            if (l.Error == null)
+            {
+                HttpContext.Session.SetString("token", l.Token);
+            }
+            #endregion
+
+            return Page();
+        }
+
+        public async Task<JsonResult> OnPost([FromBody] AcceptanceAgreements contrato)
+        {
+            Participant = User.Claims.Where(x => x.Type == "Participant").Select(x => x.Value).SingleOrDefault();
+            Country = User.Claims.Where(x => x.Type == "Country").Select(x => x.Value).SingleOrDefault();
+            Owner = User.Claims.Where(x => x.Type == "Owner").Select(x => x.Value).SingleOrDefault();
+            var token = HttpContext.Session.GetString("token");
+            contrato.Id = Owner;
+
+            var respuesta = await _peopleService.MutacionContratoAsync(contrato, token);
+
+            #region
+            var id = User.Claims.Where(x => x.Type == "Id").Select(x => x.Value).SingleOrDefault();
+            var l = await this._aS.RefreshToken(id, CultureInfo.CurrentCulture.Name, "BACKOFFICE", token);
+
+            if (l.Error == null)
+            {
+                HttpContext.Session.SetString("token", l.Token);
+            }
+            #endregion
+
+            return new JsonResult("respuesta");
+        }
+    }
+}

@@ -1,0 +1,133 @@
+﻿@page
+@model TuFactoring.Areas.Backoffice.Pages.MantenimientoSubastaModel
+
+@{
+    ViewData["Title"] = "Mantenimiento de Subasta";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<v-app id="app" hidden>
+    @Html.AntiForgeryToken()
+    @await Html.PartialAsync("_ModalLogoutPartial", 5)
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">
+            <a href="#" class="btn btn-success btn-circle">
+                <i class="@Localizer.Text("iconAdminAuction")" style="color:white"></i>
+            </a>
+            @Localizer.Text("titleAdminAuction")
+        </h1>
+        <span>
+            <div class="btn-group">
+                <button class="btn btn-success" @@click="dialog = true;" :disabled="current.state == 'finalized' || loading">
+                    {{botonSubasta()}}
+                </button>
+                <button class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" :disabled="current.state == 'finalized' || loading" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" style="color:black !important" href="#" @@click="dialog2 = true; opcion= -1" id="statefinalized">@Localizer.Text("buttonCreate")</a>
+                    <a class="dropdown-item" style="color:black !important" href="#" @@click="dialog2 = true; opcion= 0" id="statecreated">@Localizer.Text("buttonOpenAuction")</a>
+                    <a class="dropdown-item" style="color:black !important" href="#" @@click="dialog2 = true; opcion= 1" id="stateopened">@Localizer.Text("buttonCloseAuction")</a>
+                    <a class="dropdown-item" style="color:black !important" href="#" @@click="dialog2 = true; opcion= 2" id="stateclosed">@Localizer.Text("buttonOpenPayments")</a>
+                    <a class="dropdown-item" style="color:black !important" href="#" @@click="dialog2 = true; opcion= 4" id="statepayed">@Localizer.Text("buttonEnd")</a>
+                </div>
+            </div>
+        </span>
+    </div>
+    <p class="mb-4">
+        @Localizer.Text("textoAyudaMantenimientoAuction")
+    </p>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 justify-content-between">
+            <h4 class="m-0 font-weight-bold text-primary">{{current.state == null ? '@Localizer.Text("textoNotAuction")': '@Localizer.Text("textoDataAuction")'}}</h4>
+
+        </div>
+        <div class="card-body">
+            <v-data-table :headers="header"
+                          :loading="loading"
+                          :items="currentFalso"
+                          class="elevation-1">
+                <template v-slot:item.date="props">
+                    {{current.dated == null ? '-' : backEndDateFormat(current.dated)}}
+                </template>
+
+                <template v-slot:item.opening="props">
+                    {{current.opened == null ? '-' : backEndDateFormat2(current.opened)}}
+                </template>
+
+                <template v-slot:item.closing="props">
+                    {{current.closed == null ? '-' : backEndDateFormat2(current.closed)}}
+                </template>
+
+                <template v-slot:item.payments="props">
+                    {{current.payed == null ? '-' : backEndDateFormat2(current.payed)}}
+                </template>
+                <!--
+                <template v-slot:item.conciliation="props">
+                    {{current.conciliation == null ? '-' : backEndDateFormat2(current.conciliation)}}
+                </template>
+                    -->
+                <template v-slot:item.ending="props">
+                    {{current.finalized == null ? '-' : backEndDateFormat2(current.finalized)}}
+                </template>
+            </v-data-table>
+        </div>
+    </div>
+
+    <v-dialog max-width="420" v-model="dialog">
+        <v-card>
+            <v-card-title class="headline">
+                <h4 class="modal-title">@Localizer.Text("titleSystemTuFact")</h4>
+                <v-spacer></v-spacer>
+                <v-btn icon @@click="dialog = false"><v-icon>@Localizer.Text("iconCloseMDI")</v-icon></v-btn>
+            </v-card-title>
+            <v-card-text>
+                <v-row>
+                    <v-col cols="12" md="12" sm="12" lg="12">
+                        <p>@Localizer.Text("textoSecureAction")</p>
+                    </v-col>
+                </v-row>
+                <v-row>
+                    <v-col cols="12" md="12" sm="12" lg="12">
+                        <span class="float-right">
+                            <v-btn @@click="accionBoton(); dialog = false" dark color="green">@Localizer.Text("buttonAcept")</v-btn>
+                            <v-btn @@click="dialog = false" dark color="red">@Localizer.Text("buttonClose")</v-btn>
+                        </span>
+                    </v-col>
+                </v-row>
+            </v-card-text>
+        </v-card>
+    </v-dialog>
+
+    <v-dialog max-width="420" v-model="dialog2">
+        <v-card>
+            <v-card-title class="headline">
+                <h4 class="modal-title">@Localizer.Text("titleSystemTuFact")</h4>
+                <v-spacer></v-spacer>
+                <v-btn icon @@click="dialog2 = false"><v-icon>@Localizer.Text("iconCloseMDI")</v-icon></v-btn>
+            </v-card-title>
+            <v-card-text>
+                <v-row>
+                    <v-col cols="12" md="12" sm="12" lg="12">
+                        <p>@Localizer.Text("textoSecureAction")</p>
+                    </v-col>
+                </v-row>
+                <v-row>
+                    <v-col cols="12" md="12" sm="12" lg="12">
+                        <span class="float-right">
+                            <v-btn @@click="accionBoton2(); dialog2 = false" dark color="green">@Localizer.Text("buttonAcept")</v-btn>
+                            <v-btn @@click="dialog2 = false" dark color="red">@Localizer.Text("buttonClose")</v-btn>
+                        </span>
+                    </v-col>
+                </v-row>
+            </v-card-text>
+        </v-card>
+    </v-dialog>
+
+</v-app>
+
+@section scripts{
+    <script src="~/js/Operativo/subasta.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,169 @@
+﻿@page
+@using System.Globalization;
+@model LoginModel
+
+@{
+    ViewData["Title"] = @Localizer.Text("titleLogin");
+    switch (@Model.Participant)
+    {
+        case "CONFIRMANT":
+            ViewData["bgcolor"] = "dark";
+            break;
+        case "DEBTOR":
+            ViewData["bgcolor"] = "primary";
+            break;
+        case "FACTOR":
+            ViewData["bgcolor"] = "warning";
+            break;
+        case "SUPPLIER":
+            ViewData["bgcolor"] = "purple";
+            break;
+        default:
+            ViewData["bgcolor"] = "navy";
+            break;
+    }
+    Layout = "~/Pages/Shared/_LoginLayout.cshtml";
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+}
+
+<div class="row justify-content-center">
+    <div class="col-xl-10 col-lg-12 col-md-9">
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                    <div class="col-lg-6">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4"><strong>@Localizer.Text("branding")</strong></h1>
+                                <p class="mb-4">@Localizer.Text("Iniciar sesion")&nbsp;@Localizer.Text("how"+ Model.Participant)</p>
+                            </div>
+                            <form class="user" id="account" method="post" name="formularioLogin">
+                                <!-- <div class="small text-danger" asp-validation-summary="All"></div> -->
+                                @if (Model.Country != null)
+                                {
+                                    <input asp-for="Input.Country" type="hidden" value="@Model.Country.Id" />
+                                    <input asp-for="Input.Identification" type="hidden" value="@Model.Identification.Id" />
+                                }
+                                <input asp-for="Input.Discriminator" type="hidden" value="@Model.Discriminator" />
+                                <input asp-for="Input.Participant" type="hidden" value="@Model.Participant" />
+
+                                @if (Model.Discriminator == "PERSON")
+                                {
+                                    <div id="personaNaturalNumber">
+                                        <input asp-for="Input.Prefix" type="hidden" value="0" />
+                                        <input asp-for="Input.Number" type="hidden" value="0" />
+                                    </div>
+                                }
+
+                                @if (Model.Discriminator == "LEGAL")
+                                {
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            @if (Model.Options.Count > 0)
+                                            {
+                                                <div class="input-group-prepend">
+
+                                                    <select required asp-for="Input.Prefix" class="input-group-text form-control-user" onblur="validarPrefix();validarRegExpr('@Model.RegexExpre','@Model.MaskEdit')" id="selectPrefix" style="width:4rem;padding-top:0 !important;padding-bottom:0 !important;height:3.1rem;" asp-items="Model.Options" aria-label="Example select with button addon">
+                                                        <option value=""></option>
+                                                    </select>
+                                                   
+                                                </div>
+                                            }
+                                            @if (Model.Country != null)
+                                            {
+                                                <input asp-for="Input.Number" type="text" onblur="validarRegExpr('@Model.RegexExpre','@Model.MaskEdit');validarPrefix()" maxlength="@Model.Digits" class="form-control form-control-user" aria-label="Text input with dropdown button" placeholder="@Model.MaskEdit" />
+                                            }
+                                            else
+                                            {
+                                                <input asp-for="Input.Number" type="text" onblur="validarRegExpr('@Model.RegexExpre','@Model.MaskEdit');validarPrefix()" maxlength="@Model.Digits" class="form-control form-control-user" aria-label="Text input with dropdown button" placeholder="@Model.MaskEdit" />
+                                            }
+                                        </div>
+                                        <span class="small text-danger" id="validNum"></span> 
+
+                                        @if (Model.CustomError == "Formato inválido")
+                                        {
+                                            <span class="small text-danger">@Model.CustomError</span>
+                                        }
+
+                                    </div>
+                                }
+
+                                <div class="form-group">
+                                    <input asp-for="Input.Email" type="email" id="exampleInputEmail" maxlength="60" onblur="validarEmailLogin()" class="form-control form-control-user" aria-describedby="emailHelp" placeholder="@Localizer.Text("placeholderLoginEmail")" />
+                                    <span class="small text-danger" id="validEmail"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input asp-for="Input.Password" class="form-control form-control-user" id="exampleInputPassword" onblur="validarPasswordLogin()" placeholder="@Localizer.Text("placeholderPassword")" />
+                                    <span class="small text-danger" asp-validation-for="Input.Password" id="validPasswordLogin"></span>
+                                </div>
+
+                                <input type="hidden" asp-for="Input.TokenReCap" class="g-recaptcha" id="idrecaptcha">
+
+                                <div class="form-group">
+                                    <button type="button" id="buttonSubmit" class="btn btn-@ViewData["bgcolor"] btn-user btn-block">@Localizer.Text("Iniciar sesion")</button>
+                                    <button type="submit" hidden id="buttonSubmit2" ></button>
+                                </div>
+
+                                @if (Model.CustomError != null)
+                                {
+                                    <span class="small text-danger">@Localizer.Text(Model.CustomError)</span>
+
+                                }
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" id="forgot-password" asp-area="identity" asp-page="/Account/ForgotPassword" asp-route-culture="@culture" asp-route-id="@HttpContext.Request.Query["id"]">@Localizer.Text("loginTextForgotPassword")</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" id="return-index" asp-page="/Index" asp-route-culture="@culture">@Localizer.Text("loginTextReturn")</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/translate/recursos.js" asp-append-version="true"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LexhPMUAAAAAMc2tL-GP1Sc7-UL-TvnfmZlNtIk"></script>
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        tiempoAusente()
+
+        if (document.getElementById("Input_Number").value != "" && document.getElementById("Input_Number").value != 0)
+            validarRegExpr('@Model.RegexExpre','@Model.MaskEdit')
+
+
+        document.getElementById("buttonSubmit").addEventListener("click", tokenSubmit)
+
+        document.getElementById("Input_Number").addEventListener("keypress", tokenSubmitEnter)
+
+        document.getElementById("exampleInputEmail").addEventListener("keypress", tokenSubmitEnter)
+
+        document.getElementById("exampleInputPassword").addEventListener("keypress", tokenSubmitEnter)
+        
+
+        document.getElementById("account").addEventListener("submit", function (e) {
+            try {
+                var validNum = document.getElementById("validNum").innerHTML
+                if (validNum != "") {
+                    e.preventDefault()
+                    return
+                }
+            } catch (e) {
+            }
+             
+            if (document.getElementById("idrecaptcha").value == "") {   
+                toastr.warning(i18n.t("errorConexion"))
+                e.preventDefault()
+            }
+            
+        })
+    </script>
+
+}

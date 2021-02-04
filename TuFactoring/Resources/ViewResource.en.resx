@@ -1,0 +1,4148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Welcome" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="Quienes somos" xml:space="preserve">
+    <value>About us</value>
+  </data>
+  <data name="Mercado de Facturas" xml:space="preserve">
+    <value>Invoices Market</value>
+  </data>
+  <data name="headersAmoutPay" xml:space="preserve">
+    <value>Amount Payable</value>
+  </data>
+  <data name="Preguntas frecuentes" xml:space="preserve">
+    <value>FAQ</value>
+  </data>
+  <data name="Terminos y Condiciones" xml:space="preserve">
+    <value>Terms</value>
+  </data>
+  <data name="Privacidad" xml:space="preserve">
+    <value>Privacy</value>
+  </data>
+  <data name="Derechos reservados" xml:space="preserve">
+    <value>All Rights Reserved</value>
+  </data>
+  <data name="Inicio" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Como funciona" xml:space="preserve">
+    <value>How does it work</value>
+  </data>
+  <data name="Servicios" xml:space="preserve">
+    <value>Services</value>
+  </data>
+  <data name="Comenzar" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Es momento de ganar" xml:space="preserve">
+    <value>Its Time to win</value>
+  </data>
+  <data name="El apoyo ideal para el crecimiento de su negocio" xml:space="preserve">
+    <value>The ideal support for the growth of your business</value>
+  </data>
+  <data name="Comience a trabajar con nosotros" xml:space="preserve">
+    <value>Start working with us</value>
+  </data>
+  <data name="El mejor aliado" xml:space="preserve">
+    <value>The best ally</value>
+  </data>
+  <data name="Para su negocio en crecimiento" xml:space="preserve">
+    <value>For your growing business</value>
+  </data>
+  <data name="Ir a servicios" xml:space="preserve">
+    <value>Go to Services</value>
+  </data>
+  <data name="Clientes" xml:space="preserve">
+    <value>Customers</value>
+  </data>
+  <data name="Aliados" xml:space="preserve">
+    <value>Allies</value>
+  </data>
+  <data name="::Introduccion" xml:space="preserve">
+    <value>It is a new electronic meeting place that combines technology with the operations of Confirming (Payment Suppliers), Factoring and the purchase of invoices along with the incorporation of an auction process. The companies that provide products and services will be able to finance their working capital at very competitive rates, investors will find an investment instrument with very attractive rates and companies that demand products and services will be able to pay their accounts payable through our allied banks</value>
+  </data>
+  <data name="Seguridad en tu inversión" xml:space="preserve">
+    <value>Security in your investment</value>
+  </data>
+  <data name="::Resumen caracteristica 1" xml:space="preserve">
+    <value>High returns on your investment with low risk since you will have the confirmation of payment by a bank allied at the expiration of the invoice</value>
+  </data>
+  <data name="::Resumen caracteristica 2" xml:space="preserve">
+    <value>Agile processes for the sale of your invoices without having to go to a financial institution, by auction, you will approve the discount rate offered more convenient for your company, provide you with working capital to boost your new sales</value>
+  </data>
+  <data name="Extraordinarios beneficios" xml:space="preserve">
+    <value>Extraordinary benefits</value>
+  </data>
+  <data name="Gestión de cuentas por pagar" xml:space="preserve">
+    <value>Accounts payable management</value>
+  </data>
+  <data name="::Resumen caracteristica 3" xml:space="preserve">
+    <value>As a customer of our Allied Banks, you will have access to financial services and products for the cancellation of your accounts payable</value>
+  </data>
+  <data name="Acceso a la app" xml:space="preserve">
+    <value>Management Accounts Payable Suppliers</value>
+  </data>
+  <data name="::Resumen servicio 1" xml:space="preserve">
+    <value>If you are a client of our Allied Banks, through the system of Tufactoring you can channel the payment of your obligations with your suppliers by means of the acceptance of a Confirming service with or without financing.</value>
+  </data>
+  <data name="Negociación" xml:space="preserve">
+    <value>Sale of Invoices (Factoring)</value>
+  </data>
+  <data name="::Resumen servicio 2" xml:space="preserve">
+    <value>Your invoices receivable to customers who are currently in the system of Tufactoring, you can authorize that they are published in online auction and receive from potential investors offers of purchases with different percentage of discounts.</value>
+  </data>
+  <data name="Inversores" xml:space="preserve">
+    <value>Purchase of Invoices</value>
+  </data>
+  <data name="::Resumen servicio 3" xml:space="preserve">
+    <value>The auction process will allow you to make invoice purchases without an investment limit, with the confidence of payment for the existence of an allied bank that will confirm that you will pay when the invoice expires. At the close of the day of the auction, the winner will be the one that offers the best offer of discounts to the seller.</value>
+  </data>
+  <data name="Iniciar sesion" xml:space="preserve">
+    <value>Sign In</value>
+  </data>
+  <data name="Registrarse" xml:space="preserve">
+    <value>Sign up</value>
+  </data>
+  <data name="Como Empresa" xml:space="preserve">
+    <value>as Company</value>
+  </data>
+  <data name="Como Proveedor" xml:space="preserve">
+    <value>as Supplier</value>
+  </data>
+  <data name="Si eres Inversionista" xml:space="preserve">
+    <value>If you are an Factor</value>
+  </data>
+  <data name="Como Persona" xml:space="preserve">
+    <value>as Person</value>
+  </data>
+  <data name="Si eres Back-Office" xml:space="preserve">
+    <value>If you are Back-Office</value>
+  </data>
+  <data name="Como Banco" xml:space="preserve">
+    <value>as Confirmant</value>
+  </data>
+  <data name="Como Operativo" xml:space="preserve">
+    <value>as Operational</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>email</value>
+  </data>
+  <data name="requiredField" xml:space="preserve">
+    <value>Field {0} is required</value>
+  </data>
+  <data name="titleInvoiceData" xml:space="preserve">
+    <value>Invoice Data</value>
+  </data>
+  <data name="titleInvoiceManagement" xml:space="preserve">
+    <value>Invoice Editing</value>
+  </data>
+  <data name="buttonInvoiceUpdate" xml:space="preserve">
+    <value>Update Invoice</value>
+  </data>
+  <data name="buttonAcept" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="textoDeleteDeduction" xml:space="preserve">
+    <value>This action will delete the deduction </value>
+  </data>
+  <data name="textoDeleteInvoice" xml:space="preserve">
+    <value>This action will remove the Invoice</value>
+  </data>
+  <data name="textoUpdateDeduction" xml:space="preserve">
+    <value>This action will update the Deduction</value>
+  </data>
+  <data name="buttonAdd" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="errorAddInvoiceNumber" xml:space="preserve">
+    <value>You must enter an Invoice Number</value>
+  </data>
+  <data name="titleAmount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="errorAmountDeductions" xml:space="preserve">
+    <value>The Amount of the Deduction must be greater than 0</value>
+  </data>
+  <data name="titleAmountNeto" xml:space="preserve">
+    <value>Net Value</value>
+  </data>
+  <data name="buttonClear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="buttonClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="titleCurrencyType" xml:space="preserve">
+    <value>Currency Type</value>
+  </data>
+  <data name="titleDeductions" xml:space="preserve">
+    <value>Deductions</value>
+  </data>
+  <data name="titleDeductionsNumber" xml:space="preserve">
+    <value>Deduction Code</value>
+  </data>
+  <data name="errorDeductionsNumber" xml:space="preserve">
+    <value>Enter a Code that identifies the Deduction.</value>
+  </data>
+  <data name="errorDeductionsSuperiorAmount" xml:space="preserve">
+    <value>Deductions exceed the Invoice Amount</value>
+  </data>
+  <data name="titleDeductionsType" xml:space="preserve">
+    <value>Deduction Type</value>
+  </data>
+  <data name="buttonDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="titleDeleteInvoice" xml:space="preserve">
+    <value>Invoice Elimination</value>
+  </data>
+  <data name="buttonEdit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="titleEditDeduction" xml:space="preserve">
+    <value>Edit Deduction</value>
+  </data>
+  <data name="titleExpirationDate" xml:space="preserve">
+    <value>Expiration Date</value>
+  </data>
+  <data name="errorExpirationEmpty" xml:space="preserve">
+    <value>You must enter the Due Date of the Invoice</value>
+  </data>
+  <data name="errorExpirationEqual" xml:space="preserve">
+    <value>The Due Date of the Invoice must be greater than the Issue Date</value>
+  </data>
+  <data name="errorExpirationInferior" xml:space="preserve">
+    <value>The Due Date of the Invoice is less than the Current Date</value>
+  </data>
+  <data name="titleInvoiceType" xml:space="preserve">
+    <value>Invoice Type</value>
+  </data>
+  <data name="titleInvoiceNumber" xml:space="preserve">
+    <value>Invoice Number</value>
+  </data>
+  <data name="titleInvoiceProcess" xml:space="preserve">
+    <value>Invoices Processed</value>
+  </data>
+  <data name="errorIssuedEmpty" xml:space="preserve">
+    <value>You must enter the Issue Date of the Invoice</value>
+  </data>
+  <data name="errorIssuedEqual" xml:space="preserve">
+    <value>Issue Date equal to Expiration Date</value>
+  </data>
+  <data name="errorIssuedSuperior" xml:space="preserve">
+    <value>The Issue Date of the Invoice is greater than the Current Date</value>
+  </data>
+  <data name="placeholderNDocument" xml:space="preserve">
+    <value>Document Number</value>
+  </data>
+  <data name="titleNominalAmount" xml:space="preserve">
+    <value>Nominal value</value>
+  </data>
+  <data name="errorNominalAmountCero" xml:space="preserve">
+    <value>The Nominal Value must be greater than 0</value>
+  </data>
+  <data name="titlePercentage" xml:space="preserve">
+    <value>Percentage</value>
+  </data>
+  <data name="titleProvider" xml:space="preserve">
+    <value>Supplier</value>
+  </data>
+  <data name="selectInvoiceCurrency" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="selectInvoiceType" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="selectProvider" xml:space="preserve">
+    <value>Select Supplier</value>
+  </data>
+  <data name="selectTypeDeductions" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="errorTypeDeductions" xml:space="preserve">
+    <value>You must select a Type of Deduction</value>
+  </data>
+  <data name="buttonUpdate" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="titleUpdateDeduction" xml:space="preserve">
+    <value>Update Deduction</value>
+  </data>
+  <data name="textoWishContinue" xml:space="preserve">
+    <value>¿Do you wish to continue?</value>
+  </data>
+  <data name="buttonAddInvoices" xml:space="preserve">
+    <value>Save Invoices</value>
+  </data>
+  <data name="tipAddNewInvoice" xml:space="preserve">
+    <value>Add new invoice</value>
+  </data>
+  <data name="tipExpirationDays" xml:space="preserve">
+    <value>Expiration Days</value>
+  </data>
+  <data name="textoHere" xml:space="preserve">
+    <value>here</value>
+  </data>
+  <data name="titleInvoiceNotProcessed" xml:space="preserve">
+    <value>Invoice not Processed</value>
+  </data>
+  <data name="titleLoadInvoice" xml:space="preserve">
+    <value>Invoice Charge</value>
+  </data>
+  <data name="buttonLoadTemplate" xml:space="preserve">
+    <value>Load Template</value>
+  </data>
+  <data name="placeholderNumberFormat" xml:space="preserve">
+    <value>0,000.00</value>
+  </data>
+  <data name="buttonOptions" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="textoSelectTemplate" xml:space="preserve">
+    <value>Select Template</value>
+  </data>
+  <data name="textoAddNewInvoice" xml:space="preserve">
+    <value>It allows the Client to Load the Invoices of the different Suppliers, in a Manual or Massive way, for their subsequent Postulation to the Confirming Banks.</value>
+  </data>
+  <data name="textoLoadTemplate1" xml:space="preserve">
+    <value>To add Invoices Massively, download the template Model found</value>
+  </data>
+  <data name="tipDeleteDeduction" xml:space="preserve">
+    <value>Delete Deduction</value>
+  </data>
+  <data name="tipEditDeduction" xml:space="preserve">
+    <value>Edit Deduction</value>
+  </data>
+  <data name="iconCloseMDI" xml:space="preserve">
+    <value>mdi-close</value>
+  </data>
+  <data name="iconCurrency" xml:space="preserve">
+    <value>fa fa-money</value>
+  </data>
+  <data name="iconDate" xml:space="preserve">
+    <value>fa fa-calendar</value>
+  </data>
+  <data name="iconDeduction" xml:space="preserve">
+    <value>fa fa-minus</value>
+  </data>
+  <data name="iconDeductionType" xml:space="preserve">
+    <value>fa fa-bank</value>
+  </data>
+  <data name="iconDelete" xml:space="preserve">
+    <value>fa fa-trash</value>
+  </data>
+  <data name="iconEdit" xml:space="preserve">
+    <value>fa fa-pencil-square-o</value>
+  </data>
+  <data name="iconInvoiceManagement" xml:space="preserve">
+    <value>fas fa-receipt</value>
+  </data>
+  <data name="iconInvoiceNumber" xml:space="preserve">
+    <value>fa fa-info</value>
+  </data>
+  <data name="iconNominalAmount" xml:space="preserve">
+    <value>fa fa-credit-card</value>
+  </data>
+  <data name="iconProvider" xml:space="preserve">
+    <value>fa fa-industry</value>
+  </data>
+  <data name="placeholderDeductionNumber" xml:space="preserve">
+    <value>Enter the Deduction Code</value>
+  </data>
+  <data name="titleDeleteDeduction" xml:space="preserve">
+    <value>Delete Deduction</value>
+  </data>
+  <data name="iconCargaFacturas" xml:space="preserve">
+    <value>fas fa-receipt</value>
+  </data>
+  <data name="errorSelectProvider" xml:space="preserve">
+    <value>Select Provider</value>
+  </data>
+  <data name="iconLeftMDI" xml:space="preserve">
+    <value>mdi-arrow-left-bold-circle</value>
+  </data>
+  <data name="iconRightMDI" xml:space="preserve">
+    <value>mdi-arrow-right-bold-circle</value>
+  </data>
+  <data name="iconAdd" xml:space="preserve">
+    <value>fa fa-plus </value>
+  </data>
+  <data name="iconCargaManual" xml:space="preserve">
+    <value>fa fa-file-text</value>
+  </data>
+  <data name="iconClear" xml:space="preserve">
+    <value>fa fa-eraser</value>
+  </data>
+  <data name="iconMenu" xml:space="preserve">
+    <value>fas fa-ellipsis-v fa-sm fa-fw</value>
+  </data>
+  <data name="titleAddNewInvoice" xml:space="preserve">
+    <value>Add new Invoice</value>
+  </data>
+  <data name="errorSelectInvoiceCurrency" xml:space="preserve">
+    <value>You must select a Currency Type</value>
+  </data>
+  <data name="errorSelectInvoiceType" xml:space="preserve">
+    <value>You must select an Invoice Type</value>
+  </data>
+  <data name="selectTemplate" xml:space="preserve">
+    <value>Select Template</value>
+  </data>
+  <data name="titleAddInvoices" xml:space="preserve">
+    <value>Add Invoices</value>
+  </data>
+  <data name="titleIssuedDate" xml:space="preserve">
+    <value>Issued Date</value>
+  </data>
+  <data name="iconCheck" xml:space="preserve">
+    <value>fa fa-check</value>
+  </data>
+  <data name="iconPostulate" xml:space="preserve">
+    <value>fa fa-send</value>
+  </data>
+  <data name="titlePostulate" xml:space="preserve">
+    <value>Postulate Invoice</value>
+  </data>
+  <data name="titleFinancing" xml:space="preserve">
+    <value>Finance Invoices</value>
+  </data>
+  <data name="textoRequestFinancing" xml:space="preserve">
+    <value>Request Financing</value>
+  </data>
+  <data name="textoCancelFinancing" xml:space="preserve">
+    <value>Cancel Financing</value>
+  </data>
+  <data name="iconCancel" xml:space="preserve">
+    <value>fa fa-ban</value>
+  </data>
+  <data name="titleSelectsInvoice" xml:space="preserve">
+    <value>Bank and Invoice Selection</value>
+  </data>
+  <data name="textoDateExpiration" xml:space="preserve">
+    <value>Expiration date</value>
+  </data>
+  <data name="textoDaysExpiration" xml:space="preserve">
+    <value>Days to Expiration</value>
+  </data>
+  <data name="textoDays" xml:space="preserve">
+    <value>days</value>
+  </data>
+  <data name="textoAmountNet" xml:space="preserve">
+    <value>Net Value</value>
+  </data>
+  <data name="textoFinancing" xml:space="preserve">
+    <value>Financing</value>
+  </data>
+  <data name="titleRequestFinancing" xml:space="preserve">
+    <value>Invoice Financing Request</value>
+  </data>
+  <data name="textoSureToAction" xml:space="preserve">
+    <value>Are you sure to Release all selected Invoices?</value>
+  </data>
+  <data name="textoRequestNotified" xml:space="preserve">
+    <value>The requests made will be notified to your managing Bank as soon as possible</value>
+  </data>
+  <data name="textoPostulate" xml:space="preserve">
+    <value>Postulate</value>
+  </data>
+  <data name="textoQuitAll" xml:space="preserve">
+    <value>Remove Selected</value>
+  </data>
+  <data name="textoSelectAll" xml:space="preserve">
+    <value>Select all</value>
+  </data>
+  <data name="selectBank" xml:space="preserve">
+    <value>Select Bank</value>
+  </data>
+  <data name="buttonPostulate" xml:space="preserve">
+    <value>Postulate</value>
+  </data>
+  <data name="errorSelectBank" xml:space="preserve">
+    <value>Select Bank</value>
+  </data>
+  <data name="titleDialogPostulate" xml:space="preserve">
+    <value>Invoices Postulated to</value>
+  </data>
+  <data name="iconCancelPostulate" xml:space="preserve">
+    <value>fa fa-times</value>
+  </data>
+  <data name="tipCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="buttonConfirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="titleConfirming" xml:space="preserve">
+    <value>Confirm Invoices</value>
+  </data>
+  <data name="titleBuyInvoice" xml:space="preserve">
+    <value>Invoice Purchase</value>
+  </data>
+  <data name="titleConfirmingInvoices" xml:space="preserve">
+    <value>Invoice to Publish</value>
+  </data>
+  <data name="textoAvailableInvoice" xml:space="preserve">
+    <value>Invoices Available</value>
+  </data>
+  <data name="textoAmountAccumulated" xml:space="preserve">
+    <value>Invoices Selected by an Accumulated Value of:</value>
+  </data>
+  <data name="textoAnnualizedProfitability" xml:space="preserve">
+    <value>Annualized Profitability</value>
+  </data>
+  <data name="textoAmountPayable" xml:space="preserve">
+    <value>Amount payable</value>
+  </data>
+  <data name="textoAmountToConfirm" xml:space="preserve">
+    <value>Amount to Release</value>
+  </data>
+  <data name="textoInvoiceToConfirm" xml:space="preserve">
+    <value>Invoices Available</value>
+  </data>
+  <data name="buttonSendAll" xml:space="preserve">
+    <value>Release All</value>
+  </data>
+  <data name="buttonOffert" xml:space="preserve">
+    <value>Offert</value>
+  </data>
+  <data name="iconOffert" xml:space="preserve">
+    <value>far fa-handshake</value>
+  </data>
+  <data name="iconSend" xml:space="preserve">
+    <value>fa fa-send</value>
+  </data>
+  <data name="iconBuyInvoice" xml:space="preserve">
+    <value>fas fa-search-dollar</value>
+  </data>
+  <data name="iconFinancing" xml:space="preserve">
+    <value>fas fa-hand-holding-usd</value>
+  </data>
+  <data name="iconConfirming" xml:space="preserve">
+    <value>fa fa-calendar-check-o</value>
+  </data>
+  <data name="tipNoFinancing" xml:space="preserve">
+    <value>Unsolicited Financing</value>
+  </data>
+  <data name="tipFinancing" xml:space="preserve">
+    <value>Solicited Financing</value>
+  </data>
+  <data name="titleMarketInvoice" xml:space="preserve">
+    <value>Invoice Market</value>
+  </data>
+  <data name="iconMarketCounter" xml:space="preserve">
+    <value>fas fa-stopwatch</value>
+  </data>
+  <data name="iconMarket" xml:space="preserve">
+    <value>fas fa-shopping-basket</value>
+  </data>
+  <data name="textoMarketCounter" xml:space="preserve">
+    <value>Time remaining</value>
+  </data>
+  <data name="textoMarketNotActivated" xml:space="preserve">
+    <value>The Invoice Market is not currently active.</value>
+  </data>
+  <data name="textoBestOffert" xml:space="preserve">
+    <value>Best Offert</value>
+  </data>
+  <data name="textoNotOffert" xml:space="preserve">
+    <value>Not Offert</value>
+  </data>
+  <data name="textoGain" xml:space="preserve">
+    <value>Gain</value>
+  </data>
+  <data name="iconPublicInvoice" xml:space="preserve">
+    <value>fas fa-bullhorn</value>
+  </data>
+  <data name="iconPosponed" xml:space="preserve">
+    <value>fa fa-clock</value>
+  </data>
+  <data name="titlePublicInvoice" xml:space="preserve">
+    <value>Publish Invoices</value>
+  </data>
+  <data name="titleBankOffert" xml:space="preserve">
+    <value>Bank Offert</value>
+  </data>
+  <data name="titleInvoiceToPublic" xml:space="preserve">
+    <value>Invoices to be published</value>
+  </data>
+  <data name="titleSystemTuFact" xml:space="preserve">
+    <value>TuF@ctoring System</value>
+  </data>
+  <data name="buttonOcult" xml:space="preserve">
+    <value>Hide</value>
+  </data>
+  <data name="buttonShow" xml:space="preserve">
+    <value>Show</value>
+  </data>
+  <data name="buttonAceptAll" xml:space="preserve">
+    <value>Accept All</value>
+  </data>
+  <data name="C" xml:space="preserve">
+    <value>Reject All</value>
+  </data>
+  <data name="buttonPublicAll" xml:space="preserve">
+    <value>Publish All</value>
+  </data>
+  <data name="buttonPosponedAll" xml:space="preserve">
+    <value>Posponed All</value>
+  </data>
+  <data name="buttonPosponed" xml:space="preserve">
+    <value>Postpone</value>
+  </data>
+  <data name="buttonPublic" xml:space="preserve">
+    <value>Publish</value>
+  </data>
+  <data name="textoBankOffert" xml:space="preserve">
+    <value>Bank Offert</value>
+  </data>
+  <data name="textoAmountDiscount" xml:space="preserve">
+    <value>Discount Amount</value>
+  </data>
+  <data name="textoCommissionService" xml:space="preserve">
+    <value>Service Expenses</value>
+  </data>
+  <data name="textoAmountRecib" xml:space="preserve">
+    <value>Amount to Receive</value>
+  </data>
+  <data name="textoRefused" xml:space="preserve">
+    <value>Reject</value>
+  </data>
+  <data name="textoAnnualizedCost" xml:space="preserve">
+    <value>Annualized Cost</value>
+  </data>
+  <data name="iconExpirationInvoices" xml:space="preserve">
+    <value>fas fa-stopwatch</value>
+  </data>
+  <data name="titleExpirationInvoices" xml:space="preserve">
+    <value>Expiration Invoices</value>
+  </data>
+  <data name="textoGreater30Days" xml:space="preserve">
+    <value>Only applies for Invoices greater than 30 days.</value>
+  </data>
+  <data name="buttonAceptOffert" xml:space="preserve">
+    <value>Accept Ofert</value>
+  </data>
+  <data name="iconCloseMarket" xml:space="preserve">
+    <value>far fa-handshake</value>
+  </data>
+  <data name="titleCloseMarket" xml:space="preserve">
+    <value>Market Closure</value>
+  </data>
+  <data name="titleInvoiceGain" xml:space="preserve">
+    <value>Winning Invoices</value>
+  </data>
+  <data name="textoSureAceptOffert" xml:space="preserve">
+    <value>¿Are you sure you accept all offers?</value>
+  </data>
+  <data name="textoOffert" xml:space="preserve">
+    <value>Offert</value>
+  </data>
+  <data name="textoCloseMarketNot" xml:space="preserve">
+    <value>The Market Closure is not currently active.</value>
+  </data>
+  <data name="titleConfirmInvoices" xml:space="preserve">
+    <value>Confirm Invoices</value>
+  </data>
+  <data name="buttonIncludeAccounts" xml:space="preserve">
+    <value>Include Account</value>
+  </data>
+  <data name="buttonIncludeAssociate" xml:space="preserve">
+    <value>Include Associate</value>
+  </data>
+  <data name="iconAddress" xml:space="preserve">
+    <value>fa fa-map</value>
+  </data>
+  <data name="iconCity" xml:space="preserve">
+    <value>fas fa-map-marked-alt</value>
+  </data>
+  <data name="iconTitleRegister" xml:space="preserve">
+    <value>fa fa-map-marker</value>
+  </data>
+  <data name="textoaccountNumber" xml:space="preserve">
+    <value>Account number</value>
+  </data>
+  <data name="textoaccountType" xml:space="preserve">
+    <value>Account type</value>
+  </data>
+  <data name="textobankCode" xml:space="preserve">
+    <value>Bank Code</value>
+  </data>
+  <data name="textobankingEntity" xml:space="preserve">
+    <value>Banking Entity</value>
+  </data>
+  <data name="textocity" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="textocomercialActivity" xml:space="preserve">
+    <value>Comercial activity</value>
+  </data>
+  <data name="textocompanyName" xml:space="preserve">
+    <value>Company name</value>
+  </data>
+  <data name="textoconstitutiveAct" xml:space="preserve">
+    <value>Constitutive Act Charge</value>
+  </data>
+  <data name="textodateBirth" xml:space="preserve">
+    <value>Date of birth</value>
+  </data>
+  <data name="textofiscalAddress" xml:space="preserve">
+    <value>Fiscal Address</value>
+  </data>
+  <data name="textolastName" xml:space="preserve">
+    <value>Last Names</value>
+  </data>
+  <data name="textologoBank" xml:space="preserve">
+    <value>Bank logo</value>
+  </data>
+  <data name="textomainCustomers" xml:space="preserve">
+    <value>Main customers</value>
+  </data>
+  <data name="textoname" xml:space="preserve">
+    <value>Names</value>
+  </data>
+  <data name="textonameOwner" xml:space="preserve">
+    <value>Name of owner</value>
+  </data>
+  <data name="textonameSurname" xml:space="preserve">
+    <value>Name and surname</value>
+  </data>
+  <data name="textooccupation" xml:space="preserve">
+    <value>Occupation</value>
+  </data>
+  <data name="textophone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="textorequestNewAccount" xml:space="preserve">
+    <value>Request New Account</value>
+  </data>
+  <data name="textostate" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="textoterms" xml:space="preserve">
+    <value>Terms</value>
+  </data>
+  <data name="textotradeName" xml:space="preserve">
+    <value>Trade Name</value>
+  </data>
+  <data name="textotypeCurrency" xml:space="preserve">
+    <value>Type of currency</value>
+  </data>
+  <data name="tipAssociatedMembershipSuccess" xml:space="preserve">
+    <value>Affiliate</value>
+  </data>
+  <data name="tipDebtorRegister" xml:space="preserve">
+    <value>Debtor Register</value>
+  </data>
+  <data name="tipFactorRegister" xml:space="preserve">
+    <value>Factor Register</value>
+  </data>
+  <data name="tipProviderRegister" xml:space="preserve">
+    <value>Provider Register</value>
+  </data>
+  <data name="tipStatusAccount" xml:space="preserve">
+    <value>Select as main account</value>
+  </data>
+  <data name="tipStatusAccountMain" xml:space="preserve">
+    <value>Main Account</value>
+  </data>
+  <data name="tipStatusAssociated" xml:space="preserve">
+    <value>Awaiting contract acceptance</value>
+  </data>
+  <data name="tipStatusAssociatedSuccess" xml:space="preserve">
+    <value>Contracts Accepted</value>
+  </data>
+  <data name="tipTerms" xml:space="preserve">
+    <value>Click here to see terms and conditions</value>
+  </data>
+  <data name="titleAddress" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="titleAdministrator" xml:space="preserve">
+    <value>Administrator</value>
+  </data>
+  <data name="titleBackofficeRegister" xml:space="preserve">
+    <value>Backoffice Register</value>
+  </data>
+  <data name="titleBank" xml:space="preserve">
+    <value>Bank</value>
+  </data>
+  <data name="titleBankAccounts" xml:space="preserve">
+    <value>Bank Accounts</value>
+  </data>
+  <data name="titleCommercialData" xml:space="preserve">
+    <value>Commercial Data</value>
+  </data>
+  <data name="titleConfirmantRegister" xml:space="preserve">
+    <value>Confirmant Register</value>
+  </data>
+  <data name="titleContactPerson" xml:space="preserve">
+    <value>Contact Person</value>
+  </data>
+  <data name="titleDebtorRegister" xml:space="preserve">
+    <value>Debtor Register</value>
+  </data>
+  <data name="titleFactorRegister" xml:space="preserve">
+    <value>Factor Register</value>
+  </data>
+  <data name="titleLegalRepresentative" xml:space="preserve">
+    <value>Legal Representative or Authorized Person</value>
+  </data>
+  <data name="titleMainSuppliers" xml:space="preserve">
+    <value>Main Suppliers</value>
+  </data>
+  <data name="titleProviderRegister" xml:space="preserve">
+    <value>Supplier Register</value>
+  </data>
+  <data name="buttonAfiliar" xml:space="preserve">
+    <value>Affiliate</value>
+  </data>
+  <data name="buttonAssociated" xml:space="preserve">
+    <value>Save Associate</value>
+  </data>
+  <data name="buttonSaveAccount" xml:space="preserve">
+    <value>Save Account</value>
+  </data>
+  <data name="iconAccountType" xml:space="preserve">
+    <value>fa fa-balance-scale</value>
+  </data>
+  <data name="iconAdmin" xml:space="preserve">
+    <value>fas fa-user-shield</value>
+  </data>
+  <data name="iconAssociated" xml:space="preserve">
+    <value>fa fa-group</value>
+  </data>
+  <data name="iconBank" xml:space="preserve">
+    <value>fa fa-bank</value>
+  </data>
+  <data name="iconChartMDI" xml:space="preserve">
+    <value>mdi-chart-bar</value>
+  </data>
+  <data name="iconCodeBank" xml:space="preserve">
+    <value>fa fa-marker</value>
+  </data>
+  <data name="iconCoinType" xml:space="preserve">
+    <value>fas fa-dollar-sign</value>
+  </data>
+  <data name="iconCommercialData" xml:space="preserve">
+    <value>fab fa-accusoft</value>
+  </data>
+  <data name="iconContactPerson" xml:space="preserve">
+    <value>fas fa-headset</value>
+  </data>
+  <data name="iconEmail" xml:space="preserve">
+    <value>fa fa-envelope</value>
+  </data>
+  <data name="iconHomeMDI" xml:space="preserve">
+    <value>mdi-home</value>
+  </data>
+  <data name="iconLegalRepre" xml:space="preserve">
+    <value>fa fa-gavel</value>
+  </data>
+  <data name="iconMDIDomain" xml:space="preserve">
+    <value>mdi-domain</value>
+  </data>
+  <data name="iconMDIStore" xml:space="preserve">
+    <value>mdi-store</value>
+  </data>
+  <data name="iconMenuAssociated" xml:space="preserve">
+    <value>fa fa-user-plus</value>
+  </data>
+  <data name="iconNameUserBank" xml:space="preserve">
+    <value>fas fa-user-tie</value>
+  </data>
+  <data name="iconNumberBank" xml:space="preserve">
+    <value>fas fa-file-invoice-dollar</value>
+  </data>
+  <data name="iconPhone" xml:space="preserve">
+    <value>fa fa-phone</value>
+  </data>
+  <data name="iconTitleAddress" xml:space="preserve">
+    <value>fas fa-map-marker-alt</value>
+  </data>
+  <data name="iconTitleBank" xml:space="preserve">
+    <value>fa fa-balance-scale</value>
+  </data>
+  <data name="iconUser" xml:space="preserve">
+    <value>fa fa-user</value>
+  </data>
+  <data name="placeholderAccountType" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="placeholderActivity" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="placeholderCurrencyType" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="placeholderDocument" xml:space="preserve">
+    <value>Enter the Document Number</value>
+  </data>
+  <data name="placeholderEmail" xml:space="preserve">
+    <value>Insert your email</value>
+  </data>
+  <data name="placeholderEnterYourAddress" xml:space="preserve">
+    <value>Enter your address</value>
+  </data>
+  <data name="placeholderEnterYourAddress2" xml:space="preserve">
+    <value>Additional address</value>
+  </data>
+  <data name="placeholderEstate" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="placeholderOcupation" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="placeholderPhone" xml:space="preserve">
+    <value>Insert your Phone</value>
+  </data>
+  <data name="textoAssociateAccount" xml:space="preserve">
+    <value>Associate Account</value>
+  </data>
+  <data name="textoContactPerson" xml:space="preserve">
+    <value>Contact Person</value>
+  </data>
+  <data name="textoEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="textoLegalRepresentative" xml:space="preserve">
+    <value>Legal representative</value>
+  </data>
+  <data name="tipLegalPerson" xml:space="preserve">
+    <value>Legal Person</value>
+  </data>
+  <data name="tipNaturalPerson" xml:space="preserve">
+    <value>Natural person</value>
+  </data>
+  <data name="titleBankRegister" xml:space="preserve">
+    <value>Bank Register</value>
+  </data>
+  <data name="iconAssignRiskLimit" xml:space="preserve">
+    <value>fa fa-thumbs-o-up</value>
+  </data>
+  <data name="titleOptions" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="textMaximumRiskAmount" xml:space="preserve">
+    <value>Establish Maximum Risk Amount</value>
+  </data>
+  <data name="buttonAssign" xml:space="preserve">
+    <value>Assign</value>
+  </data>
+  <data name="titleClientInformation" xml:space="preserve">
+    <value>Client Information</value>
+  </data>
+  <data name="titleAssignRiskLimit" xml:space="preserve">
+    <value>Assign Credit Limit</value>
+  </data>
+  <data name="buttonAssignAmount" xml:space="preserve">
+    <value>Establish Amount</value>
+  </data>
+  <data name="buttonSegmentation" xml:space="preserve">
+    <value>fa fa-thumbs-o-up</value>
+  </data>
+  <data name="titleSegmentation" xml:space="preserve">
+    <value>Assign Account Executive</value>
+  </data>
+  <data name="textContactPerson" xml:space="preserve">
+    <value>Contact Person</value>
+  </data>
+  <data name="iconCompanyName" xml:space="preserve">
+    <value>fas fa-city</value>
+  </data>
+  <data name="textAccountExecutive" xml:space="preserve">
+    <value>Select Account Executive</value>
+  </data>
+  <data name="titleVerifyData" xml:space="preserve">
+    <value>Verify Data</value>
+  </data>
+  <data name="buttonVerify" xml:space="preserve">
+    <value>Verify</value>
+  </data>
+  <data name="buttonAprovalVerify" xml:space="preserve">
+    <value>Approve</value>
+  </data>
+  <data name="buttonRefuseVerify" xml:space="preserve">
+    <value>Reject</value>
+  </data>
+  <data name="buttonprint" xml:space="preserve">
+    <value>Print</value>
+  </data>
+  <data name="textoBorradoCuenta" xml:space="preserve">
+    <value>The selected account will be permanently deleted.</value>
+  </data>
+  <data name="textoCuentaPrincipal" xml:space="preserve">
+    <value>Main Account</value>
+  </data>
+  <data name="textoDeleteAccount" xml:space="preserve">
+    <value>Delete Account</value>
+  </data>
+  <data name="textoDeleteAsoc" xml:space="preserve">
+    <value>Delete Associate</value>
+  </data>
+  <data name="textoEstaSeguroAccion" xml:space="preserve">
+    <value>Are you sure to perform this action?</value>
+  </data>
+  <data name="tipAcceptedContracts" xml:space="preserve">
+    <value>Accepted Contracts</value>
+  </data>
+  <data name="tipAfiliado" xml:space="preserve">
+    <value>Affiliate</value>
+  </data>
+  <data name="tipAwaitingMembership" xml:space="preserve">
+    <value>Awaiting membership</value>
+  </data>
+  <data name="tipCuentaNoPrincipal" xml:space="preserve">
+    <value>Select as Main Account</value>
+  </data>
+  <data name="tipNoAcceptedContracts" xml:space="preserve">
+    <value>Awaiting contract acceptance</value>
+  </data>
+  <data name="buttonFilter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="titleAmountFrom" xml:space="preserve">
+    <value>Amount From</value>
+  </data>
+  <data name="titleAmountTo" xml:space="preserve">
+    <value>Amount Up</value>
+  </data>
+  <data name="titleIssuedFrom" xml:space="preserve">
+    <value>Issue Date From</value>
+  </data>
+  <data name="titleIssuedTo" xml:space="preserve">
+    <value>Issue Date Until</value>
+  </data>
+  <data name="titleExpirationFrom" xml:space="preserve">
+    <value>Expiration Date From</value>
+  </data>
+  <data name="titleExpirationTo" xml:space="preserve">
+    <value>Expiration Date Until</value>
+  </data>
+  <data name="titleFinanced" xml:space="preserve">
+    <value>Financing</value>
+  </data>
+  <data name="searchFinancing" xml:space="preserve">
+    <value>Search with Financing</value>
+  </data>
+  <data name="titlefilter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="errorInvoiceNumber" xml:space="preserve">
+    <value>Invalid Invoice Number</value>
+  </data>
+  <data name="errorDate" xml:space="preserve">
+    <value>Invalid Date</value>
+  </data>
+  <data name="errorFromGreatherTo" xml:space="preserve">
+    <value>start date cannot be longer than the deadline</value>
+  </data>
+  <data name="errorToGreatherFrom" xml:space="preserve">
+    <value>deadline cannot be less than the initial date</value>
+  </data>
+  <data name="iconFilter" xml:space="preserve">
+    <value>fa fa-filter</value>
+  </data>
+  <data name="titleConfirmant" xml:space="preserve">
+    <value>Confirmant</value>
+  </data>
+  <data name="titleDebtor" xml:space="preserve">
+    <value>Debtor</value>
+  </data>
+  <data name="selectTypeConfirmant" xml:space="preserve">
+    <value>Select Confirmant</value>
+  </data>
+  <data name="selectTypeDebtor" xml:space="preserve">
+    <value>Insert a Customer</value>
+  </data>
+  <data name="tipClearFilter" xml:space="preserve">
+    <value>Clear Filter</value>
+  </data>
+  <data name="tipFilter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="buttoClearFilter" xml:space="preserve">
+    <value>Clear Filter</value>
+  </data>
+  <data name="placeholderCity" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="titlePerfil" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="placeholderNumberFormatPorcentage" xml:space="preserve">
+    <value>0.00</value>
+  </data>
+  <data name="titleClient" xml:space="preserve">
+    <value>Customer</value>
+  </data>
+  <data name="textAllFinanced" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="textTrueFinancied" xml:space="preserve">
+    <value>with financing</value>
+  </data>
+  <data name="textFalseFinancied" xml:space="preserve">
+    <value>without Financing</value>
+  </data>
+  <data name="buttonSend" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="placeholderComent" xml:space="preserve">
+    <value>Please enter comment.</value>
+  </data>
+  <data name="headersN" xml:space="preserve">
+    <value>N°</value>
+  </data>
+  <data name="headersCheck" xml:space="preserve">
+    <value>/</value>
+  </data>
+  <data name="headersAmountAnnualized" xml:space="preserve">
+    <value>Discount Amount / Annualized Cost</value>
+  </data>
+  <data name="headersOfferProposal" xml:space="preserve">
+    <value>Offer Proposal</value>
+  </data>
+  <data name="headersBuyerCustomer" xml:space="preserve">
+    <value>Customer / Buyer</value>
+  </data>
+  <data name="headersBankCustomer" xml:space="preserve">
+    <value>Customer / Confirming Bank</value>
+  </data>
+  <data name="headersSupplierCustomer" xml:space="preserve">
+    <value>Customer / Supplier</value>
+  </data>
+  <data name="headersExpirationDaysNumber" xml:space="preserve">
+    <value>Expiration Date / Invoice Number</value>
+  </data>
+  <data name="headersAmountNet" xml:space="preserve">
+    <value>Net Value</value>
+  </data>
+  <data name="headersOffer" xml:space="preserve">
+    <value>Offer</value>
+  </data>
+  <data name="headersBankOffer" xml:space="preserve">
+    <value>Bank Offer</value>
+  </data>
+  <data name="headersProfitability" xml:space="preserve">
+    <value>Annualized Profitability</value>
+  </data>
+  <data name="headersAmountReciv" xml:space="preserve">
+    <value>Amount to Receive</value>
+  </data>
+  <data name="headersOptions" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="headersCustomer" xml:space="preserve">
+    <value>Customer</value>
+  </data>
+  <data name="headersCustomers" xml:space="preserve">
+    <value>Customers</value>
+  </data>
+  <data name="headersLegalRepresentative" xml:space="preserve">
+    <value>Legal Representative</value>
+  </data>
+  <data name="headersAmountAssigned" xml:space="preserve">
+    <value>Amount Assigned</value>
+  </data>
+  <data name="headersState" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="headersSupplier" xml:space="preserve">
+    <value>Supplier</value>
+  </data>
+  <data name="headersNumberInvoice" xml:space="preserve">
+    <value>Invoice Number</value>
+  </data>
+  <data name="headersExpirationDays" xml:space="preserve">
+    <value>Expiration Date</value>
+  </data>
+  <data name="headersType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="headersNumber" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="headersAmount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="headersSupplierNumber" xml:space="preserve">
+    <value>Supplier Number</value>
+  </data>
+  <data name="headersTypeInvoice" xml:space="preserve">
+    <value>Invoice Type</value>
+  </data>
+  <data name="headersCurrency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="headersIssuedDate" xml:space="preserve">
+    <value>Issued Date</value>
+  </data>
+  <data name="headersMessage" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="headersMessages" xml:space="preserve">
+    <value>Messages</value>
+  </data>
+  <data name="headersBank" xml:space="preserve">
+    <value>Bank</value>
+  </data>
+  <data name="headersFinancing" xml:space="preserve">
+    <value>Financing</value>
+  </data>
+  <data name="headersPhoto" xml:space="preserve">
+    <value>Photo</value>
+  </data>
+  <data name="headersCreatedAt" xml:space="preserve">
+    <value>Creation Date</value>
+  </data>
+  <data name="headersEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="headersName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="headersAbbreviation" xml:space="preserve">
+    <value>Abbreviation</value>
+  </data>
+  <data name="headersDiscriminator" xml:space="preserve">
+    <value>Participant</value>
+  </data>
+  <data name="headersConfirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="headersSend" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="headersDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="headersServiceCommission" xml:space="preserve">
+    <value>Expense for Service</value>
+  </data>
+  <data name="headersConfirmingBank" xml:space="preserve">
+    <value>Confirming Bank</value>
+  </data>
+  <data name="headersPublish" xml:space="preserve">
+    <value>Publish</value>
+  </data>
+  <data name="headersBestOffer" xml:space="preserve">
+    <value>Best Offer</value>
+  </data>
+  <data name="headersGainProfitability" xml:space="preserve">
+    <value>Gain / Annualized Profitability</value>
+  </data>
+  <data name="headersPay" xml:space="preserve">
+    <value>Pay</value>
+  </data>
+  <data name="headersOpening" xml:space="preserve">
+    <value>Opening</value>
+  </data>
+  <data name="headersClosing" xml:space="preserve">
+    <value>Closing</value>
+  </data>
+  <data name="headersConciliation" xml:space="preserve">
+    <value>Conciliation</value>
+  </data>
+  <data name="headersEnding" xml:space="preserve">
+    <value>Ending</value>
+  </data>
+  <data name="headerBankingEntity" xml:space="preserve">
+    <value>Banking Entity</value>
+  </data>
+  <data name="headersHolder" xml:space="preserve">
+    <value>Holder</value>
+  </data>
+  <data name="headersNumberAccount" xml:space="preserve">
+    <value>Account Number</value>
+  </data>
+  <data name="headersTypeAccount" xml:space="preserve">
+    <value>Account Type</value>
+  </data>
+  <data name="headersStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="headersDocNumber" xml:space="preserve">
+    <value>N° Document</value>
+  </data>
+  <data name="headersContact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="headersInformation" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="headersAssociated" xml:space="preserve">
+    <value>Associated</value>
+  </data>
+  <data name="messageInvalidFile" xml:space="preserve">
+    <value>Dear user.&lt;br&gt;Sorry but the file you just entered is not valid</value>
+  </data>
+  <data name="messageInvoiceLoad" xml:space="preserve">
+    <value>Dear user. &lt;br&gt; Your Invoice has been successfully registered</value>
+  </data>
+  <data name="messageInvoicesLoad" xml:space="preserve">
+    <value>Dear user. &lt;br&gt; Your Invoice (s) has been successfully registered</value>
+  </data>
+  <data name="messageInvoicePostulated" xml:space="preserve">
+    <value>Dear user. &lt;br&gt; Your Invoice has been successfully postulated</value>
+  </data>
+  <data name="messageOfferMade" xml:space="preserve">
+    <value>Dear user. &lt;br&gt; Your offer was successful</value>
+  </data>
+  <data name="messageOfferUpdate" xml:space="preserve">
+    <value>Dear user. &lt;br&gt; Your Offer has been successfully updated</value>
+  </data>
+  <data name="messagePublishInvoice" xml:space="preserve">
+    <value>Dear user. &lt;br&gt; Invoices have been published successfully</value>
+  </data>
+  <data name="messageOfferWin" xml:space="preserve">
+    <value>Dear user. &lt;br&gt; Offer confirmation has been successfully applied</value>
+  </data>
+  <data name="messageInvoiceFinancing" xml:space="preserve">
+    <value>Dear user. &lt;br&gt; Your Financing Request has been satisfactorily completed</value>
+  </data>
+  <data name="messageInvoiceFinancingCancel" xml:space="preserve">
+    <value>Dear user. &lt;br&gt; Your Cancellation Request has been successfully completed</value>
+  </data>
+  <data name="messageSuccesAnswer" xml:space="preserve">
+    <value>Dear user. &lt;br&gt; Your request has been successfully applied</value>
+  </data>
+  <data name="messageProblemAnswer" xml:space="preserve">
+    <value>Dear user. &lt;br&gt; Your request has been applied with inconveniences</value>
+  </data>
+  <data name="messageErrorAnswer" xml:space="preserve">
+    <value>Transaction failed</value>
+  </data>
+  <data name="titleUserManagement" xml:space="preserve">
+    <value>User Management</value>
+  </data>
+  <data name="buttonInvite" xml:space="preserve">
+    <value>Invite</value>
+  </data>
+  <data name="buttonBlock" xml:space="preserve">
+    <value>Block</value>
+  </data>
+  <data name="buttonUnlock" xml:space="preserve">
+    <value>Unlock</value>
+  </data>
+  <data name="titleUserData" xml:space="preserve">
+    <value>User Data</value>
+  </data>
+  <data name="textoOneName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="placeholderName" xml:space="preserve">
+    <value>Enter name and Lastname</value>
+  </data>
+  <data name="textoRoles" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="buttonCreate" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="textoSecureUser" xml:space="preserve">
+    <value>Are you sure to perform this action to the user</value>
+  </data>
+  <data name="titleRolesManagement" xml:space="preserve">
+    <value>Role Management</value>
+  </data>
+  <data name="buttonEditRol" xml:space="preserve">
+    <value>Edit Rol</value>
+  </data>
+  <data name="titleRolData" xml:space="preserve">
+    <value>Role Data</value>
+  </data>
+  <data name="textoAbbreviation" xml:space="preserve">
+    <value>Abbreviation</value>
+  </data>
+  <data name="placeholderAbbreviation" xml:space="preserve">
+    <value>Enter the abbreviation</value>
+  </data>
+  <data name="textoParticipant" xml:space="preserve">
+    <value>Participant</value>
+  </data>
+  <data name="iconAdminAuction" xml:space="preserve">
+    <value>fa fa-shopping-cart</value>
+  </data>
+  <data name="titleAdminAuction" xml:space="preserve">
+    <value>Auction Administration</value>
+  </data>
+  <data name="buttonOpenAuction" xml:space="preserve">
+    <value>Open Auction</value>
+  </data>
+  <data name="buttonCloseAuction" xml:space="preserve">
+    <value>Close Auction</value>
+  </data>
+  <data name="buttonCloseConciliation" xml:space="preserve">
+    <value>Close Conciliation</value>
+  </data>
+  <data name="buttonEnd" xml:space="preserve">
+    <value>Finalize</value>
+  </data>
+  <data name="textoNotAuction" xml:space="preserve">
+    <value>No Auction Currently</value>
+  </data>
+  <data name="textoDataAuction" xml:space="preserve">
+    <value>Auction Data</value>
+  </data>
+  <data name="textoSecureAction" xml:space="preserve">
+    <value>¿Are you sure to perform this action?</value>
+  </data>
+  <data name="buttonClosePayments" xml:space="preserve">
+    <value>Close Payments</value>
+  </data>
+  <data name="textoPostular" xml:space="preserve">
+    <value>Allows the assignment of the Invoices you wish to Confirm through the Bank of your choice.</value>
+  </data>
+  <data name="buttonPaymentButton" xml:space="preserve">
+    <value>Payment Button</value>
+  </data>
+  <data name="buttonTransferir" xml:space="preserve">
+    <value>To transfer</value>
+  </data>
+  <data name="iconMoney" xml:space="preserve">
+    <value>fa fa-money</value>
+  </data>
+  <data name="textoInvoicesDetails" xml:space="preserve">
+    <value>Invoice Details</value>
+  </data>
+  <data name="titlePayInvoices" xml:space="preserve">
+    <value>Bills Bought</value>
+  </data>
+  <data name="textoEditingInvoice" xml:space="preserve">
+    <value>Once the Invoices are uploaded manually or in bulk, you can edit and update the basic information or Deductions, before applying to the Confirming Banks.</value>
+  </data>
+  <data name="textoPress" xml:space="preserve">
+    <value>Click</value>
+  </data>
+  <data name="textoMoreInformation" xml:space="preserve">
+    <value>for more information.</value>
+  </data>
+  <data name="titleSelectsInvoiceFinancing" xml:space="preserve">
+    <value>Invoice Selection</value>
+  </data>
+  <data name="textoSubTitleFinancing" xml:space="preserve">
+    <value>Once each invoice has been confirmed by the Bank, you can Request or Cancel the Financing that will be applied at the time of your payment on the Expiration Date, taking into account the availability on the assigned Financing Line and the Expiration of the Invoice (3 days before).</value>
+  </data>
+  <data name="textoAyudaRegistoEmpresa" xml:space="preserve">
+    <value>It allows the Registration of a Company in the “TuF@ctoring” System, in order to enjoy all the benefits of the Service of Sale and Management of Accounts Payable of the Invoices of its Suppliers, prior acceptance of Terms and Conditions.
+
+Click here for more information.</value>
+  </data>
+  <data name="textoAyudaRegistoInversionista" xml:space="preserve">
+    <value>It allows the Registration of an Investor in the “TuF@ctoring” System, in order to participate in the Auctions process, offering the discount for the Purchase of Invoices of your preference, prior acceptance of Terms and Conditions.
+
+Click here for more information.</value>
+  </data>
+  <data name="textoAyudaRegistoProveedor" xml:space="preserve">
+    <value>It allows the Registration of a Supplier in the “TuF@ctoring” System, in order to enjoy the Accounts Management Service Receivable from its Invoices to the different Customers, prior acceptance of Terms and Conditions.
+
+Click here for more information.</value>
+  </data>
+  <data name="textoAyudaLimiteCredito" xml:space="preserve">
+    <value>Allows you to assign the Credit Line Amount to each Client, with which you can perform the different operations of your Accounts Payable through the Confirming Bank.</value>
+  </data>
+  <data name="textoAyudaPerfil" xml:space="preserve">
+    <value>"It allows the revision and updating of Company Data (Addresses, Telephone of Legal Representative, Contact Person and Bank Accounts).</value>
+  </data>
+  <data name="textoAyudaPerfilBanco" xml:space="preserve">
+    <value>Allows the review and update of Data of the Allied Bank (Addresses, Telephone of Legal Representative, Administrator and Bank Accounts).</value>
+  </data>
+  <data name="textoAyudaPerfilInversionista" xml:space="preserve">
+    <value>It allows the review and update of Investor Data (Addresses and Bank Accounts).</value>
+  </data>
+  <data name="textoAyudaPerfilProveedor" xml:space="preserve">
+    <value>It allows the review and update of Supplier Data (Addresses, Telephone of Legal Representative, Contact Person, Bank Accounts and Acceptance of Framework Contracts by Allied Bank).</value>
+  </data>
+  <data name="textoAyudaSegmentar" xml:space="preserve">
+    <value>It allows the assignment of an Account Executive to the different Profiles (Companies, Supplier and Investor), according to their existing classification or attention.</value>
+  </data>
+  <data name="textoAyudaVerificarDatos" xml:space="preserve">
+    <value>It allows to enter the result of the risk assessment, of the different Profiles (Companies, Supplier and Investor) that wish to have a relationship with the Bank as Confirming or simply to request an Account for the management of their operations.</value>
+  </data>
+  <data name="textoEjecutivoAyudaModal" xml:space="preserve">
+    <value>Please indicate the Maximum Amount to be assigned to perform Operations in the System:</value>
+  </data>
+  <data name="textoSegmentarAyudaModal" xml:space="preserve">
+    <value>Please select the corresponding Account Executive:</value>
+  </data>
+  <data name="textoVerificarAyudaModal" xml:space="preserve">
+    <value>Please select the corresponding Qualification:</value>
+  </data>
+  <data name="titleLimiteCreditoModal" xml:space="preserve">
+    <value>Assign Maximum Risk Amount</value>
+  </data>
+  <data name="titleSegmentarModal" xml:space="preserve">
+    <value>Assign Account Executive</value>
+  </data>
+  <data name="titleVerificarModal" xml:space="preserve">
+    <value>Evaluation Result</value>
+  </data>
+  <data name="iconConfirmingPeople" xml:space="preserve">
+    <value>fas fa-building</value>
+  </data>
+  <data name="textoAcceptTerm" xml:space="preserve">
+    <value>I accept the</value>
+  </data>
+  <data name="textoUsoSistemTerm" xml:space="preserve">
+    <value>of system use.</value>
+  </data>
+  <data name="iconConfirmInvoice" xml:space="preserve">
+    <value>fas fa-clipboard-check</value>
+  </data>
+  <data name="textContentConfirm" xml:space="preserve">
+    <value>It allows to review and confirm the Invoices Postulated by the Client.</value>
+  </data>
+  <data name="textContentBuy" xml:space="preserve">
+    <value>Lets you review the Invoices Postulated by Customers (Confirming) or Suppliers (Direct Sale), you must remember that Direct Sales must be Offered, for the use of Confirming you must Offer or Release.</value>
+  </data>
+  <data name="textAmountTotal" xml:space="preserve">
+    <value>for a Total Amount of</value>
+  </data>
+  <data name="textoContentPublicarFacturas" xml:space="preserve">
+    <value>It is composed of two Sections, in which you can perform different types of Actions on Invoices greater than 30 days, such as:</value>
+  </data>
+  <data name="textoContentPublicarFacturas2" xml:space="preserve">
+    <value>1. Accept or Reject the different Offers sent by the Bank (Confirming Invoices or Direct Sale), with their respective Discount Percentage.</value>
+  </data>
+  <data name="textoContentPublicarFacturas3" xml:space="preserve">
+    <value>2. Publish Invoices in the next Auction and Postpone Invoices at Expiration.</value>
+  </data>
+  <data name="textoContentFacturasVencimiento" xml:space="preserve">
+    <value>It contains the Invoices that will be paid to the Suppliers on the Expiration Date of each one, which are in this tray according to the following scenarios:</value>
+  </data>
+  <data name="textoContentFacturasVencimiento2" xml:space="preserve">
+    <value>1. Invoices Confirmed by the Bank, with Expiration Date less than 30 days.</value>
+  </data>
+  <data name="textoContentFacturasVencimiento3" xml:space="preserve">
+    <value>2. Invoices Postponed by the Supplier, with Expiration Date greater than or equal to 30 days. In the same way, these Invoices can be published to be sold in the Invoice Market.</value>
+  </data>
+  <data name="textoMercadoFacturasProveedor" xml:space="preserve">
+    <value>Detailed consultation of the Invoice Auction that is Active during the Remaining Time identified in the counter, located on the right side of the screen.</value>
+  </data>
+  <data name="textoMercadoFacturasProveedor2" xml:space="preserve">
+    <value>The information presented shows your Invoices offered and not offered by Investors</value>
+  </data>
+  <data name="textoCierreMercadoProveedores" xml:space="preserve">
+    <value>Shows the Best Discount Offers made by Investors.</value>
+  </data>
+  <data name="textoCierreMercadoProveedores2" xml:space="preserve">
+    <value>You have the Remaining Time of the counter, to Accept the Offer, otherwise they will return to the Publication tray for the next day.</value>
+  </data>
+  <data name="textoMercadoFacturasFactor" xml:space="preserve">
+    <value>It shows the Daily Auction that is Active, in which You can Bid the discount and review the calculations of the Invoices of your choice.</value>
+  </data>
+  <data name="textoMercadoFacturasFactor2" xml:space="preserve">
+    <value>The Auction will be open during the Remaining Time identified in the counter, located on the right side of the screen and each Invoice will be identified depending on whether it has been Bid or not, with a line on the left side and its color varies according to the following:</value>
+  </data>
+  <data name="buttonSaveDebtor" xml:space="preserve">
+    <value>Save Client</value>
+  </data>
+  <data name="buttonSaveSupplier" xml:space="preserve">
+    <value>Save Supplier</value>
+  </data>
+  <data name="textoAddNewInvoice2" xml:space="preserve">
+    <value>To add Invoices Manually, click</value>
+  </data>
+  <data name="buttonNext" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="buttonPrevious" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="placeholderLastName" xml:space="preserve">
+    <value>Enter Last Name</value>
+  </data>
+  <data name="placeholderNombreComercial" xml:space="preserve">
+    <value>Enter the Commercial Name</value>
+  </data>
+  <data name="placeholderNombreLegal" xml:space="preserve">
+    <value>Enter Company Name</value>
+  </data>
+  <data name="titleDatosPerson" xml:space="preserve">
+    <value>Personal Information</value>
+  </data>
+  <data name="validatePasswordLength" xml:space="preserve">
+    <value>The Password must be at least {2} and at max {1} characters long.</value>
+  </data>
+  <data name="validatePasswordMatch" xml:space="preserve">
+    <value>New Password and Confirmation do not match</value>
+  </data>
+  <data name="textoTokenMustSupplied" xml:space="preserve">
+    <value>A token must be supplied for password reset.</value>
+  </data>
+  <data name="textoSessionResetExpired" xml:space="preserve">
+    <value>Session to reset password expired.</value>
+  </data>
+  <data name="textoInvalidToken" xml:space="preserve">
+    <value>Invalid Token</value>
+  </data>
+  <data name="validateDataInvalid" xml:space="preserve">
+    <value>Invalid Data</value>
+  </data>
+  <data name="textoResetPasswordConfirmation1" xml:space="preserve">
+    <value>Your password has been reset. Please</value>
+  </data>
+  <data name="textoResetPasswordConfirmation2" xml:space="preserve">
+    <value>click here to log in</value>
+  </data>
+  <data name="titleResetPassword" xml:space="preserve">
+    <value>Reset your password</value>
+  </data>
+  <data name="buttonReset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="titleForgotPassword" xml:space="preserve">
+    <value>Forgot Your Password?</value>
+  </data>
+  <data name="textoForgotPassword" xml:space="preserve">
+    <value>Just enter your email address below and we'll send you a link to reset your password</value>
+  </data>
+  <data name="selectPrefix" xml:space="preserve">
+    <value>Choose a tag</value>
+  </data>
+  <data name="placeholderEnterNumber" xml:space="preserve">
+    <value>Enter</value>
+  </data>
+  <data name="buttonResetPassword" xml:space="preserve">
+    <value>Reset Password</value>
+  </data>
+  <data name="buttonCreateAccount" xml:space="preserve">
+    <value>!Create an Account!</value>
+  </data>
+  <data name="buttonAlreadyAccount" xml:space="preserve">
+    <value>¿Already have an account? !Login!</value>
+  </data>
+  <data name="buttonReturnHome" xml:space="preserve">
+    <value>Return to Home</value>
+  </data>
+  <data name="titleForgotPasswordConfirmation" xml:space="preserve">
+    <value>Email Send</value>
+  </data>
+  <data name="textoForgotPasswordConfirmation" xml:space="preserve">
+    <value>Please check your email, to confirm password</value>
+  </data>
+  <data name="number" xml:space="preserve">
+    <value>Number of Document</value>
+  </data>
+  <data name="confirmPassword" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="titlePasswordReset" xml:space="preserve">
+    <value>Password reset</value>
+  </data>
+  <data name="placeholderDocumento" xml:space="preserve">
+    <value>Enter the Document Number</value>
+  </data>
+  <data name="3" xml:space="preserve">
+    <value>It allows the review and update of Investor Data (Addresses and Bank Accounts).</value>
+  </data>
+  <data name="placeholderNames" xml:space="preserve">
+    <value>Enter the Name (s)</value>
+  </data>
+  <data name="titleModalAcceptAllOfferts" xml:space="preserve">
+    <value>Acceptance of Bank Offers</value>
+  </data>
+  <data name="titleModalRefuseAllOfferts" xml:space="preserve">
+    <value>Bank Offer Rejection</value>
+  </data>
+  <data name="titleModalPublishAll" xml:space="preserve">
+    <value>Invoice Publication</value>
+  </data>
+  <data name="titleModalPosponerAll" xml:space="preserve">
+    <value>Postpone Invoices</value>
+  </data>
+  <data name="titleModalAcceptAllOffersCierreMercado" xml:space="preserve">
+    <value>Acceptance of Market Offers</value>
+  </data>
+  <data name="textoModalAcceptAllOffersCierreMercado" xml:space="preserve">
+    <value>Are you sure you accept all the selected Offers?</value>
+  </data>
+  <data name="placeholderAccountNumber" xml:space="preserve">
+    <value>Enter Account Number</value>
+  </data>
+  <data name="buttonModifyAmount" xml:space="preserve">
+    <value>Change Amount</value>
+  </data>
+  <data name="titleModalOfertarMercadoFactor" xml:space="preserve">
+    <value>Invoice Offer</value>
+  </data>
+  <data name="textoModalOfertarMercadoFactor" xml:space="preserve">
+    <value>Are you sure to Bid the Invoice</value>
+  </data>
+  <data name="textoModalOfertarMercadoFactor2" xml:space="preserve">
+    <value>for a Amount to Pay</value>
+  </data>
+  <data name="interrogationSign" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="buttonCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="textoModalOfertarMercadoFactor3" xml:space="preserve">
+    <value>of</value>
+  </data>
+  <data name="textoMejorarOfertaMercado" xml:space="preserve">
+    <value>You must improve the current Offer</value>
+  </data>
+  <data name="buttonAfiliarConfirmant" xml:space="preserve">
+    <value>Affiliate</value>
+  </data>
+  <data name="textoSelectAll2" xml:space="preserve">
+    <value>Select all without Financing</value>
+  </data>
+  <data name="textoQuitAll2" xml:space="preserve">
+    <value>Remove Selected without Financing</value>
+  </data>
+  <data name="buttonGuardarFactura" xml:space="preserve">
+    <value>Save Invoice</value>
+  </data>
+  <data name="buttonAddDeductions" xml:space="preserve">
+    <value>Add Deductions</value>
+  </data>
+  <data name="buttonReturn" xml:space="preserve">
+    <value>Return</value>
+  </data>
+  <data name="iconReturn" xml:space="preserve">
+    <value>fas fa-door-open</value>
+  </data>
+  <data name="errorCargaManualProveedor" xml:space="preserve">
+    <value>You must select the Issuing Supplier of the Invoice</value>
+  </data>
+  <data name="errorMaxLengthInvoices" xml:space="preserve">
+    <value>Must have a maximum of 175 characters</value>
+  </data>
+  <data name="errorExpirationMinor" xml:space="preserve">
+    <value>The Due Date of the Invoice must be greater than the Issue Date</value>
+  </data>
+  <data name="errorInvoiceExistente" xml:space="preserve">
+    <value>The Customer already has the Invoice associated with the selected Provider</value>
+  </data>
+  <data name="errorFormatoInvalidoFactura" xml:space="preserve">
+    <value>Invoice Number is invalid</value>
+  </data>
+  <data name="errorDeduccionSuperior" xml:space="preserve">
+    <value>Must be 255 characters maximum</value>
+  </data>
+  <data name="placeholderNumeroFacturaCargaManual" xml:space="preserve">
+    <value>Enter the Invoice Number</value>
+  </data>
+  <data name="placeholderInvoiceNumber" xml:space="preserve">
+    <value>Enter the Invoice Number</value>
+  </data>
+  <data name="placeholderSupplierCarga" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="errorAmountDeductions2" xml:space="preserve">
+    <value>It must have a maximum of 13 digits in the whole part</value>
+  </data>
+  <data name="errorPorcentajeVacio" xml:space="preserve">
+    <value>The Amount of the Deduction must be greater than 0</value>
+  </data>
+  <data name="errorPorcentajeIgual" xml:space="preserve">
+    <value>Deductions cannot be equal to the Amount of the Invoice</value>
+  </data>
+  <data name="errorPorcentajeSuperior" xml:space="preserve">
+    <value>Deductions exceed the Amount of the Invoice</value>
+  </data>
+  <data name="titleConsultasFacturas" xml:space="preserve">
+    <value>Invoice Inquiries</value>
+  </data>
+  <data name="titleDetallesFacturas" xml:space="preserve">
+    <value>Invoice Details</value>
+  </data>
+  <data name="buttonDetalles" xml:space="preserve">
+    <value>Detail</value>
+  </data>
+  <data name="selectTypeStatus" xml:space="preserve">
+    <value>Select a State</value>
+  </data>
+  <data name="titleStatusInvoices" xml:space="preserve">
+    <value>Invoice States</value>
+  </data>
+  <data name="textoFormatoTxtInvalido" xml:space="preserve">
+    <value>File format is invalid, only plain text files are allowed (* .txt)</value>
+  </data>
+  <data name="errorArchivoMasivoManipulado" xml:space="preserve">
+    <value>The selected format is invalid</value>
+  </data>
+  <data name="errorArchivoSinRegistros" xml:space="preserve">
+    <value>File without records</value>
+  </data>
+  <data name="textoSelectAllWithFinancing" xml:space="preserve">
+    <value>Select all with Financing</value>
+  </data>
+  <data name="textoQuitAllWithFinancing" xml:space="preserve">
+    <value>Remove Selected with Financing</value>
+  </data>
+  <data name="errorDeduccionDuplicada" xml:space="preserve">
+    <value>The Deduction Number is already associated with this Invoice</value>
+  </data>
+  <data name="titleModalEliminarDeduccion" xml:space="preserve">
+    <value>Remove Deduction</value>
+  </data>
+  <data name="textoModalEliminarDeduccion" xml:space="preserve">
+    <value>This action will delete the selected Deduction. Do you wish to continue?</value>
+  </data>
+  <data name="branding" xml:space="preserve">
+    <value>TuF@ctoring</value>
+  </data>
+  <data name="titleQueriesInvoices" xml:space="preserve">
+    <value>Invoices Queries</value>
+  </data>
+  <data name="limitCreditAmountFrom" xml:space="preserve">
+    <value>Credit Limit From</value>
+  </data>
+  <data name="limitCreditAmountTo" xml:space="preserve">
+    <value>Credit Limit Up</value>
+  </data>
+  <data name="titleQueriesClientes" xml:space="preserve">
+    <value>Customer Consultation</value>
+  </data>
+  <data name="textoSecureRole" xml:space="preserve">
+    <value>Are you sure to perform this action to the rol</value>
+  </data>
+  <data name="textoModalSolicitarFinanciamiento" xml:space="preserve">
+    <value>Requests made will be notified to the Confirming Bank as soon as possible.</value>
+  </data>
+  <data name="textoModalSeguroFinanciamiento" xml:space="preserve">
+    <value>Are you sure to request Financing for all the selected Invoices?</value>
+  </data>
+  <data name="textoModalSeguroCancelarFinanciamiento" xml:space="preserve">
+    <value>Are you sure to request the Cancellation of Financing of all selected Invoices?</value>
+  </data>
+  <data name="titleModalCancelarFinanciamiento" xml:space="preserve">
+    <value>Invoice Financing Cancellation</value>
+  </data>
+  <data name="titleModalConfirmarTodas" xml:space="preserve">
+    <value>Invoice Confirmation</value>
+  </data>
+  <data name="textoModalConfirmarTodas" xml:space="preserve">
+    <value>Are you sure to Confirm all selected Invoices?</value>
+  </data>
+  <data name="textoAmountToOffert" xml:space="preserve">
+    <value>Amount to Confirm</value>
+  </data>
+  <data name="loginTextReturn" xml:space="preserve">
+    <value>Return to Home</value>
+  </data>
+  <data name="loginTextForgotPassword" xml:space="preserve">
+    <value>Forgot your Password?</value>
+  </data>
+  <data name="titleDetallesClientes" xml:space="preserve">
+    <value>Customer Detail</value>
+  </data>
+  <data name="placeholderStatusUsuario" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="placeholderTipoCliente" xml:space="preserve">
+    <value>Select a Customer Type</value>
+  </data>
+  <data name="titleFilterStatusUsuario" xml:space="preserve">
+    <value>User Status</value>
+  </data>
+  <data name="titleFilterTipoCliente" xml:space="preserve">
+    <value>Customer type</value>
+  </data>
+  <data name="textoAyudaConsultaClientes" xml:space="preserve">
+    <value>It shows the Clients (Companies) that the Allied Bank is associated with, to be the Confirmer of the Invoices that they owe to the different Suppliers. Observing your basic information and assigned Credit Limit.</value>
+  </data>
+  <data name="titleDetalleConsultaContacto" xml:space="preserve">
+    <value>Contact information</value>
+  </data>
+  <data name="titleDetalleConsultaDireccionCuenta" xml:space="preserve">
+    <value>Address and Bank Account</value>
+  </data>
+  <data name="titleConsultaCliente" xml:space="preserve">
+    <value>Registered Clients</value>
+  </data>
+  <data name="titleConsultaFactuas" xml:space="preserve">
+    <value>Payed Invoices</value>
+  </data>
+  <data name="titleDetalleConsultaDireccion" xml:space="preserve">
+    <value>Direction</value>
+  </data>
+  <data name="textoAyudaConsultaFacturasConfirmant" xml:space="preserve">
+    <value>It shows the information of all the Invoices Postulated to the Ally Bank, according to the different States through which it passes in the System.</value>
+  </data>
+  <data name="textoAyudaConsultaInvoiceDebtor" xml:space="preserve">
+    <value>It shows the information of all the Invoices Loaded, according to the different States through which it passes through the System.</value>
+  </data>
+  <data name="textoAyudaConsultaInvoiceFactor" xml:space="preserve">
+    <value>It shows the information of all the Invoices Purchased from the Suppliers, which are Paid or Pending to Pay.</value>
+  </data>
+  <data name="textoAyudaConsultaInvoiceSupplier" xml:space="preserve">
+    <value>It shows the information of all the Invoices Charged by its different Clients, according to the different States that it goes through in the System.</value>
+  </data>
+  <data name="titleSecundarioConsultaClientes" xml:space="preserve">
+    <value>Associated Clients</value>
+  </data>
+  <data name="textoDetallesLimiteCredito" xml:space="preserve">
+    <value>Credit limit</value>
+  </data>
+  <data name="placeholderDebtor" xml:space="preserve">
+    <value>Debtor</value>
+  </data>
+  <data name="placeholderSupplier" xml:space="preserve">
+    <value>Supplier</value>
+  </data>
+  <data name="placeholderConfirmant" xml:space="preserve">
+    <value>Confirmant</value>
+  </data>
+  <data name="placeholderConfirmPassword" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="placeholderPassword" xml:space="preserve">
+    <value>Enter the Password</value>
+  </data>
+  <data name="placeholderLoginEmail" xml:space="preserve">
+    <value>Enter the Email</value>
+  </data>
+  <data name="textForgotPassword" xml:space="preserve">
+    <value>Forgot password?</value>
+  </data>
+  <data name="textLogin" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="textoAsignarLimite" xml:space="preserve">
+    <value>Assign Amount</value>
+  </data>
+  <data name="textoLimiteCreditoConFinaciacion" xml:space="preserve">
+    <value>FINANCING</value>
+  </data>
+  <data name="textoLimiteCreditoSinFinaciacion" xml:space="preserve">
+    <value>CREDIT</value>
+  </data>
+  <data name="errorTermDaysCargaMasiva" xml:space="preserve">
+    <value>The Expiration Date must be more than 4 days from the Current Date</value>
+  </data>
+  <data name="textoCuentaAhorro" xml:space="preserve">
+    <value>Savings</value>
+  </data>
+  <data name="textoCuentaCorriente" xml:space="preserve">
+    <value>Checking</value>
+  </data>
+  <data name="textoCuentaSolicitud" xml:space="preserve">
+    <value>Request</value>
+  </data>
+  <data name="titleLogin" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="PasswordRequiresUpper" xml:space="preserve">
+    <value>Password must have at least one uppercase ('A'-'Z')</value>
+  </data>
+  <data name="PasswordRequiresDigit" xml:space="preserve">
+    <value>Password must have at least one digit ('0' - '9')</value>
+  </data>
+  <data name="PasswordRequiresNonAlphanumeric" xml:space="preserve">
+    <value>Password must have at least one non-alphanumeric character</value>
+  </data>
+  <data name="PasswordRequiresLower" xml:space="preserve">
+    <value>Password must have at least one lowercase letter ('a' - 'z')</value>
+  </data>
+  <data name="invalidUserResetPassword" xml:space="preserve">
+    <value>Invalid user to change the password, please request a new Token</value>
+  </data>
+  <data name="load" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="titleDetails" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="buttonPay" xml:space="preserve">
+    <value>Pay</value>
+  </data>
+  <data name="buttonTransfer" xml:space="preserve">
+    <value>Transfer</value>
+  </data>
+  <data name="textoUsuarioPago" xml:space="preserve">
+    <value>Dear user. </value>
+  </data>
+  <data name="titleConfirmPay" xml:space="preserve">
+    <value>Invoice purchase confirmation</value>
+  </data>
+  <data name="titleTransfer" xml:space="preserve">
+    <value>Transfer</value>
+  </data>
+  <data name="titleNReference" xml:space="preserve">
+    <value>Reference number</value>
+  </data>
+  <data name="titleAmountToPay" xml:space="preserve">
+    <value>Amount payable</value>
+  </data>
+  <data name="titleNumberAccount" xml:space="preserve">
+    <value>Account Number to Transfer</value>
+  </data>
+  <data name="titleDocument" xml:space="preserve">
+    <value>Identification document</value>
+  </data>
+  <data name="titleHolderTransfer" xml:space="preserve">
+    <value>Holder to Transfer</value>
+  </data>
+  <data name="titleBankMadeTransfer" xml:space="preserve">
+    <value>Bank where the Transfer is made</value>
+  </data>
+  <data name="textoMesajeConfirmarLimite" xml:space="preserve">
+    <value>Are you sure to modify the Risk Limit Amount?</value>
+  </data>
+  <data name="placeholderNumberReference" xml:space="preserve">
+    <value>Reference number</value>
+  </data>
+  <data name="textoUsuarioPago2" xml:space="preserve">
+    <value> You are making a payment for</value>
+  </data>
+  <data name="placeholderBank" xml:space="preserve">
+    <value>Select Bank</value>
+  </data>
+  <data name="titleAccountNumber" xml:space="preserve">
+    <value>Number of Account</value>
+  </data>
+  <data name="ModificarLimiteRiesgo" xml:space="preserve">
+    <value>Modify Risk Limit</value>
+  </data>
+  <data name="titlePageGestionRoles" xml:space="preserve">
+    <value>Roles Management</value>
+  </data>
+  <data name="titlePageGestionSettings" xml:space="preserve">
+    <value>Settings Management</value>
+  </data>
+  <data name="titleGestionSettings" xml:space="preserve">
+    <value>Settings Management</value>
+  </data>
+  <data name="iconSettings" xml:space="preserve">
+    <value>fas fa-cogs</value>
+  </data>
+  <data name="titleSettingData" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="textoContent" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="placeholderContent" xml:space="preserve">
+    <value>Enter the Content</value>
+  </data>
+  <data name="textoDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="placeholderDescription" xml:space="preserve">
+    <value>Enthe the Description</value>
+  </data>
+  <data name="textoTypeContent" xml:space="preserve">
+    <value>Tipo de Contenido</value>
+  </data>
+  <data name="titlePagoFactura" xml:space="preserve">
+    <value>Invoices Paid</value>
+  </data>
+  <data name="buttonAccept" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="buttonReject" xml:space="preserve">
+    <value>Refuse</value>
+  </data>
+  <data name="Bloquear Cliente" xml:space="preserve">
+    <value>Block Client</value>
+  </data>
+  <data name="textoConcliarCliente" xml:space="preserve">
+    <value>Are you sure to Reconcile Payment?</value>
+  </data>
+  <data name="placeholderParticipante" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="titleFilterTipoParticipante" xml:space="preserve">
+    <value>Type of Participant</value>
+  </data>
+  <data name="titlePayAplication" xml:space="preserve">
+    <value>Aplication of Payment</value>
+  </data>
+  <data name="titleAccountOrigin" xml:space="preserve">
+    <value>Origin Account</value>
+  </data>
+  <data name="titleChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="titlePurchaseInvoice" xml:space="preserve">
+    <value>purchase of Invoice</value>
+  </data>
+  <data name="titleChangeToPassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="placeholderNewPassword" xml:space="preserve">
+    <value>New Password</value>
+  </data>
+  <data name="buttonChangePassword" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="invalidUserChangePassword" xml:space="preserve">
+    <value>Invalid user to change the password</value>
+  </data>
+  <data name="titlePayAppOverdue" xml:space="preserve">
+    <value>Payment of Overdue Bills</value>
+  </data>
+  <data name="titleConciliarPagos" xml:space="preserve">
+    <value>Reconcile Payments</value>
+  </data>
+  <data name="textoBloquearCliente" xml:space="preserve">
+    <value>Are you sure to Decline Payment Reconciliation? This action will Block the Investor in the System</value>
+  </data>
+  <data name="titleConciliacion" xml:space="preserve">
+    <value>Conciliation</value>
+  </data>
+  <data name="titleAmountTotal" xml:space="preserve">
+    <value>Total Amount to Pay</value>
+  </data>
+  <data name="textoPayerAccount" xml:space="preserve">
+    <value>Paying Account</value>
+  </data>
+  <data name="textoReceivingAccount" xml:space="preserve">
+    <value>Receiving Account</value>
+  </data>
+  <data name="textoReceiptsNumber" xml:space="preserve">
+    <value>Number of Receipts</value>
+  </data>
+  <data name="textoTotalInvoices" xml:space="preserve">
+    <value>Number of Invoices</value>
+  </data>
+  <data name="textoTotalAmount" xml:space="preserve">
+    <value>Total Amount to Pay</value>
+  </data>
+  <data name="textoAmountTransfer" xml:space="preserve">
+    <value>Amount to Transfer</value>
+  </data>
+  <data name="textoReceiptsProcess" xml:space="preserve">
+    <value>Processing payment</value>
+  </data>
+  <data name="buttonOpenPayments" xml:space="preserve">
+    <value>Open Payments</value>
+  </data>
+  <data name="iconPassword" xml:space="preserve">
+    <value>fas fa-key</value>
+  </data>
+  <data name="seguridad" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="perfil" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="titleGestionUsuarios" xml:space="preserve">
+    <value>User Management</value>
+  </data>
+  <data name="logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="titleModalConfirmTransfer" xml:space="preserve">
+    <value>Operation Confirmation</value>
+  </data>
+  <data name="titleSectionConciledsInvoices" xml:space="preserve">
+    <value>Payment of Reconciled Invoices</value>
+  </data>
+  <data name="titleSectionExpiredsInvoices" xml:space="preserve">
+    <value>Payment of Overdue Invoices</value>
+  </data>
+  <data name="titleDetailsInvoices" xml:space="preserve">
+    <value>Invoice Details</value>
+  </data>
+  <data name="textoModalConfirmTransfer" xml:space="preserve">
+    <value>Are you sure to perform the operation?</value>
+  </data>
+  <data name="Como Inversionista" xml:space="preserve">
+    <value>as Factor</value>
+  </data>
+  <data name="textoReceiptsUnPaid" xml:space="preserve">
+    <value>Unpaid Invoice</value>
+  </data>
+  <data name="textoReceiptsPaid" xml:space="preserve">
+    <value>Paid Invoice</value>
+  </data>
+  <data name="textoOffertPro" xml:space="preserve">
+    <value>Proposed Offer</value>
+  </data>
+  <data name="placeholderCuit" xml:space="preserve">
+    <value>Enter CUIT</value>
+  </data>
+  <data name="buttonCancelar" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="buttonToggleActivo" xml:space="preserve">
+    <value>Actived</value>
+  </data>
+  <data name="buttonToggleInactivo" xml:space="preserve">
+    <value>Suspend</value>
+  </data>
+  <data name="placeholderPutDocument" xml:space="preserve">
+    <value>Enter the</value>
+  </data>
+  <data name="errorCredentialsInvalid" xml:space="preserve">
+    <value>Document number, email or invalid password. Please verify your details and try again.</value>
+  </data>
+  <data name="buttonSee" xml:space="preserve">
+    <value>See Contract</value>
+  </data>
+  <data name="titleContratos" xml:space="preserve">
+    <value>Contracts</value>
+  </data>
+  <data name="textoContratoMarco" xml:space="preserve">
+    <value>Framework Contract</value>
+  </data>
+  <data name="textoNoAplica" xml:space="preserve">
+    <value>Does not Apply</value>
+  </data>
+  <data name="requirePasswordField" xml:space="preserve">
+    <value>{0} is required</value>
+  </data>
+  <data name="titleMontoTotalVigentePagar" xml:space="preserve">
+    <value>Bills to Pay</value>
+  </data>
+  <data name="textoPostuledDated" xml:space="preserve">
+    <value>Postulated Date</value>
+  </data>
+  <data name="titleStatusInvoice" xml:space="preserve">
+    <value>Invoice State</value>
+  </data>
+  <data name="posted" xml:space="preserve">
+    <value>Posteds</value>
+  </data>
+  <data name="confirmed" xml:space="preserve">
+    <value>Confirmed</value>
+  </data>
+  <data name="offered" xml:space="preserve">
+    <value>Offered</value>
+  </data>
+  <data name="released" xml:space="preserve">
+    <value>to publish</value>
+  </data>
+  <data name="published" xml:space="preserve">
+    <value>Published</value>
+  </data>
+  <data name="sold" xml:space="preserve">
+    <value>Accepted</value>
+  </data>
+  <data name="processing" xml:space="preserve">
+    <value>Processing</value>
+  </data>
+  <data name="paid" xml:space="preserve">
+    <value>Paid</value>
+  </data>
+  <data name="postponed" xml:space="preserve">
+    <value>Postponed</value>
+  </data>
+  <data name="overdue" xml:space="preserve">
+    <value>Overdue</value>
+  </data>
+  <data name="finalize" xml:space="preserve">
+    <value>Finalize</value>
+  </data>
+  <data name="titleAPagar" xml:space="preserve">
+    <value>for a Total Amount:</value>
+  </data>
+  <data name="titleMontoTotalPagar" xml:space="preserve">
+    <value>for a Total Amount of Bills:</value>
+  </data>
+  <data name="titleChargeDate" xml:space="preserve">
+    <value>Upload Date</value>
+  </data>
+  <data name="titleMontoTotalVigenteCobrar" xml:space="preserve">
+    <value>Receivable</value>
+  </data>
+  <data name="titleMontoTotalVigenteSold" xml:space="preserve">
+    <value>Purchased </value>
+  </data>
+  <data name="errorConnectionLogin" xml:space="preserve">
+    <value>There has been a problem establishing the connection, please check your network coverage.</value>
+  </data>
+  <data name="errorRecaptchaBot" xml:space="preserve">
+    <value>Strange behavior has been detected, please enter your details again.</value>
+  </data>
+  <data name="notTokenRecaptcha" xml:space="preserve">
+    <value>Connection problems detected, please check your internet connection</value>
+  </data>
+  <data name="errorNumberOfDocument" xml:space="preserve">
+    <value>Invalid Document Number, Mail or Password. Please verify your details and try again.</value>
+  </data>
+  <data name="notConection" xml:space="preserve">
+    <value>Not Conection</value>
+  </data>
+  <data name="wrongData" xml:space="preserve">
+    <value>Incorrect data</value>
+  </data>
+  <data name="draft" xml:space="preserve">
+    <value>Loaded</value>
+  </data>
+  <data name="errorConexionLogin" xml:space="preserve">
+    <value>Se ha presentado un problema al realizar la conexión, por favor valide su cobertura de red.</value>
+  </data>
+  <data name="loginSinConexion" xml:space="preserve">
+    <value>A problem has arisen due to network problems</value>
+  </data>
+  <data name="minimumLengthLoginPassword" xml:space="preserve">
+    <value>Password must be a minimum of 8 characters</value>
+  </data>
+  <data name="buttonAsignarPassword" xml:space="preserve">
+    <value>Create  Password</value>
+  </data>
+  <data name="titleAsignarPassword" xml:space="preserve">
+    <value>Enter Password for the first time</value>
+  </data>
+  <data name="textoAsignarPassword" xml:space="preserve">
+    <value>To activate your account you must set the initial password to access the system.</value>
+  </data>
+  <data name="selectListLogin" xml:space="preserve">
+    <value>Select an Identification Type</value>
+  </data>
+  <data name="textInformationMassiveCharge" xml:space="preserve">
+    <value>To store the Processed Invoices, please press the Save Invoices button, otherwise, if you need to Load the Template</value>
+  </data>
+  <data name="errorActivacionCuenta" xml:space="preserve">
+    <value>You do not have a password created. Please activate your username, from the Welcome email and once you have the password you can Login.</value>
+  </data>
+  <data name="errorBaseDatos" xml:space="preserve">
+    <value>Failed to connect to database</value>
+  </data>
+  <data name="invalidUser" xml:space="preserve">
+    <value>Invalid user</value>
+  </data>
+  <data name="acceptCookies" xml:space="preserve">
+    <value>I agree</value>
+  </data>
+  <data name="weUseCookies" xml:space="preserve">
+    <value>We use cookies to improve your user experience. If you agree press accept please</value>
+  </data>
+  <data name="invalidDocumentOrEmail" xml:space="preserve">
+    <value>Invalid Document or Mail Number. Please verify your details and try again.</value>
+  </data>
+  <data name="newPassword" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="textoBandera" xml:space="preserve">
+    <value>Select the Country </value>
+  </data>
+  <data name="errorRepitCharacter" xml:space="preserve">
+    <value>Password must not be more than 2 consecutive equal characters</value>
+  </data>
+  <data name="errorEnie" xml:space="preserve">
+    <value>Password must not have ñ / Ñ</value>
+  </data>
+  <data name="informationMessagePassword" xml:space="preserve">
+    <value>To create the Password, you must comply with the following:</value>
+  </data>
+  <data name="forgotSend" xml:space="preserve">
+    <value>Request to change the password sent, please check your email address</value>
+  </data>
+  <data name="menuAplicacionPagos" xml:space="preserve">
+    <value>Aplication of Payment</value>
+  </data>
+  <data name="menuAsignarEjecutivo" xml:space="preserve">
+    <value>Assign Executive</value>
+  </data>
+  <data name="menuCargaFacturas" xml:space="preserve">
+    <value>Invoice Loading</value>
+  </data>
+  <data name="menuCierre" xml:space="preserve">
+    <value>Closing</value>
+  </data>
+  <data name="menuClientes" xml:space="preserve">
+    <value>Customers</value>
+  </data>
+  <data name="menuComprar" xml:space="preserve">
+    <value>To Buy</value>
+  </data>
+  <data name="menuConciliacion" xml:space="preserve">
+    <value>Conciliation</value>
+  </data>
+  <data name="menuConfirmar" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="menuConsultas" xml:space="preserve">
+    <value>Inquiries</value>
+  </data>
+  <data name="menuEdicionFacturas" xml:space="preserve">
+    <value>Invoice Edition</value>
+  </data>
+  <data name="menuFacturas" xml:space="preserve">
+    <value>Invoices</value>
+  </data>
+  <data name="menuFacturasCompradas" xml:space="preserve">
+    <value>Purchased Invoices</value>
+  </data>
+  <data name="menuFinanciar" xml:space="preserve">
+    <value>To Finance</value>
+  </data>
+  <data name="menuGenerales" xml:space="preserve">
+    <value>Generals</value>
+  </data>
+  <data name="menuGesitonFactura" xml:space="preserve">
+    <value>Invoice Management:</value>
+  </data>
+  <data name="menuGestion" xml:space="preserve">
+    <value>Management</value>
+  </data>
+  <data name="menuGestionEmpresas" xml:space="preserve">
+    <value>Company management:</value>
+  </data>
+  <data name="menuLimiteCredito" xml:space="preserve">
+    <value>Credit Limit</value>
+  </data>
+  <data name="menuMercado" xml:space="preserve">
+    <value>Market</value>
+  </data>
+  <data name="menuPago" xml:space="preserve">
+    <value>Payment</value>
+  </data>
+  <data name="menuPagos" xml:space="preserve">
+    <value>Payments</value>
+  </data>
+  <data name="menuParametros" xml:space="preserve">
+    <value>Parameters</value>
+  </data>
+  <data name="menuPostular" xml:space="preserve">
+    <value>Postulate</value>
+  </data>
+  <data name="menuPublicar" xml:space="preserve">
+    <value>To Post</value>
+  </data>
+  <data name="menuRegistroBanco" xml:space="preserve">
+    <value>Bank Register</value>
+  </data>
+  <data name="menuRegistroEmpresa" xml:space="preserve">
+    <value>Company Registration</value>
+  </data>
+  <data name="menuRoles" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="menuSubastas" xml:space="preserve">
+    <value>Auctions</value>
+  </data>
+  <data name="menuVencimiento" xml:space="preserve">
+    <value>Expiration</value>
+  </data>
+  <data name="menuVerificacion" xml:space="preserve">
+    <value>Check</value>
+  </data>
+  <data name="AMOUNT_CONFIRMATION" xml:space="preserve">
+    <value>Amount confirmation</value>
+  </data>
+  <data name="AMOUNT_TO_OFFER" xml:space="preserve">
+    <value>Amount to offer</value>
+  </data>
+  <data name="PENDING_CONFIRMATION" xml:space="preserve">
+    <value>Pending confirmation</value>
+  </data>
+  <data name="PENDING_TO_OFFER" xml:space="preserve">
+    <value>Pending to offer</value>
+  </data>
+  <data name="PENDING_VERIFICATION" xml:space="preserve">
+    <value>Pending verification</value>
+  </data>
+  <data name="min8Character" xml:space="preserve">
+    <value>Minimum 8 characters</value>
+  </data>
+  <data name="needAlphaMinMayus" xml:space="preserve">
+    <value>Be alphanumeric and have at least one uppercase, one lowercase, a special character and a number</value>
+  </data>
+  <data name="notNeedEnie" xml:space="preserve">
+    <value>The password must not have the letter 'ñ' / 'Ñ'</value>
+  </data>
+  <data name="notMore2Character" xml:space="preserve">
+    <value>Have no more than 2 consecutive equal characters</value>
+  </data>
+  <data name="errorCredentialsInvalidPerson" xml:space="preserve">
+    <value>Email or password invalid . Please verify your details and try again.</value>
+  </data>
+  <data name="forgotAlready" xml:space="preserve">
+    <value>Password change request currently in process</value>
+  </data>
+  <data name="invalidEmail" xml:space="preserve">
+    <value>Invalid Email</value>
+  </data>
+  <data name="PENDING_QUOTAS" xml:space="preserve">
+    <value>Pending quotas</value>
+  </data>
+  <data name="PENDING_TO_SEGMENT" xml:space="preserve">
+    <value>Pending segment</value>
+  </data>
+  <data name="InvalidUserName" xml:space="preserve">
+    <value>Failed to make request, please try again</value>
+  </data>
+  <data name="AMOUNT_OFFERED" xml:space="preserve">
+    <value>Amount offered</value>
+  </data>
+  <data name="AMOUNT_PUBLISH" xml:space="preserve">
+    <value>Amount publish</value>
+  </data>
+  <data name="PENDING_AGREEMENTS" xml:space="preserve">
+    <value>Pendings agreements</value>
+  </data>
+  <data name="PENDING_INVITATION" xml:space="preserve">
+    <value>Pending invitation</value>
+  </data>
+  <data name="PENDING_OFFERED" xml:space="preserve">
+    <value>Pendings offered</value>
+  </data>
+  <data name="PENDING_PUBLISH" xml:space="preserve">
+    <value>Pending publish</value>
+  </data>
+  <data name="textChangePassword" xml:space="preserve">
+    <value>It allows to change the Password that is currently active, for the use of the "TuFactoring" System.</value>
+  </data>
+  <data name="textoFinanciamientoInformation1" xml:space="preserve">
+    <value>To change the Financing condition, perform one of the following actions, depending on the number of requests to be made:</value>
+  </data>
+  <data name="textoFinanciamientoInformation2" xml:space="preserve">
+    <value>1. One (1) Invoice: Check the icon, located on the right side of the Invoice or select the Invoice and then check the icon in the detail window.</value>
+  </data>
+  <data name="textoFinanciamientoInformation3" xml:space="preserve">
+    <value>2. All Invoices: Select the icon (⋮) from the Options menu, followed by the required Option: ✔ Request Financing or Cancel Financing.</value>
+  </data>
+  <data name="textoFinanciamientoInformation4" xml:space="preserve">
+    <value>Note: Each Invoice is identified according to whether or not it has Financing, with a line on the left side and its color varies according to the following:</value>
+  </data>
+  <data name="textoFinanciamientoInformation5" xml:space="preserve">
+    <value>1. Green Color: With Financing.</value>
+  </data>
+  <data name="textoFinanciamientoInformation6" xml:space="preserve">
+    <value>2. Red Color: Without Financing.</value>
+  </data>
+  <data name="textoPostularInformation1" xml:space="preserve">
+    <value>To Post the Invoices, select the Confirming Bank and perform one of the following actions, depending on the number of Invoices to be assigned:</value>
+  </data>
+  <data name="textoPostularInformation2" xml:space="preserve">
+    <value>1. One (1) Invoice: Check the Apply Button of the required Invoice.</value>
+  </data>
+  <data name="textoPostularInformation3" xml:space="preserve">
+    <value>2. Multiple Invoices: Check the indicator of the required Invoices and then the Button + Apply (located on the right side of the Confirming Bank). Confirm the Application.</value>
+  </data>
+  <data name="textoPostularInformation4" xml:space="preserve">
+    <value>3. All Invoices: Select the icon (⋮) from the Options menu, followed by the Options Select all and + Apply. Confirm the Application.</value>
+  </data>
+  <data name="textoPostularInformation5" xml:space="preserve">
+    <value>Note: To change the Financing condition of each Invoice, you must check the icon, located on the right side of it.</value>
+  </data>
+  <data name="textoPostularInformation6" xml:space="preserve">
+    <value>Active Financing:</value>
+  </data>
+  <data name="textoPostularInformation7" xml:space="preserve">
+    <value>Inactive Financing:</value>
+  </data>
+  <data name="textInformationMassiveCharge2" xml:space="preserve">
+    <value>again without saving the changes, select the option Clean in both sections (Invoices Processed and Unprocessed).</value>
+  </data>
+  <data name="threePointsOptions" xml:space="preserve">
+    <value>Options</value>
+  </data>
+  <data name="headersSuppliers" xml:space="preserve">
+    <value>Suppliers</value>
+  </data>
+  <data name="howDEBTOR" xml:space="preserve">
+    <value>as Company</value>
+  </data>
+  <data name="howSUPPLIER" xml:space="preserve">
+    <value>as Supplier</value>
+  </data>
+  <data name="howFACTOR" xml:space="preserve">
+    <value>as Factor</value>
+  </data>
+  <data name="howCONFIRMANT" xml:space="preserve">
+    <value>as Bank</value>
+  </data>
+  <data name="howBACKOFFICE" xml:space="preserve">
+    <value>as Operative</value>
+  </data>
+  <data name="passwordAssignLogin" xml:space="preserve">
+    <value>Your Password has been successfully created.
+Please sign in to continue.</value>
+  </data>
+  <data name="PENDING_EXPIRATION" xml:space="preserve">
+    <value>Expiration Invoices</value>
+  </data>
+  <data name="MARKET_PUBLICATIONS" xml:space="preserve">
+    <value>Invoice Market</value>
+  </data>
+  <data name="MY_OFFERS" xml:space="preserve">
+    <value>My offers</value>
+  </data>
+  <data name="PENDING_ACCEPT" xml:space="preserve">
+    <value>Pending accept</value>
+  </data>
+  <data name="titleSessionExpired" xml:space="preserve">
+    <value>Attention</value>
+  </data>
+  <data name="textEstimadoUsuario" xml:space="preserve">
+    <value>Dear user</value>
+  </data>
+  <data name="textSessionExpired" xml:space="preserve">
+    <value>Your session time is running out. Do you want your session to be active?</value>
+  </data>
+  <data name="buttonIrLogin" xml:space="preserve">
+    <value>Go to Login</value>
+  </data>
+  <data name="buttonExit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="buttonSendInvited" xml:space="preserve">
+    <value>Invite</value>
+  </data>
+  <data name="textoAmountCommission" xml:space="preserve">
+    <value>Expense for Service</value>
+  </data>
+  <data name="textoAmountDiscount2" xml:space="preserve">
+    <value>Discount Amount</value>
+  </data>
+  <data name="buttonSi" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="buttonNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="textoFacturaNoPostponed" xml:space="preserve">
+    <value>Invoice not Postponed</value>
+  </data>
+  <data name="textoAdvertenciaCuentasBancarias" xml:space="preserve">
+    <value>You must associate at least one Bank Account</value>
+  </data>
+  <data name="menuUsuario" xml:space="preserve">
+    <value>User Profile</value>
+  </data>
+  <data name="textoDatosUsuario" xml:space="preserve">
+    <value>User data</value>
+  </data>
+  <data name="titleDetailPayments" xml:space="preserve">
+    <value>Payment Details</value>
+  </data>
+  <data name="buttonPayments" xml:space="preserve">
+    <value>Payments Made</value>
+  </data>
+  <data name="textoPaid" xml:space="preserve">
+    <value>Paid</value>
+  </data>
+  <data name="textoUnPaid" xml:space="preserve">
+    <value>No Paid</value>
+  </data>
+  <data name="invoicesToExpirateOffered" xml:space="preserve">
+    <value>Offered</value>
+  </data>
+  <data name="invoicesToExpiratePaid" xml:space="preserve">
+    <value>Paid</value>
+  </data>
+  <data name="invoicesToExpiratePublished" xml:space="preserve">
+    <value>Published</value>
+  </data>
+  <data name="invoicesToExpirateReleased" xml:space="preserve">
+    <value>To publish</value>
+  </data>
+  <data name="invoicesToExpirateText" xml:space="preserve">
+    <value>The Invoice is</value>
+  </data>
+  <data name="invoicesToExpirateProcessing" xml:space="preserve">
+    <value>in Payment Process</value>
+  </data>
+  <data name="titleBloquearCliente" xml:space="preserve">
+    <value>Unconciled payment</value>
+  </data>
+  <data name="titleConcliarCliente" xml:space="preserve">
+    <value>Reconcile Payment</value>
+  </data>
+  <data name="buttonDetallesFactura" xml:space="preserve">
+    <value>Detail of the Invoices</value>
+  </data>
+  <data name="invoicesToExpirateSold" xml:space="preserve">
+    <value>Sold</value>
+  </data>
+  <data name="buttonTitleFacturas" xml:space="preserve">
+    <value>Invoice Details</value>
+  </data>
+  <data name="buttonTitlePayments" xml:space="preserve">
+    <value>Payment Details</value>
+  </data>
+  <data name="payConfirmed" xml:space="preserve">
+    <value>Confirmed</value>
+  </data>
+  <data name="payRealized" xml:space="preserve">
+    <value>Paid</value>
+  </data>
+  <data name="payUnconfirmed" xml:space="preserve">
+    <value>Unconfirmed</value>
+  </data>
+  <data name="payUnrealized" xml:space="preserve">
+    <value>Unpaid</value>
+  </data>
+  <data name="textNoPayed" xml:space="preserve">
+    <value>Unpaid</value>
+  </data>
+  <data name="textPayed" xml:space="preserve">
+    <value>Paid</value>
+  </data>
+  <data name="titleModalDetailPayment" xml:space="preserve">
+    <value>Total Payment Amount</value>
+  </data>
+  <data name="titleQueryPayments" xml:space="preserve">
+    <value>Payment Consultation</value>
+  </data>
+  <data name="creditLimitAssigned" xml:space="preserve">
+    <value>Assigned Credit Limit</value>
+  </data>
+  <data name="creditLimitUsed" xml:space="preserve">
+    <value>Available Credit Limit</value>
+  </data>
+  <data name="creditLimitWithoutSelectedAmount" xml:space="preserve">
+    <value>Available Credit Limit with Selected Invoices</value>
+  </data>
+  <data name="excedentAmount" xml:space="preserve">
+    <value>Surplus Amount</value>
+  </data>
+  <data name="textoPagosBanco" xml:space="preserve">
+    <value>It allows to make the Payments of the Invoices Purchased to the Suppliers (via Confirming or Direct Purchase), after accepting the Offer (s).</value>
+  </data>
+  <data name="textoPagosFactor" xml:space="preserve">
+    <value>It allows payments to be made of the Bills Billed in the Daily Auction, upon acceptance by the Suppliers.</value>
+  </data>
+  <data name="textoDebtor" xml:space="preserve">
+    <value>DEBTOR</value>
+  </data>
+  <data name="textoFactor" xml:space="preserve">
+    <value>FACTOR</value>
+  </data>
+  <data name="textoProveedor" xml:space="preserve">
+    <value>SUPPLIER</value>
+  </data>
+  <data name="excedeAmount1" xml:space="preserve">
+    <value>Excess Amount of Available Credit Limit</value>
+  </data>
+  <data name="excedeAmount2" xml:space="preserve">
+    <value>Please check and if necessary uncheck the Invoices that exceed,</value>
+  </data>
+  <data name="excedeAmount3" xml:space="preserve">
+    <value>until reaching coverage and completing the Postulation.</value>
+  </data>
+  <data name="invoicesToExpirateConfirmed" xml:space="preserve">
+    <value>Confirmed</value>
+  </data>
+  <data name="titleModalPosponer" xml:space="preserve">
+    <value>Postpone Invoice</value>
+  </data>
+  <data name="titleModalPublicar" xml:space="preserve">
+    <value>Publish Invoice</value>
+  </data>
+  <data name="filterAllInvoices" xml:space="preserve">
+    <value>All Invoices</value>
+  </data>
+  <data name="filterNotOffered" xml:space="preserve">
+    <value>Invoices not Offered</value>
+  </data>
+  <data name="filterOffered" xml:space="preserve">
+    <value>Offered Invoices</value>
+  </data>
+  <data name="textoAyudaConciliar" xml:space="preserve">
+    <value>It allows to reconcile the Transfers reported by the Investors, corresponding to the Payments of the Bills Purchased, when they do not have a Bank Account in the Confirming Banks of the same.</value>
+  </data>
+  <data name="menuDropdownPagos" xml:space="preserve">
+    <value>Payment Management</value>
+  </data>
+  <data name="menuFacturasConciliadas" xml:space="preserve">
+    <value>Reconciled Invoices</value>
+  </data>
+  <data name="menuFacturasVencidas" xml:space="preserve">
+    <value>Overdue Invoices</value>
+  </data>
+  <data name="montoTotalPostular" xml:space="preserve">
+    <value>Total Amount to Apply</value>
+  </data>
+  <data name="complementTextPostulateInvoices" xml:space="preserve">
+    <value>to Apply for an amount of</value>
+  </data>
+  <data name="titleDetailGroup" xml:space="preserve">
+    <value>Group Detail</value>
+  </data>
+  <data name="titleAccounting" xml:space="preserve">
+    <value>Accounting</value>
+  </data>
+  <data name="buttonEditGroup" xml:space="preserve">
+    <value>Edit Group</value>
+  </data>
+  <data name="titleGroupData" xml:space="preserve">
+    <value>Group Data</value>
+  </data>
+  <data name="textoProgram" xml:space="preserve">
+    <value>Service</value>
+  </data>
+  <data name="placeholderDescript" xml:space="preserve">
+    <value>Add description</value>
+  </data>
+  <data name="buttonAddDetails" xml:space="preserve">
+    <value>Add Details</value>
+  </data>
+  <data name="buttonVolver" xml:space="preserve">
+    <value>Return</value>
+  </data>
+  <data name="placeholderAccount" xml:space="preserve">
+    <value>Add Account</value>
+  </data>
+  <data name="placeholderEvent" xml:space="preserve">
+    <value>Add Event</value>
+  </data>
+  <data name="placeholderConcept" xml:space="preserve">
+    <value>Add Concept</value>
+  </data>
+  <data name="textoEvent" xml:space="preserve">
+    <value>Event</value>
+  </data>
+  <data name="textoConcept" xml:space="preserve">
+    <value>Concept</value>
+  </data>
+  <data name="textoAccount" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="textoCategory" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="placeholderNameGroup" xml:space="preserve">
+    <value>Enter name of accounting group</value>
+  </data>
+  <data name="buttonAddDetail" xml:space="preserve">
+    <value>Add Detail</value>
+  </data>
+  <data name="menuContabilidad" xml:space="preserve">
+    <value>Accounting</value>
+  </data>
+  <data name="textAmountReceivable" xml:space="preserve">
+    <value>Total Amount to Receive</value>
+  </data>
+  <data name="placeholderAddName" xml:space="preserve">
+    <value>Enter the name</value>
+  </data>
+  <data name="placeholderAddAbbreviation" xml:space="preserve">
+    <value>Enter the Abbreviation</value>
+  </data>
+  <data name="titleFilterStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="placeholderSelect" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="true" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="false" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="requirePasswordFieldLogin" xml:space="preserve">
+    <value>Required Password</value>
+  </data>
+  <data name="textQuotaNotAvailable" xml:space="preserve">
+    <value>You do not have no Available Credit Limit.</value>
+  </data>
+  <data name="textQuotaNotAvailable1" xml:space="preserve">
+    <value>Please contact your Account Executive assigned at Allied Bank.</value>
+  </data>
+  <data name="textoNotResultadoFacturas" xml:space="preserve">
+    <value>No available Invoices Found</value>
+  </data>
+  <data name="inText" xml:space="preserve">
+    <value>in</value>
+  </data>
+  <data name="notConexionDetected" xml:space="preserve">
+    <value>Connection problems have been detected, check your Internet connection.</value>
+  </data>
+  <data name="titleAmountFromPaid" xml:space="preserve">
+    <value>Amount Paid From</value>
+  </data>
+  <data name="titleAmountToPaid" xml:space="preserve">
+    <value>Amount Paid Up</value>
+  </data>
+  <data name="textolimitCreditAmountFromDisponible" xml:space="preserve">
+    <value>Limit Available From</value>
+  </data>
+  <data name="textolimitCreditAmountToDisponible" xml:space="preserve">
+    <value>Limit Available Until</value>
+  </data>
+  <data name="titleQueryFinancing" xml:space="preserve">
+    <value>Financing Consultation</value>
+  </data>
+  <data name="textoSellFor" xml:space="preserve">
+    <value>Payer</value>
+  </data>
+  <data name="titleQueriesCesion" xml:space="preserve">
+    <value>Consultation of Assignment Documents</value>
+  </data>
+  <data name="textoVerDocumentoCesion" xml:space="preserve">
+    <value>See Assignment Document</value>
+  </data>
+  <data name="titleDocumentCesion" xml:space="preserve">
+    <value>RIGHTS ASSIGNMENT CONTRACT</value>
+  </data>
+  <data name="textoSystemTuFactoring" xml:space="preserve">
+    <value>TUF@CTORING SYSTEM</value>
+  </data>
+  <data name="menuDocumentCesion" xml:space="preserve">
+    <value>Assignment Documents</value>
+  </data>
+  <data name="titlePlantillaConciliacion" xml:space="preserve">
+    <value>Movement File</value>
+  </data>
+  <data name="buttonLoadFile" xml:space="preserve">
+    <value>File upload</value>
+  </data>
+  <data name="ProcesarArchivo" xml:space="preserve">
+    <value>Process File</value>
+  </data>
+  <data name="textoMensajeArchivoConciliar" xml:space="preserve">
+    <value>Are you sure you process the file</value>
+  </data>
+  <data name="::Detalle servicio 1" xml:space="preserve">
+    <value>You must register all the information requested by the Tufactoring system so that you have access to the terms and conditions of the contract that you must grant to the bank. Once authorized by the bank, the daily charge of your accounts payable will be automatically made to the Tufactoring system and the bank will be able to manage the notification and cancellation processes at the expiration of the outstanding obligations.</value>
+  </data>
+  <data name="::Detalle servicio 2" xml:space="preserve">
+    <value>You can be invited by a customer through the system or enter directly to register all the information requested by the Tufactoring system. The approval by the allied bank is essential so that you can later access the electronic factoring contracts without recourse that you will grant to the investors that buy your invoices in the auction processes. In case you do not want to participate in the auction, the payment of your invoice will be received from the allied bank upon expiration of the invoice.</value>
+  </data>
+  <data name="::Detalle servicio 3" xml:space="preserve">
+    <value>You must register all the information requested by the Tufactoring system so that you have access to the terms and conditions to operate. You must have an account in the banking system and once you have been authorized by our allied banks, you will have daily access to invoice auctions so that during the days you can bid on all the published invoices. If the purchase is awarded, you will receive a factoring contract without recourse granted by the seller and confirmation of payment upon expiration of the invoice. You can pay for the purchase by means of a payment button if your account is with the bank by allying or transferring if your account belongs to another institution.</value>
+  </data>
+  <data name="requireEmailField" xml:space="preserve">
+    <value>Email is required</value>
+  </data>
+  <data name="placerholderPutDocument" xml:space="preserve">
+    <value>Enter the</value>
+  </data>
+  <data name="Ver mas" xml:space="preserve">
+    <value>Read more</value>
+  </data>
+  <data name="Servicios subtitulo" xml:space="preserve">
+    <value>Be part of the Tufactoring community through our services. Through the different mechanisms of this invoice market, companies will have the support of our allied banks to carry out payment management with or without financing their accounts payable, suppliers will be able to sell their invoices and investors can access the invoice auction and purchase at a discount. Sign up for Tufactoring and you will be able to find the financial mechanisms to successfully achieve your goals without complex procedures.</value>
+  </data>
+  <data name="menuPagosFacturasCompradas" xml:space="preserve">
+    <value>Purchased invoices</value>
+  </data>
+  <data name="menuPagosFacturasConciliadas" xml:space="preserve">
+    <value>Reconciled Invoices</value>
+  </data>
+  <data name="menuPagosFacturasVencidas" xml:space="preserve">
+    <value>Overdue bills</value>
+  </data>
+  <data name="textoReceiverFor" xml:space="preserve">
+    <value>Receiver For</value>
+  </data>
+  <data name="textoReceiverAccount" xml:space="preserve">
+    <value>Receiver Account</value>
+  </data>
+  <data name="textoNumberPaids" xml:space="preserve">
+    <value>Count of payments</value>
+  </data>
+  <data name="textoMethod" xml:space="preserve">
+    <value>Method</value>
+  </data>
+  <data name="menuDropdownConsultaPagos" xml:space="preserve">
+    <value>Payment Consultation</value>
+  </data>
+  <data name="alliedBank" xml:space="preserve">
+    <value>Allied Bank</value>
+  </data>
+  <data name="notAlliedBank" xml:space="preserve">
+    <value>Non-Allied Bank</value>
+  </data>
+  <data name="textoBuyBy" xml:space="preserve">
+    <value>Buyer</value>
+  </data>
+  <data name="textopaidAt" xml:space="preserve">
+    <value>Payment Date</value>
+  </data>
+  <data name="factorMarketBestOffer" xml:space="preserve">
+    <value>Best Offer made by you.</value>
+  </data>
+  <data name="factorMarketBestOfferAnotherFactor" xml:space="preserve">
+    <value>Best Offer made by another Investor.</value>
+  </data>
+  <data name="factorMarketBlueColor" xml:space="preserve">
+    <value>Blue Color</value>
+  </data>
+  <data name="factorMarketCounterOffer" xml:space="preserve">
+    <value>Against Offered by another Investor.</value>
+  </data>
+  <data name="factorMarketGreenColor" xml:space="preserve">
+    <value>Green Color</value>
+  </data>
+  <data name="factorMarketNotOffered" xml:space="preserve">
+    <value>Not Offered.</value>
+  </data>
+  <data name="factorMarketRedColor" xml:space="preserve">
+    <value>Red Color</value>
+  </data>
+  <data name="factorMarketYellowColor" xml:space="preserve">
+    <value>Yellow Color</value>
+  </data>
+  <data name="menuBancos" xml:space="preserve">
+    <value>Allied Banks</value>
+  </data>
+  <data name="titleAlliedBank" xml:space="preserve">
+    <value>Bank Management</value>
+  </data>
+  <data name="indexTuFactoringAllParticipants" xml:space="preserve">
+    <value>is a financing alternative where, through a contract, the Supplier transfers the future collection of the credits, obtaining in exchange the money immediately from those operations with a small discount. You can also wait for the Invoices to expire to collect them, always with the support of a</value>
+  </data>
+  <data name="textoProcess" xml:space="preserve">
+    <value>Processing</value>
+  </data>
+  <data name="availableBanks" xml:space="preserve">
+    <value>Participating Banks</value>
+  </data>
+  <data name="textHelpBankManagement" xml:space="preserve">
+    <value>It allows the management of Activation and Deactivation of the different Banks for their participation as Allies in the System.</value>
+  </data>
+  <data name="textHelpReconciledInvoices" xml:space="preserve">
+    <value>It allows to make the Reconciled Payments to the Suppliers, corresponding to the Invoices Purchased by the Investors and paid via Bank Transfer from another Bank.</value>
+  </data>
+  <data name="textHelpOverdueInvoices" xml:space="preserve">
+    <value>It allows to make the Payments of the Invoices on their Expiration Date, to the different Suppliers that were waiting for this expiration and to the Investors with the reimbursement of the Net Value of the Purchased Invoices.</value>
+  </data>
+  <data name="draftStatus" xml:space="preserve">
+    <value>LOADED</value>
+  </data>
+  <data name="postedStatus" xml:space="preserve">
+    <value>POSTEDS</value>
+  </data>
+  <data name="confirmedStatus" xml:space="preserve">
+    <value>CONFIRMED</value>
+  </data>
+  <data name="offeredStatus" xml:space="preserve">
+    <value>OFFERED</value>
+  </data>
+  <data name="releasedStatus" xml:space="preserve">
+    <value>TO PUBLISH</value>
+  </data>
+  <data name="publishedStatus" xml:space="preserve">
+    <value>PUBLISHED</value>
+  </data>
+  <data name="soldStatus" xml:space="preserve">
+    <value>ACCEPTED</value>
+  </data>
+  <data name="processingStatus" xml:space="preserve">
+    <value>IN PAYMENT PROCESS</value>
+  </data>
+  <data name="paidStatus" xml:space="preserve">
+    <value>PAID</value>
+  </data>
+  <data name="postponedStatus" xml:space="preserve">
+    <value>WAITING FOR EXPIRATION</value>
+  </data>
+  <data name="overdueStatus" xml:space="preserve">
+    <value>EXPIRED</value>
+  </data>
+  <data name="finalizeStatus" xml:space="preserve">
+    <value>COMPLETED</value>
+  </data>
+  <data name="titleStatusChange" xml:space="preserve">
+    <value>Operation Status</value>
+  </data>
+  <data name="titleChangeFrom" xml:space="preserve">
+    <value>Date of Operation From</value>
+  </data>
+  <data name="titleChangeTo" xml:space="preserve">
+    <value>Operation Date Until</value>
+  </data>
+  <data name="draftChangeStatus" xml:space="preserve">
+    <value>LOAD INVOICES</value>
+  </data>
+  <data name="postedChangeStatus" xml:space="preserve">
+    <value>POSTULATION</value>
+  </data>
+  <data name="confirmedChangeStatus" xml:space="preserve">
+    <value>CONFIRMING</value>
+  </data>
+  <data name="offeredChangeStatus" xml:space="preserve">
+    <value>OFFERS</value>
+  </data>
+  <data name="soldChangeStatus" xml:space="preserve">
+    <value>ACCEPTANCE</value>
+  </data>
+  <data name="overdueChangeStatus" xml:space="preserve">
+    <value>EXPIRATION</value>
+  </data>
+  <data name="finalizeChangeStatus" xml:space="preserve">
+    <value>COMPLETATION</value>
+  </data>
+  <data name="processingChangeStatus" xml:space="preserve">
+    <value>PAYMENT PROCESSING</value>
+  </data>
+  <data name="paidChangeStatus" xml:space="preserve">
+    <value>PAYMENT</value>
+  </data>
+  <data name="titleModalAmountFinanced" xml:space="preserve">
+    <value>Total Amount Financed</value>
+  </data>
+  <data name="de ganar" xml:space="preserve">
+    <value>to win</value>
+  </data>
+  <data name="Es momento" xml:space="preserve">
+    <value>Is Time</value>
+  </data>
+  <data name="titleModalConfirmPayment" xml:space="preserve">
+    <value>Payment Confirmation</value>
+  </data>
+  <data name="textSecureToPayment" xml:space="preserve">
+    <value>Are you sure to make the Payment for an Amount to Pay of</value>
+  </data>
+  <data name="statePostponed" xml:space="preserve">
+    <value>Postponed</value>
+  </data>
+  <data name="textoAyudaConsultaPagosFacturasCompradas" xml:space="preserve">
+    <value>Contains the Payments made by the Invoices Purchased from Suppliers, upon acceptance of the Offer (s).</value>
+  </data>
+  <data name="textoAyudaConsultaPagosFacturasConciliadas" xml:space="preserve">
+    <value>It contains the Payments made to the Suppliers after Reconciliation made by the TuF @ ctoring Operative, corresponding to the Invoices Bought by the Investors and paid via Bank Transfer from another Bank.</value>
+  </data>
+  <data name="textoAyudaConsultaPagosFacturasVencidas" xml:space="preserve">
+    <value>It contains the Payments made at the Maturity of the Invoices, according to the different scenarios: Suppliers who were waiting for the expiration of their Invoices and Investors who are reimbursed for the Net Value of the Invoices Purchased.</value>
+  </data>
+  <data name="textoAyudaPerfilInversionistaPerson" xml:space="preserve">
+    <value>It allows the review and update of Investor Data (Addresses and Bank Accounts).</value>
+  </data>
+  <data name="textoAyudaPerfilOperativo" xml:space="preserve">
+    <value>It allows the revision and update of Operative Data (Addresses, Telephone of Legal Representative, Contact Person and Bank Accounts).</value>
+  </data>
+  <data name="textoAyudaPrincipalesEmpresas" xml:space="preserve">
+    <value>It allows creating, accepting, rejecting, canceling, deactivating and consulting the Invitations received and sent to the different Clients, with whom you can participate in the System. Remember that to enter Direct Sales Invoices your Client must be registered in the System and you must wait and accept the respective invitation.</value>
+  </data>
+  <data name="textoAyudaPrincipalesProveedores" xml:space="preserve">
+    <value>It allows you to create, accept, cancel, deactivate and consult the Invitations received and sent to the different Providers, with which you can participate in the System.</value>
+  </data>
+  <data name="textoAyudaRegistoBanco" xml:space="preserve">
+    <value>Allows the Registration of an Allied Bank in the “TuFactoring” System, in order to participate as a Confirmer and Offer a discount on the Invoices of your choice or simply Release them for Publication in the Auctions, upon acceptance of Terms and Conditions.</value>
+  </data>
+  <data name="titleConsultaPagosFacturasCompradas" xml:space="preserve">
+    <value>Payment of Purchased Bills</value>
+  </data>
+  <data name="textoMercadoFactorInformation1" xml:space="preserve">
+    <value>To Offer the Invoices, do the following:</value>
+  </data>
+  <data name="textoMercadoFactorInformation2" xml:space="preserve">
+    <value>1. Select the required Invoice, enter the Discount Percentage, review the calculations made of Profit, Annualized Profitability and Amount to Pay.</value>
+  </data>
+  <data name="textoMercadoFactorInformation3" xml:space="preserve">
+    <value>2. Check the Bid button to submit your Offer.</value>
+  </data>
+  <data name="textNote" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="textoMercadoFactorInformation4" xml:space="preserve">
+    <value>When the Invoice Expires, you will receive the Net Value of the Invoice.</value>
+  </data>
+  <data name="textInformationCesionFactor" xml:space="preserve">
+    <value>Contains the Right Assignment Document of each Invoice purchased by the Investor.</value>
+  </data>
+  <data name="textInformationQueryPaymentsFactor" xml:space="preserve">
+    <value>Contains the Payments made for the Bids Received that Won in the Daily Auction, prior acceptance by the Suppliers.</value>
+  </data>
+  <data name="textInformationBoughtInvoicesBank" xml:space="preserve">
+    <value>Contains the Payments made by the Invoices Purchased from Suppliers, upon acceptance of the Offer(s).</value>
+  </data>
+  <data name="textInformationReconciledInvoicesQueryBank" xml:space="preserve">
+    <value>It contains the Payments made to the Suppliers after Reconciliation made by the TuF@ctoring Operative, corresponding to the Invoices Purchased by the Investors and paid via Bank Transfer from another Bank.</value>
+  </data>
+  <data name="textInformationOverdueInvoicesBank" xml:space="preserve">
+    <value>It contains the Payments made at the Maturity of the Invoices, according to the different scenarios: Suppliers that were awaiting the expiration of their Invoices and Investors who are reimbursed for the Net Value of the Invoices Purchased.</value>
+  </data>
+  <data name="textoCargarFacturasInformation1" xml:space="preserve">
+    <value>Once the Template is downloaded, follow the next steps to Load Invoices Massively:</value>
+  </data>
+  <data name="textoCargarFacturasInformation2" xml:space="preserve">
+    <value>1. Enter the Template data and save the information in .txt format.</value>
+  </data>
+  <data name="textoCargarFacturasInformation3" xml:space="preserve">
+    <value>2. Upload the .txt file to the System, through the "Upload Template" Button.</value>
+  </data>
+  <data name="textoCargarFacturasInformation4" xml:space="preserve">
+    <value>3. At the bottom of the screen, the result of the extraction can be viewed, in the Sections Processed Invoices and Unprocessed Invoices.</value>
+  </data>
+  <data name="textoCargarFacturasInformation5" xml:space="preserve">
+    <value>4. Review the information in the Unprocessed Invoices Section, make the corrections in your System, clean the section from the Options menu and reload the template.</value>
+  </data>
+  <data name="textoCargarFacturasInformation6" xml:space="preserve">
+    <value>5. To complete the upload in the System, select the Save Invoices button, located at the top of the Processed Invoices Section.</value>
+  </data>
+  <data name="textoEdicionFacturasInformation1" xml:space="preserve">
+    <value>To modify Invoices, follow these steps:</value>
+  </data>
+  <data name="textoEdicionFacturasInformation2" xml:space="preserve">
+    <value>1. In the</value>
+  </data>
+  <data name="textoEdicionFacturasInformation2.1" xml:space="preserve">
+    <value>Section, select the Edit button of the required record.</value>
+  </data>
+  <data name="textoEdicionFacturasInformation3" xml:space="preserve">
+    <value>2. The</value>
+  </data>
+  <data name="textoEdicionFacturasInformation3.1" xml:space="preserve">
+    <value>window will be shown, with the detail of the same, where you can make specific adjustments and add or modify Deductions, depending on the status of the Invoice. Finally press the Update Invoice Button, to save the changes.</value>
+  </data>
+  <data name="textoEdicionFacturasInformation4" xml:space="preserve">
+    <value>To delete Invoices, locate the required record in the</value>
+  </data>
+  <data name="textoEdicionFacturasInformation4.1" xml:space="preserve">
+    <value>Section, press the Delete Button and confirm the operation.</value>
+  </data>
+  <data name="textFilterIsEmpty" xml:space="preserve">
+    <value>There are no results for the Filter applied.</value>
+  </data>
+  <data name="textInformationCesionBank" xml:space="preserve">
+    <value>Contains the Right Transfer Document of each Invoice purchased by the Bank.</value>
+  </data>
+  <data name="textContratoCesionDerechos" xml:space="preserve">
+    <value>Rights Assignment Contract</value>
+  </data>
+  <data name="titleFactor" xml:space="preserve">
+    <value>Factor</value>
+  </data>
+  <data name="placeholderFactor" xml:space="preserve">
+    <value>Factor</value>
+  </data>
+  <data name="confirmedToOverdueStatus" xml:space="preserve">
+    <value>CONFIRMED TO EXPIRE</value>
+  </data>
+  <data name="confirmedToOverdue" xml:space="preserve">
+    <value>Confirmed to Expired</value>
+  </data>
+  <data name="textInformationCesionProveedor" xml:space="preserve">
+    <value>Contains the Right Transfer Document of each Invoice sold to the different Banks and Investors.</value>
+  </data>
+  <data name="textoSeguridadInformation1" xml:space="preserve">
+    <value>Invite User:</value>
+  </data>
+  <data name="textoSeguridadInformation2" xml:space="preserve">
+    <value>1. To add a user, press the Invite button, indicate the name of the user, the email address with which you will enter the system, select the Role (s) according to the role to be performed and click on the Create button to save the information.</value>
+  </data>
+  <data name="textoSeguridadInformation3" xml:space="preserve">
+    <value>2. The created User will be associated with the main Document Number of the Company and must Activate their User from the Welcome email, to start using the System.</value>
+  </data>
+  <data name="textoSeguridadInformation4" xml:space="preserve">
+    <value>Edit User:</value>
+  </data>
+  <data name="textoSeguridadInformation5" xml:space="preserve">
+    <value>1. To modify a user's information, press the Edit button, make the necessary changes, and click the Update button to save the information.</value>
+  </data>
+  <data name="textoSeguridadInformation6" xml:space="preserve">
+    <value>Block or Unlock User:</value>
+  </data>
+  <data name="textoSeguridadInformation7" xml:space="preserve">
+    <value>1. To accomplish this action, press the Lock or Unlock button and confirm the operation, clicking on the OK button.</value>
+  </data>
+  <data name="textoSeguridadInformation8" xml:space="preserve">
+    <value>Note: Blocked Users will not be able to enter the System.</value>
+  </data>
+  <data name="textoCompraFacturas6" xml:space="preserve">
+    <value>Solicited Financing:</value>
+  </data>
+  <data name="textoCompraFacturas7" xml:space="preserve">
+    <value>Unsolicited Financing:</value>
+  </data>
+  <data name="textoCompraFacturas5" xml:space="preserve">
+    <value>The Financing Condition is Consultation only.</value>
+  </data>
+  <data name="textoNota" xml:space="preserve">
+    <value>Note:</value>
+  </data>
+  <data name="textoCompraFacturas4" xml:space="preserve">
+    <value>At the top, you can view the Total Amount of Available Invoices.</value>
+  </data>
+  <data name="textoCompraFacturas3" xml:space="preserve">
+    <value>1. Select the (⋮) icon from the Options menu and then the Release All Option. To complete, confirm the Operation.</value>
+  </data>
+  <data name="textoCompraFacturas2" xml:space="preserve">
+    <value>To Release Undisputed Invoices</value>
+  </data>
+  <data name="textoCompraFacturas1" xml:space="preserve">
+    <value>2. Check the Bid button to send the proposal to the Supplier.</value>
+  </data>
+  <data name="textoCompraFacturas0" xml:space="preserve">
+    <value>1. Select the required Invoice, enter the Discount Percentage, review the calculations made of Annualized Profitability and Amount to Pay.</value>
+  </data>
+  <data name="textoCompraFacturas" xml:space="preserve">
+    <value>To Buy Invoices, do the following:</value>
+  </data>
+  <data name="textoConfirmarFacturas5" xml:space="preserve">
+    <value>Once the Invoices have been selected, you will be able to view the total Amount to Confirm.</value>
+  </data>
+  <data name="textoConfirmarFacturas4" xml:space="preserve">
+    <value>Select the (⋮) icon from the Options menu, then the Select All Option and ✔Confirm. To complete, confirm the Operation.</value>
+  </data>
+  <data name="textoConfirmarFacturas4Title" xml:space="preserve">
+    <value>3. All Invoices:</value>
+  </data>
+  <data name="textoConfirmarFacturas3" xml:space="preserve">
+    <value>Mark the selection indicator for the required Invoices, then select the icon (⋮) from the Options menu and the Option ✔Confirm. To complete, confirm the Operation.</value>
+  </data>
+  <data name="textoConfirmarFacturas3Title" xml:space="preserve">
+    <value>2. Multiple Invoices:</value>
+  </data>
+  <data name="textoConfirmarFacturas2" xml:space="preserve">
+    <value>Mark the selection indicator of the required Invoice and its respective Confirm Button.</value>
+  </data>
+  <data name="textoConfirmarFacturas2Title" xml:space="preserve">
+    <value>1. One (1) Invoice:</value>
+  </data>
+  <data name="textoConfirmarFacturas1" xml:space="preserve">
+    <value>To Confirm the Invoices, do one of the following, depending on the quantity to be processed:</value>
+  </data>
+  <data name="textoModalAyudaPerfilBancoTexto1" xml:space="preserve">
+    <value>To update the information in the Addresses, Legal Representative and Administrator Sections, do the following:</value>
+  </data>
+  <data name="textoModalAyudaPerfilEmpresatexto1" xml:space="preserve">
+    <value>To update this information, modify the editable data as required and press the Update Button to apply the changes.</value>
+  </data>
+  <data name="textoModalAyudaPerfilEmpresatexto2" xml:space="preserve">
+    <value>1. To update this information, press the Add or Edit button as appropriate, enter the information and save the changes.</value>
+  </data>
+  <data name="textoModalAyudaPerfilEmpresatexto3" xml:space="preserve">
+    <value>Allows you to view the Terms and Conditions associated with the Company</value>
+  </data>
+  <data name="textoModalAyudaPerfilEmpresatexto4" xml:space="preserve">
+    <value>2. Para eliminar Cuentas, presione el botón Eliminar y confirme para la operación.</value>
+  </data>
+  <data name="textoModalAyudaPerfilEmpresatitulo1" xml:space="preserve">
+    <value>Sections Addresses, Legal Representative and / or Contact Person:</value>
+  </data>
+  <data name="textoModalAyudaPerfilEmpresatitulo2" xml:space="preserve">
+    <value>Bank Accounts Section:</value>
+  </data>
+  <data name="textoModalAyudaPerfilEmpresatitulo3" xml:space="preserve">
+    <value>Contracts section:</value>
+  </data>
+  <data name="textoModalAyudaPerfilInversionistaLegalTexto1" xml:space="preserve">
+    <value>To update the information in the Addresses and Legal Representative Sections, do the following:</value>
+  </data>
+  <data name="textoModalAyudaPerfilInversionistaLegalTexto2" xml:space="preserve">
+    <value>1. Modify the editable information as required.</value>
+  </data>
+  <data name="textoModalAyudaPerfilInversionistaLegalTexto3" xml:space="preserve">
+    <value>2. Press the Update Button to apply the changes.</value>
+  </data>
+  <data name="textoModalAyudaPerfilInversionistaLegalTexto4" xml:space="preserve">
+    <value>To update the information of Bank Accounts, press the Add, Edit or Delete button, as appropriate, enter the information and Save the changes in the corresponding window.</value>
+  </data>
+  <data name="textoModalAyudaPerfilInversionistaPersonTexto1" xml:space="preserve">
+    <value>To update the information in the Address Sections, make the changes and press the Update Button to apply the changes.</value>
+  </data>
+  <data name="textoModalAyudaPerfilProveedortexto4" xml:space="preserve">
+    <value>Allows you to view the Terms and Conditions, accept the Framework Contracts for each Allied Bank with which you can confirm Invoices. To accept, press the Verify button and accept each Contract.</value>
+  </data>
+  <data name="textoModalAyudaPrincipalesProveedoresTexto1" xml:space="preserve">
+    <value>1. To invite a Provider, press the Add button, enter the information and save the changes in the corresponding window.</value>
+  </data>
+  <data name="textoModalAyudaPrincipalesProveedoresTexto2" xml:space="preserve">
+    <value>2. To cancel the Vendor Invitation, press Cancel or Deactivate.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto1" xml:space="preserve">
+    <value>1. Enter the Business Data and Address information.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto10" xml:space="preserve">
+    <value>3. Enter the Legal Representative information.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto11" xml:space="preserve">
+    <value>4. Enter the Bank Account data, pressing the Add button in the section and completing the information. These data can be supplemented after registration.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto12" xml:space="preserve">
+    <value>3. Check and accept the Terms and Conditions.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto13" xml:space="preserve">
+    <value>4. Press the Join Button to complete the Registration.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto14" xml:space="preserve">
+    <value>2. Enter the Bank Account data, pressing the Add button in the section and completing the information. These data can be supplemented after registration.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto15" xml:space="preserve">
+    <value>3. Enter the Legal Representative and Administrator information.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto16" xml:space="preserve">
+    <value>5. Press the Affiliate Button to complete the Registration.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto2" xml:space="preserve">
+    <value>2. Check the Next Button to continue, which will be enabled once the required information has been entered.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto3" xml:space="preserve">
+    <value>3. Enter the information of Legal Representative and Contact Person (the latter is Optional).</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto4" xml:space="preserve">
+    <value>4. Enter the details of Bank Accounts and Main Providers, pressing the Add button in each section and completing the information. These data can be supplemented after registration.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto5" xml:space="preserve">
+    <value>5. Check and accept the Terms and Conditions.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto6" xml:space="preserve">
+    <value>6. Press the Join Button to complete the Registration.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto7" xml:space="preserve">
+    <value>4. Enter the details of Bank Accounts and Main Customers, pressing the Add button in each section and completing the information. These data can be supplemented after registration.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto8" xml:space="preserve">
+    <value>When you login for the first time in the System, you must accept the Framework Agreement, to enjoy the benefits of the Service.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto9" xml:space="preserve">
+    <value>Note:</value>
+  </data>
+  <data name="textoModalAyudaRegistroTitulo1" xml:space="preserve">
+    <value>To Register the Company, do the following:</value>
+  </data>
+  <data name="textoModalAyudaRegistroTitulo2" xml:space="preserve">
+    <value>To Register the Provider, do the following:</value>
+  </data>
+  <data name="textoModalAyudaRegistroTitulo3" xml:space="preserve">
+    <value>To Register the Investor, do the following:</value>
+  </data>
+  <data name="textoModalAyudaRegistroTitulo4" xml:space="preserve">
+    <value>To Register the Bank, do the following:</value>
+  </data>
+  <data name="titleModalAyuda" xml:space="preserve">
+    <value>TuF@ctoring</value>
+  </data>
+  <data name="textoMantenimientoCONFIRMANT" xml:space="preserve">
+    <value>It allows the Security Administrator to control access to the System for each of the Users who will perform Bank functions, according to the assigned role and the permission of each one.</value>
+  </data>
+  <data name="textoMantenimientoDEBTOR" xml:space="preserve">
+    <value>It allows the Security Administrator to control access to the System of each of the Users who will perform functions within the Company, according to the assigned role and the permission of each one.</value>
+  </data>
+  <data name="textoMantenimientoFACTOR" xml:space="preserve">
+    <value>It allows the Security Administrator to control access to the System of each of the Users who will perform functions within the Investor's Company, according to the assigned role and the permission of each one.</value>
+  </data>
+  <data name="textoMantenimientoSUPPLIER" xml:space="preserve">
+    <value>It allows the Security Administrator to control access to the System for each of the Users who will perform functions within the Supplier's Company, according to the assigned role and the permission of each one.</value>
+  </data>
+  <data name="textoMantenimientoBACKOFFICE" xml:space="preserve">
+    <value>It allows the Security Administrator to control access to the System, of each of the Users who will perform functions within the "TuFactoring" Company, according to the assigned role and the permission of each one.</value>
+  </data>
+  <data name="textoMantenimiento" xml:space="preserve">
+    <value>It allows the Security Administrator to control access to the System, of each of the Users who will perform functions within the "TuFactoring" Company, according to the assigned role and the permission of each one.</value>
+  </data>
+  <data name="offeredBankStatus" xml:space="preserve">
+    <value>OFFERED BY THE BANK</value>
+  </data>
+  <data name="soldBankStatus" xml:space="preserve">
+    <value>BOUGHT TO PAYING</value>
+  </data>
+  <data name="canceledStatus" xml:space="preserve">
+    <value>CANCELLEDS</value>
+  </data>
+  <data name="soldToOverdueStatus" xml:space="preserve">
+    <value>BOUGHT TO EXPIRE</value>
+  </data>
+  <data name="soldToOverdue" xml:space="preserve">
+    <value>Bought to Expire</value>
+  </data>
+  <data name="soldBank" xml:space="preserve">
+    <value>Bought to Paying</value>
+  </data>
+  <data name="offeredBank" xml:space="preserve">
+    <value>Offered by the Bank</value>
+  </data>
+  <data name="finalizeBank" xml:space="preserve">
+    <value>Cancelleds</value>
+  </data>
+  <data name="soldSupplier" xml:space="preserve">
+    <value>Sold for Pay</value>
+  </data>
+  <data name="soldSupplierStatus" xml:space="preserve">
+    <value>SOLD FOR PAY</value>
+  </data>
+  <data name="soldToOverdueSupplier" xml:space="preserve">
+    <value>Sold by Expire</value>
+  </data>
+  <data name="soldToOverdueSupplierStatus" xml:space="preserve">
+    <value>SOLD BY EXPIRE</value>
+  </data>
+  <data name="textDeductionForDiscount" xml:space="preserve">
+    <value>Discount Deduction</value>
+  </data>
+  <data name="textoPublicarFacturas0" xml:space="preserve">
+    <value>To respond to the</value>
+  </data>
+  <data name="textoPublicarFacturas0.1" xml:space="preserve">
+    <value>, do the following:</value>
+  </data>
+  <data name="textoPublicarFacturas1" xml:space="preserve">
+    <value>1. Select the required Invoice and review the information displayed</value>
+  </data>
+  <data name="textoPublicarFacturas2" xml:space="preserve">
+    <value>2. Check the Accept button to notify the Bank to make the corresponding Payment or Reject to return the Offer to the Bank for its Counter Offer or Confirmation, the latter does not apply to Direct Sale.</value>
+  </data>
+  <data name="textoFor" xml:space="preserve">
+    <value>For</value>
+  </data>
+  <data name="textoPublicarFacturas3" xml:space="preserve">
+    <value>One (1) Invoice:</value>
+  </data>
+  <data name="textoPublicarFacturas3.1" xml:space="preserve">
+    <value>Select the required Invoice and check the Postpone or Post Button, depending on your need.</value>
+  </data>
+  <data name="textoPublicarFacturas4" xml:space="preserve">
+    <value>All Invoices:</value>
+  </data>
+  <data name="textoPublicarFacturas4.1" xml:space="preserve">
+    <value>Select the (⋮) icon from the Options menu, then the Post All or Snooze All option, as required. To complete, confirm the Operation.</value>
+  </data>
+  <data name="textoPublicarFacturas1.1" xml:space="preserve">
+    <value>(Days to Maturity, Bank Offer, Net Value, Discounted Amount, Annualized Cost, Service Commission, Amount to Receive, as well as the basic data of the Invoice).</value>
+  </data>
+  <data name="textoContentFacturasVencimiento4" xml:space="preserve">
+    <value>3. Invoices in process that have not yet been Paid or Completed, with a Due Date greater than 30 days.</value>
+  </data>
+  <data name="textoFacturasVencimiento0" xml:space="preserve">
+    <value>(More than 30 days), select the required Invoice and check the Publish Button.</value>
+  </data>
+  <data name="textoFacturasVencimiento1" xml:space="preserve">
+    <value>Each Invoice is identified according to the number of Due Days, with a line on the left side and its color varies according to the following:</value>
+  </data>
+  <data name="textoFacturasVencimiento2" xml:space="preserve">
+    <value>Invoice less than or equal to 30 days.</value>
+  </data>
+  <data name="textoFacturasVencimiento3" xml:space="preserve">
+    <value>Invoice greater than 30 days.</value>
+  </data>
+  <data name="grayColor" xml:space="preserve">
+    <value>Gray Color</value>
+  </data>
+  <data name="textoFacturasVencimiento4" xml:space="preserve">
+    <value>Confirmed Invoices Due.</value>
+  </data>
+  <data name="textoMercadoFacturasSupplier0" xml:space="preserve">
+    <value>To Consult the detail of each Invoice, select the required one and review the information displayed</value>
+  </data>
+  <data name="textoMercadoFacturasSupplier0.1" xml:space="preserve">
+    <value>(Days to Maturity, Best Offer, Net Value, Discounted Amount, Annualized Cost, Amount to Receive, as well as the basic data of the Invoice).</value>
+  </data>
+  <data name="textoMercadoFacturasSupplier1" xml:space="preserve">
+    <value>Each Invoice is identified depending on whether it has been offered or not, with a line on the left side and its color varies according to the following:</value>
+  </data>
+  <data name="textoMercadoFacturasSupplier2" xml:space="preserve">
+    <value>Invoice not Offered.</value>
+  </data>
+  <data name="textoMercadoFacturasSupplier3" xml:space="preserve">
+    <value>Invoice Offered.</value>
+  </data>
+  <data name="textoCierreMercado0" xml:space="preserve">
+    <value>Accept Offers</value>
+  </data>
+  <data name="textoCierreMercado0.1" xml:space="preserve">
+    <value>from Investors, do the following:</value>
+  </data>
+  <data name="textoCierreMercado1" xml:space="preserve">
+    <value>1. Select the required Invoice and review the information displayed</value>
+  </data>
+  <data name="textoCierreMercado1.1" xml:space="preserve">
+    <value>(Days to Expiration, Investor Offer, Net Value, Discounted Amount, Annualized Cost, Service Commission, Amount to Receive, as well as the basic data of the Invoice).</value>
+  </data>
+  <data name="textoCierreMercado2" xml:space="preserve">
+    <value>2. Check the Accept button to notify the Investor to make the corresponding Payment.</value>
+  </data>
+  <data name="textoPostularFacturas0" xml:space="preserve">
+    <value>To Postulate Invoices, select the Confirming Bank and perform one of the following actions, depending on the number of Invoices to be assigned:</value>
+  </data>
+  <data name="textoPostularFacturas1" xml:space="preserve">
+    <value>Check the Apply button for the required Invoice.</value>
+  </data>
+  <data name="variousInvoices" xml:space="preserve">
+    <value>Multiple Invoices</value>
+  </data>
+  <data name="textoPostularFacturas2" xml:space="preserve">
+    <value>Mark the indicator of the required Invoices and then the + Apply button (located on the right side of the Confirming Bank). Confirm the application.</value>
+  </data>
+  <data name="textoPostularFacturas3" xml:space="preserve">
+    <value>Select the (⋮) icon from the Options menu, followed by the Options Select All and + Apply. Confirm the application.</value>
+  </data>
+  <data name="textoPostularFacturas4" xml:space="preserve">
+    <value>To change the Financing condition of each Invoice, you must check the icon, located on the right side of it.</value>
+  </data>
+  <data name="titleConciliarMovements" xml:space="preserve">
+    <value>Non-reconciled movements</value>
+  </data>
+  <data name="textoModalAyudaLimiteTexto1" xml:space="preserve">
+    <value>To assign the Maximum Risk Amount, check the Set Amount or Modify Amount of the Client button required and in the Client Information window, do the following:</value>
+  </data>
+  <data name="textoModalAyudaLimiteTexto2" xml:space="preserve">
+    <value>1. Enter the corresponding value.</value>
+  </data>
+  <data name="textoModalAyudaLimiteTexto3" xml:space="preserve">
+    <value>2. Check the Assign Button.</value>
+  </data>
+  <data name="textoModalAyudaSegmentarTexto1" xml:space="preserve">
+    <value>To assign the Account Executive, check the Assign Button of the required Client and in the Client Information window, do the following:</value>
+  </data>
+  <data name="textoModalAyudaSegmentarTexto2" xml:space="preserve">
+    <value>1. Select an Executive from the list.</value>
+  </data>
+  <data name="textoModalAyudaSegmentarTexto3" xml:space="preserve">
+    <value>2. Check the Assign Button.</value>
+  </data>
+  <data name="textoModalAyudaVerificarTexto1" xml:space="preserve">
+    <value>To update the Verification result, check the required Client Verify Button and in the Client Information window, do the following:</value>
+  </data>
+  <data name="textoModalAyudaVerificarTexto2" xml:space="preserve">
+    <value>1. Positive Result:</value>
+  </data>
+  <data name="textoModalAyudaVerificarTexto3" xml:space="preserve">
+    <value>Check the Approve Button.</value>
+  </data>
+  <data name="textoModalAyudaVerificarTexto4" xml:space="preserve">
+    <value>2. Negative Result:</value>
+  </data>
+  <data name="textoModalAyudaVerificarTexto5" xml:space="preserve">
+    <value>Check the Reject Button.</value>
+  </data>
+  <data name="textoModalAyudaVerificarTexto6" xml:space="preserve">
+    <value>Once the Client's Risk is approved, it goes to the Segmentation tray and then to Risk Limit for its assignment, otherwise it will not be able to work with the Bank as Confirming.</value>
+  </data>
+  <data name="titleConsultaClientesOperativo" xml:space="preserve">
+    <value>It shows the Clients that participate in the System with the different Profiles (Banks, Companies, Suppliers, Investors). Observing your basic contact and address information, as well as the state in which you are.</value>
+  </data>
+  <data name="textoFinanciamientoFacturas0" xml:space="preserve">
+    <value>To change the Financing condition, do one of the following, depending on the number of requests to make:</value>
+  </data>
+  <data name="textoFinanciamientoFacturas1" xml:space="preserve">
+    <value>Mark the Bank Logo, located on the right side of the Invoice or select the Invoice and then mark the icon to Request or Cancel Financing, in the detail window.</value>
+  </data>
+  <data name="textoFinanciamientoFacturas2" xml:space="preserve">
+    <value>Select the (⋮) icon from the Options menu, followed by the Required Option: ✔ Request Financing or Cancel Financing.</value>
+  </data>
+  <data name="textoFinanciamientoFacturas3" xml:space="preserve">
+    <value>Each Invoice is identified according to whether or not it has Financing, with a line on the left side and its color varies according to the following:</value>
+  </data>
+  <data name="textoFinanciamientoFacturas4" xml:space="preserve">
+    <value>With Financing.</value>
+  </data>
+  <data name="textoFinanciamientoFacturas5" xml:space="preserve">
+    <value>Without Financing.</value>
+  </data>
+  <data name="textoFinanciamientoFacturasInvoicesAll" xml:space="preserve">
+    <value>2. All Invoices:</value>
+  </data>
+  <data name="textoConsultaFinanciamiento" xml:space="preserve">
+    <value>It shows the Amount Allocated and Used of Financing for each Client, totaling by the Total to Pay and the Total Financed, with their respective detail of associated Invoices by Provider, Due Date, Net Value and Financing Indicator.</value>
+  </data>
+  <data name="textoAyudaConsultaInvoiceBackoffice" xml:space="preserve">
+    <value>It shows the information of all the Invoices Charged by the Companies, according to the different States through which it passes in the System.</value>
+  </data>
+  <data name="textoAyudaMantenimientoSettings" xml:space="preserve">
+    <value>It allows to create and configure each of the parameters that are part of the System.</value>
+  </data>
+  <data name="textoAyudaMantenimientoAuction" xml:space="preserve">
+    <value>It allows to Consult and Manage the Auction that will run automatically on a daily basis in the System.</value>
+  </data>
+  <data name="btnConciliar" xml:space="preserve">
+    <value>Reconcile</value>
+  </data>
+  <data name="textoAyudaModalConciliar1" xml:space="preserve">
+    <value>- To Upload a Bank Transaction file:</value>
+  </data>
+  <data name="textoAyudaModalConciliar10" xml:space="preserve">
+    <value>- To authorize and release Non-Reconciled Movements:</value>
+  </data>
+  <data name="textoAyudaModalConciliar11" xml:space="preserve">
+    <value>1. In the Reconcile Payments Section:</value>
+  </data>
+  <data name="textoAyudaModalConciliar12" xml:space="preserve">
+    <value>Select the required record check, the Reconcile buttons in the Unconciled Transactions Section will be activated immediately.</value>
+  </data>
+  <data name="textoAyudaModalConciliar13" xml:space="preserve">
+    <value>2. In the Non-Reconciled Movements Section:</value>
+  </data>
+  <data name="textoAyudaModalConciliar14" xml:space="preserve">
+    <value>Identify the Movement associated with the Payment to be released and click on the "Reconcile" button, a confirmation message will be immediately displayed with the Payments to be Reconciled, where you must Accept to release the record to the Payments to Reconcile tray of the Confirming Bank, as otherwise will remain pending.</value>
+  </data>
+  <data name="textoAyudaModalConciliar15" xml:space="preserve">
+    <value>- To eliminate Non-Reconciled Movements:</value>
+  </data>
+  <data name="textoAyudaModalConciliar16" xml:space="preserve">
+    <value>1. In the Section of the same name: Check the "Delete" button, a confirmation message will be displayed immediately, where you must Accept the Deletion, to delete the record.</value>
+  </data>
+  <data name="textoAyudaModalConciliar17" xml:space="preserve">
+    <value>- To reject Payments to Reconcile:</value>
+  </data>
+  <data name="textoAyudaModalConciliar18" xml:space="preserve">
+    <value>1. In the Reconcile Payments Section:</value>
+  </data>
+  <data name="textoAyudaModalConciliar19" xml:space="preserve">
+    <value>Select the required record and check the "Reject" button to decline the Reconciliation of the reported Payment and Block the Investor.</value>
+  </data>
+  <data name="textoAyudaModalConciliar2" xml:space="preserve">
+    <value>1. In the Movement File Section:</value>
+  </data>
+  <data name="textoAyudaModalConciliar3" xml:space="preserve">
+    <value>Select the Bank Entity and the Type of Currency to which the Bank Transactions will be associated.</value>
+  </data>
+  <data name="textoAyudaModalConciliar4" xml:space="preserve">
+    <value>2. Carry out the Upload of the .txt file in the System, marking the button “Upload File” and selecting the file with the Movements.</value>
+  </data>
+  <data name="textoAyudaModalConciliar5" xml:space="preserve">
+    <value>3. Once the information has been updated, according to the result obtained between the comparison of the Bank Transactions and the Transfers reported by the Investor, the following will be carried out:</value>
+  </data>
+  <data name="textoAyudaModalConciliar6" xml:space="preserve">
+    <value>* Coincident Result</value>
+  </data>
+  <data name="textoAyudaModalConciliar7" xml:space="preserve">
+    <value>The record will not be displayed in the Reconcile Payments Section</value>
+  </data>
+  <data name="textoAyudaModalConciliar8" xml:space="preserve">
+    <value>* Non-Coincident Result:</value>
+  </data>
+  <data name="textoAyudaModalConciliar9" xml:space="preserve">
+    <value>The record will be displayed in the Non-Reconciled Transactions Section and will be maintained in the Reconcile Payments Section.</value>
+  </data>
+  <data name="textoModalMovementNotConciliado" xml:space="preserve">
+    <value>Are You Sure To Eliminate Unconciled Movement?</value>
+  </data>
+  <data name="titleModalMovementNotConciliado" xml:space="preserve">
+    <value>Remove Unconciled Movement</value>
+  </data>
+  <data name="textoAyudaContabilidad" xml:space="preserve">
+    <value>It allows to create and manage the Accounting Groups that will be associated with each Program (Factoring &amp; Confirming) classified by Type of Currency in the System, for their subsequent assignment to Events and Concepts according to an Accounting Account and its Debit and Credit Category.</value>
+  </data>
+  <data name="textoAyudaMantenimientoRoles" xml:space="preserve">
+    <value>It allows the creation and management of Activation and Deactivation of the different Roles that are part of the Security of the Profiles in the System.</value>
+  </data>
+  <data name="textoAyudaConsultaPagosOperativo" xml:space="preserve">
+    <value>It contains all the Payments made in the System, corresponding to Invoices Purchased by Investors and Banks, Payments for Reconciliations or Payments at Maturity.</value>
+  </data>
+  <data name="titleConsultaPagosFactuas" xml:space="preserve">
+    <value>Purchased Invoices</value>
+  </data>
+  <data name="textoCargarFacturasInformation7" xml:space="preserve">
+    <value>Complementary information of the Template:</value>
+  </data>
+  <data name="textoCargarFacturasInformation8" xml:space="preserve">
+    <value>File structure:</value>
+  </data>
+  <data name="textoCargarFacturasInformation9" xml:space="preserve">
+    <value>1. Document Number, only the numbering with their respective hyphens (depends on the format of the Country)</value>
+  </data>
+  <data name="textoCargarFacturasInformation10" xml:space="preserve">
+    <value>2. Invoice Number, with its respective hyphens (depends on the format of the Country)</value>
+  </data>
+  <data name="textoCargarFacturasInformation12" xml:space="preserve">
+    <value>3. Currency Code, ISO 4217 code (depends on the Country - example: USD)</value>
+  </data>
+  <data name="textoCargarFacturasInformation13" xml:space="preserve">
+    <value>4. Issue Date, in the format YYYY-MM-DD</value>
+  </data>
+  <data name="textoCargarFacturasInformation14" xml:space="preserve">
+    <value>5. Expiration Date, in the format YYYY-MM-DD</value>
+  </data>
+  <data name="textoCargarFacturasInformation15" xml:space="preserve">
+    <value>6. Net Value, with two (2) decimal places and with point (,) as decimal separator (9999.99)</value>
+  </data>
+  <data name="textoCargarFacturasInformation16" xml:space="preserve">
+    <value>Premises:</value>
+  </data>
+  <data name="textoCargarFacturasInformation17" xml:space="preserve">
+    <value>- Each record is composed of the 6 values ​​indicated in the File Structure</value>
+  </data>
+  <data name="textoCargarFacturasInformation18" xml:space="preserve">
+    <value>- Each value will be separated by a slash (|)</value>
+  </data>
+  <data name="textoCargarFacturasInformation19" xml:space="preserve">
+    <value>- Cannot have blanks</value>
+  </data>
+  <data name="textoCargarFacturasInformation20" xml:space="preserve">
+    <value>- Must have more than 1 record</value>
+  </data>
+  <data name="textoCargarFacturasInformation21" xml:space="preserve">
+    <value>File name:</value>
+  </data>
+  <data name="textoCargarFacturasInformation22" xml:space="preserve">
+    <value>The file name will have the following nomenclature</value>
+  </data>
+  <data name="textoCargarFacturasInformation23" xml:space="preserve">
+    <value>TuFactoring_Massive_Load_Company_MMM_YYYYMMDD.txt</value>
+  </data>
+  <data name="textoCargarFacturasInformation24" xml:space="preserve">
+    <value>, where:</value>
+  </data>
+  <data name="textoCargarFacturasInformation25" xml:space="preserve">
+    <value>1. Company corresponds to the name of the Company</value>
+  </data>
+  <data name="textoCargarFacturasInformation26" xml:space="preserve">
+    <value>2. YYYYMMDD corresponds to the File Upload date</value>
+  </data>
+  <data name="textoCargarFacturasInformation27" xml:space="preserve">
+    <value>3. MMM corresponds to the Currency Code (ISO 4217)</value>
+  </data>
+  <data name="menuConfirmarDebtor" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="titleReview" xml:space="preserve">
+    <value>Reviews</value>
+  </data>
+  <data name="textoModalRechazarTodas" xml:space="preserve">
+    <value>Are you sure to Reject all selected Invoices?</value>
+  </data>
+  <data name="titleModalRechazarTodas" xml:space="preserve">
+    <value>Reject Invoices</value>
+  </data>
+  <data name="editUserLegalBanks" xml:space="preserve">
+    <value>Edit Legal Representative</value>
+  </data>
+  <data name="errorDebtorNotSelected" xml:space="preserve">
+    <value>You must select the Client Associated with the Invoice</value>
+  </data>
+  <data name="textContentConfirmDebtor" xml:space="preserve">
+    <value>It allows Confirming the acceptance of the Notification of Sale of the Invoice of your Supplier</value>
+  </data>
+  <data name="productConfirming" xml:space="preserve">
+    <value>Confirming</value>
+  </data>
+  <data name="productDirect" xml:space="preserve">
+    <value>Direct Sale</value>
+  </data>
+  <data name="productType" xml:space="preserve">
+    <value>Program Type</value>
+  </data>
+  <data name="menuVentaDirecta" xml:space="preserve">
+    <value>Direct Sale</value>
+  </data>
+  <data name="menuPostularSupplier" xml:space="preserve">
+    <value>Postulation of Invoices</value>
+  </data>
+  <data name="percentageNotValid" xml:space="preserve">
+    <value>The assigned Percentage is invalid</value>
+  </data>
+  <data name="textoProductConfirming" xml:space="preserve">
+    <value>Confirming</value>
+  </data>
+  <data name="textoProductDirect" xml:space="preserve">
+    <value>Direct sale</value>
+  </data>
+  <data name="_Empty[1]" xml:space="preserve">
+    <value>Invoice Rejection
+</value>
+  </data>
+  <data name="refusedDirectSell" xml:space="preserve">
+    <value>Invoice Rejection</value>
+  </data>
+  <data name="sureToRefused" xml:space="preserve">
+    <value>Are you sure you want to reject the Invoice</value>
+  </data>
+  <data name="DIRECT" xml:space="preserve">
+    <value>Direct sale</value>
+  </data>
+  <data name="CONFIRMING" xml:space="preserve">
+    <value>Confirming</value>
+  </data>
+  <data name="selectTypeProgram" xml:space="preserve">
+    <value>Select a Service</value>
+  </data>
+  <data name="textoAddNewInvoiceSupplier" xml:space="preserve">
+    <value>It allows the Supplier to Load the Invoices of the different Clients, Manually or Massively, for their subsequent Direct Sale Application to the Confirming Banks.</value>
+  </data>
+  <data name="textoEditionInvoiceSupplier" xml:space="preserve">
+    <value>Once the Invoices are Manually or Massively Uploaded, you can edit them and update the basic information or Deductions, before being confirmed by your Clients.</value>
+  </data>
+  <data name="textoPostularSupplier" xml:space="preserve">
+    <value>It allows the assignment of the Invoices that you want to Sell Directly to the Allied Bank of your choice.</value>
+  </data>
+  <data name="textoModalRevisionTodas" xml:space="preserve">
+    <value>Are you sure you accept all the selected invoices?</value>
+  </data>
+  <data name="titleModalRevisarTodas" xml:space="preserve">
+    <value>Invoice review</value>
+  </data>
+  <data name="revisedStatus" xml:space="preserve">
+    <value>REVISEDS</value>
+  </data>
+  <data name="revised" xml:space="preserve">
+    <value>Reviseds</value>
+  </data>
+  <data name="Fintech::Detalle servicio 1" xml:space="preserve">
+    <value>Register all the requested information and accept the terms and conditions, once authorized you will receive your access code and you will be able to invite all your suppliers and enter the accounts receivable. Tufactoring will be in charge of notifying and with the debit authorization in account, invoices will be canceled upon expiration.</value>
+  </data>
+  <data name="Fintech::Detalle servicio 2" xml:space="preserve">
+    <value>Through the system you will receive confirmation of the invoices entered in the system by your clients and you can also make the sale request directly, so you can receive discount offers directly from Tufactoring or you can publish them in an electronic auction through our system and obtain offers from different investors.</value>
+  </data>
+  <data name="Fintech::Detalle servicio 3" xml:space="preserve">
+    <value>You must record all the information requested by the Tufactoring system so that you have access to the terms and conditions to operate. To have an account in the allied banks with which the suppliers also operate, and thus you will have daily access to the invoice auctions so that during the sessions you can bid on all the published invoices. If the purchase is awarded, you will receive a factoring contract without recourse granted by the seller and the payment confirmation upon expiration of the invoice. The payment of the purchase can be made through the payment button if your account is with the partner bank.</value>
+  </data>
+  <data name="Fintech::Resumen caracteristica 1" xml:space="preserve">
+    <value>Under the payment confirmation mechanisms between the companies and Tufactoring, you will receive the payment when the invoice is due.</value>
+  </data>
+  <data name="Fintech::Resumen caracteristica 3" xml:space="preserve">
+    <value>As a Tufactoring client, you will have access to all the services offered through its platform to manage the payment of your suppliers</value>
+  </data>
+  <data name="Fintech::Resumen servicio 1" xml:space="preserve">
+    <value>As our client, you can channel the payment of your accounts payable through our system by accepting a confirming contract.</value>
+  </data>
+  <data name="Fintech::Resumen servicio 2" xml:space="preserve">
+    <value>Register in the Tufactoring system and accept the invitation that your customers send you, you will receive confirmation of payment of your invoices and discount offers.</value>
+  </data>
+  <data name="Fintech::Resumen servicio 3" xml:space="preserve">
+    <value>The auction process will allow you to select the invoices that best suit your investment needs and expectations and whether you can make the discount offer. At the close of the auction day, if your bid was the winner, you will be notified to proceed with the payment.</value>
+  </data>
+  <data name="Fintech::Servicios subtitulo" xml:space="preserve">
+    <value>Become part of the Tufactoring community through our services. Through the different mechanisms, the companies will have the support to carry out the payment management of your accounts payable, the suppliers will be able to sell their invoices and the investors will access the invoice auction and make the purchase at a discount.</value>
+  </data>
+  <data name="Contactanos" xml:space="preserve">
+    <value>Contact us</value>
+  </data>
+  <data name="Resumen Contactanos" xml:space="preserve">
+    <value>Give us a call or send us an email and we will get back to you as soon as possible!</value>
+  </data>
+  <data name="Síguenos" xml:space="preserve">
+    <value>Follow us on social networks:</value>
+  </data>
+  <data name="paidToOverdue" xml:space="preserve">
+    <value>Paid Due</value>
+  </data>
+  <data name="indexSupplierTuFactoring" xml:space="preserve">
+    <value>it is a financing alternative where through a contract the Supplier assigns the future collection of the credits, obtaining in exchange the money immediately from these operations with a small discount. You can also wait for the expiration of the Invoices to collect them, always with the confirmation of payment of your</value>
+  </data>
+  <data name="indexConfirmantTuFactoring" xml:space="preserve">
+    <value>it is a financing alternative where, through a Confirming contract, the Bank confirms the payment to Suppliers and Investors that carry out Factoring operations, allowing the Bank to have the first option to Purchase the Invoices.</value>
+  </data>
+  <data name="indexDebtorTuFactoring" xml:space="preserve">
+    <value>it is an alternative where your Suppliers can make the Sale of their Invoices to Financial Institutions or Investors, thanks to the Confirming Contract signed by you.</value>
+  </data>
+  <data name="textoCargarFacturasInformation6Supplier" xml:space="preserve">
+    <value>5. To complete the upload in the System, click the Save Invoices button, located at the top of the Processed Invoices Section and proceed to Postulate.</value>
+  </data>
+  <data name="textoAyudaAsociadosComplementacion" xml:space="preserve">
+    <value>3. To add a Client, press the Add button, enter the information and save the changes in the corresponding window.</value>
+  </data>
+  <data name="textoRevisionContent" xml:space="preserve">
+    <value>It allows to review the Invoices Postulated by the Provider and that will be Confirmed by the Client.</value>
+  </data>
+  <data name="textoRevisionFacturas2" xml:space="preserve">
+    <value>Mark the selection indicator of the required Invoice and its respective Accept or Reject Button.</value>
+  </data>
+  <data name="textoRevisionFacturas3" xml:space="preserve">
+    <value>Mark the selection indicator for the required Invoices, then select the icon (⋮) from the Options menu and the Option ✔ Accept or Reject. To complete, confirm the Operation.</value>
+  </data>
+  <data name="textoRevisionFacturas4" xml:space="preserve">
+    <value>Select the (⋮) icon from the Options menu, then the Select All Option and ✔ Accept or Reject, as required. To complete, confirm the Operation.</value>
+  </data>
+  <data name="textoRevisionFacturas5" xml:space="preserve">
+    <value>Once the Invoices have been selected, you will be able to view the total amount to process.</value>
+  </data>
+  <data name="textoContentPublicacionFacturas" xml:space="preserve">
+    <value>Allows to Post Invoices in the next Auction and Postpone Invoices to Maturity</value>
+  </data>
+  <data name="textoPublicacionFacturas0" xml:space="preserve">
+    <value>To Post Invoices, do the following:</value>
+  </data>
+  <data name="textoPublicacionFacturas1" xml:space="preserve">
+    <value>Select the required Invoice and check the Postpone or Post Button, depending on your need.</value>
+  </data>
+  <data name="textoPublicacionFacturas2" xml:space="preserve">
+    <value>Select the icon (⋮) from the Options menu, then the Post All or Postpone All option, as required. To complete, confirm the Operation.</value>
+  </data>
+  <data name="textoOneInvoice" xml:space="preserve">
+    <value>1. One (1) Invoice: </value>
+  </data>
+  <data name="textoAllInvoice" xml:space="preserve">
+    <value>2. All Invoices:</value>
+  </data>
+  <data name="menuOfertasBanco" xml:space="preserve">
+    <value>Bank Offers</value>
+  </data>
+  <data name="textoCompraFacturas2.1" xml:space="preserve">
+    <value>(It only applies to the Applicants by Clients in Confirming)</value>
+  </data>
+  <data name="titleInvoiceConfirmationDebtor" xml:space="preserve">
+    <value>Confirm Sales Notification</value>
+  </data>
+  <data name="AMOUNT_CONFIRMATION_DIRECT" xml:space="preserve">
+    <value>Amount to Review</value>
+  </data>
+  <data name="textoModalAyudaPrincipalesProveedoresTexto3" xml:space="preserve">
+    <value>To accept the Invitation from a Provider, press the Accept button.</value>
+  </data>
+  <data name="textoRevisarFacturas1" xml:space="preserve">
+    <value>To Confirm the invoice review, do one of the following, depending on the amount to be processed:</value>
+  </data>
+  <data name="textoConfirmingDebtorNota" xml:space="preserve">
+    <value>Note: Before Confirming the Invoices you can edit each one and add the corresponding deductions.</value>
+  </data>
+  <data name="textModalConfirmDebtorRefuseAll" xml:space="preserve">
+    <value>Are you sure you want to Reject all the selected Invoices?</value>
+  </data>
+  <data name="amountToRefuseModal" xml:space="preserve">
+    <value>Amount to Refuse</value>
+  </data>
+  <data name="titleModalConfirmationDebtor" xml:space="preserve">
+    <value />
+  </data>
+  <data name="textTotalAmounToConfirm" xml:space="preserve">
+    <value>Total Amount to Confirm</value>
+  </data>
+  <data name="amountTotalToConfirm" xml:space="preserve">
+    <value>Total Amount to Confirm</value>
+  </data>
+  <data name="textoComissionServiceCierre" xml:space="preserve">
+    <value>Expense for Service</value>
+  </data>
+  <data name="refuseAllBankOfferts" xml:space="preserve">
+    <value>Refuse All</value>
+  </data>
+  <data name="rejectedStatus" xml:space="preserve">
+    <value>REJECTEDS</value>
+  </data>
+  <data name="rejected" xml:space="preserve">
+    <value>Rejecteds</value>
+  </data>
+  <data name="rejectedForClientStatus" xml:space="preserve">
+    <value>REJECTEDS BY CUSTOMER</value>
+  </data>
+  <data name="rejectedForClient" xml:space="preserve">
+    <value>Rejecteds by Customer</value>
+  </data>
+  <data name="totalAmountConfirmaDebtor" xml:space="preserve">
+    <value>Total Amount to Confirm</value>
+  </data>
+  <data name="confirmedForClientStatus" xml:space="preserve">
+    <value>CONFIRMED NOTIFICATION</value>
+  </data>
+  <data name="notificationConfirmedStatus" xml:space="preserve">
+    <value>CONFIRMED NOTIFICATION</value>
+  </data>
+  <data name="confirmedForClient" xml:space="preserve">
+    <value>with Confirmed Notification</value>
+  </data>
+  <data name="dashboardFactor" xml:space="preserve">
+    <value>The Financial Institution, through TuF@ctoring, presents an investment alternative through which the Investor may offer discount percentages for the purchase on invoices published by the Suppliers. The recovery of the investment will be supported by a Confirming contract granted by the debtor Clients.</value>
+  </data>
+  <data name="textoFacturasDisponiblesConfirming" xml:space="preserve">
+    <value>Confirming for a Total Amount of:</value>
+  </data>
+  <data name="textoFacturasDisponiblesDirecta" xml:space="preserve">
+    <value>Direct Sale for a Total Amount of:</value>
+  </data>
+  <data name="textoTotalFacturas" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="textoTotalPor" xml:space="preserve">
+    <value>Total for:</value>
+  </data>
+  <data name="soldSupplierSingular" xml:space="preserve">
+    <value>Sold for Pay</value>
+  </data>
+  <data name="buttonAddDeductionsAbre" xml:space="preserve">
+    <value>Deductions</value>
+  </data>
+  <data name="titleInvoiceDataDeductions" xml:space="preserve">
+    <value>Invoice Deductions</value>
+  </data>
+  <data name="Ver video" xml:space="preserve">
+    <value>Show video</value>
+  </data>
+</root>

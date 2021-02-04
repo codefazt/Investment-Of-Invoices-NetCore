@@ -1,0 +1,168 @@
+﻿@font-face {
+    font-family: "Darius OP";
+    src: url("../../fonts/5darius_.ttf");
+}
+
+@font-face {
+    font-family: "Digital OP";
+    src: url("../../fonts/digital.ttf")
+}
+
+.digital {
+    font-family: "Digital OP" !important
+}
+
+.darius2 {
+    font-family: "Darius OP" !important;
+}
+    
+.darius {
+    font-family: "Darius OP" !important;
+    letter-spacing: 0.2em !important;
+}
+    
+.v-chip {
+    padding: 0.30rem !important;
+    margin: 0px !important;
+    justify-content: center !important
+}
+
+.v-input--radio-group {
+    margin-top: 0 !important
+}
+
+.v-expansion-panel-header {
+    padding: 0.1rem !important;
+    padding-bottom: 0 !important
+}
+
+.v-data-table-header-mobile__wrapper {
+
+    display:none;
+}
+
+th.sortable .v-data-table-header__icon {
+    display: none
+}
+
+h3 {
+    font-size: 1.35rem !important
+}
+
+h4 {
+    font-size: 1.1rem !important
+}
+
+h5 {
+    font-size: 0.7rem !important
+}
+
+h5.text {
+    font-size: 1rem  !important
+}
+
+.v-input--checkbox, .v-input--checkbox .v-label, .v-input--selection-controls__ripple {
+    margin: 0
+}
+
+.v-input--radio-group .v-input__control {
+    height: 2rem
+}
+
+.v-input--radio-group .v-label {
+    top: 0.25rem !important
+}
+
+.v-label {
+    font-size: 0.85rem
+}
+
+a.hoverLine:hover {
+    text-decoration: none
+}
+
+.v-application {
+    font-family: "Nunito","-apple-system","BlinkMacSystemFont", "Segoe UI","Roboto","Helvetica Neue","Arial", "sans-serif", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" !important;
+    color: #858796 !important;
+}
+
+
+body {
+    font-family: "Nunito","-apple-system","BlinkMacSystemFont", "Segoe UI","Roboto","Helvetica Neue", "Arial","sans-serif", "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" !important;
+    color: #858796 !important;
+}
+
+p {
+    color: #858796;
+    margin:0 0 24px
+}
+
+a .text-xs{
+    margin-bottom: 0.1rem !important;
+}
+
+.v-application a {
+    color: #1976d2 !important;
+}
+
+a.btn{
+    color: white !important
+}
+
+.btn-radius-left {
+    border-radius: 5px 0px 0px 5px !important;
+}
+
+.custom-control-input ~ .custom-control-label{
+    font-weight:700
+}
+
+.custom-control-input:checked#checkFinanced3 ~ .custom-control-label::before, .custom-control-input:checked ~ .checkFinanced3::before {
+    color: lightgreen;
+    border-color: green !important;
+    background-color: green !important;
+}
+
+.custom-control-input:checked#checkFinanced ~ .custom-control-label::before, .custom-control-input:checked ~ .checkFinanced::before {
+    color: lightgreen;
+    border-color: red !important;
+    background-color: red !important;
+}
+
+.list-group-item{
+    padding: 0.75rem 0.75rem;
+}
+
+.card-header div.dropdown.no-arrow a.dropdown-toggle {
+    font-weight: bold;
+}
+
+
+@media only screen and (min-width: 700px) {
+    .modal-content {
+        width: 115% !important;
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    /*  Estilos para el modo telefono */
+    h1{
+        font-size: 1.50rem !important
+    }
+
+    h4 {
+        font-size: 1rem !important
+    }
+
+    .no-arrow span:first-child{
+        display:none !important
+    }
+
+    .sw-100{
+        width:100%
+    }
+}
+
+.disabledMenu {
+    pointer-events: none;
+}

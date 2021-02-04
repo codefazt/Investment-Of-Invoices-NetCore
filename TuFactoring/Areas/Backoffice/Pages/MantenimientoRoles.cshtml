@@ -1,0 +1,162 @@
+﻿@page
+@model TuFactoring.Areas.Admin.Pages.MantenimientoRolesModel
+@{
+    ViewData["Title"] = Localizer.Text("titlePageGestionRoles");
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<v-app id="app" hidden>
+    @Html.AntiForgeryToken()
+    @await Html.PartialAsync("_ModalLogoutPartial", 5)
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">
+            <a href="#" class="btn btn-success btn-circle">
+                <i class="@Localizer.Text("iconUser") text-white"></i>
+            </a>
+            @Localizer.Text("titleRolesManagement")
+        </h1>
+        <span>
+            <v-btn @@click="limpiar(); edit =true" dark color="green" class="float-right">
+                <i class="@Localizer.Text("iconAdd")"></i>&nbsp;@Localizer.Text("buttonCreate")
+            </v-btn>
+        </span>
+    </div>
+    <p class="mb-4">
+        @Localizer.Text("textoAyudaMantenimientoRoles")
+    </p>
+
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <v-row>
+                <v-col cols="12" md="12" lg="12" sm="12">
+                    <v-data-table :headers="header"
+                                  :items="roles"
+                                  :loading="loading"
+                                  class="elevation-1">
+                        <template v-slot:item.n="props">
+                            {{roles.indexOf(props.item) + 1}}
+                        </template>
+
+                        <template v-slot:item.name="props">
+                            <div class="text-left">
+                                {{props.item.name}}
+                            </div>
+                        </template>
+
+                        <template v-slot:item.participant="props">
+                            <div>
+                                {{i18n.t(props.item.participant)}}
+                            </div>
+                        </template>
+
+                        <template v-slot:item.opciones="props">
+                            <v-btn color="green" small @@click="editar(roles.indexOf(props.item)); edit = true" class="text-white" :disabled="enviando">
+                                <i class="@Localizer.Text("iconEdit")"></i>&nbsp;@Localizer.Text("buttonEditRol")
+                            </v-btn>
+                            <v-btn :color="props.item.status == 'banned' ? 'blue':'red'" small @@click="indice = roles.indexOf(props.item); dialogBloq = true;" class="text-white" :disabled="enviando">
+                                <i class="@Localizer.Text("iconCancel")"></i>&nbsp;{{ props.item.status == 'active' ? '@Localizer.Text("buttonBlock") ' : '@Localizer.Text("buttonUnlock") '}}
+                            </v-btn>
+                        </template>
+                    </v-data-table>
+                </v-col>
+            </v-row>
+        </div>
+    </div>
+
+
+    <v-dialog v-model="edit" max-width="400">
+        <v-card>
+            <v-card-title>
+                <h4 class="modal-title">@Localizer.Text("titleRolData")</h4>
+                <v-spacer></v-spacer>
+                <v-btn icon @@click="edit = false">
+                    <v-icon>
+                        @Localizer.Text("iconCloseMDI")
+                    </v-icon>
+                </v-btn>
+            </v-card-title>
+            <v-card-text>
+
+                <v-row>
+                    <v-col cols="12" md="12" sm="12" lg="12">
+                        <v-col cols="12" md="12" sm="12" lg="12">
+                            <label>@Localizer.Text("textoOneName")</label>
+                            <div class="input-group" style="width:100%">
+                                <input type="text" placeholder="@Localizer.Text("placeholderName")" v-model="nuevo.name" maxlength="255" class="form-control" />
+                            </div>
+                        </v-col>
+
+                        <v-col cols="12" md="12" sm="12" lg="12">
+                            <label>@Localizer.Text("textoAbbreviation")</label>
+                            <div class="input-group" style="width:100%">
+                                <input type="text" :disabled="indice != -1" placeholder="@Localizer.Text("placeholderAbbreviation")" v-model="nuevo.abbreviation" maxlength="255" class="form-control" />
+                            </div>
+                        </v-col>
+                    </v-col>
+
+                    <v-col cols="12" md="12" sm="12" lg="12">
+                        <v-expansion-panels>
+                            <v-expansion-panel>
+                                <v-expansion-panel-header v-slot="{ open }">
+                                    <v-col>
+                                        <span>@Localizer.Text("textoParticipant")</span>
+                                    </v-col>
+                                    <v-col>
+                                        <v-fade-transition leave-absolute>
+                                            <span v-if="!open">{{i18n.t(nuevo.participant)}}</span>
+                                        </v-fade-transition>
+                                    </v-col>
+                                </v-expansion-panel-header>
+                                <v-expansion-panel-content>
+                                    <div class="form-check" v-for="(item,index) in discriminators">
+                                        <v-divider v-if="index != 0"></v-divider>
+                                        <v-radio-group v-model="nuevo.participant">
+                                            <v-radio small color="#5867dd" :value="item" :label="i18n.t(item)" :disabled="indice != -1"></v-radio>
+                                        </v-radio-group>
+                                    </div>
+                                </v-expansion-panel-content>
+                            </v-expansion-panel>
+                        </v-expansion-panels>
+                    </v-col>
+                </v-row>
+            </v-card-text>
+            <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="green"  @@click="procesoRol();" :disabled="enviando" class="text-white">
+                    {{indice == -1 ? '@Localizer.Text("buttonCreate")' : '@Localizer.Text("buttonUpdate")'}}
+                </v-btn>
+                <v-btn color="red"  @@click="edit = false" class="text-white">
+                    @Localizer.Text("buttonClose")
+                </v-btn>
+            </v-card-actions>
+        </v-card>
+    </v-dialog>
+
+    <v-dialog v-model="dialogBloq" max-width="400">
+        <v-card>
+            <v-card-title>
+                <h4 class="modal-title">@Localizer.Text("titleSystemTuFact")</h4>
+                <v-spacer></v-spacer>
+                <v-btn icon @@click="dialogBloq = false; indice = -1">
+                    <v-icon>
+                        @Localizer.Text("iconCloseMDI")
+                    </v-icon>
+                </v-btn>
+            </v-card-title>
+            <v-card-text>
+                <p> @Localizer.Text("textoSecureRole") <strong>{{indice == -1 ? '': roles[indice].name}}</strong></p>
+            </v-card-text>
+            <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn class="text-white" color="green" @@click="blockRol(indice);" :disabled="enviando">@Localizer.Text("buttonAcept")</v-btn>
+                <v-btn class="text-white" color="red" @@click="dialogBloq = false">@Localizer.Text("buttonClose")</v-btn>
+            </v-card-actions>
+        </v-card>
+    </v-dialog>
+
+</v-app>
+
+@section scripts{
+
+    <script src="~/js/Operativo/mantenimientoRoles.js" asp-append-version="true"></script>
+}

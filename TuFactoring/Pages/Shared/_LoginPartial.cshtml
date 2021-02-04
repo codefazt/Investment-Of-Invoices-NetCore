@@ -1,0 +1,104 @@
+@using Microsoft.AspNetCore.Identity
+@using TuFactoring.CustomProviders
+@using TuFactoringModels
+@using Microsoft.AspNetCore.Http
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+@{
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+}
+<ul class="navbar-nav">
+    @*SignInManager.IsSignedIn(User)*@
+    @if (false)
+    {
+        <li class="nav-item">
+            @if ("DEBTOR" == User.Claims.Where(x => x.Type == "Participant").Select(x => x.Value).SingleOrDefault())
+            {
+                <a class="nav-link text-dark" asp-area="Debtor" asp-page="/Index" asp-route-culture="@culture" title="Manage">Hello @User.Identity.Name!</a>
+            }
+
+            @if ("FACTOR" == User.Claims.Where(x => x.Type == "Participant").Select(x => x.Value).SingleOrDefault())
+            {
+                <a class="nav-link text-dark" asp-area="Factor" asp-page="/Index" asp-route-culture="@culture" title="Manage">Hello @User.Identity.Name!</a>
+            }
+
+            @if ("SUPPLIER" == User.Claims.Where(x => x.Type == "Participant").Select(x => x.Value).SingleOrDefault())
+            {
+                <a class="nav-link text-dark" asp-area="Supplier" asp-page="/Index" asp-route-culture="@culture" title="Manage">Hello @User.Identity.Name!</a>
+            }
+
+            @if ("CONFIRMANT" == User.Claims.Where(x => x.Type == "Participant").Select(x => x.Value).SingleOrDefault())
+            {
+                <a class="nav-link text-dark" asp-area="Confirmant" asp-page="/Index" asp-route-culture="@culture" title="Manage">Hello @User.Identity.Name!</a>
+            }
+
+
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            @switch (Model.Country)
+                {
+                case 32:
+                       culture = "es-AR";
+                    <a asp-page="/Index" asp-page-handler="SetCountry" asp-route-country="214">
+                        <img title="@Localizer.Text("textoBandera")" asp-p class="nav-link" src="~/img/flags/arg.png" height="34" alt="">
+                    </a>
+                break;
+                case 214:
+                       culture = "es-DO";
+                    <a asp-page="/Index" asp-page-handler="SetCountry" asp-route-country="862">
+                        <img title="@Localizer.Text("textoBandera")" asp-p class="nav-link" src="~/img/flags/dom.png" height="34" alt="">
+                    </a>
+                break;
+                default:
+                       culture = "es-VE";
+                    <a asp-page="/Index" asp-page-handler="SetCountry" asp-route-country="32">
+                        <img title="@Localizer.Text("textoBandera")" asp-p class="nav-link" src="~/img/flags/ven.png" height="34" alt="">
+                    </a>
+                break;
+            }
+        </li>
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                @Localizer.Text("Iniciar sesion")
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Login" asp-route-culture="@culture" asp-route-id="1">@Localizer.Text("Como Empresa")</a>
+                <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Login" asp-route-culture="@culture" asp-route-id="2">@Localizer.Text("Como Proveedor")</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item disabled" href="#"><small>@Localizer.Text("Si eres Inversionista")</small></a>
+                <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Login" asp-route-culture="@culture" asp-route-id="3">@Localizer.Text("Como Empresa")</a>
+                <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Login" asp-route-culture="@culture" asp-route-id="4">@Localizer.Text("Como Persona")</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item disabled" href="#"><small>@Localizer.Text("Si eres Back-Office")</small></a>
+                <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Login" asp-route-culture="@culture" asp-route-id="5">@Localizer.Text("Como Banco")</a>
+                <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Login" asp-route-culture="@culture" asp-route-id="6">@Localizer.Text("Como Operativo")</a>
+            </div>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                @Localizer.Text("Registrarse")
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                @*asp-page="/Registro/RegistroTuFactoring" asp-route-idRegistro="1"*@
+                @* <a class="dropdown-item" asp-area="Registry" asp-page="/Account/Register" asp-route-culture="@culture">@Localizer.Text("Como Empresa")</a>*@
+
+                <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register" asp-route-culture="@culture" asp-route-idRegistro="1">@Localizer.Text("Como Empresa")</a>
+                <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register" asp-route-culture="@culture" asp-route-idRegistro="2">@Localizer.Text("Como Proveedor")</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item disabled" href="#"><small>@Localizer.Text("Como Inversionista")</small></a>
+                <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register" asp-route-culture="@culture" asp-route-idRegistro="3">@Localizer.Text("Como Empresa")</a>
+                <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register" asp-route-culture="@culture" asp-route-idRegistro="4">@Localizer.Text("Como Persona")</a>
+            </div>
+        </li>
+    }
+</ul>

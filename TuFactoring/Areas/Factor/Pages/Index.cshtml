@@ -1,0 +1,177 @@
+﻿@page
+@using System.Globalization;
+
+@model TuFactoring.Areas.Factor.Pages.IndexModel
+@{
+    ViewData["Title"] = Localizer.Text("Home page");
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@{
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+}
+
+<v-app id="appHome">
+
+    @Html.AntiForgeryToken()
+    <input hidden value="@ViewData["id"]" id="People" />
+    <input hidden id="contenidoRaw" value="@Model.ContratoJson" />
+
+    <div class="modal fade in fa fa-spinner" v-if="cargado" role="dialog">
+        <div class="modal-dialog text-center">
+
+            <h2 style="color:#f1f1f1"><span id="cargando">Cargando...</span></h2>
+        </div>
+    </div>
+
+    <div id="contenido" hidden>
+        @await Html.PartialAsync("_ModalLogoutPartial", 4)
+        <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800">@Localizer.Text("Welcome")</h1>
+        <p class="mb-4">
+            @Localizer.Text("dashboardFactor")
+        </p>
+
+        @await Component.InvokeAsync("FactorWidgets")
+
+        <div class="row mb-5 ">
+            <div class="card mb-3 col-md-6">
+                <img src="~/bolsa.jpg" style="height: 350px;" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text"><small class="text-muted">Ultima actualizacion hace 3 minutos</small></p>
+                </div>
+            </div>
+            <div class="card mb-3 col-md-6">
+                <img src="~/indice.jpg" style="height: 350px;" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text"><small class="text-muted">Ultima actualizacion hace 3 minutos</small></p>
+                </div>
+            </div>
+            <div class="card col-md-12">
+                <img src="~/series.jpg" class="card-img-top" style="max-height: 350px;" alt="...">
+                <div class="card-body">
+                    <p class="card-text"><small class="text-muted">Ultima actualizacion hace 3 minutos</small></p>
+                </div>
+            </div>
+        </div>
+
+        <p>Current culture : @CultureInfo.CurrentCulture.DisplayName (@CultureInfo.CurrentCulture.NativeName)</p>
+
+        <p>@Localizer.Text(" Current date") : @DateTime.Now</p>
+
+        <!--Contrato TuFactoring-->
+        <v-dialog v-model="contratoProveedor" scrollable persistent max-width="470">
+            <v-card>
+                <v-card-title class="headline">Contrato TuFactoring</v-card-title>
+                <v-card-text class="text-justify">
+                    What is Lorem Ipsum?
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <a href="~/CargaMasiva.xlsm" download="ContratoMarco.pdf" class="btn btn-primary btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-download"></i>
+                        </span>
+                        <span class="text">Imprimir</span>
+                    </a>
+                    <a href="#" v-on:click="contratoAceptado" class="btn btn-success btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        <span class="text">Aceptar</span>
+                    </a>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+
+        <!--Terminos y condiciones-->
+        <v-dialog v-model="contratoTerminoCondiciones" scrollable persistent max-width="470">
+            <v-card>
+                <v-card-title class="headline">Terminos y condiciones</v-card-title>
+                <v-card-text>
+                    <p class="text-center">
+                        PARA EL INGRESO, REGISTRO Y USO DEL TUFACTORING SERVICIOS C.A.
+
+                    </p>
+
+                    <p class="text-justify">
+                        PRIMERO. En este documento  se establecen los términos y condiciones de uso del “Sistema Tufactoring “, en lo adelante “EL SISTEMA”, desarrollo tecnológico diseñado y operado por la sociedad mercantil TUFACTORING SERVICIOS C.A., domiciliada en la ciudad de Caracas, Distrito Capital, constituida por documento inscrito ante el Registro Mercantil XX de la Circunscripción Judicial del Distrito Capital y Estado Miranda, en fecha xxxxx de xxxxxx de xxxxx, bajo el N.º xx, Tomo xxxxxx,xxxxxxx, en lo adelante LA EMPRESA. En este sentido, el material mostrado u ofrecido en este Sitio Web, (material gráfico, documentos, textos, imágenes, sonido, video, audio, las ilustraciones, etc.) son de la exclusiva propiedad de LA EMPRESA.
+                    </p>
+                    <p class="text-justify">
+                        SEGUNDO: El registro en el Sistema implica la aceptación de los términos y condiciones establecidos en este Contrato, lo cual es indispensable para acceder, consultar o realizar cualquier operación en el presente Sitio Web.
+                    </p>
+                    <p class="text-justify">
+                        TERCERO: Para registrarse en EL SISTEMA se debe ser mayor de edad, civilmente hábil y residente en la República Bolivariana de Venezuela. Adicionalmente, para el registro en EL SISTEMA como Cliente, resulta imprescindible poseer una cuenta activa en el banco anfitrión (banco desde el cual se hace el enlace en el link de EL SISTEMA), no así en caso de registrarse como Proveedor o como Inversionista (ver Glosario). En estos dos últimos casos, el usuario queda informado y acepta, que el uso o participación de los servicios y operaciones en EL SISTEMA, no suponen el establecimiento de una relación comercial con EL BANCO, hasta tanto no cumplan con todos los requisitos establecidos por este instituto bancario en los contratos que regulan sus productos y servicios, todo ello de conformidad con lo establecido en la legislación vigente.
+                    </p>
+                    <p class="text-justify">
+                        CUARTO: LA EMPRESA está comprometida con la seguridad de los datos de sus usuarios, cumpliendo con los estándares de seguridad que exige el sistema bancario nacional. La información personal requerida y con la cual usted será identificado en EL SISTEMA, sólo se empleará de acuerdo con los términos de este documento. No obstante, el usuario asume todos los riesgos relativos a, o derivados de, el uso, consulta o acceso por su parte en el Sistema desde equipos distintos a los normalmente utilizados. Tampoco se hace responsable LA EMPRESA de fallas derivadas de los servicios de telefonía e Internet ni garantiza de forma alguna que el servicio del Sistema sea ininterrumpido o libre de error.
+                    </p>
+                    <p class="text-justify">
+                        QUINTO: Los equipos utilizados por el usuario para acceder a ésta página Web, son de su exclusiva responsabilidad; dichos equipos deberán cumplir con los requerimientos, indicaciones y especificaciones técnicas recomendadas por EL BANCO para el acceso a esta página. EL BANCO ni LA EMPRESA serán responsables por el buen funcionamiento, idoneidad, capacidad y compatibilidad de dichos equipos con esta página Web.
+                    </p>
+                    <p class="text-justify">
+                        SEXTO: Los contenidos publicados en esta página Web, pueden contener inexactitudes o imprecisiones, por lo que EL BANCO se libera y desconoce cualquier tipo de responsabilidad sobre el particular; igualmente, EL BANCO no garantiza que los contenidos publicados en el sitio corresponden a información completa o actualizada, por lo cual, el usuario se compromete a verificar con EL BANCO, la información que allí se expresa, a través de cualquiera de sus agencias y sucursales.
+                    </p>
+                    <p class="text-justify">
+                        SÉPTIMO: La invalidez o inaplicabilidad de cualquiera de los presentes términos y condiciones -en todo o en parte-, no afecta la validez o la aplicabilidad de los demás. LA EMPRESA se reserva el derecho de actualizar el presente Contrato siempre que lo considere oportuno. En consecuencia, recomendamos al Usuario revisar periódicamente las modificaciones efectuadas al Contrato.
+                    </p>
+                    <p class="text-justify">
+                        OCTAVO: Estas condiciones generales se regirán e interpretarán de conformidad con leyes vigentes en la República Bolivariana de Venezuela. Las controversias que se deriven de las presentes condiciones generales, deberán ser interpuestas por ante los tribunales de la República Bolivariana de Venezuela.
+                    </p>
+                    <p class="text-justify">
+                        GLOSARIO
+                    </p>
+                    <p class="text-justify">
+                        EL BANCO: Corresponde a la persona jurídica confirmante de la operación, la cual garantiza el pago a EL INVERSIONISTA ganador de la operación de confirming (pago a proveedores), una vez que llegue(n) al vencimiento la(s) factura(s) por la que haya ofertado.
+                    </p>
+                    <p class="text-justify">
+                        EMPRESA: Corresponde a la sociedad mercantil TUFACTORING SERVICIOS C.A. domiciliada en la ciudad de Caracas, Distrito Capital, constituida por documento inscrito por ante el Registro Mercantil xx de la Circunscripción Judicial del Distrito Capital y Estado Miranda, en fecha xxxxx de xxxxxx de xxxxx, bajo el N.° xx, Tomo xxxxxx.
+                    </p>
+                    <p class="text-justify">
+                        SISTEMA TUFACTORING (ó Sistema): Corresponde a un Desarrollo Tecnológico que permite a EL CLIENTE, a través del uso de los canales de banca por internet, realizar operaciones de registro, venta, compra, ordenar el pago o ceder Facturas de sus proveedores, así como intercambiar información exclusivamente relacionada con dichas Facturas.
+                    </p>
+                    <p class="text-justify">
+                        EL CLIENTE: Es la persona natural o jurídica titular de una cuenta o de cualquier otro servicio o producto ofrecido por EL BANCO quien, luego de cumplir las formalidades propias de afiliación al sistema de Banca Electrónica o Banca por Internet, particularmente al Sistema TuFactoring, conforme al procedimiento señalado a tal efecto por EL BANCO, quien, siendo aceptante o deudor de una o varias facturas, registre dichos instrumentos en el Sistema de manera que pudieran ser objeto de subasta para el pago anticipado de las mismas a sus proveedores.
+                    </p>
+                    <p class="text-justify">
+                        INVERSIONISTA. Es la persona natural o jurídica que se convierte en acreedora de El CLIENTE como consecuencia de transacciones de compra de Facturas expedidas por EL PROVEEDOR originario, y a favor de quien este último acepta su cesión una vez que acepta el descuento ofertado por el Valor Neto de la factura subastada.
+                    </p>
+                    <p class="text-justify">
+                        PROVEEDOR. Es la persona natural o jurídica acreedora de EL CLIENTE como consecuencia de transacciones comerciales consistentes en la venta o suministro de bienes y/o servicios, por lo cual ha expedido una Factura cuyo pago está a cargo de EL CLIENTE.
+                    </p>
+                    <p class="text-justify">
+                        FACTURA: Corresponde al documento o título de carácter mercantil contentivo de una obligación de pago con ocasión de la adquisición de bienes o servicios por parte de EL CLIENTE.
+                    </p>
+                    <p class="text-justify">
+                        CLAVES DE ACCESO: Corresponde a un mecanismo de Seguridad de la Información Electrónica, constante de factores de autenticación tendentes a verificar la identidad de EL CLIENTE y de EL BANCO y la cualidad de éstos para realizar las operaciones propias del SISTEMA TUFACTORING. Estos factores de autenticación corresponderán a aquellos establecidos como Factor de autenticación categorías 2 y 3 de acuerdo a la Resolución Nº 641.10 emanada de la Superintendencia de las Instituciones del Sector Bancario (SUDEBAN) contentiva de las “Normas que Regulan el Uso de los Servicios de la Banca Electrónica”, publicada en la Gaceta Oficial de la República Bolivariana de Venezuela Nº 39.597 de fecha 19 de enero de 2011.
+                    </p>
+                    <p class="text-justify">
+                        DÍAS HÁBILES BANCARIOS: Corresponde a los días comprendidos entre lunes y viernes que, conforme al calendario bancario, sean laborables para los bancos.
+                    </p>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <a href="~/Terminos y condiciones SISTEMA TU FACTORING.docx" download="Terminos_Condiciones.pdf" class="btn btn-primary btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-download"></i>
+                        </span>
+                        <span class="text">Imprimir</span>
+                    </a>
+                    <a href="#" v-on:click="contratoAceptado" class="btn btn-success btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        <span class="text">Aceptar</span>
+                    </a>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+    </div>
+</v-app>
+
+@section Scripts{
+
+    <script src="~/js/Home/vueHome.js" asp-append-version="true"></script>
+
+}

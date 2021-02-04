@@ -1,0 +1,248 @@
+﻿@page
+@model TuFactoring.Areas.Backoffice.Pages.MantenimientoBancosModel
+
+@{
+    ViewData["Title"] = Localizer.Text("titleAlliedBank");
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+    <v-app id="appGestionBancos" hidden>
+        @Html.AntiForgeryToken()
+        @await Html.PartialAsync("_ModalLogoutPartial", 6)
+
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">
+                <a href="#" class="btn btn-success btn-circle">
+                    <i class="fas fa-building" style="color:white"></i>
+                </a>
+                @Localizer.Text("titleAlliedBank")
+            </h1>
+        </div>
+        <p class="mb-4">
+            @Localizer.Text("textHelpBankManagement")
+        </p>
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 justify-content-between">
+                <h4 class="m-0 font-weight-bold text-primary">@Localizer.Text("availableBanks")</h4>
+
+            </div>
+            <div class="card-body">
+                <v-data-table :headers="header"
+                              :loading="loading"
+                              :items="entities"
+                              class="elevation-1">
+                    <template v-slot:item.n="{ item }">
+                        {{entities.indexOf(item) +1}}
+                    </template>
+                    <template v-slot:item.person.name="{ item }">
+                        <div class="text-left">
+                            {{item.person.name}}
+                        </div>
+                    </template>
+                    <template v-slot:item.legal="{ item }">
+                        <span title="Actualizar Representante Legal" @@click="getDataFromEntity(item)" class="fas fa-user-edit"></span>
+                    </template>
+                    <template v-slot:item.related="{ item }">
+                        <span title='@Localizer.Text("alliedBank")' v-if="item.related == true" @@click="makeEntityAllied(item)" class="far fa-check-circle text-success"></span>
+                        <span title='@Localizer.Text("notAlliedBank")' v-else @@click="makeEntityAllied(item)" class="far fa-times-circle text-danger"></span>
+                    </template>
+                </v-data-table>
+            </div>
+        </div>
+        <!----------------------Modal para Visualizar Información del Representante Legal de la Entidad------------------------------>
+        <v-dialog v-model="dialogUpdateLegal" max-width="700" transition="dialog-bottom-transition">
+            <v-card>
+                <v-card-title class="headline">
+                    <h6 class="m-0 font-weight-bold text-primary"><i class='@Localizer.Text("iconLegalRepre") logoColor'></i> &nbsp;@Localizer.Text("titleLegalRepresentative")</h6>
+                    <v-spacer></v-spacer>
+                    <v-btn icon @@click="dialogUpdateLegal = false">
+                        <v-icon>@Localizer.Text("iconCloseMDI")</v-icon>
+                    </v-btn>
+                </v-card-title>
+                <v-card-text>
+                    <div class="card shadow mb-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <!----><!---->
+                                <div class="col-sm-12" v-for="iden in catalogo.identifications" v-if="iden.default && iden.discriminator == 'PERSON'">
+                                    <!--Documento de Identidad-->
+
+                                    <div class="form-group">
+                                        <span v-if="iden.id !== 999 ? representanteLegal.identification = iden.id : iden.id = 9999 "></span>
+
+                                        <label for="doc">{{iden.name}}</label>
+                                        <div class="input-group">
+                                            <div v-if="iden.prefix" class="input-group-prepend">
+                                                <select disabled v-if="!actualizarPerfil" v-model="representanteLegal.prefix" class="input-group-text" @@click="actualizarPerfil = true">
+                                                    <option v-for="pref in iden.prefixes" :value="representanteLegal.prefix" readonly>{{representanteLegal.abbreviation}}</option>
+                                                </select>
+                                                <select disabled v-else v-model="representanteLegal.prefix" class="input-group-text">
+                                                    <option v-for="pref in iden.prefixes" :value="representanteLegal.prefix" readonly>{{pref.abbreviation}}</option>
+                                                </select>
+                                            </div>
+                                            <div v-else class="input-group-prepend">
+                                                <select disabled v-on:change="validarDocumentoRepresentanteLegal(iden.regexp, iden.mask_edit)" class="input-group-text">
+                                                    <option selected :value="representanteLegal.prefix = null" readonly>{{iden.abbreviation}}</option>
+                                                </select>
+                                            </div>
+                                            <input :maxlength="iden.digits" readonly onPaste="return false" :maxlength="iden.digits" v-on:keyup="validarDocumentoRepresentanteLegal(iden.regexp, iden.mask_edit)" v-model="representanteLegal.documentNumber" :placeholder="iden.mask_edit" class="form-control">
+                                        </div>
+
+                                        <!--<span class="text-danger">{{errorTextoDocumentoRepresentanteLegal}}</span>-->
+                                    </div>
+
+                                </div>
+                                <div class="from-group col-sm-12">
+                                    <label for="nombre">@Localizer.Text("textonameSurname")</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i aria-hidden="true" class="fa fa-user"></i></span>
+                                        </div>
+                                        <input maxlength="255" placeholder='@Localizer.Text("placeholderName")' class="form-control" v-model="representanteLegal.name" readonly />
+                                    </div>
+                                    <span class="text-danger"> </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="from-group col-sm-12">
+                                    <label for="telefonoL">@Localizer.Text("textophone")</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i aria-hidden="true" class="fa fa-phone"></i>
+                                            </span>
+                                        </div>
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">+{{catalogo.calling_code}}</span>
+                                        </div>
+                                        <input onpaste="return false" readonly :maxlength="maxLengthPhone" type="text" :placeholder="placeholderPhone" class="form-control" v-model="representanteLegal.phone">
+                                    </div>
+                                    <span class="text-danger"></span>
+                                </div>
+                                <div class="from-group col-sm-12">
+                                    <label for="email">@Localizer.Text("textoEmail")</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                                        </div>
+                                        <input onpaste="return false" readonly maxlength="60" placeholder='@Localizer.Text("placeholderEmail")' class="form-control" v-model="representanteLegal.email">
+                                    </div>
+                                    <span class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-lg-12 text-right ">
+                                <button class="btn btn-primary float-right sw-100" @@click="modalNewLegalRepresentant = true; dialogUpdateLegal = false">
+                                    <i class="fas fa-edit"></i>
+                                    <span>@Localizer.Text("editUserLegalBanks")</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
+                                    <!--Modal para Ingresar los Nuevos Datos del Representante-->
+        <v-dialog v-model="modalNewLegalRepresentant" max-width="700" transition="dialog-bottom-transition">
+            <v-card>
+                <v-card-title class="headline">
+                    <h6 class="m-0 font-weight-bold text-primary"><i class='@Localizer.Text("iconLegalRepre") logoColor'></i> &nbsp;@Localizer.Text("titleLegalRepresentative")</h6>
+                    <v-spacer></v-spacer>
+                    <v-btn icon @@click="modalNewLegalRepresentant = false">
+                        <v-icon>@Localizer.Text("iconCloseMDI")</v-icon>
+                    </v-btn>
+                </v-card-title>
+                <v-card-text>
+                    <div class="card shadow mb-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <!----><!---->
+                                <div class="col-sm-12" v-for="iden in catalogo.identifications" v-if="iden.default && iden.discriminator == 'PERSON'">
+                                    <!--Documento de Identidad-->
+
+                                    <div class="form-group">
+                                        <span v-if="iden.id !== 999 ? nuevo.identification = iden.id : iden.id = 9999 "></span>
+
+                                        <label for="doc">{{iden.name}}</label>
+                                        <div class="input-group">
+                                            <div v-if="iden.prefix" class="input-group-prepend">
+                                                <select v-model="nuevo.prefix" class="input-group-text">
+                                                    <option v-for="pref in iden.prefixes" :value="pref.id">{{pref.abbreviation}}</option>
+                                                </select>
+                                            </div>
+                                            <div v-else class="input-group-prepend">
+                                                <select disabled v-on:change="validarDocumentoRepresentanteLegal(iden.regexp, iden.mask_edit)" class="input-group-text">
+                                                    <option selected :value="nuevo.prefix = null">{{iden.abbreviation}}</option>
+                                                </select>
+                                            </div>
+                                            <input :maxlength="iden.digits" onPaste="return false" :maxlength="iden.digits" v-on:keyup="validarDocumentoRepresentanteLegal(iden.regexp, iden.mask_edit)" v-model="nuevo.documentNumber" :placeholder="iden.mask_edit" :class="['form-control',errorDocumentoRepresentanteLegal]">
+                                        </div>
+
+                                        <span class="text-danger">{{errorTextoDocumentoRepresentanteLegal}}</span>
+                                    </div>
+
+                                </div>
+                                <div class="from-group col-sm-12">
+                                    <label for="nombre">@Localizer.Text("textonameSurname")</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i aria-hidden="true" class="fa fa-user"></i></span>
+                                        </div>
+                                        <input maxlength="255" v-on:keyup="validarNombresRepresentanteLegal()" placeholder='@Localizer.Text("placeholderName")' :class="['form-control',errorNombresRepresentanteLegal]" v-model="nuevo.name" />
+                                    </div>
+                                    <span class="text-danger">{{errorTextoNombresRepresentanteLegal}} {{errorTextoApellidosRepresentanteLegal}}</span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="from-group col-sm-12">
+                                    <label for="telefonoL">@Localizer.Text("textophone")</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">
+                                                <i aria-hidden="true" class="fa fa-phone"></i>
+                                            </span>
+                                        </div>
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">+{{catalogo.calling_code}}</span>
+                                        </div>
+                                        <input onpaste="return false" :maxlength="maxLengthPhone" type="text" v-on:keyup="validarTelefonoRepresentanteLegal()" :placeholder="placeholderPhone" :class="['form-control',errorTelefonoRepresentante]" v-model="nuevo.phone">
+                                    </div>
+                                    <span class="text-danger">{{errorTextoTelefonoRepresentante}}</span>
+                                </div>
+                                <div class="from-group col-sm-12">
+                                    <label for="email">@Localizer.Text("textoEmail")</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                                        </div>
+                                        <input onpaste="return false" maxlength="60" v-on:keyup="validarEmailRepresentanteLegal()" placeholder='@Localizer.Text("placeholderEmail")' :class="['form-control',errorEmailRepresentante]" v-model="nuevo.email">
+                                    </div>
+                                    <span class="text-danger">{{errorTextoEmailRepresentante}}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-lg-12 text-right ">
+                                <button class="btn btn-success float-left sw-100" @@click="ordenarArreglo()" :disabled="nuevo.documentNumber == '' || nuevo.phone == '' || nuevo.email == '' || nuevo.name == '' || nuevo.prefix == '' || !validName || !validDocument || !validPhone || !validEmail">
+                                    <i class="fas fa-check"></i>
+                                    <span>Aceptar</span>
+                                </button>
+                                <button class="btn btn-danger float-right sw-100" @@click="modalNewLegalRepresentant = false">
+                                    <i class="fas fa-ban"></i>
+                                    <span>Cancelar</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
+
+        <v-dialog v-model="modalCargandoDetalle" persistent max-width="700">
+            <v-card color="primary" dark>
+                <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
+            </v-card>
+        </v-dialog>
+    </v-app>
+
+@section scripts{
+    <script src="~/js/Operativo/mantenimientoBancos.js" asp-append-version="true"></script>
+}

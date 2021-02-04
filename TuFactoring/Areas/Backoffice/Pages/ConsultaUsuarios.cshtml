@@ -1,0 +1,409 @@
+﻿@page
+@model TuFactoring.Areas.Backoffice.Pages.ConsultaUsuariosModel
+@{
+
+    ViewData["Title"] = Localizer.Text("titleQueriesClientes");
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<v-app id="appConsultaUsuariosBO">
+        @Html.AntiForgeryToken()
+        <input hidden id="contenidoRaw" value="@Model.dataJsonFactura" />
+        <input hidden id="listadosInicialesJson" value="@Model.listadosInicialesJson" />
+        <div id="eliminarData">
+            <input hidden id="filterData" value="@Model.dataFilter" />
+        </div>
+
+        <div class="modal fade in fa fa-spinner" v-if="cargando" role="dialog">
+            <div class="modal-dialog text-center">
+
+                <h2 style="color:#000"><span id="cargando">Cargando...</span></h2>
+            </div>
+        </div>
+
+        <div id="contenido" hidden class="row">
+
+            <div class="col-sm-12">
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">
+                        <a href="#" style="color:#fff !important" class="btn btn-success btn-circle">
+                            <v-icon color="#fff">mdi-account-search</v-icon>
+                        </a>
+                        &nbsp;@Localizer.Text("titleQueriesClientes")
+                    </h1>
+                    <span style="display: none;">
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                    </span>
+                </div>
+                <p class="mb-4">
+                    @Localizer.Text("titleConsultaClientesOperativo")
+                </p>
+
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h4 class="m-0 font-weight-bold text-primary">
+                            @Localizer.Text("titleConsultaCliente")
+                        </h4>
+                        <div class="dropdown no-arrow">
+                            <span class="font-weight-bold text-primary">@Localizer.Text("buttonOptions")</span>
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                <button class="dropdown-item btn-link"
+                                        data-toggle="modal" data-target="#modalFilter">
+                                    <i class="@Localizer.Text("iconFilter")"></i>
+                                    @Localizer.Text("buttonFilter")
+                                </button>
+                                <a class="dropdown-item btn-link" style="color:black !important" asp-page="#">
+                                    <i class="@Localizer.Text("iconClear")"></i>
+                                    @Localizer.Text("buttoClearFilter")
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+
+                                <!------------------------------------------- Tabla de Consultas ---------------------------------------------->
+                                <v-data-table v-if="clientes != []"
+                                              item-key="CliCon"
+                                              :headers="headerConsulta"
+                                              :items="clientes"
+                                              :items-per-page="10"
+                                              :options.sync="options"
+                                              :loading="loading"
+                                              class="elevation-1">
+
+                                    <template v-slot:item.n="{ item }">
+                                        {{clientes.indexOf(item) + 1}}
+                                    </template>
+                                    <template v-slot:item.status="{ item }">
+                                        <div title="Usuario Activo" v-if="item.state != 'banned'" class="text-center text-success"><i class="fas fa-lock-open"></i></div>
+                                        <div title="Usuario Bloqueado" v-else class="text-center text-danger"><i class="fas fa-lock"></i></div>
+                                    </template>
+                                    <template v-slot:item.action="{ item }">
+                                        <button v-on:click="detalles_cliente(item)" class="btn btn-sm btn-success"><i class="fa fa-eye"></i> @Localizer.Text("buttonDetalles")</button>
+                                    </template>
+
+                                    @*
+                                <template v-slot:item.confirmings="{ item }">
+                                    <div class="text-right">{{ item[0].currency.symbol }} {{ formatoMonedaInput(item.amount,'es',2) }} <span class="text-xs badge bg-gray-200">{{ item.currency.iso_4217 }}</span></div>
+                                </template>
+                                    *@
+
+                                </v-data-table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Modal d Flitro de los Clientes-->
+            <div class="modal" tabindex="-1" role="dialog" id="modalFilter">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title"><i class="@Localizer.Text("iconFilter")"></i>&nbsp;@Localizer.Text("titlefilter")</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post">
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                        <label>@Localizer.Text("titleClient")</label>
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1"><i class="@Localizer.Text("iconProvider")"></i></span>
+                                            </div>
+                                            <input placeholder="@Localizer.Text("selectTypeDebtor")" asp-for="filter.Name" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                        <label>@Localizer.Text("titleFilterTipoCliente")</label>
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
+                                            </div>
+                                            <select asp-for="filter.Discriminator" class="form-control"
+                                                    asp-items="Model.Discriminator_options" aria-label="@Localizer.Text("placeholderTipoCliente")">
+                                                <option value="">@Localizer.Text("placeholderTipoCliente")</option>
+                                            </select>
+                                        </div>
+                                        <span class="help-block text-danger" v-if="errorProveedor">@Localizer.Text("placeholderTipoCliente")</span>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                        <label>@Localizer.Text("titleFilterTipoParticipante")</label>
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
+                                            </div>
+                                            <select asp-for="filter.Participant" class="form-control"
+                                                    asp-items="Model.Participant_options" aria-label="@Localizer.Text("placeholderParticipante")">
+                                                <option value="">@Localizer.Text("placeholderParticipante")</option>
+                                            </select>
+                                        </div>
+                                        <span class="help-block text-danger" v-if="errorProveedor">@Localizer.Text("placeholderTipoCliente")</span>
+                                    </div>
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                        <label>@Localizer.Text("headersDocNumber")</label>
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="@Localizer.Text("iconInvoiceNumber")"></i></span>
+                                            </div>
+                                            <input type="text" maxlength="255" id="txtFactura" class="form-control" asp-for="filter.Number"
+                                                   placeholder="@Localizer.Text("placeholderDocumento")" onKeypress="if (event.keyCode == 32) event.returnValue = false;">
+                                        </div>
+                                        <span class="help-block text-danger" asp-validation-for="filter.Number"></span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    @*
+                                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                    <label>@Localizer.Text("titleFilterStatusUsuario")</label>
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-check-double"></i></span>
+                                        </div>
+                                        <select asp-for="filter.Status" class="form-control" asp-items="Model.Status_Options" aria-label="@Localizer.Text("placeholderStatusUsuario")">
+                                            <option value="">@Localizer.Text("placeholderTipoCliente")</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                    *@
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                        <label>@Localizer.Text("textostate")</label>
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text" id="basic-addon1"><i class="@Localizer.Text("iconAddress")"></i></div>
+                                            </div>
+                                            <select asp-for="filter.Region" class="form-control" asp-items="Model.State_Options" id="selectState" onchange="listaCities('selectState','listadosInicialesJson')" aria-label="@Localizer.Text("placeholderEstate")">
+                                                @*id="selectState" onchange="listaCities('selectState','listadosInicialesJson')"*@
+                                                <option value="">@Localizer.Text("placeholderEstate")</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                        <label>@Localizer.Text("textocity")</label>
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text" id="basic-addon1"><i class="@Localizer.Text("iconCity")"></i></div>
+                                            </div>
+                                            <select asp-for="filter.City" class="form-control"
+                                                    asp-items="Model.City_Options" aria-label="@Localizer.Text("placeholderCity")">
+                                                <option value="">@Localizer.Text("placeholderEstate")</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 align-self-end">
+                                        <button type="submit" class="btn btn-block btn-success" :disabled="envio">
+                                            <i class="@Localizer.Text("iconFilter")"></i>
+                                            <span>@Localizer.Text("buttonFilter")</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Modal d Detalle de la Factura-->
+            <v-dialog v-model="abrirModal" max-width="700">
+                <v-card>
+                    <v-card-title class="headline">
+                        <h4>
+                            @Localizer.Text("titleDetallesClientes")
+                        </h4>
+                        <v-spacer></v-spacer>
+                        <v-btn icon @@click="abrirModal = false">
+                            <i class="fa fa-close"></i>
+                        </v-btn>
+                    </v-card-title>
+
+                    <v-card-text>
+                        <div v-if="DatosDetalles != null" class="row">
+                            <div class="col-sm-6">
+                                <div class="card shadow mb-0">
+                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h4 class="m-0 font-weight-bold text-primary">
+                                            <i class="fab fa-accusoft"></i> @Localizer.Text("titleDetalleConsultaContacto")
+                                        </h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div v-if="DatosDetalles != null" class="row">
+                                            <div class="row">
+                                                <div v-if="DatosDetalles.representante != null" class="col-sm-12">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col-auto ml-2 mr-3">
+                                                            <v-tooltip top>
+                                                                <template v-slot:activator="{ on }">
+                                                                    <i class="@Localizer.Text("iconLegalRepre")" style="font-size:28px" v-on="on" />
+                                                                </template>
+                                                                <span>@Localizer.Text("textoLegalRepresentative")</span>
+                                                            </v-tooltip>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="text-sm font-weight-bold text-uppercase">
+                                                                {{DatosDetalles.representante.name}}
+                                                            </div>
+                                                            <div class="text-sm font-weight-bold text-uppercase">
+                                                                <small>{{ DatosDetalles.representante.label }}: {{ DatosDetalles.representante.documentNumber }}</small><br />
+                                                                <small>@Localizer.Text("textophone"): {{ DatosDetalles.representante.phoneNumber }}</small><br />
+                                                                <small>@Localizer.Text("textoEmail"): {{ DatosDetalles.representante.email }}</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div v-if="DatosDetalles.representante == null" class="col-sm-12">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col-auto ml-2 mr-3">
+                                                            <v-tooltip top>
+                                                                <template v-slot:activator="{ on }">
+                                                                    <i class="fas fa-city" style="font-size:28px" v-on="on" />
+                                                                </template>
+                                                                <span></span>
+                                                            </v-tooltip>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="text-sm font-weight-bold text-uppercase">
+                                                                {{DatosDetalles.company}}
+                                                            </div>
+                                                            <div class="text-sm font-weight-bold text-uppercase">
+                                                                <small>{{ DatosDetalles.document.abbreviation }}: {{ DatosDetalles.document.number }}</small><br />
+                                                                <small>@Localizer.Text("textophone"): {{ DatosDetalles.phone }}</small><br />
+                                                                <small>@Localizer.Text("textoEmail"): {{ DatosDetalles.email }}</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div v-if="DatosDetalles.contacto != null && DatosDetalles.representante != null" class="col-md-12">
+                                                    <hr />
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <div v-if="DatosDetalles.contacto != null" class="row no-gutters align-items-center">
+                                                        <div class="col-auto ml-2 mr-3">
+                                                            <v-tooltip top>
+                                                                <template v-slot:activator="{ on }">
+                                                                    <i class="@Localizer.Text("iconContactPerson")" style="font-size:28px" v-on="on" />
+                                                                </template>
+                                                                <span>@Localizer.Text("textContactPerson")</span>
+                                                            </v-tooltip>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="text-sm font-weight-bold text-uppercase">
+                                                                {{DatosDetalles.contacto.name}}
+                                                            </div>
+                                                            <div class="text-sm font-weight-bold text-uppercase">
+                                                                <small>{{ DatosDetalles.contacto.label }}: {{ DatosDetalles.contacto.documentNumber }}</small><br />
+                                                                <small>@Localizer.Text("textophone"): {{ DatosDetalles.contacto.phoneNumber }}</small><br />
+                                                                <small>@Localizer.Text("textoEmail"): {{ DatosDetalles.contacto.email }}</small>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                @*
+                                            <div v-if="DatosDetalles.limiteCredito != null" class="col-md-12">
+                                                <hr />
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <div v-if="DatosDetalles.limiteCredito != null" class="row no-gutters align-items-center">
+                                                    <div class="col-auto ml-4 mr-3">
+                                                        <v-tooltip top>
+                                                            <template v-slot:activator="{ on }">
+                                                                <i class="fas fa-dollar-sign" style="font-size:28px" v-on="on"></i>
+                                                            </template>
+                                                            <span>@Localizer.Text("textoDetallesLimiteCredito")</span>
+                                                        </v-tooltip>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="text-sm font-weight-bold text-uppercase">
+                                                            @Localizer.Text("textoDetallesLimiteCredito")
+                                                        </div>
+                                                        <div class="text-sm font-weight-bold text-uppercase">
+                                                            {{DatosDetalles.limiteCredito.abbreviation}}<br />
+                                                            {{ formatoMonedaInput(DatosDetalles.limiteCredito.available,'es',2) }}<br />
+                                                            {{DatosDetalles.limiteCredito.currency}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                *@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="card shadow mb-0">
+                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h4 class="m-0 font-weight-bold text-primary">
+                                            <i class="fas fa-map-marker-alt"></i> @Localizer.Text("titleDetalleConsultaDireccion")
+                                        </h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div v-if="DatosDetalles.address != null" class="row">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col-auto mr-3">
+                                                            <v-tooltip top>
+                                                                <template v-slot:activator="{ on }">
+                                                                    <i class="fas fa-map-marked-alt" style="font-size:28px" v-on="on"></i>
+                                                                </template>
+                                                                <span>@Localizer.Text("titleAddress")</span>
+                                                            </v-tooltip>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="text-sm font-weight-bold text-uppercase">
+                                                                {{DatosDetalles.address.line1}}
+                                                            </div>
+                                                            <div class="text-sm font-weight-bold text-uppercase">
+                                                                <small>{{ DatosDetalles.address.line2 }}</small> <br />
+                                                            </div>
+                                                            <div class="text-sm font-weight-bold text-uppercase">
+                                                                <small>@Localizer.Text("textostate") : {{ DatosDetalles.address.region }}</small> <br />
+                                                                <small>@Localizer.Text("textocity") : {{ DatosDetalles.address.city }}</small> <br />
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr />
+                                            </div>
+                                            <hr />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </v-card-text>
+                </v-card>
+            </v-dialog>
+
+            <!-- Modal de Cargando Detalles -->
+            <v-dialog v-model="modalCargandoDetalle" persistent max-width="700">
+                <v-card color="primary" dark>
+                    <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
+                </v-card>
+            </v-dialog>
+            @await Html.PartialAsync("_ModalLogoutPartial", 6)
+        </div>
+    </v-app>
+@section Scripts{
+
+    <script src="~/js/translate/recursos.js" type="text/javascript" asp-append-version="true"></script>
+    <script src="~/js/Consultas/vueBOConsultasUsuarios.js" asp-append-version="true"></script>
+}
+

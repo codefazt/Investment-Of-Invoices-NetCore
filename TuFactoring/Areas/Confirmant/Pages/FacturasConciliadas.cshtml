@@ -1,0 +1,446 @@
+﻿@page
+@model TuFactoring.Areas.Confirmant.Pages.FacturasConciliadasModel
+@{
+    ViewData["Title"] = "Pago de Facturas Conciliadas";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+    <v-app id="appPagoConciliadas">
+        @Html.AntiForgeryToken()
+        <input hidden id="jsonReconciled" value="@Model.JsonPagosReconciled" />
+        <div class="modal fade in fa fa-spinner" v-if="cargando" role="dialog">
+            <div class="modal-dialog text-center">
+
+                <h2 style="color:#000"><span id="cargando">@Localizer.Text("load")</span></h2>
+            </div>
+        </div>
+
+        <div id="contenido" hidden class="row">
+            @await Html.PartialAsync("_ModalLogoutPartial", 5)
+            <div class="col-md-12">
+
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">
+                        <a href="#" class="btn btn-success btn-circle">
+                            <i class="fa fa-money"></i>
+                        </a>
+                        &nbsp;@Localizer.Text("menuFacturasConciliadas")
+                    </h1>
+
+                </div>
+                <p class="mb-4">
+                    @Localizer.Text("textHelpReconciledInvoices")
+                </p>
+                <!--Facturas Conciliadas-->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h4 class="m-0 font-weight-bold text-primary">
+                            @Localizer.Text("titleSectionConciledsInvoices")
+                        </h4>
+                        <!--<div class="dropdown no-arrow">
+                <span class="font-weight-bold text-primary">@Localizer.Text("buttonOptions")</span>
+                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="@Localizer.Text("iconMenu") text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                    <div class="dropdown-header">@Localizer.Text("buttonOptions"):</div>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item btn-link"
+                            data-toggle="modal" data-target="#modalFilter">
+                        <i class="@Localizer.Text("iconFilter")"></i>
+                        @Localizer.Text("buttonFilter")
+                    </button>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item btn-link" style="color:rgb(58,59,69) !important" asp-page="#">
+                        <i class="@Localizer.Text("iconClear")"></i>
+                        @Localizer.Text("buttoClearFilter")
+                    </a>
+
+                </div>
+            </div>-->
+                    </div>
+
+
+                    <div class="card-body">
+                        <v-data-table :headers="headersRencociled"
+                                      :items="reconcileds"
+                                      class="elevation-1">
+                            <template v-slot:item.n="{ item }">
+                                <div class="text-center">
+                                    {{reconcileds.indexOf(item) + 1}}
+                                </div>
+                            </template>
+
+                            <template v-slot:item.receipt_date="{ item }">
+                                <div class="text-center">
+                                    {{ backEndDateFormat(item.receipt_date) }}
+                                </div>
+                            </template>
+
+                            <template v-slot:item.amount="{ item }">
+                                <div class="text-right">
+                                    {{ item.currency.symbol }} {{ formatoMonedaInput(item.amount,lang, item.currency.digits) }} <v-chip x-small> <b>{{ item.currency.iso_4217 }} </b></v-chip>
+                                </div>
+                            </template>
+
+                            <template v-slot:item.payer.name="{ item }">
+                                <div v-if="item.paying_account != null">
+                                    {{item.paying_account.accountNumber}} <br />
+                                    <small>{{ item.payer.name }}</small>
+                                </div>
+                                <div v-else>{{ item.payer.name }}</div>
+                            </template>
+
+                            <template v-slot:item.receiver.name="{ item }">
+                                <div v-if="item.receiving_account != null">
+                                    {{item.receiving_account.accountNumber}} <br />
+                                    <small>{{ item.receiver.name }}</small>
+                                </div>
+                                <div v-else>{{ item.receiver.name }}</div>
+                            </template>
+
+                            <template v-slot:item.detail="{ item }">
+                                <button type="button" v-on:click="DetalleFacturas(item)" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></button>
+                            </template>
+
+                            <template v-slot:item.pay="{ item }">
+                                <span v-if="item.method == 'DIRECT' && item.state == 'draft'">
+                                    <v-btn block v-on:click="BotonPago(item)" dark color="#5867dd">@Localizer.Text("buttonPay")</v-btn>
+                                </span>
+                                <span v-else-if="item.state == 'processing'">
+                                    @Localizer.Text("textoReceiptsProcess")
+                                </span>
+                                <span v-else-if="item.state == 'unpaid' && item.method == 'DIRECT'">
+                                    <v-btn block v-on:click="BotonPago(item)" dark color="#f6c23e">@Localizer.Text("buttonPay")</v-btn>
+                                </span>
+                            </template>
+                        </v-data-table>
+                    </div>
+                </div>
+
+
+                <!--Dialog de Detalle para la Publication en Saas-->
+                @if (!Model.isFintech)
+                {
+                    <v-dialog v-model="dialogDetails" max-width="1300">
+                        <v-card>
+                            <v-card-title class="headline">
+                                <h4><i class="fa fa-university logoColor"></i> &nbsp;@Localizer.Text("titleDetailsInvoices")</h4>
+                                <v-spacer></v-spacer>
+                                <v-btn icon @@click="dialogDetails = false">
+                                    <i class="fa fa-close"></i>
+                                </v-btn>
+                            </v-card-title>
+                            <v-card-text>
+                                <v-data-table :headers="headerDetailPublications"
+                                              :items="datos.publications"
+                                              class="elevation-1"
+                                              item-key="detalles">
+                                    <template v-slot:item.n="{ item }">
+                                        <div class="text-center">
+                                            {{datos.publications.indexOf(item) + 1}}
+                                        </div>
+                                    </template>
+                                    <template v-slot:item.invoice.supplier.name="{ item }">
+                                        <div>
+                                            {{item.invoice.supplier.name}} <br />
+                                            <small>{{ item.invoice.debtor.name }}</small>
+                                        </div>
+                                    </template>
+                                    <template v-slot:header.invoice.supplier.name="{item}">
+                                        @Localizer.Text("headersSupplier")
+                                        <br />
+                                        <small>@Localizer.Text("headersCustomer")</small>
+                                    </template>
+                                    <template v-slot:header.invoice.number="{item}">
+                                        @Localizer.Text("headersNumberInvoice")
+                                        <br />
+                                        <small>@Localizer.Text("titleExpirationDate")</small>
+                                    </template>
+                                    <template v-slot:item.invoice.number="{item}">
+                                        {{item.invoice.number}}
+                                        <br />
+                                        <small>{{backEndDateFormat(item.invoice.expiration_date)}}</small>
+                                    </template>
+                                    <template v-slot:item.valornominal="{ item }">
+                                        <div class="text-right">
+                                            {{ datos.currency.symbol }} {{ formatoMonedaInput(item.invoice.original_amount,lang, datos.currency.digits) }}
+                                        </div>
+                                    </template>
+                                    <template v-slot:item.valorneto="{ item }">
+                                        <div class="text-right">
+                                            {{ datos.currency.symbol }} {{ formatoMonedaInput(item.invoice.amount,lang, datos.currency.digits) }}
+                                        </div>
+                                    </template>
+                                    <template v-slot:item.discount="{ item }">
+                                        <v-chip color="green" x-small class="text-white" style="max-width:4rem;justify-content:center">
+                                            <strong v-if="item.discount != ''">{{formatoMonedaInput(item.discount,lang,datos.currency.digits)}}&nbsp;%</strong>
+                                            <strong v-else>0&nbsp;%</strong>
+                                        </v-chip>
+                                        <br />
+                                        <small>
+                                            {{ datos.currency.symbol }} {{ formatoMonedaInput(item.earnings,lang, datos.currency.digits) }}  <v-chip x-small> {{ datos.currency.iso_4217 }}</v-chip>
+                                        </small>
+                                    </template>
+                                    <template v-slot:item.commission="{ item }">
+                                        <div class="text-right">
+                                            {{ datos.currency.symbol }} {{ formatoMonedaInput(item.commission,lang, datos.currency.digits) }}  <v-chip x-small> {{ datos.currency.iso_4217 }}</v-chip>
+                                        </div>
+                                    </template>
+                                    <template v-slot:item.receivable="{ item }">
+                                        <span class="text-right">
+                                            {{ datos.currency.symbol }} {{ formatoMonedaInput(item.receivable,lang, datos.currency.digits) }}
+                                        </span>
+                                    </template>
+                                    <template v-slot:item.request_financing="{ item }">
+                                        <v-tooltip top>
+                                            <template v-slot:activator="{ on }">
+                                                <i class="@Localizer.Text("iconFinancing")" style="font-size:20px" :style="{'color': item.invoice.request_financing ? 'green':'gray'}" v-on="on" />
+                                            </template>
+                                            <div v-if="item.invoice.request_financing == true">@Localizer.Text("tipFinancing")</div>
+                                            <div v-else>@Localizer.Text("tipNoFinancing")</div>
+                                        </v-tooltip>
+                                    </template>
+                                </v-data-table>
+                            </v-card-text>
+                        </v-card>
+                    </v-dialog>
+                }
+                else
+                {
+                    <v-dialog v-model="dialogDetails" max-width="1300">
+                        <v-card>
+                            <v-card-title class="headline">
+                                <h4><i class="fa fa-university logoColor"></i> &nbsp;@Localizer.Text("titleDetailsInvoices")</h4>
+                                <v-spacer></v-spacer>
+                                <v-btn icon @@click="dialogDetails = false">
+                                    <i class="fa fa-close"></i>
+                                </v-btn>
+                            </v-card-title>
+                            <v-card-text>
+                                <v-data-table :headers="headerDetailPublicationsFintech"
+                                              :items="datos.publications"
+                                              class="elevation-1"
+                                              item-key="detalles">
+                                    <template v-slot:item.n="{ item }">
+                                        <div class="text-center">
+                                            {{datos.publications.indexOf(item) + 1}}
+                                        </div>
+                                    </template>
+                                    <template v-slot:item.invoice.supplier.name="{ item }">
+                                        <div>
+                                            {{item.invoice.supplier.name}} <br />
+                                            <small>{{ item.invoice.debtor.name }}</small>
+                                        </div>
+                                    </template>
+                                    <template v-slot:header.invoice.supplier.name="{item}">
+                                        @Localizer.Text("headersSupplier")
+                                        <br />
+                                        <small>@Localizer.Text("headersCustomer")</small>
+                                    </template>
+                                    <template v-slot:header.invoice.number="{item}">
+                                        @Localizer.Text("headersNumberInvoice")
+                                        <br />
+                                        <small>@Localizer.Text("titleExpirationDate")</small>
+                                    </template>
+                                    <template v-slot:item.invoice.number="{item}">
+                                        {{item.invoice.number}}
+                                        <br />
+                                        <small>{{backEndDateFormat(item.invoice.expiration_date)}}</small>
+                                    </template>
+                                    <template v-slot:item.valornominal="{ item }">
+                                        <div class="text-right">
+                                            {{ datos.currency.symbol }} {{ formatoMonedaInput(item.invoice.original_amount,lang, datos.currency.digits) }}
+                                        </div>
+                                    </template>
+                                    <template v-slot:item.valorneto="{ item }">
+                                        <div class="text-right">
+                                            {{ datos.currency.symbol }} {{ formatoMonedaInput(item.invoice.amount,lang, datos.currency.digits) }}
+                                        </div>
+                                    </template>
+                                    <template v-slot:item.discount="{ item }">
+                                        <v-chip color="green" x-small class="text-white" style="max-width:4rem;justify-content:center">
+                                            <strong v-if="item.discount != ''">{{formatoMonedaInput(item.discount,lang,datos.currency.digits)}}&nbsp;%</strong>
+                                            <strong v-else>0&nbsp;%</strong>
+                                        </v-chip>
+                                        <br />
+                                        <small>
+                                            {{ datos.currency.symbol }} {{ formatoMonedaInput(item.earnings,lang, datos.currency.digits) }}  <v-chip x-small> {{ datos.currency.iso_4217 }}</v-chip>
+                                        </small>
+                                    </template>
+                                    <template v-slot:item.commission="{ item }">
+                                        <div class="text-right">
+                                            {{ datos.currency.symbol }} {{ formatoMonedaInput(item.commission,lang, datos.currency.digits) }}  <v-chip x-small> {{ datos.currency.iso_4217 }}</v-chip>
+                                        </div>
+                                    </template>
+                                    <template v-slot:item.receivable="{ item }">
+                                        <span class="text-right">
+                                            {{ datos.currency.symbol }} {{ formatoMonedaInput(item.receivable,lang, datos.currency.digits) }}
+                                        </span>
+                                    </template>
+                                </v-data-table>
+                            </v-card-text>
+                        </v-card>
+                    </v-dialog>
+                }
+
+
+
+
+                <!--Dialog de Confirmacion de Operacion Overdue-->
+                <v-dialog v-model="dialogConfirmTransfer" max-width="500">
+                    <v-card>
+                        <v-card-title class="headline">
+                            <h4>
+                                @Localizer.Text("titleConfirmPay")
+                            </h4>
+                            <v-spacer></v-spacer>
+                            <v-btn icon @@click="dialogConfirmTransfer = false">
+                                <i class="fa fa-close"></i>
+                            </v-btn>
+                        </v-card-title>
+
+                        <v-card-text v-if="selected.currency != null">
+                            <v-row>
+                                <v-col cols="12" sm="12" lg="12" md="12" class="notice">
+                                    <li class="list-group-item d-flex w-100 justify-content-between">
+                                        <span class="text-xs text-muted"> @Localizer.Text("textoPayerAccount")</span>
+                                        <span class="font-weight text-uppercase" v-if="selected.paying_account != null">
+                                            {{selected.paying_account.accountNumber}}
+                                        </span>
+                                        <span class="font-weight text-uppercase" v-else>
+                                            -
+                                        </span>
+                                    </li>
+                                    <li class="list-group-item d-flex w-100 justify-content-between">
+                                        <span class="text-xs text-muted"> @Localizer.Text("textoReceivingAccount")</span>
+                                        <span class="font-weight text-uppercase" v-if="selected.receiving_account != null">
+                                            {{selected.receiving_account.accountNumber}}
+                                        </span>
+                                    </li>
+
+                                    <li class="list-group-item d-flex w-100 justify-content-between">
+                                        <span class="text-xs text-muted text-justify"> @Localizer.Text("textoReceiptsNumber")</span>
+                                        <span class="font-weight text-uppercase text-right">
+                                            {{selected.id}}
+                                        </span>
+                                    </li>
+
+                                    <li class="list-group-item d-flex w-100 justify-content-between">
+                                        <span class="text-xs text-muted"> @Localizer.Text("textoTotalInvoices")</span>
+                                        <span class="font-weight text-uppercase">
+                                            {{formatoMonedaInput(selected.publications.length,lang,0)}}
+                                        </span>
+                                    </li>
+
+                                    <li class="list-group-item d-flex w-100 justify-content-between">
+                                        <span class="text-xs text-muted"> @Localizer.Text("titleNominalAmount")</span>
+                                        <span class="font-weight text-uppercase">
+                                            {{ selected.currency.symbol }} {{ formatoMonedaInput(obtenerValorNominal(selected.publications),lang, selected.currency.digits) }} <v-chip x-small>{{ selected.currency.iso_4217 }} </v-chip>
+                                        </span>
+                                    </li>
+
+                                    <li class="list-group-item d-flex w-100 justify-content-between">
+                                        <span class="text-xs text-muted"> @Localizer.Text("headersAmountNet")</span>
+                                        <span class="font-weight text-uppercase">
+                                            {{ selected.currency.symbol }} {{ formatoMonedaInput(obtenerValorNet(selected.publications),lang, selected.currency.digits) }} <v-chip x-small>{{ selected.currency.iso_4217 }} </v-chip>
+                                        </span>
+                                    </li>
+
+                                    <li class="list-group-item d-flex w-100 justify-content-between">
+                                        <span class="text-xs text-muted"> @Localizer.Text("textoAmountDiscount2")</span>
+                                        <span class="font-weight text-uppercase">
+                                            {{ selected.currency.symbol }} {{ formatoMonedaInput(obtenerAmountDiscount(selected.publications),lang, selected.currency.digits) }} <v-chip x-small>{{ selected.currency.iso_4217 }} </v-chip>
+                                        </span>
+                                    </li>
+
+                                    <li class="list-group-item d-flex w-100 justify-content-between">
+                                        <span class="text-xs text-muted"> @Localizer.Text("textoAmountCommission")</span>
+                                        <span class="font-weight text-uppercase">
+                                            {{ selected.currency.symbol }} {{ formatoMonedaInput(obtenerAmountCommission(selected.publications),lang, selected.currency.digits) }} <v-chip x-small>{{ selected.currency.iso_4217 }} </v-chip>
+                                        </span>
+                                    </li>
+
+                                    <li class="list-group-item d-flex w-100 justify-content-between">
+                                        <span class="text-xs text-muted"> @Localizer.Text("textAmountReceivable")</span>
+                                        <span class="font-weight text-uppercase">
+                                            {{ selected.currency.symbol }} {{ formatoMonedaInput(obtenerAmountReceivable(selected.publications),lang, selected.currency.digits) }} <v-chip x-small>{{ selected.currency.iso_4217 }} </v-chip>
+                                        </span>
+                                    </li>
+
+                                </v-col>
+                            </v-row>
+
+                            <v-row>
+                                <v-col cols="12" sm="12" lg="12" md="12">
+                                    <span class="float-right">
+                                        <button class="btn btn-success" v-on:click="secondConfirmation(selected); dialogConfirmTransfer = false">@Localizer.Text("buttonAcept")</button>
+                                        <button class="btn btn-danger" @@click="dialogConfirmTransfer = false">@Localizer.Text("buttonCancel")</button>
+                                    </span>
+                                </v-col>
+                            </v-row>
+                        </v-card-text>
+
+                    </v-card>
+                </v-dialog>
+                <!--Mensaje de esta seguro que desea hacer esta acciòn-->
+                <v-dialog v-model="dialogSeguro" max-width="400">
+                    <v-card>
+                        <v-card-title class="headline">
+                            <h4>
+                                @Localizer.Text("titleConfirmPay")
+                            </h4>
+                            <v-spacer></v-spacer>
+                            <v-btn icon @@click="dialogSeguro = false">
+                                <i class="fa fa-close"></i>
+                            </v-btn>
+                        </v-card-title>
+
+                        <v-card-text v-if="selected.currency != null">
+                            <p class="text-justify">
+                                @Localizer.Text("textoUsuarioPago")<br /> @Localizer.Text("textoUsuarioPago2") {{selected.currency.symbol}} {{montoPagar()}}.
+                            </p>
+                        </v-card-text>
+
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <button @@click="dialogSeguro = false" class="btn btn-danger">@Localizer.Text("buttonClose")</button>
+                            <button class="btn btn-success" v-on:click="realizarPago(selected); dialogSeguro = false">@Localizer.Text("buttonAcept")</button>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
+                <v-dialog v-model="dialogConfirmPayment" :max-width="450" transition="dialog-bottom-transition">
+                    <v-card>
+                        <v-card-title>
+                            <h4>@Localizer.Text("titleModalConfirmPayment")</h4>
+                            <v-spacer></v-spacer>
+                            <v-btn icon @@click="dialogConfirmPayment = false"><v-icon>@Localizer.Text("iconCloseMDI")</v-icon></v-btn>
+                        </v-card-title>
+                        <v-card-text>
+                            <v-row>
+                                <v-col cols="12" md="12" sm="12">
+                                    <p>
+                                        @Localizer.Text("textSecureToPayment") <br /><span v-if="pagoConfirmado.method == 'DIRECT'"><strong>{{pagoConfirmado.symbol}} {{ formatoMonedaInput(pagoConfirmado.amount,lang, pagoConfirmado.digits) }} {{pagoConfirmado.iso_4217}}</strong>?</span>
+                                        <span v-else><strong>{{pagoConfirmado.symbol}} {{ formatoMonedaInput(formatoMoneda(pagoConfirmado.amountTransfer,lang),lang, pagoConfirmado.digits) }} {{pagoConfirmado.iso_4217}}</strong>?</span>
+                                    </p>
+                                </v-col>
+                            </v-row>
+                            <v-row>
+                                <v-col cols="12" md="12" sm="12">
+                                    <span class="float-right">
+                                        <v-btn dark color="green" @@click="realizarPago(pagoConfirmado); dialogConfirmPayment = false">@Localizer.Text("buttonAcept")</v-btn>
+                                        <v-btn dark @@click="dialogConfirmPayment = false" color="red">@Localizer.Text("buttonCancel")</v-btn>
+                                    </span>
+                                </v-col>
+                            </v-row>
+                        </v-card-text>
+                    </v-card>
+                </v-dialog>
+            </div>
+
+        </div>
+    </v-app>
+
+@section Scripts{
+    <script src="~/js/Bancos/pagoConciliadas.js" asp-append-version="true"></script>
+}

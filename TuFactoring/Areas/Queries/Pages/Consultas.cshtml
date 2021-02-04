@@ -1,0 +1,340 @@
+﻿@page
+@model TuFactoring.Areas.Queries.Pages.ConsultasModel
+@{
+    switch (Model.TipoParticipante)
+    {
+        case "CONFIRMANT":
+            ViewData["Sidebar"] = "danger";
+            break;
+        case "DEBTOR":
+            ViewData["Sidebar"] = "primary";
+            break;
+        case "FACTOR":
+            ViewData["Sidebar"] = "warning";
+            break;
+        case "SUPPLIER":
+            ViewData["Sidebar"] = "purple";
+            break;
+        default:
+            ViewData["Sidebar"] = "navy";
+            break;
+    }
+
+    ViewData["Title"] = "Consulta de facturas";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+    <v-app id="appConsultas">
+        @Html.AntiForgeryToken()
+        <input hidden id="contenidoRaw" value="@Model.dataJsonFactura" />
+        <input hidden id="filterData" value="@Model.dataFilter" />
+        <input hidden id="participant" value="@Model.rol" />
+
+        <div class="modal fade in fa fa-spinner" v-if="cargando" role="dialog">
+            <div class="modal-dialog text-center">
+
+                <h2 style="color:#000"><span id="cargando">Cargando...</span></h2>
+            </div>
+        </div>
+
+        <div id="contenido" hidden class="row">
+
+            <div class="col-sm-12">
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">
+                        <a href="#" style="color:#fff !important" class="btn btn-success btn-circle">
+                            <i class="fab fa-firstdraft"></i>
+                        </a>
+                        &nbsp;Consultas de Facturas
+                    </h1>
+                    <span style="display: none;">
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                    </span>
+                </div>
+                <p class="mb-4">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, recusandae delectus rem! Id recusandae perspiciatis officia voluptate ratione atque pariatur dicta error rerum deserunt sint incidunt dolorum, dolores nemo cupiditate, please visit the official Chart.js documentation.
+                </p>
+
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h4 class="m-0 font-weight-bold text-primary">
+                            <i class="fa fa-group"></i> Gestor de Facturas
+                        </h4>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                                <button class="dropdown-item btn-link"
+                                        data-toggle="modal" data-target="#modalFilter">
+                                    <i class="@Localizer.Text("iconFilter")"></i>
+                                    @Localizer.Text("buttonFilter")
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+
+                                <v-expansion-panels focusable>
+                                    <v-expansion-panel>
+                                        <v-expansion-panel-header> Gestor de filtrado para las consultas</v-expansion-panel-header>
+                                        <v-expansion-panel-content>
+
+                                            <div class="row">
+                                                <aside class="col-sm-4">
+                                                    <p>Filter 1</p>
+
+
+                                                    <div class="card">
+                                                        <article class="card-group-item">
+                                                            <header class="card-header">
+                                                                <h6 class="title">Brands </h6>
+                                                            </header>
+                                                            <div class="filter-content">
+                                                                <div class="card-body">
+                                                                    <form>
+                                                                        <label class="form-check">
+                                                                            <input class="form-check-input" type="checkbox" value="">
+                                                                            <span class="form-check-label">
+                                                                                Mersedes Benz
+                                                                            </span>
+                                                                        </label> <!-- form-check.// -->
+                                                                        <label class="form-check">
+                                                                            <input class="form-check-input" type="checkbox" value="">
+                                                                            <span class="form-check-label">
+                                                                                Nissan Altima
+                                                                            </span>
+                                                                        </label>  <!-- form-check.// -->
+                                                                        <label class="form-check">
+                                                                            <input class="form-check-input" type="checkbox" value="">
+                                                                            <span class="form-check-label">
+                                                                                Another Brand
+                                                                            </span>
+                                                                        </label>  <!-- form-check.// -->
+                                                                    </form>
+
+                                                                </div> <!-- card-body.// -->
+                                                            </div>
+                                                        </article> <!-- card-group-item.// -->
+
+                                                        <article class="card-group-item">
+                                                            <header class="card-header">
+                                                                <h6 class="title">Choose type </h6>
+                                                            </header>
+                                                            <div class="filter-content">
+                                                                <div class="card-body">
+                                                                    <label class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="exampleRadio" value="">
+                                                                        <span class="form-check-label">
+                                                                            First hand items
+                                                                        </span>
+                                                                    </label>
+                                                                    <label class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="exampleRadio" value="">
+                                                                        <span class="form-check-label">
+                                                                            Brand new items
+                                                                        </span>
+                                                                    </label>
+                                                                    <label class="form-check">
+                                                                        <input class="form-check-input" type="radio" name="exampleRadio" value="">
+                                                                        <span class="form-check-label">
+                                                                            Some other option
+                                                                        </span>
+                                                                    </label>
+                                                                </div> <!-- card-body.// -->
+                                                            </div>
+                                                        </article> <!-- card-group-item.// -->
+                                                    </div> <!-- card.// -->
+
+
+
+
+                                                </aside> <!-- col.// -->
+                                                <aside class="col-sm-4">
+                                                    <p>Filter 2</p>
+
+
+                                                    <div class="card">
+                                                        <article class="card-group-item">
+                                                            <header class="card-header"><h6 class="title">Similar category </h6></header>
+                                                            <div class="filter-content">
+                                                                <div class="list-group list-group-flush">
+                                                                    <a href="#" class="list-group-item">Cras justo odio <span class="float-right badge badge-light round">142</span> </a>
+                                                                    <a href="#" class="list-group-item">Dapibus ac facilisis  <span class="float-right badge badge-light round">3</span>  </a>
+                                                                    <a href="#" class="list-group-item">Morbi leo risus <span class="float-right badge badge-light round">32</span>  </a>
+                                                                    <a href="#" class="list-group-item">Another item <span class="float-right badge badge-light round">12</span>  </a>
+                                                                </div>  <!-- list-group .// -->
+                                                            </div>
+                                                        </article> <!-- card-group-item.// -->
+                                                        <article class="card-group-item">
+                                                            <header class="card-header"><h6 class="title">Color check</h6></header>
+                                                            <div class="filter-content">
+                                                                <div class="card-body">
+                                                                    <label class="btn btn-danger">
+                                                                        <input class="" type="checkbox" name="myradio" value="">
+                                                                        <span class="form-check-label">Red</span>
+                                                                    </label>
+                                                                    <label class="btn btn-success">
+                                                                        <input class="" type="checkbox" name="myradio" value="">
+                                                                        <span class="form-check-label">Green</span>
+                                                                    </label>
+                                                                    <label class="btn btn-primary">
+                                                                        <input class="" type="checkbox" name="myradio" value="">
+                                                                        <span class="form-check-label">Blue</span>
+                                                                    </label>
+                                                                </div> <!-- card-body.// -->
+                                                            </div>
+                                                        </article> <!-- card-group-item.// -->
+                                                    </div> <!-- card.// -->
+
+
+
+                                                </aside> <!-- col.// -->
+                                                <aside class="col-sm-4">
+                                                    <p>Filter  3</p>
+
+                                                    <div class="card">
+                                                        <article class="card-group-item">
+                                                            <header class="card-header">
+                                                                <h6 class="title">Range input </h6>
+                                                            </header>
+                                                            <div class="filter-content">
+                                                                <div class="card-body">
+                                                                    <div class="form-row">
+                                                                        <div class="form-group col-md-6">
+                                                                            <label>Min</label>
+                                                                            <input type="number" class="form-control" id="inputEmail4" placeholder="$0">
+                                                                        </div>
+                                                                        <div class="form-group col-md-6 text-right">
+                                                                            <label>Max</label>
+                                                                            <input type="number" class="form-control" placeholder="$1,0000">
+                                                                        </div>
+                                                                    </div>
+                                                                </div> <!-- card-body.// -->
+                                                            </div>
+                                                        </article> <!-- card-group-item.// -->
+                                                        <article class="card-group-item">
+                                                            <header class="card-header">
+                                                                <h6 class="title">Selection </h6>
+                                                            </header>
+                                                            <div class="filter-content">
+                                                                <div class="card-body">
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <span class="float-right badge badge-light round">52</span>
+                                                                        <input type="checkbox" class="custom-control-input" id="Check1">
+                                                                        <label class="custom-control-label" for="Check1">Samsung</label>
+                                                                    </div> <!-- form-check.// -->
+
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <span class="float-right badge badge-light round">132</span>
+                                                                        <input type="checkbox" class="custom-control-input" id="Check2">
+                                                                        <label class="custom-control-label" for="Check2">Black berry</label>
+                                                                    </div> <!-- form-check.// -->
+
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <span class="float-right badge badge-light round">17</span>
+                                                                        <input type="checkbox" class="custom-control-input" id="Check3">
+                                                                        <label class="custom-control-label" for="Check3">Samsung</label>
+                                                                    </div> <!-- form-check.// -->
+
+                                                                    <div class="custom-control custom-checkbox">
+                                                                        <span class="float-right badge badge-light round">7</span>
+                                                                        <input type="checkbox" class="custom-control-input" id="Check4">
+                                                                        <label class="custom-control-label" for="Check4">Other Brand</label>
+                                                                    </div> <!-- form-check.// -->
+                                                                </div> <!-- card-body.// -->
+                                                            </div>
+                                                        </article> <!-- card-group-item.// -->
+                                                    </div> <!-- card.// -->
+
+                                                </aside> <!-- col.// -->
+                                            </div> <!-- row.// -->
+
+
+                                        </v-expansion-panel-content>
+                                    </v-expansion-panel>
+                                </v-expansion-panels>
+
+
+                                <!------------------------------------------- Tabla de Consultas ---------------------------------------------->
+                                <v-data-table v-if="participant == 'DEBTOR'"
+                                              :headers="headerConsultaD"
+                                              :items="facturas"
+                                              :items-per-page="10"
+                                              class="elevation-1">
+
+
+                                    <template v-slot:item.action="{ item }">
+                                        <button class="btn btn-sm btn-success"><i class="fa fa-eye"></i></button>
+                                    </template>
+                                </v-data-table>
+
+                                <v-data-table v-if="participant == 'SUPPLIER'"
+                                              :headers="headerConsultaS"
+                                              :items="facturas"
+                                              :items-per-page="10"
+                                              class="elevation-1">
+
+
+                                    <template v-slot:item.action="{ item }">
+                                        <button class="btn btn-sm btn-success"><i class="fa fa-eye"></i></button>
+                                    </template>
+                                </v-data-table>
+
+                                <v-data-table v-if="participant == 'FACTOR'"
+                                              :headers="headerConsultaF"
+                                              :items="facturas"
+                                              :items-per-page="10"
+                                              class="elevation-1">
+
+
+                                    <template v-slot:item.action="{ item }">
+                                        <button class="btn btn-sm btn-success"><i class="fa fa-eye"></i></button>
+                                    </template>
+                                </v-data-table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal" tabindex="-1" role="dialog" id="modalFilter">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title"><i class="@Localizer.Text("iconFilter")"></i>&nbsp;@Localizer.Text("titlefilter")</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post">
+                                <div class="row">
+
+                                </div>
+
+                                <div class="row">
+
+                                </div>
+                                <div class="row">
+
+                                </div>
+                                <div class="row">
+
+                                </div>
+
+                                <div class="row">
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </v-app>
+@section Scripts{
+
+    <script src="~/js/Consultas/vueConsultas.js" asp-append-version="true"></script>
+}

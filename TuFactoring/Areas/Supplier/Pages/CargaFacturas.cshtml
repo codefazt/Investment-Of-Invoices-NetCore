@@ -1,0 +1,507 @@
+﻿@page
+@model TuFactoring.Areas.Supplier.Pages.CargaFacturasModel
+@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    ViewData["title"] = "Carga de Facturas";
+}
+
+<v-app id="appCargaFacturas" hidden>
+    @Html.AntiForgeryToken()
+
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">
+            <a href="#" class="btn btn-success btn-circle">
+                <i class="@Localizer.Text("iconCargaFacturas")" style="color:white"></i>
+            </a>
+            @Localizer.Text("titleLoadInvoice")
+        </h1>
+    </div>
+    <div class="mb-4">
+        @Localizer.Text("textoAddNewInvoiceSupplier") &nbsp;
+        <br />
+        <br />
+        @Localizer.Text("textoAddNewInvoice2")
+        <button class="btn btn-success btn-sm btn-circle" @@click="dialog = true; nuevo.tipoMoneda = 0;limpiarFieldErrors()" :disabled="enviando" title="@Localizer.Text("tipAddNewInvoice")">
+            <i class="@Localizer.Text("iconCargaManual")" style="color:white"></i> <br />
+        </button>
+        <br /><br />
+        @Localizer.Text("textoLoadTemplate1")
+        <a :href="'/templates-carga/plantilla_'+catalogo.id+'.txt'" download="PlantillaCargaMasiva.txt">
+            @Localizer.Text("textoHere").
+        </a>
+        <br /><br />
+        <span :hidden="facturas.length > 0 || facturasErroneas.length > 0">@Localizer.Text("textoPress")</span> <a href="#" @@click="dialogAyuda = true" :hidden="facturas.length > 0 || facturasErroneas.length > 0"> @Localizer.Text("textoHere") </a> <span :hidden="facturas.length > 0 || facturasErroneas.length > 0">@Localizer.Text("textoMoreInformation")</span>
+        <br /><br />
+        <label for="facturaInputFile" class="btn btn-sm btn-success" :hidden="facturas.length > 0 || facturasErroneas.length > 0">
+            <i class="fa fa-file-text" style="color:white" :hidden="facturas.length > 0 || facturasErroneas.length > 0"></i> &nbsp;
+            @Localizer.Text("buttonLoadTemplate")
+        </label>
+        <input type="file" id="facturaInputFile" accept="text/plain" style="display:none"
+               @@change="onFileSelected">
+        <span class="help-block text-danger" v-if="errorCargaMasiva.archivoInvalido">@Localizer.Text("textoFormatoTxtInvalido")</span>
+        <span class="help-block text-danger" v-else-if="errorCargaMasiva.archivoManipulado">@Localizer.Text("errorArchivoMasivoManipulado")</span>
+        <span class="help-block text-danger" v-else-if="errorCargaMasiva.archivoSinRegistros">@Localizer.Text("errorArchivoSinRegistros")</span>
+        <span class="help-block text-danger" v-else-if="facturas.length > 0 || facturasErroneas.length > 0">@Localizer.Text("textInformationMassiveCharge")</br>@Localizer.Text("textInformationMassiveCharge2")</span>
+        <button class="mb-4 btn btn-sm btn-success float-right" :disabled="enviando || facturas.length == 0" v-if="facturas.length > 0 || facturasErroneas.length > 0"
+                @@click="guardarFacturas">
+            <i class="@Localizer.Text("iconCheck")"></i>
+            <span>@Localizer.Text("buttonAddInvoices")</span>
+        </button>
+    </div>
+    <div class="card shadow mb-4" v-if="facturas.length > 0 || facturasErroneas.length > 0">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h4 class="m-0 font-weight-bold text-primary">
+                @Localizer.Text("titleInvoiceProcess")
+            </h4>
+            <div class="dropdown no-arrow">
+                <span class="font-weight-bold text-primary">@Localizer.Text("buttonOptions")</span>
+                <a class="dropdown-toggle" class="opcionesMenu" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="@Localizer.Text("iconMenu") text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                    <div class="dropdown-header">@Localizer.Text("threePointsOptions"):</div>
+                    <div class="dropdown-divider"></div>
+                    <button class="dropdown-item btn-link"
+                            @@click="limpiarProcesadas" :disabled="enviando || facturas.length == 0">
+                        <i class="@Localizer.Text("iconClear")"></i>
+                        @Localizer.Text("buttonClear")
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <template>
+                <v-data-table :headers="headers1"
+                              :items="facturas"
+                              :mobile-breakpoint="widthTelefono"
+                              class="elevation-1">
+                    <template v-slot:item.n="props">
+                        {{facturas.indexOf(props.item) + 1}}
+                    </template>
+                    <template v-slot:item.debtor.name="props">
+                        <div class="text-left">
+                            {{props.item.debtor.name}}
+                        </div>
+                    </template>
+                    <template v-slot:item.expiration_date="props">
+                        {{moment(props.item.expiration_date,"YYYY-MM-DD").format("DD/MM/YYYY")}}&nbsp;
+                        <v-chip x-small label data-toggle="tooltip" data-placement="left" title="@Localizer.Text("tipExpirationDays")">
+                            {{moment(props.item.expiration_date,"YYYY-MM-DD").diff(moment().format("YYYY/MM/DD"),"days")}}
+                        </v-chip>
+                    </template>
+                    <template v-slot:item.original_amount="props">
+                        <div class="text-right">
+                            {{props.item.currency.symbol}}&nbsp;
+                            {{formatoMonedaInput(props.item.amount,lang,digits)}}
+                            <v-chip x-small label>
+                                {{props.item.currency.iso_4217}}
+                            </v-chip>
+                        </div>
+                    </template>
+                    <template v-slot:item.opciones="props">
+                        <button class="btn btn-sm btn-danger" :disabled="enviando" @@click="eliminar(facturas.indexOf(props.item))" data-toggle="tooltip" data-placement="top" title="@Localizer.Text("tipDeleteInvoice")"><i class="@Localizer.Text("iconDelete")"></i>&nbsp;@Localizer.Text("buttonDelete")</button>
+                    </template>
+                </v-data-table>
+            </template>
+        </div>
+    </div>
+
+    <div class="card shadow mb-4" v-if="facturas.length > 0 || facturasErroneas.length > 0">
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h4 class="m-0 font-weight-bold text-primary">
+                @Localizer.Text("titleInvoiceNotProcessed")
+            </h4>
+            <div class="dropdown no-arrow">
+                <span class="font-weight-bold text-primary">@Localizer.Text("buttonOptions")</span>
+                <a class="dropdown-toggle" class="opcionesMenu" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="@Localizer.Text("iconMenu") text-gray-400"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                    <div class="dropdown-header">@Localizer.Text("options"):</div>
+                    <div class="dropdown-divider"></div>
+                    <button type="button" class="dropdown-item btn-link" @@click="limpiar" :disabled="facturasErroneas.length == 0">
+                        <i class="@Localizer.Text("iconClear")"></i>&nbsp;&nbsp;@Localizer.Text("buttonClear")
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body">
+            <template>
+                <v-data-table :headers="headers2"
+                              :items="facturasErroneas"
+                              :mobile-breakpoint="widthTelefono"
+                              class="elevation-1"
+                              :footer-props:="footer">
+                    <template v-slot:item.n="props">
+                        {{facturasErroneas.indexOf(props.item)+1}}
+                    </template>
+                    <template v-slot:item.message="props">
+                        <div class="text-left">
+                            {{props.item.message}}
+                        </div>
+                    </template>
+                </v-data-table>
+            </template>
+        </div>
+    </div>
+
+
+    <v-dialog v-model="dialog" max-width="720">
+        <v-card>
+            <v-card-title>
+                <h4>@Localizer.Text("titleInvoiceData")</h4>
+                <v-spacer></v-spacer>
+                <v-btn icon @@click="dialog = false;limpiarCampos();" title="Cerrar/Limpiar"><v-icon>@Localizer.Text("iconCloseMDI")</v-icon></v-btn>
+            </v-card-title>
+            <v-card-text>
+                <div v-if="estadoCarga == 0">
+
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                            <label>@Localizer.Text("headersCustomer")</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="@Localizer.Text("iconProvider")"></i></span>
+                                </div>
+                                <select id="lstProveedor" :class="['form-control custom-select',errorClasses.cliente]" v-model="nuevo.cliente.id" @@blur="validarCliente()">
+                                    <option value="0" v-if="nuevo.cliente.id == 0">@Localizer.Text("placeholderSupplierCarga")</option>
+                                    <option v-for="cliente in clientes" :value="cliente.id">{{cliente.name}}</option>
+                                </select>
+                            </div>
+                            <span class="help-block text-danger" v-if="errorCliente">@Localizer.Text("errorDebtorNotSelected")</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                            <label>@Localizer.Text("titleInvoiceNumber")</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="@Localizer.Text("iconInvoiceNumber")"></i></span>
+                                </div>
+                                <input type="text" :maxlength="maxLengthInvoices" id="txtFactura" :class="['form-control',errorClasses.invoiceNumber]" v-on:keyup="validarInvoiceNumber"
+                                       :placeholder="placeholderFactura" v-model="nuevo.numero" onKeypress="if (event.keyCode == 32) event.returnValue = false;">
+                            </div>
+                            <span class="help-block text-danger" v-if="errorInvoiceNumber.vacio">@Localizer.Text("errorAddInvoiceNumber")</span>
+                            <span class="help-block text-danger" v-else-if="errorInvoiceNumber.superior">@Localizer.Text("errorMaxLengthInvoices")</span>
+                            <span class="help-block text-danger" v-else-if="errorInvoiceNumber.formatoInvalido">@Localizer.Text("errorFormatoInvalidoFactura")&nbsp;({{placeholderFactura}})</span>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                            <label>@Localizer.Text("titleCurrencyType")</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="@Localizer.Text("iconCurrency")"></i></span>
+                                </div>
+                                <select id="lstMoneda" :class="['form-control custom-select',errorClasses.currencyType]" v-model="nuevo.tipoMoneda" @@blur="validarCurrency()">
+                                    <option value=0 v-if="nuevo.tipoMoneda == 0" selected>@Localizer.Text("selectInvoiceCurrency")</option>
+                                    <option v-for="currency in tipoMoneda" :value="currency.id">{{currency.name}}</option>
+                                </select>
+                            </div>
+                            <span class="help-block text-danger" v-if="errorMoneda">@Localizer.Text("errorSelectInvoiceCurrency")</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                            <label>@Localizer.Text("titleIssuedDate")</label>
+                            <div class="input-group date" data-date-format="dd-mm-yyyy">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="@Localizer.Text("iconDate")"></i></span>
+                                </div>
+                                <input :max="moment().format('YYYY-MM-DD')" @@blur="validarIssued" onKeyPress="return false;" :min="moment().subtract(1,'years').format('YYYY-MM-DD')"
+                                       type="date" :class="['form-control pull-right',errorClasses.issuedDate]" placeholder="dd-mm-yyyy" id="dt_FchEmision" v-model="nuevo.fechaEmision">
+                            </div>
+                            <span class="help-block text-danger" v-if="errorIssued.vacio">@Localizer.Text("errorIssuedEmpty")</span>
+                            <span class="help-block text-danger" v-else-if="errorIssued.superior">@Localizer.Text("errorIssuedSuperior")</span>
+                            <span class="help-block text-danger" v-else-if="errorIssued.igual">@Localizer.Text("errorIssuedEqual")</span>
+                        </div>
+
+                        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                            <label>@Localizer.Text("titleExpirationDate")</label>
+                            <div class="input-group date" data-date-format="dd/mm/yyyy">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="@Localizer.Text("iconDate")"></i></span>
+                                </div>
+                                <input @@blur="validarExpired" :max="moment().add(1,'years').format('YYYY-MM-DD')" onKeyPress="return false;" :min="moment().format('YYYY-MM-DD')" type="date"
+                                       :class="['form-control pull-right',errorClasses.expirationDate]" id="dt_FchVencimiento" v-model="nuevo.fechaVencimiento">
+                            </div>
+                            <span class="help-block text-danger" v-if="errorExpired.vacio">@Localizer.Text("errorExpirationEmpty")</span>
+                            <span class="help-block text-danger" v-else-if="errorExpired.inferior">@Localizer.Text("errorExpirationInferior")</span>
+                            <span class="help-block text-danger" v-else-if="errorExpired.igual">@Localizer.Text("errorExpirationEqual")</span>
+                            <span class="help-block text-danger" v-else-if="errorExpired.termDays">@Localizer.Text("errorTermDaysCargaMasiva")</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                            <label>@Localizer.Text("titleNominalAmount")</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="@Localizer.Text("iconNominalAmount")"></i></span>
+                                </div>
+                                <input maxlength="16" type="text" id="txtMonto" :class="['form-control text-right', errorClasses.amount]" placeholder="@Localizer.Text("placeholderNumberFormat")" v-model="nuevo.monto"
+                                       onKeypress="if ((event.keyCode < 48 || event.keyCode > 57) && (event.keyCode != fraccion(this.lang))) event.returnValue = false;"
+                                       @@blur="nuevo.monto = formatoMonedaInput(formatoMoneda(nuevo.monto,lang),lang,digits);validarNominalAmount()" onpaste="return false">
+                            </div>
+                            <span class="help-block text-danger" v-if="errorOriginalAmount">@Localizer.Text("errorNominalAmountCero")</span>
+                            <span class="help-block text-danger" v-else-if="errorDeductionsAmount.superiorTrece">@Localizer.Text("errorAmountDeductions2")</span>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 align-self-end">
+                            <button class="btn btn-primary w-100" :disabled="enviando || nuevo.monto == 0 || errorOriginalAmount || errorDeductionsAmount.superiorTrece"
+                                    @@click="estadoCarga = 1">
+                                <span><i class="@Localizer.Text("iconAdd")"></i>&nbsp;@Localizer.Text("buttonAddDeductions")</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                            <label>@Localizer.Text("titleDeductions")</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="@Localizer.Text("iconDeduction")"></i>  </span>
+                                </div>
+                                <input class="form-control text-right" placeholder="@Localizer.Text("placeholderNumberFormat")" :value="formatoMonedaInput(nuevo.totalDeducciones,lang,digits)" :disabled="validarNominal" readonly>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 ">
+                            <label>@Localizer.Text("titleAmountNeto")</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text" id="basic-addon1"><i class="@Localizer.Text("iconNominalAmount")"></i></div>
+                                </div>
+                                <input :value="valorNeto()" placeholder="@Localizer.Text("placeholderNumberFormat")"
+                                       id="txtMontoNeto" class="form-control text-right" readonly>
+                            </div>
+                            <span class="help-block text-danger" v-if="(formatoMoneda(nuevo.monto,lang) - nuevo.totalDeducciones) <= 0 && formatoMoneda(nuevo.monto,lang) != 0 && nuevo.totalDeducciones != 0" :hidden="errorNetAmount">@Localizer.Text("errorDeductionsSuperiorAmount")</span>
+                        </div>
+                        <div class="col-md-12 col-lg-12 col-sm-12 text-right">
+                            <button class="btn btn-success float-right sw-100" :disabled="(formatoMoneda(nuevo.monto,lang) - nuevo.totalDeducciones) <= 0 && formatoMoneda(nuevo.monto,lang) != 0 && nuevo.totalDeducciones != 0 ||enviando || nuevo.monto == 0 || nuevo.proveedor.id == '' || nuevo.numero == '' || nuevo.numero == 0 || nuevo.tipoMoneda == '' || nuevo.fechaEmision == '' || nuevo.fechaVencimiento == '' || errorInvoiceNumber.formatoInvalido || errorInvoiceNumber.vacio || errorInvoiceNumber.superior || errorInvoiceNumber.invoiceExist || errorDeductionsAmount.superiorTrece"
+                                    @@click="agregarFactura();">
+                                <i class="@Localizer.Text("iconCheck")"></i>
+                                <span>@Localizer.Text("buttonGuardarFactura")</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div v-else>
+                    <v-row>
+                        <v-col cols="12" sm="12" md="6" lg="6" class="col-xs-12">
+                            <label>@Localizer.Text("titleDeductionsType")</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="@Localizer.Text("iconDeductionType")"></i></span>
+                                </div>
+                                <select id="lstTipoDeduccion" :class="['form-control custom-select', errorClasses.deductionType]" v-model="nuevo.deduccion.tipo" @@blur="validarDeductionType()">
+                                    <option value=0 v-if="nuevo.deduccion.tipo == 0">@Localizer.Text("selectTypeDeductions")</option>
+                                    <option v-for="tipo in tipoDeduccion" :value=tipo.id>{{tipo.name}}</option>
+                                </select>
+                            </div>
+                            <span class="help-block text-danger" v-if="errorTipoDeduccion">@Localizer.Text("errorTypeDeductions")</span>
+                        </v-col>
+                        <v-col cols="12" sm="12" md="6" lg="6" class="col-xs-12">
+                            <label>@Localizer.Text("titleDeductionsNumber")</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="@Localizer.Text("iconDeductionType")"></i></span>
+                                </div>
+                                <input :disabled="idDeduccion != -1" maxlength="255" type="text" :class="['form-control',errorClasses.deductionNumber]" id="txtNumeroDeduccion" placeholder="@Localizer.Text("placeholderDeductionNumber")"
+                                       @@blur="validarDeductionNumber" v-model="nuevo.deduccion.numero" onKeypress="if (event.keyCode == 32) event.returnValue = false;" />
+                            </div>
+                            <span class="help-block text-danger" v-if="errorDeductions.vacio">@Localizer.Text("errorDeductionsNumber")</span>
+                            <span class="help-block text-danger" v-else-if="errorDeductions.superior">@Localizer.Text("errorDeduccionSuperior")</span>
+                            <span class="help-block text-danger" v-else-if="errorDeduccionDuplicado">@Localizer.Text("errorDeduccionDuplicada")</span>
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                        <v-col cols="12" sm="12" md="6" lg="6" class="col-xs-12">
+                            <label>@Localizer.Text("titleAmount") </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="@Localizer.Text("iconDeductionType")"></i></span>
+                                </div>
+                                <input maxlength="16" type="text" :class="['form-control text-right',errorClasses.deductionAmount]" id="txtMontoDeduccion" placeholder="@Localizer.Text("placeholderNumberFormat")"
+                                       v-model="nuevo.deduccion.monto" @@blur="nuevo.deduccion.monto = formatoMonedaInput(formatoMoneda(nuevo.deduccion.monto,lang),lang,digits);validarDeductionAmount()"
+                                       onKeypress="if ((event.keyCode < 48 || event.keyCode > 57) && ( event.keyCode != 44 && event.keyCode != 46)) event.returnValue = false;" onpaste="return false" :disabled="nuevo.monto == 0">
+                            </div>
+                            <span class="help-block text-danger" v-if="errorDeductionsAmount.vacio">@Localizer.Text("errorAmountDeductions")</span>
+                            <span class="help-block text-danger" v-else-if="errorDeductionsAmount.superior">@Localizer.Text("errorAmountDeductions2")</span>
+                            <span class="help-block text-danger" v-else-if="errorDeductionsAmount.igualNominal">@Localizer.Text("errorPorcentajeIgual")</span>
+                            <span class="help-block text-danger" v-else-if="errorDeductionsAmount.superiorNominal">@Localizer.Text("errorPorcentajeSuperior")</span>
+                            <span class="help-block text-danger" v-else-if="errorDeductionsAmount.superiorTreceDeduccion">@Localizer.Text("errorAmountDeductions2")</span>
+                        </v-col>
+                        <v-col cols="12" sm="12" md="6" lg="6" class="col-xs-12">
+                            <label>@Localizer.Text("titlePercentage")</label>
+                            <div class="input-group">
+                                <input maxlength="5" type="text" :class="['form-control text-right',errorClasses.deductionPercentage]" id="txtPorcentajeDeduccion" placeholder="@Localizer.Text("placeholderNumberFormatPorcentage")"
+                                       v-model="porcentaje" @@blur="validarPorcentaje"
+                                       onKeypress="if ((event.keyCode < 48 || event.keyCode > 57) && (event.keyCode != 44 && event.keyCode != 46)) event.returnValue = false;" onpaste="return false" :disabled="nuevo.monto == 0">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">%</span>
+                                </div>
+                                <span class="input-group-btn">
+                                    <button style="border-radius: 0 5px 5px 0;" class="btn  btn-success" @@click="idDeduccion == -1 ? agregarDeducciones(): actualizarDeduccion()" :disabled="errorPorcentaje.vacio || errorPorcentaje.superior || nuevo.monto == 0 || errorPorcentaje.igual || errorDeductionsAmount.vacio || errorDeductionsAmount.superior || errorDeductionsAmount.superiorNominal || nuevo.deduccion.numero == '' || nuevo.deduccion.tipo == '' || errorDeductionsAmount.igualNominal || nuevo.totalDeducciones > formatoMoneda(nuevo.monto,lang) && nuevo.monto != 0 && nuevo.totalDeducciones != 0 || formatoMoneda(nuevo.monto,lang) < nuevo.totalDeducciones">
+                                        <i class="@Localizer.Text("iconAdd")"></i>&nbsp;
+                                        <span v-if="idDeduccion == -1">@Localizer.Text("buttonAdd")</span>
+                                        <span v-else>@Localizer.Text("buttonUpdate")</span>
+                                    </button>
+                                </span>
+                            </div>
+                            <span class="help-block text-danger" v-if="errorPorcentaje.vacio">@Localizer.Text("errorPorcentajeVacio")</span>
+                            <span class="help-block text-danger" v-else-if="errorPorcentaje.igual">@Localizer.Text("errorPorcentajeIgual")</span>
+                            <span class="help-block text-danger" v-else-if="errorPorcentaje.superior">@Localizer.Text("errorPorcentajeSuperior")</span>
+                            <span class="help-block text-danger" v-else-if="errorPorcentaje.invalido">@Localizer.Text("percentageNotValid")</span>
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                        <v-col cols="12" sm="12" md="12" lg="12" class="col-xs-12">
+                            <v-data-table :headers="headers3"
+                                          :mobile-breakpoint="widthTelefono"
+                                          :items="deducciones"
+                                          class="elevation-1">
+                                <template v-slot:item.tipo="props">
+                                    {{nombreCargo(props.item.charge_type_id)}}
+                                </template>
+                                <template v-slot:item.monto="props">
+                                    <div class="text-right">
+                                        {{obtenerSymbolo()}}&nbsp; {{formatoMonedaInput(props.item.amount,lang,digits)}}
+                                        &nbsp;&nbsp;
+                                        <v-chip x-small
+                                                label>
+                                            {{obtenerIso4217()}}
+                                        </v-chip>
+                                    </div>
+                                </template>
+                                <template v-slot:item.opciones="props">
+                                    <button class="btn btn-primary btn-sm my-0 @Localizer.Text("iconEdit")" data-toggle="tooltip" data-placement="top" title="@Localizer.Text("tipEditDeduction")" @@click="editarDeduccion(deducciones.indexOf(props.item));"></button>
+                                    <button class="btn btn-danger btn-sm my-0 @Localizer.Text("iconDelete")" data-toggle="tooltip" data-placement="top" title="@Localizer.Text("tipDeleteDeduction")" @@click="dialogDeleteDeduccion = true"></button>
+                                    <v-dialog v-model="dialogDeleteDeduccion" transition="dialog-bottom-transition" max-width="700">
+                                        <v-card>
+                                            <v-card-title class="headline">
+                                                <h4>
+                                                    @Localizer.Text("titleModalEliminarDeduccion")
+                                                </h4>
+                                                <v-spacer></v-spacer>
+                                                <v-btn icon @@click="dialogDeleteDeduccion = false">
+                                                    <v-icon>@Localizer.Text("iconCloseMDI")</v-icon>
+                                                </v-btn>
+                                            </v-card-title>
+
+                                            <v-card-text>
+
+                                                <v-row>
+                                                    <v-col cols="12" md="12" sm="12">
+                                                        <p>@Localizer.Text("textoModalEliminarDeduccion")</p>
+                                                    </v-col>
+                                                </v-row>
+                                                <v-row>
+                                                    <v-col cols="12" md="12" sm="12">
+                                                        <span class="float-right">
+                                                            <v-btn dark color="green" @@click="eliminarDeduccion(deducciones.indexOf(props.item)); dialogDeleteDeduccion = false">@Localizer.Text("buttonAcept")</v-btn>
+                                                            <v-btn dark color="red" @@click="dialogDeleteDeduccion = false">@Localizer.Text("buttonCancel")</v-btn>
+                                                        </span>
+                                                    </v-col>
+                                                </v-row>
+                                            </v-card-text>
+                                        </v-card>
+                                    </v-dialog>
+                                </template>
+                            </v-data-table>
+                        </v-col>
+                    </v-row>
+                    <div class="row">
+                        <div class="flex-column justify-content-between">
+                            <div class="flex-column justify-content-between">
+                                <button class="btn btn-primary float-left" :disabled="enviando"
+                                        @@click="estadoCarga = 0" style="margin-left:10px;">
+                                    <i class="@Localizer.Text("iconReturn")"></i>
+                                    <span>@Localizer.Text("buttonReturn")</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--<div class="flex-column justify-content-between">
+                    <v-btn icon v-on:click="estadoCarga = 1"  :hidden="estadoCarga==0" title="Datos de la Factura">
+                        <v-icon large color="#5867dd">
+                          @Localizer.Text("iconLeftMDI")
+                        </v-icon>
+                    </v-btn>
+                    <v-btn icon class="float-right" v-on:click="estadoCarga = 0" :hidden="estadoCarga == 1" title="Deducciones">
+                        <v-icon large color="#5867dd">
+                           @Localizer.Text("iconRightMDI")
+                        </v-icon>
+                    </v-btn>
+                </div>-->
+            </v-card-text>
+        </v-card>
+    </v-dialog>
+
+    <v-dialog v-model="dialogAyuda" max-width="500" transition="dialog-bottom-transition">
+        <v-card>
+            <v-card-title>
+                <v-spacer></v-spacer>
+                <v-btn icon @@click="dialogAyuda = false">
+                    <v-icon>@Localizer.Text("iconCloseMDI")</v-icon>
+                </v-btn>
+            </v-card-title>
+            <v-card-text>
+                <v-container>
+                    <v-row>
+                        <v-col cols="12" sm="12" lg="12" md="12">
+                            @Localizer.Text("textoCargarFacturasInformation1")<br /><br />
+
+                            @Localizer.Text("textoCargarFacturasInformation2")<br />
+                            @Localizer.Text("textoCargarFacturasInformation3")<br />
+                            @Localizer.Text("textoCargarFacturasInformation4")<br />
+                            @Localizer.Text("textoCargarFacturasInformation5")<br />
+                            @Localizer.Text("textoCargarFacturasInformation6Supplier")<br><br>
+                            <strong>@Localizer.Text("textoCargarFacturasInformation7")</strong><br /><br />
+                            <strong>@Localizer.Text("textoCargarFacturasInformation8")</strong><br /><br />
+                            @Localizer.Text("textoCargarFacturasInformation9")<br /><br />
+                            @Localizer.Text("textoCargarFacturasInformation10")<br /><br />
+                            @Localizer.Text("textoCargarFacturasInformation12")<br /><br />
+                            @Localizer.Text("textoCargarFacturasInformation13")<br /><br />
+                            @Localizer.Text("textoCargarFacturasInformation14")<br /><br />
+                            @Localizer.Text("textoCargarFacturasInformation15")<br /><br />
+                            <strong>@Localizer.Text("textoCargarFacturasInformation16")</strong><br /><br />
+                            @Localizer.Text("textoCargarFacturasInformation17")<br />
+                            @Localizer.Text("textoCargarFacturasInformation18")<br />
+                            @Localizer.Text("textoCargarFacturasInformation19")<br />
+                            @Localizer.Text("textoCargarFacturasInformation20")<br /><br />
+                            <strong>@Localizer.Text("textoCargarFacturasInformation21")</strong><br /><br />
+                            @Localizer.Text("textoCargarFacturasInformation22") <strong>@Localizer.Text("textoCargarFacturasInformation23")</strong> @Localizer.Text("textoCargarFacturasInformation24")<br /><br />
+                            @Localizer.Text("textoCargarFacturasInformation25")<br /><br />
+                            @Localizer.Text("textoCargarFacturasInformation26")<br /><br />
+                            @Localizer.Text("textoCargarFacturasInformation27")<br /><br />
+                        </v-col>
+                    </v-row>
+                </v-container>
+            </v-card-text>
+        </v-card>
+    </v-dialog>
+
+    @await Html.PartialAsync("_ModalLogoutPartial", 1)
+
+</v-app>
+
+@section scripts{
+
+    <script src="~/js/Proveedor/cargaFacturas.js" asp-append-version="true"></script>
+}
+
+@section CSS{
+    <style>
+        .custom-select:valid {
+            background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/8px 10px;
+        }
+
+
+        .custom-select:invalid {
+            background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/8px 10px;
+        }
+    </style>
+} 

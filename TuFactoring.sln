@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TuFactoring", "TuFactoring\TuFactoring.csproj", "{178041BB-7C8C-4C7B-B1E3-6F0C3F7BF2D1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TuFactoringGraphql", "TuFactoringConsumer\TuFactoringGraphql.csproj", "{9D06B8CC-EBAC-4A8F-81C7-440218017082}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TuFactoringModels", "TuFactoringModels\TuFactoringModels.csproj", "{1E1ED77E-D1D0-422A-AD62-BAE1EAD1C178}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{178041BB-7C8C-4C7B-B1E3-6F0C3F7BF2D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{178041BB-7C8C-4C7B-B1E3-6F0C3F7BF2D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{178041BB-7C8C-4C7B-B1E3-6F0C3F7BF2D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{178041BB-7C8C-4C7B-B1E3-6F0C3F7BF2D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D06B8CC-EBAC-4A8F-81C7-440218017082}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D06B8CC-EBAC-4A8F-81C7-440218017082}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D06B8CC-EBAC-4A8F-81C7-440218017082}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D06B8CC-EBAC-4A8F-81C7-440218017082}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E1ED77E-D1D0-422A-AD62-BAE1EAD1C178}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E1ED77E-D1D0-422A-AD62-BAE1EAD1C178}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E1ED77E-D1D0-422A-AD62-BAE1EAD1C178}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E1ED77E-D1D0-422A-AD62-BAE1EAD1C178}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17EFA88C-2BB6-4390-904F-03501BB1E2BD}
+		RESX_Rules = {"EnabledRules":["StringFormat","PunctuationLead","PunctuationTail"]}
+	EndGlobalSection
+EndGlobal

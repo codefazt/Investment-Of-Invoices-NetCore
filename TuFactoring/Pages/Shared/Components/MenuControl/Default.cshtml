@@ -1,0 +1,730 @@
+﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Authorization
+
+@inject IAuthorizationService AuthorizationService
+
+@model TuFactoring.Pages.Shared.Components.MenuControl.MenuControlViewComponent.paramMenu
+
+@{
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+
+    if (User.Claims.Where(x => x.Type == "Participant").Select(x => x.Value).SingleOrDefault() == "SUPPLIER")
+    {
+
+        var c = User.Claims.Where(x => x.Type == "Owner").Select(x => x.Value).SingleOrDefault();
+
+        var o = User.Claims.Where(x => x.Type == "Country").Select(x => x.Value).SingleOrDefault();
+
+        var clientes = await Model.pS.GetDebtors(c, Model.token);
+
+        if (clientes != null)
+        {
+            Model.haveClients = clientes.Count > 0;
+        }
+    }
+
+    var country = Int32.Parse(User.Claims.Where(x => x.Type == "Country").Select(x => x.Value).SingleOrDefault());
+
+    var isFintech = await Model.pS.IsFintech(country, Model.token);
+    if(isFintech != null || isFintech.Count > 0)
+    {
+        if (isFintech[0].Entities[0].IsFintech)
+        {
+            Model.isFintech = true;
+        }
+    }
+}
+
+@switch (@User.Claims.Where(c => c.Type == "Participant").Select(c => c.Value).SingleOrDefault())
+{
+    case "DEBTOR":
+        @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyProfile")).Succeeded)
+        {
+            <li class="nav-item">
+                <a class="nav-link" asp-area="profile" asp-page="/ActualizarEmpresa" asp-route-culture="@culture">
+                    <i class="far fa-id-badge"></i>
+                    <span>@Localizer.Text("perfil")</span>
+                </a>
+            </li>
+        }
+
+        @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyProfile")).Succeeded)
+        {
+            <li class="nav-item">
+                <a class="nav-link" asp-area="profile" asp-page="/Asociados" asp-route-culture="@culture">
+                    <i class="@Localizer.Text("iconAssociated")"></i>
+                    <span>@Localizer.Text("headersSuppliers")</span>
+                </a>
+            </li>
+        }
+
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyPostedDebtor")).Succeeded || (await AuthorizationService.AuthorizeAsync(User, "PolicyFinancingDebtor")).Succeeded || (await AuthorizationService.AuthorizeAsync(User, "PolicyLoadInvoiceDebtor")).Succeeded || (await AuthorizationService.AuthorizeAsync(User, "PolicyEditInvoiceDebtor")).Succeeded)
+        {
+            <div class="sidebar-heading">
+                @Localizer.Text("menuFacturas")
+            </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+
+            @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyLoadInvoiceDebtor")).Succeeded || (await AuthorizationService.AuthorizeAsync(User, "PolicyEditInvoiceDebtor")).Succeeded)
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#gestion" aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-receipt"></i>
+                        <span>@Localizer.Text("menuGestion")</span>
+                    </a>
+                    <div id="gestion" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">@Localizer.Text("menuGesitonFactura")</h6>
+                            @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyLoadInvoiceDebtor")).Succeeded)
+                            {
+                                <a class="collapse-item" asp-area="debtor" asp-page="/CargaMasiva" asp-route-culture="@culture">@Localizer.Text("menuCargaFacturas")</a>
+                            }
+
+                            @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyEditInvoiceDebtor")).Succeeded)
+                            {
+                                <a class="collapse-item" asp-area="debtor" asp-page="/CargaManual" asp-route-culture="@culture">@Localizer.Text("menuEdicionFacturas")</a>
+                            }
+                        </div>
+                    </div>
+                </li>
+            }
+
+            @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyPostedDebtor")).Succeeded)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="debtor" asp-page="/PostularFacturas" asp-route-culture="@culture">
+                        <i class="far fa-paper-plane"></i>
+                        <span>@Localizer.Text("menuPostular")</span>
+                    </a>
+                </li>
+            }
+
+            @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyConfirmingDebtor")).Succeeded)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="debtor" asp-page="/ConfirmarFacturas" asp-route-culture="@culture">
+                        <i class="fas fa-check-double "></i>
+                        <span>@Localizer.Text("menuConfirmarDebtor")</span>
+                    </a>
+                </li>
+            }
+
+            @if (!Model.isFintech && (await AuthorizationService.AuthorizeAsync(User, "PolicyFinancingDebtor")).Succeeded)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="debtor" asp-page="/FinanciamientoFacturas" asp-route-culture="@culture">
+                        <i class="fas fa-hand-holding-usd"></i>
+                        <span>@Localizer.Text("menuFinanciar")</span>
+                    </a>
+                </li>
+            }
+
+            <hr class="sidebar-divider" />
+
+        }
+
+
+        <div class="sidebar-heading">
+            @Localizer.Text("menuConsultas")
+        </div>
+
+        <li class="nav-item">
+            <a class="nav-link" asp-area="debtor" asp-page="/Consultas" asp-route-culture="@culture">
+                <i class="fas fa-file-invoice"></i>
+                <span>@Localizer.Text("menuFacturas")</span>
+            </a>
+        </li>
+
+        break;
+
+    case "FACTOR":
+
+        @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyProfile")).Succeeded)
+        {
+            <li class="nav-item">
+                <a class="nav-link" asp-area="profile" asp-page="/ActualizarEmpresa" asp-route-culture="@culture">
+                    <i class="far fa-id-badge"></i>
+                    <span>@Localizer.Text("perfil")</span>
+                </a>
+            </li>
+
+            <hr class="sidebar-divider">
+        }
+
+        @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyAuctionFactor")).Succeeded || (await AuthorizationService.AuthorizeAsync(User, "PolicyPaidFactor")).Succeeded)
+        {
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                @Localizer.Text("menuMercado")
+            </div>
+            @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyAuctionFactor")).Succeeded)
+            {
+
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="factor" asp-page="/MercadoFacturas" asp-route-culture="@culture">
+                        <i class="fas fa-shopping-basket"></i>
+                        <span>@Localizer.Text("menuSubastas")</span>
+                    </a>
+                </li>
+            }
+
+            @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyPaidFactor")).Succeeded)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="factor" asp-page="/PagoFacturas" asp-route-culture="@culture">
+                        <i class="fas fa-coins"></i>
+                        <span>@Localizer.Text("menuPago")</span>
+                    </a>
+                </li>
+            }
+            <hr class="sidebar-divider" />
+
+        }
+
+        <div class="sidebar-heading">
+            @Localizer.Text("menuConsultas")
+        </div>
+
+        <li class="nav-item">
+            <a class="nav-link" asp-area="factor" asp-page="/Consultas" asp-route-culture="@culture">
+                <i class="fas fa-file-invoice"></i>
+                <span>@Localizer.Text("menuFacturas")</span>
+            </a>
+        </li>
+
+        <li id="menuFacturas" class="nav-item">
+            <a class="nav-link" asp-area="factor" asp-page="/ConsultaCesion" asp-route-culture="@culture">
+                <i class="fab fa-readme"></i>
+                <span>@Localizer.Text("menuDocumentCesion")</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" asp-area="factor" asp-page="/ConsultasPagos" asp-route-culture="@culture">
+                <i class="fas fa-coins"></i>
+                <span>@Localizer.Text("menuPagos")</span>
+            </a>
+        </li>
+
+        break;
+
+    case "SUPPLIER":
+        @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyProfile")).Succeeded)
+        {
+            <li class="nav-item">
+                <a class="nav-link" asp-area="profile" asp-page="/ActualizarEmpresa" asp-route-culture="@culture">
+                    <i class="far fa-id-badge"></i>
+                    <span>@Localizer.Text("perfil")</span>
+                </a>
+            </li>
+        }
+
+        @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyProfile")).Succeeded)
+        {
+            <li class="nav-item">
+                <a class="nav-link" asp-area="profile" asp-page="/Asociados" asp-route-culture="@culture">
+                    <i class="@Localizer.Text("iconAssociated")"></i>
+                    <span>@Localizer.Text("headersCustomers")</span>
+                </a>
+            </li>
+        }
+
+        <hr class="sidebar-divider">
+
+
+        @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyPagePublishedSupplier")).Succeeded || (await AuthorizationService.AuthorizeAsync(User, "PolicyOverdueInvoiceSupplier")).Succeeded)
+        {
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                @Localizer.Text("menuFacturas")
+            </div>
+
+            <!-- Menu de Venta Directa -->
+            @if (Model.haveClients &&
+            ((await AuthorizationService.AuthorizeAsync(User, "PolicyLoadInvoiceSupplier")).Succeeded || (await AuthorizationService.AuthorizeAsync(User, "PolicyEditInvoiceSupplier")).Succeeded || (await AuthorizationService.AuthorizeAsync(User, "PolicyPostedSupplier")).Succeeded)
+            )
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#gestion" aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-receipt"></i>
+                        <span>@Localizer.Text("menuVentaDirecta")</span>
+                    </a>
+                    <div id="gestion" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">@Localizer.Text("menuVentaDirecta"):</h6>
+                            @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyLoadInvoiceSupplier")).Succeeded)
+                            {
+                                <a class="collapse-item" asp-area="supplier" asp-page="/CargaFacturas" asp-route-culture="@culture">@Localizer.Text("menuCargaFacturas")</a>
+                            }
+
+                            @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyEditInvoiceSupplier")).Succeeded)
+                            {
+                                <a class="collapse-item" asp-area="supplier" asp-page="/EdicionFacturas" asp-route-culture="@culture">@Localizer.Text("menuEdicionFacturas")</a>
+                            }
+                            @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyPostedSupplier")).Succeeded)
+                            {
+                                <a class="collapse-item" asp-area="supplier" asp-page="/PostularFacturas" asp-route-culture="@culture">@Localizer.Text("menuPostularSupplier")</a>
+                            }
+                        </div>
+                    </div>
+                </li>
+            }
+
+            @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyAcceptOfferBankSupplier")).Succeeded)
+            {
+                <li id="menuOfertasBanco" class="nav-item">
+                    <a class="nav-link" asp-area="supplier" asp-page="/OfertasBanco" asp-route-culture="@culture">
+                        <i class="fas fa-percent"></i>
+                        <span>@Localizer.Text("menuOfertasBanco")</span>
+                    </a>
+                </li>
+            }
+
+            <!-- Nav Item - Charts -->
+            @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyPagePublishedSupplier")).Succeeded)
+            {
+                <li id="menuPublicar" class="nav-item disabledMenu">
+                    <a class="nav-link" asp-area="supplier" asp-page="/PublicarFacturas" asp-route-culture="@culture">
+                        <i class="fas fa-bullhorn"></i>
+                        <span>@Localizer.Text("menuPublicar")</span>
+                    </a>
+                </li>
+            }
+
+            @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyOverdueInvoiceSupplier")).Succeeded)
+            {
+                <li id="menuVencimiento" class="nav-item disabledMenu">
+                    <a class="nav-link" asp-area="supplier" asp-page="/FacturasVencimiento" asp-route-culture="@culture">
+                        <i class="fas fa-stopwatch"></i>
+                        <span>@Localizer.Text("menuVencimiento")</span>
+                    </a>
+                </li>
+            }
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+        }
+
+
+        @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyAuctionSupplier")).Succeeded || (await AuthorizationService.AuthorizeAsync(User, "PolicyCloseAuctionSupplier")).Succeeded)
+        {
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                @Localizer.Text("menuMercado")
+            </div>
+
+            @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyAuctionSupplier")).Succeeded)
+            {
+                <li id="menuSubastas" class="nav-item disabledMenu">
+                    <a class="nav-link" asp-area="supplier" asp-page="/MercadoFacturas" asp-route-culture="@culture">
+                        <i class="fas fa-shopping-basket"></i>
+                        <span>@Localizer.Text("menuSubastas")</span>
+                    </a>
+                </li>
+            }
+
+            @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyCloseAuctionSupplier")).Succeeded)
+            {
+                <li id="menuCierre" class="nav-item disabledMenu">
+                    <a class="nav-link" asp-area="supplier" asp-page="/CierreMercado" asp-route-culture="@culture">
+                        <i class="far fa-handshake"></i>
+                        <span>@Localizer.Text("menuCierre")</span>
+                    </a>
+                </li>
+            }
+
+
+            <hr class="sidebar-divider" />
+        }
+
+
+
+        <div class="sidebar-heading">
+            @Localizer.Text("menuConsultas")
+        </div>
+
+        <li id="menuFacturas" class="nav-item disabledMenu">
+            <a class="nav-link" asp-area="supplier" asp-page="/Consultas" asp-route-culture="@culture">
+                <i class="fas fa-file-invoice"></i>
+                <span>@Localizer.Text("menuFacturas")</span>
+            </a>
+        </li>
+
+        <li id="menuFacturas" class="nav-item">
+            <a class="nav-link" asp-area="supplier" asp-page="/ConsultaCesion" asp-route-culture="@culture">
+                <i class="fab fa-readme"></i>
+                <span>@Localizer.Text("menuDocumentCesion")</span>
+            </a>
+        </li>
+
+        break;
+
+    case "CONFIRMANT":
+        @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyProfile")).Succeeded)
+        {
+            <li class="nav-item">
+                <a class="nav-link" asp-area="profile" asp-page="/ActualizarEmpresa" asp-route-culture="@culture">
+                    <i class="far fa-id-badge"></i>
+                    <span>@Localizer.Text("perfil")</span>
+                </a>
+            </li>
+        }
+
+        <!-- Divider -->
+        <hr class="sidebar-divider mb-0">
+
+        @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyRegisterDebtorConfirmant")).Succeeded || (await AuthorizationService.AuthorizeAsync(User, "PolicyVerifyConfirmant")).Succeeded ||
+(await AuthorizationService.AuthorizeAsync(User, "PolicyAssignExecutiveConfirmant")).Succeeded || (await AuthorizationService.AuthorizeAsync(User, "PolicyAssignRiskConfirmant")).Succeeded)
+        {
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#empresa" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-building"></i>
+                    <span>@Localizer.Text("menuGestion")</span>
+                </a>
+                <div id="empresa" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">@Localizer.Text("menuGestionEmpresas")</h6>
+
+                        @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyRegisterDebtorConfirmant")).Succeeded)
+                        {
+                            <a class="collapse-item" asp-area="identity" asp-page="/Account/Register" asp-route-culture="@culture">@Localizer.Text("menuRegistroEmpresa")</a>
+                        }
+
+                        @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyVerifyConfirmant")).Succeeded)
+                        {
+                            <a class="collapse-item" asp-area="confirmant" asp-page="/VerificarDatos" asp-route-culture="@culture">@Localizer.Text("menuVerificacion")</a>
+                        }
+
+                        @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyAssignExecutiveConfirmant")).Succeeded)
+                        {   //Esto es asignar ejecutivo de cuentas
+                            <a class="collapse-item" asp-area="confirmant" asp-page="/Segmentacion" asp-route-culture="@culture">@Localizer.Text("menuAsignarEjecutivo")</a>
+                        }
+
+                        @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyAssignRiskConfirmant")).Succeeded)
+                        {   //Esto es asignar limite de credito
+                            <a class="collapse-item" asp-area="confirmant" asp-page="/EjecutivoCuentas" asp-route-culture="@culture">@Localizer.Text("menuLimiteCredito")</a>
+                        }
+
+                    </div>
+                </div>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+        }
+
+
+        @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyConfirmInvoiceConfirmant")).Succeeded || (await AuthorizationService.AuthorizeAsync(User, "PolicyBuyInvoiceConfirmant")).Succeeded ||
+(await AuthorizationService.AuthorizeAsync(User, "PolicyPaidInvoiceConfirmant")).Succeeded || (await AuthorizationService.AuthorizeAsync(User, "PolicyPaidConciliedConfirmant")).Succeeded || (await AuthorizationService.AuthorizeAsync(User, "PolicyPaidInvoiceOverdueConfirmant")).Succeeded)
+        {
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                @Localizer.Text("menuFacturas")
+            </div>
+
+            @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyReviewInvoice")).Succeeded)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="confirmant" asp-page="/Revision" asp-route-culture="@culture">
+                        <i class="fas fa-thumbs-up"></i>
+                        <span>@Localizer.Text("titleReview")</span>
+                    </a>
+                </li>
+            }
+
+            <!-- Nav Item - Charts -->
+            @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyConfirmInvoiceConfirmant")).Succeeded)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="confirmant" asp-page="/ConfirmarFacturas" asp-route-culture="@culture">
+                        <i class="fas fa-clipboard-check"></i>
+                        <span>@Localizer.Text("menuConfirmar")</span>
+                    </a>
+                </li>
+            }
+
+            <!-- Nav Item - Charts -->
+            @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyBuyInvoiceConfirmant")).Succeeded)
+            {
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="confirmant" asp-page="/CompraFactura" asp-route-culture="@culture">
+                        <i class="fas fa-search-dollar"></i>
+                        <span>@Localizer.Text("menuComprar")</span>
+                    </a>
+                </li>
+            }
+
+            @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyPaidInvoiceConfirmant")).Succeeded || (await AuthorizationService.AuthorizeAsync(User, "PolicyPaidConciliedConfirmant")).Succeeded ||
+   (await AuthorizationService.AuthorizeAsync(User, "PolicyPaidInvoiceOverdueConfirmant")).Succeeded)
+            {
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagos" aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-coins"></i>
+                        <span>@Localizer.Text("menuPagos")</span>
+                    </a>
+                    <div id="pagos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">@Localizer.Text("menuDropdownPagos"):</h6>
+                            @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyPaidInvoiceConfirmant")).Succeeded)
+                            {
+                                <a class="collapse-item" asp-area="confirmant" asp-page="/PagoFacturas" asp-route-culture="@culture">@Localizer.Text("menuFacturasCompradas")</a>
+                            }
+
+                            @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyPaidConciliedConfirmant")).Succeeded)
+                            {
+                                <a class="collapse-item" asp-area="confirmant" asp-page="/FacturasConciliadas" asp-route-culture="@culture">@Localizer.Text("menuFacturasConciliadas")</a>
+                            }
+
+                            @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyPaidInvoiceOverdueConfirmant")).Succeeded)
+                            {
+                                <a class="collapse-item" asp-area="confirmant" asp-page="/FacturasVencidas" asp-route-culture="@culture">@Localizer.Text("menuFacturasVencidas")</a>
+                            }
+                        </div>
+                    </div>
+                </li>
+            }
+
+            <hr class="sidebar-divider" />
+        }
+
+
+        <div class="sidebar-heading">
+            @Localizer.Text("menuConsultas")
+        </div>
+
+        <li class="nav-item">
+            <a class="nav-link" asp-area="confirmant" asp-page="/ConsultaClientes" asp-route-culture="@culture">
+                <i class="fas fa-users"></i>
+                <span>@Localizer.Text("menuClientes")</span>
+            </a>
+        </li>
+
+        <li id="menuFacturas" class="nav-item">
+            <a class="nav-link" asp-area="confirmant" asp-page="/ConsultaCesion" asp-route-culture="@culture">
+                <i class="fab fa-readme"></i>
+                <span>@Localizer.Text("menuDocumentCesion")</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" asp-area="confirmant" asp-page="/Consultas" asp-route-culture="@culture">
+                <i class="fas fa-file-invoice"></i>
+                <span>@Localizer.Text("menuFacturas")</span>
+            </a>
+        </li>
+        @if (!Model.isFintech)
+        {
+        <li class="nav-item">
+            <a class="nav-link" asp-area="confirmant" asp-page="/ConsultaFinanciamiento" asp-route-culture="@culture">
+                <i class="fas fa-hand-holding-usd"></i>
+                <span>@Localizer.Text("headersFinancing")</span>
+            </a>
+        </li>
+        }
+
+
+        @*
+            <li class="nav-item">
+                <a class="nav-link" asp-area="confirmant" asp-page="/ConsultasPagos" asp-route-culture="@culture">
+                    <i class="fas fa-coins"></i>
+                    <span>@Localizer.Text("menuPagos")</span>
+                </a>
+            </li>
+        *@
+
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#consultaPagos" aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-coins"></i>
+                <span>@Localizer.Text("menuPagos")</span>
+            </a>
+            <div id="consultaPagos" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">@Localizer.Text("menuDropdownConsultaPagos"):</h6>
+                    <a class="collapse-item" asp-area="confirmant" asp-page="/ConsultasPagosFacturasCompradas" asp-route-culture="@culture">@Localizer.Text("menuPagosFacturasCompradas")</a>
+                    <a class="collapse-item" asp-area="confirmant" asp-page="/ConsultasPagosFacturasConciliadas" asp-route-culture="@culture">@Localizer.Text("menuPagosFacturasConciliadas")</a>
+                    <a class="collapse-item" asp-area="confirmant" asp-page="/ConsultasPagosFacturasVencidas" asp-route-culture="@culture">@Localizer.Text("menuPagosFacturasVencidas")</a>
+                </div>
+            </div>
+        </li>
+
+
+        break;
+
+    case "BACKOFFICE":
+        @if ((await AuthorizationService.AuthorizeAsync(User, "PolicyProfile")).Succeeded)
+        {
+            <li class="nav-item">
+                <a class="nav-link" asp-area="profile" asp-page="/ActualizarEmpresa" asp-route-culture="@culture">
+                    <i class="far fa-id-badge"></i>
+                    <span>@Localizer.Text("perfil")</span>
+                </a>
+            </li>
+        }
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            @Localizer.Text("menuClientes")
+        </div>
+
+        <li class="nav-item">
+            <a class="nav-link" asp-area="identity" asp-page="/Account/Register" asp-route-culture="@culture">
+                <i class="fas fa-university"></i>
+                <span>@Localizer.Text("menuRegistroBanco")</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            @Localizer.Text("menuMercado")
+        </div>
+
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+            <a class="nav-link" asp-area="backoffice" asp-page="/MantenimientoSubasta" asp-route-culture="@culture">
+                <i class="fas fa-shopping-basket"></i>
+                <span>@Localizer.Text("menuSubastas")</span>
+            </a>
+        </li>
+
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+            <a class="nav-link" asp-area="backoffice" asp-page="/Conciliacion" asp-route-culture="@culture">
+                <i class="far fa-handshake"></i>
+                <span>@Localizer.Text("menuConciliacion")</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <div class="sidebar-heading">
+            @Localizer.Text("menuConsultas")
+        </div>
+
+        <li class="nav-item">
+            <a class="nav-link" asp-area="backoffice" asp-page="/ConsultaUsuarios" asp-route-culture="@culture">
+                <i class="fas fa-users"></i>
+                <span>@Localizer.Text("menuClientes")</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" asp-area="backoffice" asp-page="/Consultas" asp-route-culture="@culture">
+                <i class="fas fa-file-invoice"></i>
+                <span>@Localizer.Text("menuFacturas")</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" asp-area="backoffice" asp-page="/ConsultasPagos" asp-route-culture="@culture">
+                <i class="fas fa-coins"></i>
+                <span>@Localizer.Text("menuPagos")</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <div class="sidebar-heading">
+            @Localizer.Text("menuGenerales")
+        </div>
+
+        <li class="nav-item">
+            <a class="nav-link" asp-area="backoffice" asp-page="/MantenimientoBancos" asp-route-culture="@culture">
+                <i class="fas fa-building"></i>
+                <span>@Localizer.Text("menuBancos")</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" asp-area="backoffice" asp-page="/MantenimientoRoles" asp-route-culture="@culture">
+                <i class="fas fa-users-cog"></i>
+                <span>@Localizer.Text("menuRoles")</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" asp-area="backoffice" asp-page="/mantenimientoSettings" asp-route-culture="@culture">
+                <i class="fas fa-tools"></i>
+                <span>@Localizer.Text("menuParametros")</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" asp-area="backoffice" asp-page="/contabilidad" asp-route-culture="@culture">
+                <i class="fas fa-stream"></i>
+                <span>@Localizer.Text("menuContabilidad")</span>
+            </a>
+        </li>
+
+        break;
+
+    default:
+        /*
+        @foreach (var menu in Model)
+        {
+            switch (@menu.ItemType)
+            {
+                case "nav-item":
+                    <!-- Nav Item - Charts -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="/@culture/@menu.Participant.ToLower()/@menu.Url.ToLower()">
+                            <i class="@menu.IconClass"></i>
+                            <span>@menu.Content</span>
+                        </a>
+                    </li>
+                    break;
+
+                case "nav-menu":
+                    <!-- Divider -->
+                    <hr class="sidebar-divider">
+
+                    <!-- Heading -->
+                    <div class="sidebar-heading">
+                        @menu.Content
+                    </div>
+
+                    if (menu.Children.Any())
+                    {
+                        <partial name="~/Pages/Shared/Components/MenuControl/Default.cshtml" model="menu.Children" />
+                    }
+                    break;
+
+                case "menu-item":
+                    <!-- Nav Item - Pages Collapse Menu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#@menu.ID" aria-expanded="true" aria-controls="@menu.ID" data-parent="#accordionSidebar">
+                            <i class="fas fa-fw fa-cog"></i>
+                            <span>@menu.Content</span>
+                        </a>
+                        <div id="@menu.ID" class="collapse" aria-labelledby="heading@menu.ID" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">@menu.Description:</h6>
+
+                                @foreach (var item in menu.Children)
+                                {
+                                    <a class="collapse-item" href="@item.Url">@item.Content</a>
+                                }
+                            </div>
+                        </div>
+                    </li>
+                    break;
+            }
+        }
+        */
+        break;
+}
+

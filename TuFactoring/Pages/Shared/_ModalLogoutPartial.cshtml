@@ -1,0 +1,51 @@
+﻿@model int
+@using System.Globalization;
+
+@{
+
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+}
+
+<v-dialog v-model="modalLogout.mostrar" max-width="500" persistent v-if="modalLogout.vueRefresh == null || !modalLogout.vueRefresh">
+    <v-card>
+        <v-card-title>
+            <h3>@Localizer.Text("titleSessionExpired") </h3>
+        </v-card-title>
+        <v-card-text>
+            <v-container>
+                <v-row>
+                    <v-col cols="12" sm="12" lg="12" md="12">
+                        @Localizer.Text("textSessionExpired")
+                    </v-col>
+                    <v-col cols="12" md="12" lg="12" sm="12" class="text-right">
+                        <a class="btn btn-success" onclick="refrescarSession()">@Localizer.Text("buttonSi")</a>
+                        <a class="btn btn-danger" href="~/logout">@Localizer.Text("buttonNo")</a>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </v-card-text>
+    </v-card>
+</v-dialog>
+
+
+<v-dialog v-model="modalLogout.mostrar" max-width="500" persistent v-else>
+    <v-card>
+        <v-card-title>
+            <h3>@Localizer.Text("titleSessionExpired") </h3>
+        </v-card-title>
+        <v-card-text>
+            <v-container>
+                <v-row>
+                    <v-col cols="12" sm="12" lg="12" md="12">
+                        @Localizer.Text("textSessionExpired")
+                    </v-col>
+                    <v-col cols="12" md="12" lg="12" sm="12" class="text-right">
+                        <a class="btn btn-success" @@click="refrescarSession()">@Localizer.Text("buttonSi")</a>
+                        <a class="btn btn-danger" href="~/logout">@Localizer.Text("buttonNo")</a>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </v-card-text>
+    </v-card>
+</v-dialog>
+

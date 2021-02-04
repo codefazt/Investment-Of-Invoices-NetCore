@@ -1,0 +1,9 @@
+C:\Users\truco\Desktop\tufactoring-frontend\TuFactoringModels\bin\Release\netcoreapp2.2\TuFactoringModels.deps.json
+C:\Users\truco\Desktop\tufactoring-frontend\TuFactoringModels\bin\Release\netcoreapp2.2\TuFactoringModels.dll
+C:\Users\truco\Desktop\tufactoring-frontend\TuFactoringModels\bin\Release\netcoreapp2.2\TuFactoringModels.pdb
+C:\Users\truco\Desktop\tufactoring-frontend\TuFactoringModels\obj\Release\netcoreapp2.2\TuFactoringModels.csprojAssemblyReference.cache
+C:\Users\truco\Desktop\tufactoring-frontend\TuFactoringModels\obj\Release\netcoreapp2.2\TuFactoringModels.csproj.CoreCompileInputs.cache
+C:\Users\truco\Desktop\tufactoring-frontend\TuFactoringModels\obj\Release\netcoreapp2.2\TuFactoringModels.AssemblyInfoInputs.cache
+C:\Users\truco\Desktop\tufactoring-frontend\TuFactoringModels\obj\Release\netcoreapp2.2\TuFactoringModels.AssemblyInfo.cs
+C:\Users\truco\Desktop\tufactoring-frontend\TuFactoringModels\obj\Release\netcoreapp2.2\TuFactoringModels.dll
+C:\Users\truco\Desktop\tufactoring-frontend\TuFactoringModels\obj\Release\netcoreapp2.2\TuFactoringModels.pdb

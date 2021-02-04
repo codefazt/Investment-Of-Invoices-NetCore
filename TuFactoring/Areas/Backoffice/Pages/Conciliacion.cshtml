@@ -1,0 +1,624 @@
+﻿@page
+@model TuFactoring.Areas.Backoffice.Pages.ConciliacionModel
+@{
+    ViewData["Title"] = Localizer.Text("titleConciliacion");
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+}
+
+<v-app id="appConciliacion">
+
+    @Html.AntiForgeryToken()
+    <input hidden id="contenidoRaw" value="@@Model.JsonPagos" />
+    <div id="eliminarData">
+        @for (var i = 0; i < Model.dataFilter.Count; i++)
+        {
+            <input hidden id="filterData+@i" value="@Model.dataFilter[i]" />
+        }
+        <input hidden id="currenciesData" value="@Model.dataJsonCurrencies" />
+    </div>
+
+    <div class="modal fade in fa fa-spinner" v-if="cargado" role="dialog">
+        <div class="modal-dialog text-center">
+
+            <h2 style="color:#f1f1f1"><span id="cargando">Cargando...</span></h2>
+        </div>
+    </div>
+
+    <div id="contenido" hidden>
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">
+                <a href="#" style="color:#fff !important" class="btn btn-success btn-circle">
+                    <i class="far fa-handshake"></i>
+                </a>
+                &nbsp;@Localizer.Text("titleConciliacion")
+            </h1>
+            <span style="display: none;">
+                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+            </span>
+        </div>
+        <p class="mb-4">
+            @Localizer.Text("textoAyudaConciliar")
+            <br />
+            <br />
+            @Localizer.Text("textoPress")<a v-on:click="dialogAyuda=true" href="#" class="font-weight-bold"> @Localizer.Text("textoHere")</a> @Localizer.Text("textoMoreInformation")
+        </p>
+
+        <v-dialog v-model="dialogAyuda" max-width="600" transition="dialog-bottom-transition">
+            <v-card>
+                <v-card-title>
+                    <v-spacer></v-spacer>
+                    <v-btn icon @@click="dialogAyuda = false">
+                        <v-icon>@Localizer.Text("iconCloseMDI")</v-icon>
+                    </v-btn>
+                </v-card-title>
+                <v-card-text>
+                    <v-container>
+                        <v-row>
+                            <v-col cols="12" sm="12" lg="12" md="12">
+
+                                <p class="text-justify"><strong>@Localizer.Text("textoAyudaModalConciliar1")</strong></p>
+                                <p class="text-justify"><strong>@Localizer.Text("textoAyudaModalConciliar2")</strong> @Localizer.Text("textoAyudaModalConciliar3")</p>
+                                <p class="text-justify">@Localizer.Text("textoAyudaModalConciliar4")@Localizer.Text("textoAyudaModalConciliar3")</p>
+                                <p class="text-justify">
+                                    @Localizer.Text("textoAyudaModalConciliar5")<br />
+                                    @Localizer.Text("textoAyudaModalConciliar6") @Localizer.Text("textoAyudaModalConciliar7")<br />
+                                    @Localizer.Text("textoAyudaModalConciliar8") @Localizer.Text("textoAyudaModalConciliar9")<br />
+                                </p>
+                                <p class="text-justify"><strong>@Localizer.Text("textoAyudaModalConciliar10")</strong></p>
+                                <p class="text-justify">
+                                    
+                                    <strong>@Localizer.Text("textoAyudaModalConciliar11")</strong> @Localizer.Text("textoAyudaModalConciliar12")<br />
+                                    <strong>@Localizer.Text("textoAyudaModalConciliar13")</strong> @Localizer.Text("textoAyudaModalConciliar14")<br />
+                                </p>
+
+                                <p class="text-justify"><strong>@Localizer.Text("textoAyudaModalConciliar15")</strong></p>
+                                <p class="text-justify">@Localizer.Text("textoAyudaModalConciliar16")</p>
+                                <p class="text-justify"><strong>@Localizer.Text("textoAyudaModalConciliar17")</strong></p>
+                                <p class="text-justify">
+                                    @Localizer.Text("textoAyudaModalConciliar18") @Localizer.Text("textoAyudaModalConciliar19")
+                                </p>
+
+                            </v-col>
+                        </v-row>
+                    </v-container>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h4 class="m-0 font-weight-bold text-primary">
+                    @Localizer.Text("titlePlantillaConciliacion")
+                </h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <form method="post" enctype="multipart/form-data">
+
+                            @*<input type="file" ref="file" accept="text/plain" asp-for="Prueba.Upload" />*@
+                            <div class="row">
+
+                                <div class="col-md-5 col-lg-5 col-sm-12 col-xs-12">
+
+                                    <label>@Localizer.Text("textobankingEntity")</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text" id="basic-addon1"><i class="@Localizer.Text("iconBank")"></i></div>
+                                        </div>
+                                        <select :class="['form-control',errorBanco ]" asp-for="IdBank" asp-items="Model.Banks_Options" v-on:change="validacionBanco" aria-label="@Localizer.Text("placeholderEstate")">
+                                            <option value="">@Localizer.Text("placeholderEstate")</option>
+                                        </select>
+                                    </div>
+
+                                    <span class="text-danger">{{errorBancoTexto}}</span>
+                                </div>
+
+                                <div class="col-md-5 col-lg-5 col-sm-12 col-xs-12">
+
+                                    <label>@Localizer.Text("textotypeCurrency")</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="@Localizer.Text("iconCoinType")"></i></span>
+                                        </div>
+                                        <select :class="['form-control',errorMoneda ]" asp-for="IdMoneda" asp-items="Model.Currency_Options" v-on:change="validacionMoneda" aria-label="@Localizer.Text("placeholderEstate")">
+                                            <option value="">@Localizer.Text("placeholderEstate")</option>
+                                        </select>
+                                    </div>
+
+                                    <span class="text-danger">{{errorMonedaTexto}}</span>
+                                </div>
+
+                                <div class="col-md-2 col-lg-2 col-sm-12 col-xs-12">
+
+                                    <span v-on:click="validarClickArchivo" class="btn btn-sm btn-success pt-2 mt-7">
+                                        <label for="file" class="">
+                                            @Localizer.Text("buttonLoadFile")
+                                        </label>
+                                        <input :disabled="habilitarBtnFile" type="file" id="file" ref="file" style="display:none" accept="text/plain" v-on:change="handleFileUpload" multiple />
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*Tabla Movements ---------*@
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h4 class="m-0 font-weight-bold text-primary">
+                    @Localizer.Text("titleConciliarMovements")
+                </h4>
+                <div v-if="false" class="dropdown no-arrow">
+                    <span class="font-weight-bold text-primary">@Localizer.Text("buttonOptions")</span>
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                        <button class="dropdown-item btn-link"
+                                data-toggle="modal" data-target="#modalFilter">
+                            <i class="@Localizer.Text("iconFilter")"></i>
+                            @Localizer.Text("buttonFilter")
+                        </button>
+                        <a class="dropdown-item btn-link" style="color:black !important" asp-page="#">
+                            <i class="@Localizer.Text("iconClear")"></i>
+                            @Localizer.Text("buttoClearFilter")
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <v-data-table key="tablaMovemnt"
+                                      :headers="headerMovements"
+                                      :items="tablaMovemnts"
+                                      :items-per-page="5"
+                                      :options.sync="options"
+                                      :loading="loadingMovements"
+                                      :disable-filtering="true"
+                                      class="elevation-1">
+
+
+                            <template v-slot:item.n="{ item }">
+                                {{tablaMovemnts.indexOf(item) + 1}}
+                            </template>
+
+                            <template v-slot:item.movement_dated="{ item }">
+                                {{backEndDateFormat(item.movement_dated)}}&nbsp;
+                            </template>
+
+                            <template v-slot:item.currency="{ item }">
+                                <v-chip small> <b>{{ item.currency}} </b></v-chip>
+                            </template>
+
+                            <template v-slot:item.amount="{ item }">
+                                <div class="text-right">
+                                    {{item.symbol}}&nbsp;&nbsp;{{ formatoMonedaInput(item.amount,'es',item.currency.digits) }}
+                                    <span class="text-xs badge bg-gray-200">
+                                        {{item.currency}}
+                                    </span>
+                                </div>
+
+                            </template>
+
+                            <template v-slot:item.entity="{ item }">
+                                <div v-if="item.img != null"><img :src="'/img/banks/'+ item.img + '.png'" height="36" :alt="item.entity" :title="item.entity" /></div>
+                                <div v-else>{{item.entity}}</div>
+                            </template>
+
+                            <template v-slot:item.action="{ item }">
+                                <div class="btn-group mr-2" role="group" aria-label="First group">
+                                    <button v-if="id_payment == '' || id_payment == null" disabled type="button" class="btn btn-sm btn-success">@Localizer.Text("btnConciliar")</button>
+                                    <button v-else v-on:click="id_conciliado = id_payment; dialogConciliar = true; id_movement= item.id; boton_movement = true; objetoTablaMovements(item)" type="button" class="btn btn-sm btn-success">@Localizer.Text("btnConciliar")</button>&nbsp;
+
+                                    <button type="button" v-on:click="id_conciliado = item.id; dialogmovement = true; objetoTablaMovements(item)" class="btn btn-sm btn-danger" title="@Localizer.Text("buttonDelete")">@Localizer.Text("buttonDelete")</button>
+                                </div>
+                            </template>
+                        </v-data-table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div v-for="(tabla, index) in tablas" class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h4 class="m-0 font-weight-bold text-primary">
+                    @Localizer.Text("titleConciliarPagos") ({{tabla.length > 0 ? tabla[0].currency.iso_4217 : ""}})
+                </h4>
+                <div v-if="false" class="dropdown no-arrow">
+                    <span class="font-weight-bold text-primary">@Localizer.Text("buttonOptions")</span>
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                        <button class="dropdown-item btn-link"
+                                data-toggle="modal" data-target="#modalFilter">
+                            <i class="@Localizer.Text("iconFilter")"></i>
+                            @Localizer.Text("buttonFilter")
+                        </button>
+                        <a class="dropdown-item btn-link" style="color:black !important" asp-page="#">
+                            <i class="@Localizer.Text("iconClear")"></i>
+                            @Localizer.Text("buttoClearFilter")
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <v-data-table :key="index"
+                                      :headers="headerPagos"
+                                      :items="tabla"
+                                      :items-per-page="5"
+                                      :options.sync="listaOptions[index]"
+                                      :loading="loading[index]"
+                                      :disable-filtering="true"
+                                      class="elevation-1">
+
+                            <template v-slot:item.radio="{ item }">
+                                <input type="radio" v-on:click="objetoTablaPrincipal(item)" :id="'radio'+index" :value="item.id" v-model="id_payment">
+                            </template>
+
+                            <template v-slot:item.n="{ item }">
+                                {{tabla.indexOf(item) + 1}}
+                            </template>
+
+                            <template v-slot:item.img="{ item }">
+                                <div v-if="item.img != null"><img :src="'/img/banks/'+ item.img + '.png'" height="36" :alt="item.receiving_account_name" :title="item.receiving_account_name" /></div>
+                                <div v-else>{{item.receiving_account_name}}</div>
+                            </template>
+
+                            <template v-slot:item.receiving_account_name="{ item }">
+                                @*<div>{{item.receiving_account_accountNumber}}</div>*@
+                                <small>{{item.receiving_account_accountNumber}}</small>
+                            </template>
+
+                            <template v-slot:item.amount="{ item }">
+                                <div class="text-right">
+                                    {{item.currency.symbol}}&nbsp;&nbsp;{{ formatoMonedaInput(item.amount,'es',item.currency.digits) }}
+                                    <span class="text-xs badge bg-gray-200">
+                                        {{item.currency.iso_4217}}
+                                    </span>
+                                </div>
+                            </template>
+
+                            <template v-slot:item.payment_date="{ item }">
+                                {{backEndDateFormat(item.payment_date)}}
+                            </template>
+
+                            <template v-slot:item.detalle="{ item }">
+                                <button v-on:click="id_conciliado = item.id; dialogConciliar = true" type="button" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></button>
+                            </template>
+
+                            <template v-slot:item.action="{ item }">
+                                <div class="btn-group mr-2" role="group" aria-label="First group">
+                                    <button v-on:click="id_conciliado = item.id; dialogConciliar = true" type="button" class="btn btn-sm btn-success">@Localizer.Text("btnConciliar")</button>&nbsp;
+                                    <button type="button" v-on:click="id_conciliado = item.id; dialogBloquear = true" class="btn btn-sm btn-danger" title="Rechazar Pago">Rechazar</button>
+                                </div>
+                            </template>
+                        </v-data-table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div v-if="tablas.length <= 0" class="card shadow mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h4 class="m-0 font-weight-bold text-primary">
+                    @Localizer.Text("titleConciliarPagos")
+                </h4>
+                <div v-if="false" class="dropdown no-arrow">
+                    <span class="font-weight-bold text-primary">@Localizer.Text("buttonOptions")</span>
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                        <button class="dropdown-item btn-link"
+                                data-toggle="modal" data-target="#modalFilter">
+                            <i class="@Localizer.Text("iconFilter")"></i>
+                            @Localizer.Text("buttonFilter")
+                        </button>
+                        <a class="dropdown-item btn-link" style="color:black !important" asp-page="#">
+                            <i class="@Localizer.Text("iconClear")"></i>
+                            @Localizer.Text("buttoClearFilter")
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <v-data-table :headers="headerPagos"
+                                      :items="DatosResividos"
+                                      :items-per-page="10"
+                                      :options.sync="options"
+                                      :loading="loading"
+                                      :disable-filtering="true"
+                                      class="elevation-1">
+
+                        </v-data-table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <v-dialog v-model="dialogArchivo" transition="dialog-bottom-transition" max-width="700">
+            <v-card>
+                <v-card-title class="headline">
+                    <h4>
+                        @Localizer.Text("ProcesarArchivo")
+                    </h4>
+                    <v-spacer></v-spacer>
+                    <v-btn icon @@click="dialogArchivo = false">
+                        <v-icon>@Localizer.Text("iconCloseMDI")</v-icon>
+                    </v-btn>
+                </v-card-title>
+
+                <v-card-text>
+
+                    <v-row>
+                        <v-col cols="12" md="12" sm="12">
+                            <p>@Localizer.Text("textoMensajeArchivoConciliar") {{file != null ? file.name : "Archivo no encontrado"}} ?</p>
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                        <v-col cols="12" md="12" sm="12">
+                            <span class="float-right">
+                                <v-btn dark color="green" @@click="submitFile(); dialogArchivo = false">@Localizer.Text("buttonAcept")</v-btn>
+                                <v-btn dark color="red" @@click="dialogArchivo = false">@Localizer.Text("buttonClose")</v-btn>
+                            </span>
+                        </v-col>
+                    </v-row>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
+        <!--Modal d Flitro de los Clientes-->
+        @*
+        <div class="modal" tabindex="-1" role="dialog" id="modalFilter">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"><i class="@Localizer.Text("iconFilter")"></i>&nbsp;@Localizer.Text("titlefilter")</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post">
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                    <label>@Localizer.Text("titleClient")</label>
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><i class="@Localizer.Text("iconProvider")"></i></span>
+                                        </div>
+                                        <input placeholder="@Localizer.Text("selectTypeDebtor")" asp-for="filter.Payment_date" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                    <label>@Localizer.Text("headersDocNumber")</label>
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="@Localizer.Text("iconInvoiceNumber")"></i></span>
+                                        </div>
+                                        <input type="text" maxlength="255" id="txtFactura" class="form-control" asp-for="filter.Paying_account"
+                                               placeholder="@Localizer.Text("placeholderDocumento")" onKeypress="if (event.keyCode == 32) event.returnValue = false;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                                    <label>@Localizer.Text("textostate")</label>
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text" id="basic-addon1"><i class="@Localizer.Text("iconAddress")"></i></div>
+                                        </div>
+                                        <select asp-for="filter.Entity" class="form-control" asp-items="Model.Banks_Options" aria-label="@Localizer.Text("placeholderEstate")">
+                                            <option value="">@Localizer.Text("placeholderEstate")</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12 align-self-end">
+                                    <button type="submit" class="btn btn-block btn-success" :disabled="envio">
+                                        <i class="@Localizer.Text("iconFilter")"></i>
+                                        <span>@Localizer.Text("buttonFilter")</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        *@
+        <!--Modal d Detalle de la Factura-->
+
+        <v-dialog v-model="dialogConciliar" persistent transition="dialog-bottom-transition" max-width="870">
+            <v-card>
+                <v-card-title class="headline">
+                    <h4>
+                        @Localizer.Text("titleConcliarCliente")
+                    </h4>
+                    <v-spacer></v-spacer>
+                    <v-btn icon @@click="dialogConciliar = false; boton_movement=false; id_payment=null">
+                        <v-icon>@Localizer.Text("iconCloseMDI")</v-icon>
+                    </v-btn>
+                </v-card-title>
+
+                <v-card-text>
+
+                    <v-row v-if="boton_movement">
+                        <v-col cols="12" md="12" sm="12">
+                            <p>@Localizer.Text("textoConcliarCliente")</p>
+
+                            <v-row class="tituloDesactivada">
+                                <v-col class="text-center" cols="2" md="2" sm="2">
+                                    {{i18n.t("headers.fechaTransaccion")}}
+                                </v-col>
+                                <v-col class="text-center" cols="2" md="2" sm="2">
+                                    {{i18n.t("headers.bankConfirming")}}
+                                </v-col>
+                                <v-col class="text-center" cols="3" md="3" sm="3">
+                                    {{i18n.t("headers.cuentaReceptora")}}
+                                </v-col>
+                                <v-col class="text-center" cols="2" md="2" sm="2">
+                                    {{i18n.t("headers.amountPaid")}}
+                                </v-col>
+                                <v-col class="text-center" cols="2" md="2" sm="2">
+                                    {{i18n.t("headers.referencia")}}
+                                </v-col>
+                            </v-row>
+
+                            <v-row class="tablaDesactivada" v-if="datosConfirmacionMovements != null">
+
+                                <v-col class="text-center" cols="2" md="2" sm="2">
+                                    {{backEndDateFormat(datosConfirmacionMovements.movement_dated)}}
+                                </v-col>
+                                <v-col class="text-center" cols="2" md="2" sm="2">
+                                    <div v-if="datosConfirmacionMovements.img != null"><img :src="'/img/banks/'+ datosConfirmacionMovements.img + '.png'" height="36" :alt="datosConfirmacionMovements.entity" :title="datosConfirmacionMovements.entity" /></div>
+                                    <div v-else>{{datosConfirmacionMovements.entity}}</div>
+                                </v-col>
+                                <v-col class="text-center" cols="3" md="3" sm="3">
+                                    {{datosConfirmacionMovements.account_number}}
+                                </v-col>
+                                <v-col cols="2" md="2" sm="2">
+                                    <div class="text-right">
+                                        {{datosConfirmacionMovements.symbol}}&nbsp;&nbsp;{{ formatoMonedaInput(datosConfirmacionMovements.amount,'es',datosConfirmacionMovements.digits) }}
+                                        <span class="text-xs badge bg-gray-200">
+                                            {{datosConfirmacionMovements.currency}}
+                                        </span>
+                                    </div>
+                                </v-col>
+                                <v-col class="text-center" cols="2" md="2" sm="2">
+                                    {{datosConfirmacionMovements.number}}
+                                </v-col>
+                            </v-row>
+
+
+                            <p>Con el siguiente pago?</p>
+                            <v-row class="tablaDesactivada" v-if="datosConfirmacionPagosPorConciliar != null">
+                                <v-col class="text-center" cols="2" md="2" sm="2">
+                                    {{backEndDateFormat(datosConfirmacionPagosPorConciliar.payment_date)}}
+                                </v-col>
+                                <v-col class="text-center" cols="2" md="2" sm="2">
+                                    <div v-if="datosConfirmacionPagosPorConciliar.img != null"><img :src="'/img/banks/'+ datosConfirmacionPagosPorConciliar.img + '.png'" height="36" :alt="datosConfirmacionPagosPorConciliar.receiving_account_name" :title="datosConfirmacionPagosPorConciliar.receiving_account_name" /></div>
+                                    <div v-else>{{datosConfirmacionPagosPorConciliar.receiving_account_name}}</div>
+                                </v-col>
+                                <v-col class="text-center" cols="3" md="3" sm="3">
+                                    {{datosConfirmacionPagosPorConciliar.receiving_account_accountNumber}}
+                                </v-col>
+                                <v-col cols="2" md="2" sm="2">
+                                    <div class="text-right">
+                                        {{datosConfirmacionPagosPorConciliar.currency.symbol}}&nbsp;&nbsp;{{ formatoMonedaInput(datosConfirmacionPagosPorConciliar.amount,'es',datosConfirmacionPagosPorConciliar.currency.digits) }}
+                                        <span class="text-xs badge bg-gray-200">
+                                            {{datosConfirmacionPagosPorConciliar.currency.iso_4217}}
+                                        </span>
+                                    </div>
+                                </v-col>
+                                <v-col class="text-center" cols="2" md="2" sm="2">
+                                    {{datosConfirmacionPagosPorConciliar.referencia}}
+                                </v-col>
+                            </v-row>
+
+                        </v-col>
+                    </v-row>
+                    <div v-else><p>@Localizer.Text("textoConcliarCliente")</p></div>
+                    <v-row>
+                        <v-col cols="12" md="12" sm="12">
+                            <span class="float-right">
+                                <v-btn dark color="green" @@click="conciliar(); dialogConciliar = false">@Localizer.Text("buttonAcept")</v-btn>
+                                <v-btn dark color="red" @@click="dialogConciliar = false; boton_movement=false; id_payment=null">@Localizer.Text("buttonClose")</v-btn>
+                            </span>
+                        </v-col>
+                    </v-row>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
+        <v-dialog v-model="dialogBloquear" persistent transition="dialog-bottom-transition" max-width="700">
+            <v-card>
+                <v-card-title class="headline">
+                    <h4>
+                        @Localizer.Text("titleBloquearCliente")
+                    </h4>
+                    <v-spacer></v-spacer>
+                    <v-btn icon @@click="dialogBloquear = false; boton_movement=false; id_payment=null">
+                        <v-icon>@Localizer.Text("iconCloseMDI")</v-icon>
+                    </v-btn>
+                </v-card-title>
+
+                <v-card-text>
+
+                    <v-row>
+                        <v-col cols="12" md="12" sm="12">
+                            <p>@Localizer.Text("textoBloquearCliente")</p>
+                        </v-col>
+                    </v-row>
+                    <v-row>
+                        <v-col cols="12" md="12" sm="12">
+                            <span class="float-right">
+                                <v-btn dark color="green" @@click="bloquear(); dialogBloquear = false">@Localizer.Text("buttonAcept")</v-btn>
+                                <v-btn dark color="red" @@click="dialogBloquear = false; boton_movement=false; id_payment=null">@Localizer.Text("buttonClose")</v-btn>
+                            </span>
+                        </v-col>
+                    </v-row>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
+        <v-dialog v-model="dialogmovement" persistent transition="dialog-bottom-transition" max-width="700">
+            <v-card>
+                <v-card-title class="headline">
+                    <h4>
+                        @Localizer.Text("titleModalMovementNotConciliado")
+                    </h4>
+                    <v-spacer></v-spacer>
+                    <v-btn icon @@click="dialogmovement = false; boton_movement=false; id_payment=null">
+                        <v-icon>@Localizer.Text("iconCloseMDI")</v-icon>
+                    </v-btn>
+                </v-card-title>
+
+                <v-card-text>
+
+
+                    <p>@Localizer.Text("textoModalMovementNotConciliado")</p>
+
+                    <v-row>
+                        <v-col cols="12" md="12" sm="12">
+                            <span class="float-right">
+                                <v-btn dark color="green" @@click="movementRejected(); dialogmovement = false">@Localizer.Text("buttonAcept")</v-btn>
+                                <v-btn dark color="red" @@click="dialogmovement = false; boton_movement = false; id_payment=null">@Localizer.Text("buttonClose")</v-btn>
+                            </span>
+                        </v-col>
+                    </v-row>
+                </v-card-text>
+            </v-card>
+        </v-dialog>
+        <v-dialog v-model="modalCargandoDetalle" persistent max-width="700">
+            <v-card color="primary" dark>
+                <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
+            </v-card>
+        </v-dialog>
+        @await Html.PartialAsync("_ModalLogoutPartial", 5)
+    </div>
+
+</v-app>
+
+@section Scripts{
+    <script src="~/js/Operativo/Consolidacion.js" asp-append-version="true"></script>
+
+}

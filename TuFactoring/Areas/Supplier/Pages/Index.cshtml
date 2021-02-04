@@ -1,0 +1,306 @@
+﻿@page
+@using System.Globalization;
+
+@model TuFactoring.Areas.Supplier.Pages.IndexModel
+@{
+    ViewData["Title"] = Localizer.Text("Home page");
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@{
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+}
+
+<v-app id="appHome">
+
+    @Html.AntiForgeryToken()
+    <input hidden value="@ViewData["id"]" id="People" />
+    <input hidden id="contenidoRaw" value="@Model.ContratoJson" />
+
+    <div class="modal fade in fa fa-spinner" v-if="cargado" role="dialog">
+        <div class="modal-dialog text-center">
+
+            <h2 style="color:#f1f1f1"><span id="cargando">Cargando...</span></h2>
+        </div>
+    </div>
+
+    <div id="contenido" hidden>
+        @await Html.PartialAsync("_ModalLogoutPartial", 2)
+        <!-- Page Heading -->
+        <h1 class="h3 mb-4 text-gray-800">@Localizer.Text("Welcome")</h1>
+        <p class="mb-4">
+            <strong>@Localizer.Text("branding")</strong> @Localizer.Text("indexSupplierTuFactoring") <em>@Localizer.Text("headersCustomer")</em>.
+        </p>
+
+        @await Component.InvokeAsync("SupplierWidgets")
+
+        <p>Current culture : @CultureInfo.CurrentCulture.DisplayName (@CultureInfo.CurrentCulture.NativeName)</p>
+
+        <p>@Localizer.Text(" Current date") : @DateTime.Now</p>
+
+        <!--Contrato TuFactoring-->
+        <v-dialog v-model="contratoProveedor" scrollable persistent max-width="800">
+            <v-card>
+                <v-card-title class="headline">                
+                    <small>CONTRATO ADHESION PROVEEDOR</small>
+                    <v-spacer></v-spacer>
+                    <v-btn class="mr-5" v-if="Const == false" icon @@click="contratoProveedor = false">
+                        <v-icon>@Localizer.Text("iconCloseMDI")</v-icon>
+                    </v-btn>
+                    <div class="ml-5"> <small>{{nombreBancoDeTurno}}</small> </div>
+                </v-card-title>
+                <v-card-text>
+                    <p class="text-center">
+                        Para todos los efectos y consecuencias derivadas de la aplicación y alcance de este contrato y con el fin de lograr una correcta y exacta interpretación de este documento las siguientes palabras, utilizadas en singular o plural, mayúsculas o minúsculas, resaltadas o no, femenino o masculino, y salvo que el contexto lo requiera de otra forma, las palabras o expresiones definidas en singular incluirán su forma plural y viceversa, teniendo todas ellas el único y exclusivo significado que se indica a continuación:
+
+                    </p>
+
+                    <p class="text-justify">
+                        EL BANCO: Corresponde a la persona jurídica identificada en el encabezado de este documento.
+                    </p>
+                    <p class="text-justify">
+                        EL CLIENTE: Es la persona natural o jurídica titular de una cuenta o de cualquier otro servicio o producto ofrecido por EL BANCO quien, luego de cumplir las formalidades propias de afiliación al sistema de Banca Electrónica o Banca por Internet, particularmente al Sistema TuFactoring, quien, siendo aceptante o deudor de una o varias facturas, registre dichos instrumentos en el Sistema de manera que pudieran ser objeto de subasta para el pago anticipado de las mismas a sus proveedores o simplemente su pago al vencimiento.
+                    </p>
+                    <p class="text-justify">
+                        SISTEMA TUFACTORING (ó Sistema): Corresponde a un Desarrollo Tecnológico que permite al CLIENTE, a través del uso de los canales de banca por internet, realizar operaciones de registro, venta, compra, ordenar el pago o ceder Facturas de sus PROVEEDORES, así como intercambiar información exclusivamente relacionada con dichas Facturas.
+                    </p>
+                    <p class="text-justify">
+                        EMPRESA: Corresponde a la sociedad mercantil TUFACTORING SERVICIOS C.A. domiciliada en la ciudad de Caracas, Distrito Capital, constituida por documento inscrito por ante el Registro Mercantil xx de la Circunscripción Judicial del Distrito Capital y Estado Miranda, en fecha xxxxx de xxxxxx de xxxxx, bajo el N.° xx, Tomo xxxxxx. Creadora, propietaria y operadora del SISTEMA TUFACTORING.
+                    </p>
+                    <p class="text-justify">
+                        CLAVES DE ACCESO: Corresponde a un mecanismo de Seguridad de la Información Electrónica, constante de factores de autenticación tendentes a verificar la identidad de EL CLIENTE y de EL BANCO y la cualidad de éstos para realizar las operaciones propias del SISTEMA TUFACTORING. Estos factores de autenticación corresponderán a aquellos establecidos como Factor de autenticación categorías 2 y 3 de acuerdo a la Resolución Nº 641.10 emanada de la Superintendencia de las Instituciones del Sector Bancario (SUDEBAN) contentiva de las “Normas que Regulan el Uso de los Servicios de la Banca Electrónica”, publicada en la Gaceta Oficial de la República Bolivariana de Venezuela Nº 39.597 de fecha 19 de enero de 2011.
+                    </p>
+                    <p class="text-justify">
+                        DÍAS HÁBILES BANCARIOS: Corresponde a los días comprendidos entre lunes y viernes que, conforme al calendario bancario, sean laborables para los bancos.
+                    </p>
+                    <p class="text-justify">
+                        DERECHO DE CRÉDITO: corresponde al derecho que tiene el acreedor de una deuda que EL CLIENTE tiene obligación de pagar conforme a la Factura.
+                    </p>
+                    <p class="text-justify">
+                        DESCUENTO: A los únicos efectos de este contrato, corresponde a la cantidad resultante de aplicar la siguiente fórmula, al momento de efectuar las operaciones de venta de factura a través del Sistema:
+                    </p>
+                    <p class="text-justify">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(VNXTD)<br />
+                        D=  _________ND<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(360)
+                    </p>
+                    <p class="text-justify">
+                        Donde "D" significa Descuento, "VN" significa Valor Neto, "TD" significa Tasa de Descuento; "ND" significa el número de días que resulte de sumar los días naturales desde e inclusive la fecha en que se entregue al Proveedor el Precio de venta, respecto de un Derecho Adquirido, hasta inclusive la fecha de vencimiento de dicho derecho de Crédito.
+                    </p>
+                    <p class="text-justify">
+                        FACTURA: Corresponde al documento o título de carácter mercantil contentivo de una obligación de pago con ocasión de la adquisición de bienes o servicios por parte de EL CLIENTE.
+                    </p>
+                    <p class="text-justify">
+                        GASTO POR SERVICIO: Corresponde al monto que obtendrá LA EMPRESA con ocasión a la operación efectiva de la venta de Factura a El INVERSIONISTA o EL BANCO. Este monto corresponderá al resultado de la fórmula aplicable sobre el valor de cada Factura, que será descontado del precio de venta que recibirá EL PROVEEDOR. Este valor puede ser consultado en la página del Sistema.
+                    </p>
+                    <p class="text-justify">
+                        INVERSIONISTA. Es la persona natural o jurídica que se convierte en acreedora de El CLIENTE como consecuencia de transacciones de compra de Facturas expedidas por EL PROVEEDOR originario, y a favor de quien este último acepta su cesión una vez que acepta el descuento ofertado por el Valor Neto de la factura subastada.
+                    </p>
+                    <p class="text-justify">
+                        VALOR NETO. Se refiere al monto resultante de restar al valor numérico expresado en el texto de la Factura todos los tributos o retenciones a los que hubiere lugar, incluso las notas de crédito, si existiesen. Dicho valor debe ser cargado por EL CLIENTE en el Sistema. En el caso del pago al vencimiento, EL BANCO podrá proceder a pagar dicho valor a EL PROVEEDOR o a EL INVERSIONISTA y, en caso de haberla comprado EL BANCO, retirar el monto correspondiente de la(s) cuenta(s) de EL CLIENTE o imputarlo a la línea de crédito correspondiente, de ser el caso.
+                    </p>
+                    <p class="text-justify">
+                        PRECIO DE VENTA: Corresponde al resultado de haber deducido del valor neto de las facturas, antes explicado, la tasa de descuento ofertada por EL INVERSIONISTA y aceptada por EL PROVEEDOR.
+                    </p>
+                    <p class="text-justify">
+                        PROVEEDOR. Es la persona natural o jurídica acreedora del CLIENTE como consecuencia de transacciones comerciales consistentes en la venta o suministro de bienes y/o servicios, por lo cual ha expedido una(s) Factura(s) cuyo(s) pago(s) está(n) a cargo del CLIENTE.
+                    </p>
+                    <p class="text-justify">
+                        TASA DE DESCUENTO: Corresponde a la tasa aceptada por EL PROVEEDOR para determinar el Descuento, la cual es ofertada por EL INVERSIONISTA durante el horario en que este activo el Mercado Electrónico y para cada operación de venta que realicen al amparo de este contrato. El cálculo del Descuento se realizará desde la fecha en que se efectúe el anticipo de fondos, hasta la fecha del vencimiento de la Factura.
+                    </p>
+                    <p class="text-justify">
+                        <b><u>CLÁUSULA PRIMERA</u></b>: En virtud del presente documento, EL PROVEEDOR manifiesta su conocimiento y expresa conformidad sobre la existencia de un Contrato de Servicio Confirming a través del Sistema TuFactoring que ha sido suscrito entre EL CLIENTE y EL BANCO, y en razón del mismo, conviene y acepta en ceder a EL INVERSIONISTA los Derechos de Crédito derivados de las Facturas con cargo a EL CLIENTE y a su favor, en las condiciones establecidas en el presente contrato; entendiendo que las Facturas fueron registradas previamente en el Sistema Tufactoring y que bastará que EL PROVEEDOR autorice su oferta por medio del Sistema y que haya aceptado el Descuento ofertado para que surta efecto la cesión a EL INVERSIONISTA, según sea el caso, de los derechos de cobro de la(s) factura(s), para todos los efectos legales, una vez que el pago se encuentre disponible en  la cuenta desde la cual se materializará el pago a EL PROVEEDOR.
+                    </p>
+                    <p class="text-justify">
+                        EL PROVEEDOR, quien se encuentra en conocimiento de los términos y condiciones de uso del Sistema TuFactoring, ratifica su conformidad para que EL CLIENTE a través de EL BANCO le pague directamente a él o a EL INVERSIONISTA que haya adquirido las Facturas en el Sistema o que de haberla adquirido EL BANCO, éste último haga el cobro respectivo o lo impute a la línea de crédito o de confirming abierta a tal efecto, en los términos de este contrato.
+                    </p>
+                    <p class="text-justify">
+                        Las partes intervinientes en la operación convienen en que la formalización de las operaciones de venta de Facturas en la forma prevista en el presente contrato, harán prueba de la notificación y recepción de la transmisión de los Derechos de Crédito, así como la aceptación por parte de EL PROVEEDOR de dicha transmisión a favor de EL BANCO o de EL INVERSIONISTA, según sea el caso. No obstante, EL PROVEEDOR una vez que acepta el Descuento ofertado por la factura subastada, confirma dicha aceptación al manifestar su acuerdo con el contenido del contrato de cesión que se abrirá en la página al llegar a ese punto de la operación.
+                    </p>
+                    <p class="text-justify">
+                        <b><u>CLÁUSULA SEGUNDA:</u></b> Las Facturas que a solicitud de EL PROVEEDOR vayan a ser autorizadas para ser vendidas o descontadas por medio del Sistema Tufactoring, deberán estar autorizadas por la persona con las facultades para vender activos de la empresa.
+                    </p>
+                    <p class="text-justify">
+                        <b><u>CLÁUSULA TERCERA:</u></b> EL PROVEEDOR manifiesta que en caso de no tener operativa una Cuenta en EL BANCO en la cual se depositen los importes correspondientes a los fondos provenientes de la liquidación de la operación de venta de Facturas, autoriza por medio del presente contrato los procedimientos que sean necesarios para el pago y acepta que dicho pago deberá realizarse en la cuenta de LA EMPRESA para su posterior transferencia a la cuenta del banco indicado, considerando entonces los días establecidos en la banca para que se hagan efectivos los fondos provenientes por trasferencias entre bancos. LA EMPRESA no se hace responsable por cualquier inconveniente o requerimiento que presente el sistema de transferencias bancarias y, en virtud de ello, EL PROVEEDOR acepta también las deducciones que pudiere haber por concepto de comisiones bancarias.
+                    </p>
+                    <p class="text-justify">
+                        <b><u>CLÁUSULA QUINTA:</u></b> EL PROVEEDOR está de acuerdo en que el Precio de venta que pagará EL INVERSIONISTA, será el que se publica en el Sistema TuFactoring, el cual se obtiene de la aplicación de la fórmula establecida para tal efecto en el presente instrumento. No estarán sujetas a la venta de facturas aquellas cuyo vencimiento sea menor a 30 días calendario contados a partir de la fecha de publicación y mayor a 180 días de vencimiento desde la fecha de publicación.
+                        La tasa de Descuentos se calculará aplicando la tasa de descuento ofrecida por EL INVERSIONISTA a través del Sistema de Tufactoring, entendiéndose que será decisión de EL PROVEEDOR si acepta o no la misma y como tal la venta de la factura, pudiendo, obviamente, rechazar dicha oferta.
+                    </p>
+                    <p class="text-justify">
+                        <b><u>CLÁUSULA SEXTA:</u></b> Mediante el registro en el Sistema TuFactoring, EL PROVEEDOR acepta expresamente las particularidades y condiciones expresadas en este instrumento. En consecuencia, EL PROVEEDOR manifiesta su conformidad para el cobro del Precio como contraprestación de la transmisión de los Derechos de Crédito contenidos en la Factura producto de las operaciones de venta que realice bajo las condiciones del presente contrato.
+                    </p>
+                    <p class="text-justify">
+                        <b><u> CLÁUSULA SÉPTIMA:</u></b> EL PROVEEDOR reconoce que bastará sólo con la comunicación que por el Sistema Tufactoring reciba, de que fue realizada la transferencia para que se tenga como cubierta la operación, no haciéndose responsable LA EMPRESA por mal funcionamiento del sistema de transferencias bancarias.
+                    </p>
+                    <p class="text-justify">
+                        <b><u>CLÁUSULA OCTAVA:</u></b> EL PROVEEDOR se obliga a verificar en todo momento que las solicitudes de venta de Facturas a través del Sistema Tufactoring, sean efectuadas por personas que tengan las facultades necesarias para ello. En este sentido, LA EMPRESA no será responsable por pérdidas económicas derivadas de mal uso de las Claves de Acceso asignadas a EL CLIENTE.
+                    </p>
+                    <p class="text-justify">
+                        EL PROVEEDOR tendrá hasta sesenta (60) minutos después del cierre de la jornada para aceptar la venta, en caso contrario deberá esperar hasta el día siguiente hábil para publicarla nuevamente. En este punto, se indica que el horario del Sistema es el siguiente: Para operaciones de consulta las 24 horas del día y los 365 días del año; para afiliación en el sistema  o registro de facturas, en los días hábiles bancarios en horario comprendido de 8:00 a.m. a 3:00 p.m.; y para la oferta y compra de facturas, en horario comprendido de 8:00 a.m. a 12:00 p.m.; siempre y cuando no existan fallos o suspensiones del servicio electrónico, eléctrico o cualquier otra causa de fuerza mayor que imposibilite su empleo.
+                    </p>
+                    <p class="text-justify">
+                        La información e instrucciones que EL PROVEEDOR transmita o comunique mediante Sistema Tufactoring, tendrán pleno valor probatorio y fuerza legal para acreditar la operación realizada, el importe de la misma, su naturaleza, así como las características y alcance de sus instrucciones. EL PROVEEDOR acepta que el uso de los medios de identificación previstos en el contrato para realizar operaciones a través del Sistema, podrá equivaler a la firma autógrafa y producir los mismos efectos que las leyes otorgan a los documentos correspondientes.
+                    </p>
+                    <p class="text-justify">
+                        <b><u>CLÁUSULA NOVENA:</u></b> EL PROVEEDOR entiende y acepta que la transmisión de las Facturas lleva implícito la transmisión de los Derechos de Crédito, así como todo lo que le corresponda por derecho sin reserva ni limitación, así como de las garantías que en su caso hubiesen sido pactadas en los mismos. Ello, de conformidad con el artículo 1.552 del Código Civil venezolano; no pudiendo por ninguna circunstancia negociar en forma alguna los Derechos de Crédito ya transmitidos a EL INVERSIONISTA.
+                    </p>
+                    <p class="text-justify">
+                        <b><u>CLÁUSULA DÉCIMA:</u></b> EL PROVEEDOR declara la existencia y legitimidad de los Derechos de Crédito Adquiridos y reflejados en la(s) factura(s) por él autorizadas, de conformidad con el artículo 124 del Código de Comercio.
+                    </p>
+                    <p class="text-justify">
+                        <b><u>CLÁUSULA DÉCIMA PRIMERA:</u></b> Sin perjuicio de las indicaciones contenidas en el contrato suscrito entre EL CLIENTE y EL BANCO para hacer uso del Sistema TuFactoring, EL PROVEEDOR garantizará que las Facturas de Crédito que cederá contarán con las características que a continuación se mencionan:
+                        a) Sean pagaderas en sus fechas de vencimiento.
+                        b) Sean de su exclusiva propiedad y que no han sido otorgados en garantía, embargados, negociados, pignorados ni gravados de manera alguna.
+                        c) Derivan de operaciones efectivas de ventas de bienes y/o servicios, realizadas dentro del desarrollo normal de sus operaciones con EL CLIENTE.
+                        d)  Los bienes y/o servicios vendidos que originen las Facturas han sido entregados y aceptados por EL CLIENTE a su entera satisfacción, y que no existirá ninguna controversia con respecto a las obligaciones que consten en ella que comprueben la existencia de éstas. En caso contrario, EL PROVEEDOR de forma inmediata deberá reintegrar a EL BANCO o a EL INVERSIONISTA el monto total recibido por la operación.
+                        e)  No tiene ninguna obligación pendiente con EL CLIENTE relacionada con las Facturas, por lo que éste no podrá invocar compensación alguna ni rehusará realizar el pago a EL BANCO, ni tendrá ninguna excepción que oponer.
+
+                    </p>
+                    <p class="text-justify">
+                        <b><u>CLÁUSULA DÉCIMA SEGUNDA:</u></b> EL BANCO se reserva el derecho de confirmar a EL PROVEEDOR a través del Sistema Tufactoring sin necesidad de declaración o resolución judicial, en los siguientes casos:
+                        1)   Si EL PROVEEDOR acuerda su disolución anticipada o entra en liquidación de derecho o de       hecho, o por cualquier causa similar disminuye o menoscabe su solvencia económica
+                        2) Por violación o incumplimiento por parte de EL PROVEEDOR de cualquiera de las obligaciones contraídas por él conforme a este contrato, o en cualquier contrato, convenio o acto jurídico que sea consecuencia de éste; incluyendo, sin limitar, el caso en que EL PROVEEDOR trasmita a un comprador, Facturas cuyo importe esté sujeto a un descuento o ajuste de cualquier índole.
+                        3)   En caso de que EL PROVEEDOR sea objeto de medidas por parte de algún organismo o institución, nacional o internacional, encargado de la Prevención de legitimación de capitales o lavado de activos:
+                        4) Cualquier otra que pudiera comprometer la seguridad de los clientes de EL BANCO o del propio banco o que sea una clara y evidente violación a la normativa bancaria vigente.
+
+                        Sin necesidad de declaración judicial alguna y, de acuerdo a sus políticas, EL BANCO podrá suspender de manera provisional o definitiva a EL PROVEEDOR en el uso del servicio de conformidad con las disposiciones anteriores.
+                    </p>
+                    <p class="text-justify">
+                        <b><u>CLÁUSULA DÉCIMA TERCERA:</u></b> Toda operación de venta o descuento se considerará efectivamente realizada una vez que el Sistema Tufactoring emita a EL PROVEEDOR un mensaje de transferencia de precio de venta a la cuenta indicada por este último.
+                    </p>
+                    <p class="text-justify">
+                        <b><u>CLÁUSULA DÉCIMA CUARTA:</u></b> Todos los impuestos nacionales, regionales o municipales, y sus accesorios, que se causen con motivo de las operaciones descritas en este contrato, serán por cuenta exclusiva de EL PROVEEDOR, librando de cualquier responsabilidad al Banco, Inversionista, y a la empresa Tufactoring.
+                    </p>
+                    <p class="text-justify">
+                        <b><u>CLÁUSULA DÉCIMA QUINTA:</u></b> Para los efectos del presente Contrato, EL PROVEEDOR señala como su domicilio el  indicado en el registro electrónico del Sistema Tufactoring; hasta tanto las partes intervinientes en la operación no se notifiquen por escrito los cambios de domicilio, todas las comunicaciones que se practiquen en los domicilios antes citados, surtirán plenamente sus  efectos.
+                    </p>
+                    <p class="text-justify">
+                        <b><u>CLÁUSULA DÉCIMA SEXTA</u></b> Para todos los efectos del presente contrato, sus derivados y consecuencias, se elige como domicilio especial aquel de la suscripción, aceptación o adhesión.
+                    </p>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <a href="~/ContratoMarcoProveedores-convertido.pdf" download="Contrato_Marco.pdf" class="btn btn-primary btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-download"></i>
+                        </span>
+                        <span class="text">Imprimir</span>
+                    </a>
+                    &nbsp;
+                    <a v-if="ContratoUser.IsAuthenticated" href="#" v-on:click="contratoMarcoAceptado" class="btn btn-success btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        <span class="text">Aceptar</span>
+                    </a>
+                    &nbsp;
+                    <a class="btn btn-danger btn-icon-split" asp-page="/logout" asp-route-culture="@culture">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-chevron-circle-left"></i>
+                        </span>
+                        <span class="text">Salir</span>
+                    </a>
+
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+
+        <!--Terminos y condiciones-->
+        <v-dialog v-model="contratoTerminoCondiciones" scrollable persistent max-width="800">
+            <v-card>
+                <v-card-title class="headline">Terminos y condiciones</v-card-title>
+                <v-card-text>
+                    <p class="text-center">
+                        PARA EL INGRESO, REGISTRO Y USO DEL TUFACTORING SERVICIOS C.A.
+
+                    </p>
+
+                    <p class="text-justify">
+                        PRIMERO. En este documento  se establecen los términos y condiciones de uso del “Sistema Tufactoring “, en lo adelante “EL SISTEMA”, desarrollo tecnológico diseñado y operado por la sociedad mercantil TUFACTORING SERVICIOS C.A., domiciliada en la ciudad de Caracas, Distrito Capital, constituida por documento inscrito ante el Registro Mercantil XX de la Circunscripción Judicial del Distrito Capital y Estado Miranda, en fecha xxxxx de xxxxxx de xxxxx, bajo el N.º xx, Tomo xxxxxx,xxxxxxx, en lo adelante LA EMPRESA. En este sentido, el material mostrado u ofrecido en este Sitio Web, (material gráfico, documentos, textos, imágenes, sonido, video, audio, las ilustraciones, etc.) son de la exclusiva propiedad de LA EMPRESA.
+                    </p>
+                    <p class="text-justify">
+                        SEGUNDO: El registro en el Sistema implica la aceptación de los términos y condiciones establecidos en este Contrato, lo cual es indispensable para acceder, consultar o realizar cualquier operación en el presente Sitio Web.
+                    </p>
+                    <p class="text-justify">
+                        TERCERO: Para registrarse en EL SISTEMA se debe ser mayor de edad, civilmente hábil y residente en la República Bolivariana de Venezuela. Adicionalmente, para el registro en EL SISTEMA como Cliente, resulta imprescindible poseer una cuenta activa en el banco anfitrión (banco desde el cual se hace el enlace en el link de EL SISTEMA), no así en caso de registrarse como Proveedor o como Inversionista (ver Glosario). En estos dos últimos casos, el usuario queda informado y acepta, que el uso o participación de los servicios y operaciones en EL SISTEMA, no suponen el establecimiento de una relación comercial con EL BANCO, hasta tanto no cumplan con todos los requisitos establecidos por este instituto bancario en los contratos que regulan sus productos y servicios, todo ello de conformidad con lo establecido en la legislación vigente.
+                    </p>
+                    <p class="text-justify">
+                        CUARTO: LA EMPRESA está comprometida con la seguridad de los datos de sus usuarios, cumpliendo con los estándares de seguridad que exige el sistema bancario nacional. La información personal requerida y con la cual usted será identificado en EL SISTEMA, sólo se empleará de acuerdo con los términos de este documento. No obstante, el usuario asume todos los riesgos relativos a, o derivados de, el uso, consulta o acceso por su parte en el Sistema desde equipos distintos a los normalmente utilizados. Tampoco se hace responsable LA EMPRESA de fallas derivadas de los servicios de telefonía e Internet ni garantiza de forma alguna que el servicio del Sistema sea ininterrumpido o libre de error.
+                    </p>
+                    <p class="text-justify">
+                        QUINTO: Los equipos utilizados por el usuario para acceder a ésta página Web, son de su exclusiva responsabilidad; dichos equipos deberán cumplir con los requerimientos, indicaciones y especificaciones técnicas recomendadas por EL BANCO para el acceso a esta página. EL BANCO ni LA EMPRESA serán responsables por el buen funcionamiento, idoneidad, capacidad y compatibilidad de dichos equipos con esta página Web.
+                    </p>
+                    <p class="text-justify">
+                        SEXTO: Los contenidos publicados en esta página Web, pueden contener inexactitudes o imprecisiones, por lo que EL BANCO se libera y desconoce cualquier tipo de responsabilidad sobre el particular; igualmente, EL BANCO no garantiza que los contenidos publicados en el sitio corresponden a información completa o actualizada, por lo cual, el usuario se compromete a verificar con EL BANCO, la información que allí se expresa, a través de cualquiera de sus agencias y sucursales.
+                    </p>
+                    <p class="text-justify">
+                        SÉPTIMO: La invalidez o inaplicabilidad de cualquiera de los presentes términos y condiciones -en todo o en parte-, no afecta la validez o la aplicabilidad de los demás. LA EMPRESA se reserva el derecho de actualizar el presente Contrato siempre que lo considere oportuno. En consecuencia, recomendamos al Usuario revisar periódicamente las modificaciones efectuadas al Contrato.
+                    </p>
+                    <p class="text-justify">
+                        OCTAVO: Estas condiciones generales se regirán e interpretarán de conformidad con leyes vigentes en la República Bolivariana de Venezuela. Las controversias que se deriven de las presentes condiciones generales, deberán ser interpuestas por ante los tribunales de la República Bolivariana de Venezuela.
+                    </p>
+                    <p class="text-justify">
+                        GLOSARIO
+                    </p>
+                    <p class="text-justify">
+                        EL BANCO: Corresponde a la persona jurídica confirmante de la operación, la cual garantiza el pago a EL INVERSIONISTA ganador de la operación de confirming (pago a proveedores), una vez que llegue(n) al vencimiento la(s) factura(s) por la que haya ofertado.
+                    </p>
+                    <p class="text-justify">
+                        EMPRESA: Corresponde a la sociedad mercantil TUFACTORING SERVICIOS C.A. domiciliada en la ciudad de Caracas, Distrito Capital, constituida por documento inscrito por ante el Registro Mercantil xx de la Circunscripción Judicial del Distrito Capital y Estado Miranda, en fecha xxxxx de xxxxxx de xxxxx, bajo el N.° xx, Tomo xxxxxx.
+                    </p>
+                    <p class="text-justify">
+                        SISTEMA TUFACTORING (ó Sistema): Corresponde a un Desarrollo Tecnológico que permite a EL CLIENTE, a través del uso de los canales de banca por internet, realizar operaciones de registro, venta, compra, ordenar el pago o ceder Facturas de sus proveedores, así como intercambiar información exclusivamente relacionada con dichas Facturas.
+                    </p>
+                    <p class="text-justify">
+                        EL CLIENTE: Es la persona natural o jurídica titular de una cuenta o de cualquier otro servicio o producto ofrecido por EL BANCO quien, luego de cumplir las formalidades propias de afiliación al sistema de Banca Electrónica o Banca por Internet, particularmente al Sistema TuFactoring, conforme al procedimiento señalado a tal efecto por EL BANCO, quien, siendo aceptante o deudor de una o varias facturas, registre dichos instrumentos en el Sistema de manera que pudieran ser objeto de subasta para el pago anticipado de las mismas a sus proveedores.
+                    </p>
+                    <p class="text-justify">
+                        INVERSIONISTA. Es la persona natural o jurídica que se convierte en acreedora de El CLIENTE como consecuencia de transacciones de compra de Facturas expedidas por EL PROVEEDOR originario, y a favor de quien este último acepta su cesión una vez que acepta el descuento ofertado por el Valor Neto de la factura subastada.
+                    </p>
+                    <p class="text-justify">
+                        PROVEEDOR. Es la persona natural o jurídica acreedora de EL CLIENTE como consecuencia de transacciones comerciales consistentes en la venta o suministro de bienes y/o servicios, por lo cual ha expedido una Factura cuyo pago está a cargo de EL CLIENTE.
+                    </p>
+                    <p class="text-justify">
+                        FACTURA: Corresponde al documento o título de carácter mercantil contentivo de una obligación de pago con ocasión de la adquisición de bienes o servicios por parte de EL CLIENTE.
+                    </p>
+                    <p class="text-justify">
+                        CLAVES DE ACCESO: Corresponde a un mecanismo de Seguridad de la Información Electrónica, constante de factores de autenticación tendentes a verificar la identidad de EL CLIENTE y de EL BANCO y la cualidad de éstos para realizar las operaciones propias del SISTEMA TUFACTORING. Estos factores de autenticación corresponderán a aquellos establecidos como Factor de autenticación categorías 2 y 3 de acuerdo a la Resolución Nº 641.10 emanada de la Superintendencia de las Instituciones del Sector Bancario (SUDEBAN) contentiva de las “Normas que Regulan el Uso de los Servicios de la Banca Electrónica”, publicada en la Gaceta Oficial de la República Bolivariana de Venezuela Nº 39.597 de fecha 19 de enero de 2011.
+                    </p>
+                    <p class="text-justify">
+                        DÍAS HÁBILES BANCARIOS: Corresponde a los días comprendidos entre lunes y viernes que, conforme al calendario bancario, sean laborables para los bancos.
+                    </p>
+                </v-card-text>
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <a href="~/Terminos _Condiciones.pdf" download="Terminos_Condiciones.pdf" class="btn btn-primary btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-download"></i>
+                        </span>
+                        <span class="text">Imprimir</span>
+                    </a>
+                    &nbsp;
+                    <a href="#" v-on:click="contratoAceptado" class="btn btn-success btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-check"></i>
+                        </span>
+                        <span class="text">Aceptar</span>
+                    </a>
+                    &nbsp;
+                    <a class="btn btn-danger btn-icon-split" asp-page="/logout" asp-route-culture="@culture">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-chevron-circle-left"></i>
+                        </span>
+                        <span class="text">Salir</span>
+                    </a>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+    </div>
+</v-app>
+
+@section Scripts{
+
+    <script src="~/js/Home/vueHome.js" asp-append-version="true"></script>
+
+}

@@ -1,0 +1,103 @@
+﻿@{
+    var culture = System.Globalization.CultureInfo.CurrentCulture.Name;
+    var area = @User.Claims.Where(c => c.Type == "Participant").Select(c => c.Value).SingleOrDefault();
+}
+<ul class="navbar-nav bg-gradient-@ViewData["Sidebar"] sidebar toggled sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-area="@area" asp-route-culture="@culture" asp-page="index">
+        <div class="sidebar-brand-icon rotate-n-151">
+            <img src="~/img/logo.jpg" class="rounded-circle border-0 img-circle" height="38" alt="User Image">
+        </div>
+        <div class="sidebar-brand-text mx-3">@Localizer.Text("branding")</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" asp-area="@area" asp-route-culture="@culture" asp-page="index">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider mb-0">
+
+    <!--
+    <li class="nav-item">
+        <a class="nav-link" asp-area="profile" asp-page="/ActualizarEmpresa" asp-route-culture="@culture">
+            <i class="far fa-id-badge"></i>
+            <span>@Localizer.Text("perfil")</span>
+        </a>
+    </li>
+
+    if (@User.Claims.Where(c => c.Type == "Participant").Select(c => c.Value).SingleOrDefault() != "FACTOR")
+    {
+        <!-- Nav Item - Charts --
+        <li class="nav-item">
+            <a class="nav-link" asp-area="profile" asp-page="/MantenimientoUsuarios" asp-route-culture="@culture">
+                <i class="fas fa-user-shield"></i>
+                <span>@Localizer.Text("seguridad")</span>
+            </a>
+        </li>
+    }
+
+    <li class="nav-item">
+        <a class="nav-link" asp-area="profile" asp-page="/changePassword" asp-route-culture="@culture">
+            <i class="@Localizer.Text("iconPassword")"></i>
+            <span>@Localizer.Text("password")</span>
+        </a>
+    </li>
+    -->
+
+    @await Component.InvokeAsync("MenuControl", new { participant = @User.Claims.Where(c => c.Type == "Participant").Select(c => c.Value).SingleOrDefault() })
+
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+
+</ul>
+
+<!-- Modal Contrato Marco-->
+<div class="modal fade" id="ContratoMarcoModal" tabindex="-1" role="dialog" aria-labelledby="ContratoMarcoLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ContratoMarcoLabel">Contrato Marco</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="text-justify">
+                    What is Lorem Ipsum?
+                    Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                </p>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-danger btn-icon-split" data-dismiss="modal">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-download"></i>
+                    </span>
+                    <span class="text">Cerrar</span>
+                </a>
+
+                <a href="~/CargaMasiva.xlsm" download="Contrato_Marco.pdf" class="btn btn-primary btn-icon-split">
+                    <span class="icon text-white-50">
+                        <i class="fas fa-download"></i>
+                    </span>
+                    <span class="text">Imprimir</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

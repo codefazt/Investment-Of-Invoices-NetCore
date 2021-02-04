@@ -1,0 +1,4135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="::Introduccion" xml:space="preserve">
+    <value>Es un novedoso lugar de encuentro electrónico que combina la tecnología con las operaciones de Confirming (Pago Proveedores), Factoring y la compra de facturas junto a la incorporación de un proceso de subasta. Las empresas proveedores de productos y servicios podrán financiar su capital de trabajo a tasas muy competitivas, los inversionistas encontrarán un instrumento de inversión con tasas muy atractivas y las empresas demandantes de productos y servicios podrán realizar el pago de sus cuentas por pagar a través de nuestros bancos aliados</value>
+  </data>
+  <data name="Aliados" xml:space="preserve">
+    <value>Aliados</value>
+  </data>
+  <data name="Clientes" xml:space="preserve">
+    <value>Clientes</value>
+  </data>
+  <data name="Comenzar" xml:space="preserve">
+    <value>Comenzar</value>
+  </data>
+  <data name="Comience a trabajar con nosotros" xml:space="preserve">
+    <value>Comience a trabajar con nosotros</value>
+  </data>
+  <data name="Como funciona" xml:space="preserve">
+    <value>Cómo funciona</value>
+  </data>
+  <data name="Derechos reservados" xml:space="preserve">
+    <value>Derechos reservados</value>
+  </data>
+  <data name="El apoyo ideal para el crecimiento de su negocio" xml:space="preserve">
+    <value>El apoyo ideal para el crecimiento de su negocio</value>
+  </data>
+  <data name="El mejor aliado" xml:space="preserve">
+    <value>El mejor aliado</value>
+  </data>
+  <data name="Es momento de ganar" xml:space="preserve">
+    <value>Es tiempo de ganar</value>
+  </data>
+  <data name="Inicio" xml:space="preserve">
+    <value>Inicio</value>
+  </data>
+  <data name="Ir a servicios" xml:space="preserve">
+    <value>Ir a servicios</value>
+  </data>
+  <data name="Mercado de Facturas" xml:space="preserve">
+    <value>Mercado de Facturas</value>
+  </data>
+  <data name="headersAmoutPay" xml:space="preserve">
+    <value>Monto a Pagar</value>
+  </data>
+  <data name="Para su negocio en crecimiento" xml:space="preserve">
+    <value>Para su negocio en crecimiento</value>
+  </data>
+  <data name="Preguntas frecuentes" xml:space="preserve">
+    <value>Preguntas frecuentes</value>
+  </data>
+  <data name="Privacidad" xml:space="preserve">
+    <value>Privacidad</value>
+  </data>
+  <data name="Quienes somos" xml:space="preserve">
+    <value>Quiénes somos</value>
+  </data>
+  <data name="Servicios" xml:space="preserve">
+    <value>Servicios</value>
+  </data>
+  <data name="Terminos y Condiciones" xml:space="preserve">
+    <value>Términos y Condiciones</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Bienvenido</value>
+  </data>
+  <data name="Seguridad en tu inversión" xml:space="preserve">
+    <value>Seguridad en tu inversión</value>
+  </data>
+  <data name="::Resumen caracteristica 1" xml:space="preserve">
+    <value>Altos rendimientos en tu inversión con bajo riesgo ya que contarás con la confirmación de pago por parte de un banco aliado al vencimiento de la factura</value>
+  </data>
+  <data name="::Resumen caracteristica 2" xml:space="preserve">
+    <value>Procesos ágiles para la venta de tus facturas sin necesidad de acudir a una institución financiera, en subasta, aprobarás la tasa de descuento ofertada más conveniente para tu empresa, y proveerte de capital de trabajo para potenciar tus nuevas ventas</value>
+  </data>
+  <data name="Extraordinarios beneficios" xml:space="preserve">
+    <value>Extraordinarios beneficios</value>
+  </data>
+  <data name="Gestión de cuentas por pagar" xml:space="preserve">
+    <value>Gestión de cuentas por pagar</value>
+  </data>
+  <data name="::Resumen caracteristica 3" xml:space="preserve">
+    <value>Como cliente de nuestros Bancos Aliados, tendrás acceso a servicios y productos financieros para la cancelación de tus cuentas por pagar</value>
+  </data>
+  <data name="Acceso a la app" xml:space="preserve">
+    <value>Gestión Cuentas Por Pagar Proveedores</value>
+  </data>
+  <data name="::Resumen servicio 1" xml:space="preserve">
+    <value>Si eres cliente de nuestros Bancos Aliados, a través del sistema de Tufactoring podrás canalizar el pago de tus cuentas por pagar por medio de la aceptación de un servicio de Confirming con o sin financiamiento.</value>
+  </data>
+  <data name="Negociación" xml:space="preserve">
+    <value>Venta de Facturas (Factoring)</value>
+  </data>
+  <data name="::Resumen servicio 2" xml:space="preserve">
+    <value>Tus facturas por cobrar a los clientes que actualmente se encuentren en el sistema de Tufactoring, podrás autorizar que sean publicadas en subasta online y recibir de potenciales inversionistas ofertas de compras con diferentes porcentaje de descuentos.</value>
+  </data>
+  <data name="Inversores" xml:space="preserve">
+    <value>Compra de Facturas</value>
+  </data>
+  <data name="::Resumen servicio 3" xml:space="preserve">
+    <value>El proceso de subasta te permitirá realizar compras de facturas sin límite de inversión, con la confianza de pago por la existencia de un banco aliado que te confirmará que pagará al vencimiento de la factura. Al cierre de la jornada de la subasta, el inversionista que comprará la factura será el que mejor oferta de descuento presente al vendedor.</value>
+  </data>
+  <data name="Registrarse" xml:space="preserve">
+    <value>Registrarse</value>
+  </data>
+  <data name="Como Empresa" xml:space="preserve">
+    <value>Como Empresa</value>
+  </data>
+  <data name="Como Proveedor" xml:space="preserve">
+    <value>Como Proveedor</value>
+  </data>
+  <data name="Si eres Inversionista" xml:space="preserve">
+    <value>Si eres Inversionista</value>
+  </data>
+  <data name="Como Persona" xml:space="preserve">
+    <value>Como Persona</value>
+  </data>
+  <data name="Si eres Back-Office" xml:space="preserve">
+    <value>Si eres Back-Office</value>
+  </data>
+  <data name="Como Banco" xml:space="preserve">
+    <value>Como Banco</value>
+  </data>
+  <data name="Como Operativo" xml:space="preserve">
+    <value>Como Operativo</value>
+  </data>
+  <data name="email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="requiredField" xml:space="preserve">
+    <value>El Campo {0} es requerido</value>
+  </data>
+  <data name="titleInvoiceData" xml:space="preserve">
+    <value>Datos de la Factura</value>
+  </data>
+  <data name="titleInvoiceManagement" xml:space="preserve">
+    <value>Edición de Facturas</value>
+  </data>
+  <data name="buttonInvoiceUpdate" xml:space="preserve">
+    <value>Actualizar Factura</value>
+  </data>
+  <data name="buttonAcept" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="tipDeleteDeduction" xml:space="preserve">
+    <value>Eliminar Deducción</value>
+  </data>
+  <data name="textoDeleteInvoice" xml:space="preserve">
+    <value>Esta acción eliminará la Factura</value>
+  </data>
+  <data name="textoUpdateDeduction" xml:space="preserve">
+    <value>Esta acción actualizará la Deducción</value>
+  </data>
+  <data name="buttonAdd" xml:space="preserve">
+    <value>Agregar</value>
+  </data>
+  <data name="errorAddInvoiceNumber" xml:space="preserve">
+    <value>Debe ingresar un Número de Factura</value>
+  </data>
+  <data name="titleAmount" xml:space="preserve">
+    <value>Monto</value>
+  </data>
+  <data name="errorAmountDeductions" xml:space="preserve">
+    <value>El Monto de la Deducción debe ser mayor a 0</value>
+  </data>
+  <data name="titleAmountNeto" xml:space="preserve">
+    <value>Valor Neto</value>
+  </data>
+  <data name="buttonClear" xml:space="preserve">
+    <value>Limpiar</value>
+  </data>
+  <data name="buttonClose" xml:space="preserve">
+    <value>Cerrar</value>
+  </data>
+  <data name="titleCurrencyType" xml:space="preserve">
+    <value>Tipo de Moneda</value>
+  </data>
+  <data name="titleDeductions" xml:space="preserve">
+    <value>Deducciones</value>
+  </data>
+  <data name="titleDeductionsNumber" xml:space="preserve">
+    <value>Código de Deducción</value>
+  </data>
+  <data name="errorDeductionsNumber" xml:space="preserve">
+    <value>Ingrese un Código que identifique la Deducción.</value>
+  </data>
+  <data name="errorDeductionsSuperiorAmount" xml:space="preserve">
+    <value>Las Deducciones superan el Monto de Factura</value>
+  </data>
+  <data name="titleDeductionsType" xml:space="preserve">
+    <value>Tipo de Deducción</value>
+  </data>
+  <data name="buttonDelete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="textoDeleteDeduction" xml:space="preserve">
+    <value>Esta acción eliminará la deducción </value>
+  </data>
+  <data name="titleDeleteInvoice" xml:space="preserve">
+    <value>Eliminación de Factura</value>
+  </data>
+  <data name="buttonEdit" xml:space="preserve">
+    <value>Editar</value>
+  </data>
+  <data name="tipEditDeduction" xml:space="preserve">
+    <value>Editar Deducción</value>
+  </data>
+  <data name="titleExpirationDate" xml:space="preserve">
+    <value>Fecha de Vencimiento</value>
+  </data>
+  <data name="errorExpirationEmpty" xml:space="preserve">
+    <value>Debe ingresar la Fecha de Vencimiento de la Factura</value>
+  </data>
+  <data name="errorExpirationEqual" xml:space="preserve">
+    <value>La Fecha de Vencimiento de la Factura debe ser mayor a la Fecha de Emisión</value>
+  </data>
+  <data name="errorExpirationInferior" xml:space="preserve">
+    <value>La Fecha de Vencimiento de la Factura es menor a la Fecha Actual</value>
+  </data>
+  <data name="titleInvoiceType" xml:space="preserve">
+    <value>Tipo de Factura</value>
+  </data>
+  <data name="titleInvoiceNumber" xml:space="preserve">
+    <value>Número de Factura</value>
+  </data>
+  <data name="titleInvoiceProcess" xml:space="preserve">
+    <value>Facturas Procesadas</value>
+  </data>
+  <data name="titleIssuedDate" xml:space="preserve">
+    <value>Fecha de Emisión</value>
+  </data>
+  <data name="errorIssuedEmpty" xml:space="preserve">
+    <value>Debe ingresar la Fecha de Emisión de la Factura</value>
+  </data>
+  <data name="errorIssuedEqual" xml:space="preserve">
+    <value>Fecha de Emision igual a la Fecha de Vencimiento</value>
+  </data>
+  <data name="errorIssuedSuperior" xml:space="preserve">
+    <value>La Fecha de Emisión de la Factura es mayor a la Fecha Actual</value>
+  </data>
+  <data name="placeholderNDocument" xml:space="preserve">
+    <value>Ingrese el N° de Factura</value>
+  </data>
+  <data name="titleNominalAmount" xml:space="preserve">
+    <value>Valor Nominal</value>
+  </data>
+  <data name="errorNominalAmountCero" xml:space="preserve">
+    <value>El Valor Nominal debe ser mayor a 0</value>
+  </data>
+  <data name="titlePercentage" xml:space="preserve">
+    <value>Porcentaje</value>
+  </data>
+  <data name="titleProvider" xml:space="preserve">
+    <value>Proveedor</value>
+  </data>
+  <data name="selectInvoiceCurrency" xml:space="preserve">
+    <value>Seleccione</value>
+  </data>
+  <data name="selectInvoiceType" xml:space="preserve">
+    <value>Seleccione</value>
+  </data>
+  <data name="selectProvider" xml:space="preserve">
+    <value>Seleccione un Proveedor</value>
+  </data>
+  <data name="selectTypeDeductions" xml:space="preserve">
+    <value>Seleccione</value>
+  </data>
+  <data name="errorTypeDeductions" xml:space="preserve">
+    <value>Debe seleccionar un Tipo de Deducción</value>
+  </data>
+  <data name="buttonUpdate" xml:space="preserve">
+    <value>Actualizar</value>
+  </data>
+  <data name="titleUpdateDeduction" xml:space="preserve">
+    <value>Actualizar Deducción</value>
+  </data>
+  <data name="textoWishContinue" xml:space="preserve">
+    <value>¿Desea Continuar?</value>
+  </data>
+  <data name="titleAddInvoices" xml:space="preserve">
+    <value>Agregar Facturas</value>
+  </data>
+  <data name="titleAddNewInvoice" xml:space="preserve">
+    <value>Agregar nueva factura</value>
+  </data>
+  <data name="tipExpirationDays" xml:space="preserve">
+    <value>Días por Vencer</value>
+  </data>
+  <data name="textoHere" xml:space="preserve">
+    <value>aquí</value>
+  </data>
+  <data name="titleInvoiceNotProcessed" xml:space="preserve">
+    <value>Facturas No Procesadas</value>
+  </data>
+  <data name="titleLoadInvoice" xml:space="preserve">
+    <value>Carga de Facturas</value>
+  </data>
+  <data name="buttonLoadTemplate" xml:space="preserve">
+    <value>Cargar Plantilla</value>
+  </data>
+  <data name="placeholderNumberFormat" xml:space="preserve">
+    <value>0.000,00</value>
+  </data>
+  <data name="buttonOptions" xml:space="preserve">
+    <value>Opciones</value>
+  </data>
+  <data name="selectTemplate" xml:space="preserve">
+    <value>Seleccione la Plantilla</value>
+  </data>
+  <data name="textoAddNewInvoice" xml:space="preserve">
+    <value>Permite al Cliente Cargar las Facturas de los diferentes Proveedores, de forma Manual o Masiva, para su posterior Postulación a los Bancos Confirmantes.</value>
+  </data>
+  <data name="textoLoadTemplate1" xml:space="preserve">
+    <value>Para agregar Facturas Masivamente, descargue la Plantilla modelo que se encuentra</value>
+  </data>
+  <data name="errorSelectInvoiceCurrency" xml:space="preserve">
+    <value>Debe seleccionar un Tipo de Moneda</value>
+  </data>
+  <data name="errorSelectInvoiceType" xml:space="preserve">
+    <value>Debe seleccionar un Tipo de Factura</value>
+  </data>
+  <data name="errorSelectProvider" xml:space="preserve">
+    <value>Seleccione un Proveedor</value>
+  </data>
+  <data name="iconCloseMDI" xml:space="preserve">
+    <value>mdi-close</value>
+  </data>
+  <data name="iconDate" xml:space="preserve">
+    <value>fa fa-calendar</value>
+  </data>
+  <data name="iconDeduction" xml:space="preserve">
+    <value>fa fa-minus</value>
+  </data>
+  <data name="iconDeductionType" xml:space="preserve">
+    <value>fa fa-bank</value>
+  </data>
+  <data name="iconDelete" xml:space="preserve">
+    <value>fa fa-trash</value>
+  </data>
+  <data name="iconEdit" xml:space="preserve">
+    <value>fa fa-pencil-square-o</value>
+  </data>
+  <data name="iconInvoiceManagement" xml:space="preserve">
+    <value>fas fa-receipt</value>
+  </data>
+  <data name="iconInvoiceNumber" xml:space="preserve">
+    <value>fa fa-info</value>
+  </data>
+  <data name="iconNominalAmount" xml:space="preserve">
+    <value>fa fa-credit-card</value>
+  </data>
+  <data name="iconProvider" xml:space="preserve">
+    <value>fa fa-industry</value>
+  </data>
+  <data name="placeholderDeductionNumber" xml:space="preserve">
+    <value>Ingrese el Código de Deducción</value>
+  </data>
+  <data name="iconCurrency" xml:space="preserve">
+    <value>fa fa-money</value>
+  </data>
+  <data name="iconCargaFacturas" xml:space="preserve">
+    <value>fas fa-receipt</value>
+  </data>
+  <data name="tipAddNewInvoice" xml:space="preserve">
+    <value>Agregar nueva factura</value>
+  </data>
+  <data name="iconLeftMDI" xml:space="preserve">
+    <value>mdi-arrow-left-bold-circle</value>
+  </data>
+  <data name="iconRightMDI" xml:space="preserve">
+    <value>mdi-arrow-right-bold-circle</value>
+  </data>
+  <data name="iconAdd" xml:space="preserve">
+    <value>fa fa-plus </value>
+  </data>
+  <data name="iconCargaManual" xml:space="preserve">
+    <value>fa fa-file-text</value>
+  </data>
+  <data name="iconClear" xml:space="preserve">
+    <value>fa fa-eraser</value>
+  </data>
+  <data name="iconMenu" xml:space="preserve">
+    <value>fas fa-ellipsis-v fa-sm fa-fw</value>
+  </data>
+  <data name="buttonAddInvoices" xml:space="preserve">
+    <value>Guardar Facturas</value>
+  </data>
+  <data name="textoSelectTemplate" xml:space="preserve">
+    <value>Selecciona la Plantilla</value>
+  </data>
+  <data name="titleDeleteDeduction" xml:space="preserve">
+    <value>Eliminar Deducción</value>
+  </data>
+  <data name="titleEditDeduction" xml:space="preserve">
+    <value>Actualizar Deducción</value>
+  </data>
+  <data name="iconCheck" xml:space="preserve">
+    <value>fa fa-check</value>
+  </data>
+  <data name="iconPostulate" xml:space="preserve">
+    <value>fa fa-send</value>
+  </data>
+  <data name="titlePostulate" xml:space="preserve">
+    <value>Postular Facturas</value>
+  </data>
+  <data name="titleFinancing" xml:space="preserve">
+    <value>Financiar Facturas</value>
+  </data>
+  <data name="textoRequestFinancing" xml:space="preserve">
+    <value>Solicitar Financiamiento</value>
+  </data>
+  <data name="textoCancelFinancing" xml:space="preserve">
+    <value>Cancelar Financiamiento</value>
+  </data>
+  <data name="iconCancel" xml:space="preserve">
+    <value>fa fa-ban</value>
+  </data>
+  <data name="titleSelectsInvoice" xml:space="preserve">
+    <value>Selección de Banco y Facturas</value>
+  </data>
+  <data name="textoDateExpiration" xml:space="preserve">
+    <value>Fecha de Vencimiento</value>
+  </data>
+  <data name="textoDaysExpiration" xml:space="preserve">
+    <value>Días para el Vencimiento</value>
+  </data>
+  <data name="textoDays" xml:space="preserve">
+    <value>días</value>
+  </data>
+  <data name="textoAmountNet" xml:space="preserve">
+    <value>Valor Neto</value>
+  </data>
+  <data name="textoFinancing" xml:space="preserve">
+    <value>Financiamiento</value>
+  </data>
+  <data name="titleRequestFinancing" xml:space="preserve">
+    <value>Solicitud de Financiamiento de Facturas</value>
+  </data>
+  <data name="textoSureToAction" xml:space="preserve">
+    <value>¿Está seguro de Liberar todas las Facturas seleccionadas?</value>
+  </data>
+  <data name="textoRequestNotified" xml:space="preserve">
+    <value>Las solicitudes realizadas serán notificadas a su Banco gestor a la brevedad posible</value>
+  </data>
+  <data name="textoPostulate" xml:space="preserve">
+    <value>Postular</value>
+  </data>
+  <data name="textoQuitAll" xml:space="preserve">
+    <value>Quitar seleccionadas</value>
+  </data>
+  <data name="textoSelectAll" xml:space="preserve">
+    <value>Seleccionar todas</value>
+  </data>
+  <data name="selectBank" xml:space="preserve">
+    <value>Seleccione un Banco</value>
+  </data>
+  <data name="buttonPostulate" xml:space="preserve">
+    <value>Postular</value>
+  </data>
+  <data name="errorSelectBank" xml:space="preserve">
+    <value>Seleccione un Banco</value>
+  </data>
+  <data name="titleDialogPostulate" xml:space="preserve">
+    <value>Facturas Postuladas a</value>
+  </data>
+  <data name="iconCancelPostulate" xml:space="preserve">
+    <value>fa fa-times</value>
+  </data>
+  <data name="tipCancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="buttonConfirm" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="titleConfirming" xml:space="preserve">
+    <value>Confirmar Facturas</value>
+  </data>
+  <data name="titleBuyInvoice" xml:space="preserve">
+    <value>Compra de Facturas</value>
+  </data>
+  <data name="titleConfirmingInvoices" xml:space="preserve">
+    <value>Facturas para publicar</value>
+  </data>
+  <data name="textoAvailableInvoice" xml:space="preserve">
+    <value>Facturas Disponibles</value>
+  </data>
+  <data name="textoAmountAccumulated" xml:space="preserve">
+    <value>Facturas Seleccionadas por un Valor Acumulado de:</value>
+  </data>
+  <data name="textoAnnualizedProfitability" xml:space="preserve">
+    <value>Rentabilidad Anualizada</value>
+  </data>
+  <data name="textoAmountPayable" xml:space="preserve">
+    <value>Monto a Pagar</value>
+  </data>
+  <data name="textoAmountToConfirm" xml:space="preserve">
+    <value>Monto a Liberar</value>
+  </data>
+  <data name="textoInvoiceToConfirm" xml:space="preserve">
+    <value>Facturas Disponibles</value>
+  </data>
+  <data name="buttonSendAll" xml:space="preserve">
+    <value>Liberar Todas</value>
+  </data>
+  <data name="buttonOffert" xml:space="preserve">
+    <value>Ofertar</value>
+  </data>
+  <data name="iconOffert" xml:space="preserve">
+    <value>far fa-handshake</value>
+  </data>
+  <data name="iconSend" xml:space="preserve">
+    <value>fa fa-send</value>
+  </data>
+  <data name="iconBuyInvoice" xml:space="preserve">
+    <value>fas fa-search-dollar</value>
+  </data>
+  <data name="iconFinancing" xml:space="preserve">
+    <value>fas fa-hand-holding-usd</value>
+  </data>
+  <data name="iconConfirming" xml:space="preserve">
+    <value>fa fa-calendar-check-o</value>
+  </data>
+  <data name="tipNoFinancing" xml:space="preserve">
+    <value>Financiamiento no Solicitado</value>
+  </data>
+  <data name="tipFinancing" xml:space="preserve">
+    <value>Financiamiento Solicitado</value>
+  </data>
+  <data name="titleMarketInvoice" xml:space="preserve">
+    <value>Mercado de Facturas</value>
+  </data>
+  <data name="iconMarketCounter" xml:space="preserve">
+    <value>fas fa-stopwatch</value>
+  </data>
+  <data name="iconMarket" xml:space="preserve">
+    <value>fas fa-shopping-basket</value>
+  </data>
+  <data name="textoMarketCounter" xml:space="preserve">
+    <value>Tiempo Restante</value>
+  </data>
+  <data name="textoMarketNotActivated" xml:space="preserve">
+    <value>El Mercado de Facturas no se encuentra Activo actualmente.</value>
+  </data>
+  <data name="textoBestOffert" xml:space="preserve">
+    <value>Mejor Oferta</value>
+  </data>
+  <data name="textoNotOffert" xml:space="preserve">
+    <value>Sin Oferta</value>
+  </data>
+  <data name="textoGain" xml:space="preserve">
+    <value>Ganancia</value>
+  </data>
+  <data name="iconPublicInvoice" xml:space="preserve">
+    <value>fas fa-bullhorn</value>
+  </data>
+  <data name="iconPosponed" xml:space="preserve">
+    <value>fa fa-clock</value>
+  </data>
+  <data name="titlePublicInvoice" xml:space="preserve">
+    <value>Publicar Facturas</value>
+  </data>
+  <data name="titleBankOffert" xml:space="preserve">
+    <value>Ofertas del Banco</value>
+  </data>
+  <data name="titleInvoiceToPublic" xml:space="preserve">
+    <value>Facturas por Publicar</value>
+  </data>
+  <data name="titleSystemTuFact" xml:space="preserve">
+    <value>Sistema TuF@ctoring</value>
+  </data>
+  <data name="buttonOcult" xml:space="preserve">
+    <value>Ocultar</value>
+  </data>
+  <data name="buttonShow" xml:space="preserve">
+    <value>Mostrar</value>
+  </data>
+  <data name="buttonAceptAll" xml:space="preserve">
+    <value>Aceptar Todas</value>
+  </data>
+  <data name="C" xml:space="preserve">
+    <value>Rechazar Todas</value>
+  </data>
+  <data name="buttonPublicAll" xml:space="preserve">
+    <value>Publicar Todas</value>
+  </data>
+  <data name="buttonPosponedAll" xml:space="preserve">
+    <value>Posponer Todas </value>
+  </data>
+  <data name="buttonPosponed" xml:space="preserve">
+    <value>Posponer</value>
+  </data>
+  <data name="buttonPublic" xml:space="preserve">
+    <value>Publicar</value>
+  </data>
+  <data name="textoBankOffert" xml:space="preserve">
+    <value>Oferta del Banco</value>
+  </data>
+  <data name="textoAmountDiscount" xml:space="preserve">
+    <value>Monto por Descuento</value>
+  </data>
+  <data name="textoCommissionService" xml:space="preserve">
+    <value>Gastos de Servicio</value>
+  </data>
+  <data name="textoAmountRecib" xml:space="preserve">
+    <value>Monto a Recibir</value>
+  </data>
+  <data name="textoRefused" xml:space="preserve">
+    <value>Rechazar</value>
+  </data>
+  <data name="textoAnnualizedCost" xml:space="preserve">
+    <value>Costo Anualizado</value>
+  </data>
+  <data name="iconExpirationInvoices" xml:space="preserve">
+    <value>fas fa-stopwatch</value>
+  </data>
+  <data name="titleExpirationInvoices" xml:space="preserve">
+    <value>Facturas al Vencimiento</value>
+  </data>
+  <data name="textoGreater30Days" xml:space="preserve">
+    <value>Solo aplica para Facturas mayores a 30 días.</value>
+  </data>
+  <data name="buttonAceptOffert" xml:space="preserve">
+    <value>Aceptar Oferta</value>
+  </data>
+  <data name="iconCloseMarket" xml:space="preserve">
+    <value>far fa-handshake</value>
+  </data>
+  <data name="titleCloseMarket" xml:space="preserve">
+    <value>Cierre del Mercado</value>
+  </data>
+  <data name="titleInvoiceGain" xml:space="preserve">
+    <value>Facturas Ganadoras</value>
+  </data>
+  <data name="textoSureAceptOffert" xml:space="preserve">
+    <value>¿Esta seguro de aceptar todas las ofertas?</value>
+  </data>
+  <data name="textoOffert" xml:space="preserve">
+    <value>Oferta</value>
+  </data>
+  <data name="textoCloseMarketNot" xml:space="preserve">
+    <value>El Cierre del Mercado no se encuentra Activo actualmente.</value>
+  </data>
+  <data name="titleConfirmInvoices" xml:space="preserve">
+    <value>Confirmar Facturas</value>
+  </data>
+  <data name="buttonIncludeAccounts" xml:space="preserve">
+    <value>Incluir Cuenta</value>
+  </data>
+  <data name="buttonIncludeAssociate" xml:space="preserve">
+    <value>Incluir Asociado</value>
+  </data>
+  <data name="iconAddress" xml:space="preserve">
+    <value>fa fa-map</value>
+  </data>
+  <data name="iconCity" xml:space="preserve">
+    <value>fas fa-map-marked-alt</value>
+  </data>
+  <data name="iconTitleRegister" xml:space="preserve">
+    <value>fas fa-chalkboard-teacher</value>
+  </data>
+  <data name="textoaccountNumber" xml:space="preserve">
+    <value>Número de Cuenta</value>
+  </data>
+  <data name="textoaccountType" xml:space="preserve">
+    <value>Tipo de Cuenta</value>
+  </data>
+  <data name="textobankCode" xml:space="preserve">
+    <value>Código de Banco</value>
+  </data>
+  <data name="textobankingEntity" xml:space="preserve">
+    <value>Entidad Bancaria</value>
+  </data>
+  <data name="textocity" xml:space="preserve">
+    <value>Ciudad</value>
+  </data>
+  <data name="textocomercialActivity" xml:space="preserve">
+    <value>Actividad Comercial</value>
+  </data>
+  <data name="textocompanyName" xml:space="preserve">
+    <value>Nombre de la Empresa</value>
+  </data>
+  <data name="textoconstitutiveAct" xml:space="preserve">
+    <value>Carga Acta Constitutiva</value>
+  </data>
+  <data name="textodateBirth" xml:space="preserve">
+    <value>Fecha de Nacimiento</value>
+  </data>
+  <data name="textofiscalAddress" xml:space="preserve">
+    <value>Dirección Fiscal</value>
+  </data>
+  <data name="textolastName" xml:space="preserve">
+    <value>Apellidos</value>
+  </data>
+  <data name="textologoBank" xml:space="preserve">
+    <value>Logo del Banco</value>
+  </data>
+  <data name="textomainCustomers" xml:space="preserve">
+    <value>Principales Clientes</value>
+  </data>
+  <data name="textoname" xml:space="preserve">
+    <value>Nombres</value>
+  </data>
+  <data name="textonameOwner" xml:space="preserve">
+    <value>Nombre del Titular</value>
+  </data>
+  <data name="textonameSurname" xml:space="preserve">
+    <value>Nombre y Apellido</value>
+  </data>
+  <data name="textooccupation" xml:space="preserve">
+    <value>Ocupación</value>
+  </data>
+  <data name="textophone" xml:space="preserve">
+    <value>Teléfono</value>
+  </data>
+  <data name="textorequestNewAccount" xml:space="preserve">
+    <value>Solicitar Cuenta Nueva</value>
+  </data>
+  <data name="textostate" xml:space="preserve">
+    <value>Provincia</value>
+  </data>
+  <data name="textoterms" xml:space="preserve">
+    <value>Terminos</value>
+  </data>
+  <data name="textotradeName" xml:space="preserve">
+    <value>Nombre Comercial</value>
+  </data>
+  <data name="textotypeCurrency" xml:space="preserve">
+    <value>Tipo de Moneda</value>
+  </data>
+  <data name="tipAssociatedMembershipSuccess" xml:space="preserve">
+    <value>En espera de afiliación</value>
+  </data>
+  <data name="tipDebtorRegister" xml:space="preserve">
+    <value>Registro Empresa</value>
+  </data>
+  <data name="tipFactorRegister" xml:space="preserve">
+    <value>Registro Inversionista</value>
+  </data>
+  <data name="tipProviderRegister" xml:space="preserve">
+    <value>Registro Proveedor</value>
+  </data>
+  <data name="tipStatusAccount" xml:space="preserve">
+    <value>Seleccione como cuenta principal</value>
+  </data>
+  <data name="tipStatusAccountMain" xml:space="preserve">
+    <value>Cuenta Principal</value>
+  </data>
+  <data name="tipStatusAssociated" xml:space="preserve">
+    <value>En espera de aceptacion de contrato</value>
+  </data>
+  <data name="tipStatusAssociatedSuccess" xml:space="preserve">
+    <value>Contratos aceptados</value>
+  </data>
+  <data name="tipTerms" xml:space="preserve">
+    <value>pulse aqui para ver terminos y condiciones</value>
+  </data>
+  <data name="titleAddress" xml:space="preserve">
+    <value>Direcciones</value>
+  </data>
+  <data name="titleAdministrator" xml:space="preserve">
+    <value>Administrador</value>
+  </data>
+  <data name="titleBackofficeRegister" xml:space="preserve">
+    <value>Registro Operativo</value>
+  </data>
+  <data name="titleBank" xml:space="preserve">
+    <value>Banco</value>
+  </data>
+  <data name="titleBankAccounts" xml:space="preserve">
+    <value>Cuentas Bancarias</value>
+  </data>
+  <data name="titleCommercialData" xml:space="preserve">
+    <value>Datos Comerciales</value>
+  </data>
+  <data name="titleConfirmantRegister" xml:space="preserve">
+    <value>Registro Banco</value>
+  </data>
+  <data name="titleContactPerson" xml:space="preserve">
+    <value>Persona de Contacto</value>
+  </data>
+  <data name="titleDebtorRegister" xml:space="preserve">
+    <value>Registro Empresa</value>
+  </data>
+  <data name="titleFactorRegister" xml:space="preserve">
+    <value>Registro Inversionista</value>
+  </data>
+  <data name="titleLegalRepresentative" xml:space="preserve">
+    <value>Representante Legal o Persona Autorizada</value>
+  </data>
+  <data name="titleMainSuppliers" xml:space="preserve">
+    <value>Principales Proveedores</value>
+  </data>
+  <data name="titleProviderRegister" xml:space="preserve">
+    <value>Registro Proveedor</value>
+  </data>
+  <data name="buttonAfiliar" xml:space="preserve">
+    <value>Afiliarse</value>
+  </data>
+  <data name="buttonAssociated" xml:space="preserve">
+    <value>Guardar Asociado</value>
+  </data>
+  <data name="buttonSaveAccount" xml:space="preserve">
+    <value>Guardar Cuenta</value>
+  </data>
+  <data name="iconAccountType" xml:space="preserve">
+    <value>fa fa-balance-scale</value>
+  </data>
+  <data name="iconAdmin" xml:space="preserve">
+    <value>fas fa-user-shield</value>
+  </data>
+  <data name="iconAssociated" xml:space="preserve">
+    <value>fa fa-group</value>
+  </data>
+  <data name="iconBank" xml:space="preserve">
+    <value>fa fa-bank</value>
+  </data>
+  <data name="iconChartMDI" xml:space="preserve">
+    <value>mdi-chart-bar</value>
+  </data>
+  <data name="iconCodeBank" xml:space="preserve">
+    <value>fa fa-marker</value>
+  </data>
+  <data name="iconCoinType" xml:space="preserve">
+    <value>fas fa-dollar-sign</value>
+  </data>
+  <data name="iconCommercialData" xml:space="preserve">
+    <value>fab fa-accusoft</value>
+  </data>
+  <data name="iconContactPerson" xml:space="preserve">
+    <value>fas fa-headset</value>
+  </data>
+  <data name="iconEmail" xml:space="preserve">
+    <value>fa fa-envelope</value>
+  </data>
+  <data name="iconHomeMDI" xml:space="preserve">
+    <value>mdi-home</value>
+  </data>
+  <data name="iconLegalRepre" xml:space="preserve">
+    <value>fa fa-gavel</value>
+  </data>
+  <data name="iconMDIDomain" xml:space="preserve">
+    <value>mdi-domain</value>
+  </data>
+  <data name="iconMDIStore" xml:space="preserve">
+    <value>mdi-store</value>
+  </data>
+  <data name="iconMenuAssociated" xml:space="preserve">
+    <value>fa fa-user-plus</value>
+  </data>
+  <data name="iconNameUserBank" xml:space="preserve">
+    <value>fas fa-user-tie</value>
+  </data>
+  <data name="iconNumberBank" xml:space="preserve">
+    <value>fas fa-file-invoice-dollar</value>
+  </data>
+  <data name="iconPhone" xml:space="preserve">
+    <value>fa fa-phone</value>
+  </data>
+  <data name="iconTitleAddress" xml:space="preserve">
+    <value>fas fa-map-marker-alt</value>
+  </data>
+  <data name="iconTitleBank" xml:space="preserve">
+    <value>fa fa-balance-scale</value>
+  </data>
+  <data name="iconUser" xml:space="preserve">
+    <value>fa fa-user</value>
+  </data>
+  <data name="placeholderAccountType" xml:space="preserve">
+    <value>Seleccione</value>
+  </data>
+  <data name="placeholderActivity" xml:space="preserve">
+    <value>Seleccione</value>
+  </data>
+  <data name="placeholderCurrencyType" xml:space="preserve">
+    <value>Seleccione</value>
+  </data>
+  <data name="placeholderDocument" xml:space="preserve">
+    <value>Ingrese el N° de Documento</value>
+  </data>
+  <data name="placeholderEmail" xml:space="preserve">
+    <value>Ingrese el Correo Electrónico</value>
+  </data>
+  <data name="placeholderEnterYourAddress" xml:space="preserve">
+    <value>Ingrese la Dirección Principal</value>
+  </data>
+  <data name="placeholderEnterYourAddress2" xml:space="preserve">
+    <value>Ingrese la Dirección Secundaria</value>
+  </data>
+  <data name="placeholderEstate" xml:space="preserve">
+    <value>Seleccione</value>
+  </data>
+  <data name="placeholderOcupation" xml:space="preserve">
+    <value>Seleccione</value>
+  </data>
+  <data name="placeholderPhone" xml:space="preserve">
+    <value>Ingrese el Número de Teléfono</value>
+  </data>
+  <data name="textoAssociateAccount" xml:space="preserve">
+    <value>Asociar Cuenta</value>
+  </data>
+  <data name="textoContactPerson" xml:space="preserve">
+    <value>Persona Contacto</value>
+  </data>
+  <data name="textoEmail" xml:space="preserve">
+    <value>Correo Electrónico</value>
+  </data>
+  <data name="textoLegalRepresentative" xml:space="preserve">
+    <value>Representante Legal</value>
+  </data>
+  <data name="tipLegalPerson" xml:space="preserve">
+    <value>Persona Juridica</value>
+  </data>
+  <data name="tipNaturalPerson" xml:space="preserve">
+    <value>Persona Natural</value>
+  </data>
+  <data name="titleBankRegister" xml:space="preserve">
+    <value>Registro Banco</value>
+  </data>
+  <data name="iconAssignRiskLimit" xml:space="preserve">
+    <value>fa fa-thumbs-o-up</value>
+  </data>
+  <data name="titleOptions" xml:space="preserve">
+    <value>Opciones</value>
+  </data>
+  <data name="textMaximumRiskAmount" xml:space="preserve">
+    <value>Establecer Monto Máximo de Riesgo</value>
+  </data>
+  <data name="buttonAssign" xml:space="preserve">
+    <value>Asignar</value>
+  </data>
+  <data name="titleClientInformation" xml:space="preserve">
+    <value>Información del Cliente</value>
+  </data>
+  <data name="titleAssignRiskLimit" xml:space="preserve">
+    <value>Asignar Límite de Crédito</value>
+  </data>
+  <data name="buttonAssignAmount" xml:space="preserve">
+    <value>Establecer monto</value>
+  </data>
+  <data name="buttonSegmentation" xml:space="preserve">
+    <value>fa fa-thumbs-o-up</value>
+  </data>
+  <data name="titleSegmentation" xml:space="preserve">
+    <value>Asignar Ejecutivo de Cuentas</value>
+  </data>
+  <data name="textContactPerson" xml:space="preserve">
+    <value>Persona de Contacto</value>
+  </data>
+  <data name="iconCompanyName" xml:space="preserve">
+    <value>fas fa-city</value>
+  </data>
+  <data name="textAccountExecutive" xml:space="preserve">
+    <value>Seleccionar Ejecutivo de Cuenta</value>
+  </data>
+  <data name="titleVerifyData" xml:space="preserve">
+    <value>Verificar Datos</value>
+  </data>
+  <data name="buttonVerify" xml:space="preserve">
+    <value>Verificar</value>
+  </data>
+  <data name="buttonAprovalVerify" xml:space="preserve">
+    <value>Aprobar</value>
+  </data>
+  <data name="buttonRefuseVerify" xml:space="preserve">
+    <value>Rechazar</value>
+  </data>
+  <data name="buttonprint" xml:space="preserve">
+    <value>Imprimir</value>
+  </data>
+  <data name="textoBorradoCuenta" xml:space="preserve">
+    <value>Se eliminará la cuenta selecionada de forma permanente.</value>
+  </data>
+  <data name="textoCuentaPrincipal" xml:space="preserve">
+    <value>Cuenta Principal</value>
+  </data>
+  <data name="textoDeleteAccount" xml:space="preserve">
+    <value>Eliminar Cuenta</value>
+  </data>
+  <data name="textoDeleteAsoc" xml:space="preserve">
+    <value>Eliminar Asociado</value>
+  </data>
+  <data name="textoEstaSeguroAccion" xml:space="preserve">
+    <value>¿Está seguro de realizar esta accion?</value>
+  </data>
+  <data name="tipAcceptedContracts" xml:space="preserve">
+    <value>Contratos Aceptados</value>
+  </data>
+  <data name="tipAfiliado" xml:space="preserve">
+    <value>Afiliado</value>
+  </data>
+  <data name="tipAwaitingMembership" xml:space="preserve">
+    <value>En espera de afiliación</value>
+  </data>
+  <data name="tipCuentaNoPrincipal" xml:space="preserve">
+    <value>Seleccione como Cuenta Principal</value>
+  </data>
+  <data name="tipNoAcceptedContracts" xml:space="preserve">
+    <value>En espera de aceptación de contrato</value>
+  </data>
+  <data name="buttonFilter" xml:space="preserve">
+    <value>Filtrar</value>
+  </data>
+  <data name="titleAmountFrom" xml:space="preserve">
+    <value>Monto Desde</value>
+  </data>
+  <data name="titleAmountTo" xml:space="preserve">
+    <value>Monto Hasta</value>
+  </data>
+  <data name="titleIssuedFrom" xml:space="preserve">
+    <value>Fecha de Emisión Desde</value>
+  </data>
+  <data name="titleIssuedTo" xml:space="preserve">
+    <value>Fecha de Emisión Hasta</value>
+  </data>
+  <data name="titleExpirationFrom" xml:space="preserve">
+    <value>Fecha de Vencimiento Desde</value>
+  </data>
+  <data name="titleExpirationTo" xml:space="preserve">
+    <value>Fecha de Vencimiento Hasta</value>
+  </data>
+  <data name="titleFinanced" xml:space="preserve">
+    <value>Financiamiento</value>
+  </data>
+  <data name="searchFinancing" xml:space="preserve">
+    <value>Buscar con Financiamiento</value>
+  </data>
+  <data name="titlefilter" xml:space="preserve">
+    <value>Filtrar</value>
+  </data>
+  <data name="errorInvoiceNumber" xml:space="preserve">
+    <value>Número de la Factura Invalido</value>
+  </data>
+  <data name="errorDate" xml:space="preserve">
+    <value>Fecha Invalida</value>
+  </data>
+  <data name="errorFromGreatherTo" xml:space="preserve">
+    <value>fecha de inicio no puede ser mayor a fecha tope</value>
+  </data>
+  <data name="errorToGreatherFrom" xml:space="preserve">
+    <value>fecha tope no puede ser menor a la fecha inicial</value>
+  </data>
+  <data name="iconFilter" xml:space="preserve">
+    <value>fa fa-filter</value>
+  </data>
+  <data name="titleConfirmant" xml:space="preserve">
+    <value>Confirmante</value>
+  </data>
+  <data name="titleDebtor" xml:space="preserve">
+    <value>Deudor</value>
+  </data>
+  <data name="selectTypeConfirmant" xml:space="preserve">
+    <value>Selecciona Confirmante</value>
+  </data>
+  <data name="selectTypeDebtor" xml:space="preserve">
+    <value>Ingrese un Cliente</value>
+  </data>
+  <data name="tipClearFilter" xml:space="preserve">
+    <value>Limpiar Filtro</value>
+  </data>
+  <data name="tipFilter" xml:space="preserve">
+    <value>Filtrar</value>
+  </data>
+  <data name="buttoClearFilter" xml:space="preserve">
+    <value>Limpiar Filtro</value>
+  </data>
+  <data name="placeholderCity" xml:space="preserve">
+    <value>Seleccione</value>
+  </data>
+  <data name="titlePerfil" xml:space="preserve">
+    <value>Perfil</value>
+  </data>
+  <data name="placeholderNumberFormatPorcentage" xml:space="preserve">
+    <value>0,00</value>
+  </data>
+  <data name="titleClient" xml:space="preserve">
+    <value>Cliente</value>
+  </data>
+  <data name="textAllFinanced" xml:space="preserve">
+    <value>Todas</value>
+  </data>
+  <data name="textTrueFinancied" xml:space="preserve">
+    <value>con Financiamiento</value>
+  </data>
+  <data name="textFalseFinancied" xml:space="preserve">
+    <value>sin Financiamiento</value>
+  </data>
+  <data name="buttonSend" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="placeholderComent" xml:space="preserve">
+    <value>Por favor ingrese comentario.</value>
+  </data>
+  <data name="headersN" xml:space="preserve">
+    <value>N°</value>
+  </data>
+  <data name="headersCheck" xml:space="preserve">
+    <value>/</value>
+  </data>
+  <data name="headersAmountAnnualized" xml:space="preserve">
+    <value>Monto por Descuento / Costo Anualizado</value>
+  </data>
+  <data name="headersOfferProposal" xml:space="preserve">
+    <value>Oferta Propuesta</value>
+  </data>
+  <data name="headersBuyerCustomer" xml:space="preserve">
+    <value>Cliente / Comprador</value>
+  </data>
+  <data name="headersBankCustomer" xml:space="preserve">
+    <value>Cliente / Banco Confirmante</value>
+  </data>
+  <data name="headersSupplierCustomer" xml:space="preserve">
+    <value>Cliente / Proveedor</value>
+  </data>
+  <data name="headersExpirationDaysNumber" xml:space="preserve">
+    <value>Fecha de Vencimiento / Número de Factura</value>
+  </data>
+  <data name="headersAmountNet" xml:space="preserve">
+    <value>Valor Neto</value>
+  </data>
+  <data name="headersOffer" xml:space="preserve">
+    <value>Ofertar</value>
+  </data>
+  <data name="headersBankOffer" xml:space="preserve">
+    <value>Oferta del Banco</value>
+  </data>
+  <data name="headersProfitability" xml:space="preserve">
+    <value>Rentabilidad Anualizada</value>
+  </data>
+  <data name="headersAmountReciv" xml:space="preserve">
+    <value>Monto a Recibir</value>
+  </data>
+  <data name="headersOptions" xml:space="preserve">
+    <value>Opciones</value>
+  </data>
+  <data name="headersCustomer" xml:space="preserve">
+    <value>Cliente</value>
+  </data>
+  <data name="headersCustomers" xml:space="preserve">
+    <value>Clientes</value>
+  </data>
+  <data name="headersLegalRepresentative" xml:space="preserve">
+    <value>Representante Legal</value>
+  </data>
+  <data name="headersAmountAssigned" xml:space="preserve">
+    <value>Monto Asignado</value>
+  </data>
+  <data name="headersState" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="headersSupplier" xml:space="preserve">
+    <value>Proveedor</value>
+  </data>
+  <data name="headersNumberInvoice" xml:space="preserve">
+    <value>Número de Factura</value>
+  </data>
+  <data name="headersExpirationDays" xml:space="preserve">
+    <value>Fecha de Vencimiento</value>
+  </data>
+  <data name="headersType" xml:space="preserve">
+    <value>Tipo</value>
+  </data>
+  <data name="headersNumber" xml:space="preserve">
+    <value>Número</value>
+  </data>
+  <data name="headersAmount" xml:space="preserve">
+    <value>Monto</value>
+  </data>
+  <data name="headersSupplierNumber" xml:space="preserve">
+    <value>Número del Proveedor</value>
+  </data>
+  <data name="headersTypeInvoice" xml:space="preserve">
+    <value>Tipo de Factura</value>
+  </data>
+  <data name="headersCurrency" xml:space="preserve">
+    <value>Moneda</value>
+  </data>
+  <data name="headersIssuedDate" xml:space="preserve">
+    <value>Fecha de Emisión</value>
+  </data>
+  <data name="headersMessage" xml:space="preserve">
+    <value>Mensaje</value>
+  </data>
+  <data name="headersMessages" xml:space="preserve">
+    <value>Mensajes</value>
+  </data>
+  <data name="headersBank" xml:space="preserve">
+    <value>Banco</value>
+  </data>
+  <data name="headersFinancing" xml:space="preserve">
+    <value>Financiamiento</value>
+  </data>
+  <data name="headersPhoto" xml:space="preserve">
+    <value>Foto</value>
+  </data>
+  <data name="headersCreatedAt" xml:space="preserve">
+    <value>Fecha de Creación</value>
+  </data>
+  <data name="headersEmail" xml:space="preserve">
+    <value>Correo Electrónico</value>
+  </data>
+  <data name="headersName" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="headersAbbreviation" xml:space="preserve">
+    <value>Abreviación</value>
+  </data>
+  <data name="headersDiscriminator" xml:space="preserve">
+    <value>Participante</value>
+  </data>
+  <data name="headersConfirm" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="headersSend" xml:space="preserve">
+    <value>Enviar</value>
+  </data>
+  <data name="headersDelete" xml:space="preserve">
+    <value>Eliminar</value>
+  </data>
+  <data name="headersServiceCommission" xml:space="preserve">
+    <value>Gasto por Servicio</value>
+  </data>
+  <data name="headersConfirmingBank" xml:space="preserve">
+    <value>Banco Confirmante</value>
+  </data>
+  <data name="headersPublish" xml:space="preserve">
+    <value>Publicar</value>
+  </data>
+  <data name="headersBestOffer" xml:space="preserve">
+    <value>Mejor Oferta</value>
+  </data>
+  <data name="headersGainProfitability" xml:space="preserve">
+    <value>Ganancia / Rentabilidad Anualizada</value>
+  </data>
+  <data name="headersPay" xml:space="preserve">
+    <value>Pago</value>
+  </data>
+  <data name="headersOpening" xml:space="preserve">
+    <value>Apertura</value>
+  </data>
+  <data name="headersClosing" xml:space="preserve">
+    <value>Cierre</value>
+  </data>
+  <data name="headersConciliation" xml:space="preserve">
+    <value>Conciliación</value>
+  </data>
+  <data name="headersEnding" xml:space="preserve">
+    <value>Ending</value>
+  </data>
+  <data name="headerBankingEntity" xml:space="preserve">
+    <value>Entidad Bancaria</value>
+  </data>
+  <data name="headersHolder" xml:space="preserve">
+    <value>Titular</value>
+  </data>
+  <data name="headersNumberAccount" xml:space="preserve">
+    <value>Número de Cuenta</value>
+  </data>
+  <data name="headersTypeAccount" xml:space="preserve">
+    <value>Tipo de Cuenta</value>
+  </data>
+  <data name="headersStatus" xml:space="preserve">
+    <value>Estatus</value>
+  </data>
+  <data name="headersDocNumber" xml:space="preserve">
+    <value>N° Documento</value>
+  </data>
+  <data name="headersContact" xml:space="preserve">
+    <value>Contacto</value>
+  </data>
+  <data name="headersInformation" xml:space="preserve">
+    <value>Información</value>
+  </data>
+  <data name="headersAssociated" xml:space="preserve">
+    <value>Asociados</value>
+  </data>
+  <data name="messageInvalidFile" xml:space="preserve">
+    <value>Estimado usuario.&lt;br&gt;Disculpe pero el archivo que acaba de ingresar no es valido</value>
+  </data>
+  <data name="messageInvoiceLoad" xml:space="preserve">
+    <value>Estimado usuario.&lt;br&gt;Su Factura se ha registrado satisfactoriamente</value>
+  </data>
+  <data name="messageInvoicesLoad" xml:space="preserve">
+    <value>Estimado usuario.&lt;br&gt;Su(s) Factura(s) se ha(n) registrado satisfactoriamente</value>
+  </data>
+  <data name="messageInvoicePostulated" xml:space="preserve">
+    <value>Estimado usuario.&lt;br&gt;Su Factura se ha postulado satisfactoriamente</value>
+  </data>
+  <data name="messageOfferMade" xml:space="preserve">
+    <value>Estimado usuario.&lt;br&gt;Su oferta se ha realizado satisfactoriamente</value>
+  </data>
+  <data name="messageOfferUpdate" xml:space="preserve">
+    <value>Estimado usuario.&lt;br&gt;Su Oferta se ha actualizado satisfactoriamente</value>
+  </data>
+  <data name="messagePublishInvoice" xml:space="preserve">
+    <value>Estimado usuario.&lt;br&gt;Las Facturas se han Publicado satisfactoriamente</value>
+  </data>
+  <data name="messageOfferWin" xml:space="preserve">
+    <value>Estimado usuario.&lt;br&gt;La confirmación de Oferta se ha aplicado satisfactoriamente</value>
+  </data>
+  <data name="messageInvoiceFinancing" xml:space="preserve">
+    <value>Estimado usuario.&lt;br&gt;Su Solicitud de Financiamiento se ha realizado satisfactoriamente</value>
+  </data>
+  <data name="messageInvoiceFinancingCancel" xml:space="preserve">
+    <value>Estimado usuario.&lt;br&gt;Su Solicitud de Cancelación se ha realizado satisfactoriamente</value>
+  </data>
+  <data name="messageSuccesAnswer" xml:space="preserve">
+    <value>Estimado usuario.&lt;br&gt;Su solicitud a sido aplicada satisfactoriamente</value>
+  </data>
+  <data name="messageProblemAnswer" xml:space="preserve">
+    <value>Estimado usuario.&lt;br&gt;Su solicitud a sido aplicada con inconvenientes</value>
+  </data>
+  <data name="messageErrorAnswer" xml:space="preserve">
+    <value>Error al realizar la transacción</value>
+  </data>
+  <data name="titleUserManagement" xml:space="preserve">
+    <value>Gestión de Usuarios</value>
+  </data>
+  <data name="buttonInvite" xml:space="preserve">
+    <value>Invitar</value>
+  </data>
+  <data name="buttonBlock" xml:space="preserve">
+    <value>Bloquear</value>
+  </data>
+  <data name="buttonUnlock" xml:space="preserve">
+    <value>Desbloquear</value>
+  </data>
+  <data name="titleUserData" xml:space="preserve">
+    <value>Datos del Usuario</value>
+  </data>
+  <data name="textoOneName" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="placeholderName" xml:space="preserve">
+    <value>Ingrese Nombre (s) y Apellido (s)</value>
+  </data>
+  <data name="textoRoles" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="buttonCreate" xml:space="preserve">
+    <value>Crear</value>
+  </data>
+  <data name="textoSecureUser" xml:space="preserve">
+    <value>Estas seguro de realizar esta acción al usuario</value>
+  </data>
+  <data name="titleRolesManagement" xml:space="preserve">
+    <value>Gestión de Roles</value>
+  </data>
+  <data name="buttonEditRol" xml:space="preserve">
+    <value>Editar Rol</value>
+  </data>
+  <data name="titleRolData" xml:space="preserve">
+    <value>Datos del Rol</value>
+  </data>
+  <data name="textoAbbreviation" xml:space="preserve">
+    <value>Abreviación</value>
+  </data>
+  <data name="placeholderAbbreviation" xml:space="preserve">
+    <value>Ingrese la abreviación</value>
+  </data>
+  <data name="textoParticipant" xml:space="preserve">
+    <value>Participante</value>
+  </data>
+  <data name="iconAdminAuction" xml:space="preserve">
+    <value>fa fa-shopping-cart</value>
+  </data>
+  <data name="titleAdminAuction" xml:space="preserve">
+    <value>Administración de Subastas</value>
+  </data>
+  <data name="buttonOpenAuction" xml:space="preserve">
+    <value>Abrir Subasta</value>
+  </data>
+  <data name="buttonCloseAuction" xml:space="preserve">
+    <value>Cerrar Subasta</value>
+  </data>
+  <data name="buttonCloseConciliation" xml:space="preserve">
+    <value>Cerrar Conciliación</value>
+  </data>
+  <data name="buttonEnd" xml:space="preserve">
+    <value>Finalizar</value>
+  </data>
+  <data name="textoNotAuction" xml:space="preserve">
+    <value>Sin Subasta Actualmente</value>
+  </data>
+  <data name="textoDataAuction" xml:space="preserve">
+    <value>Datos de la Subasta</value>
+  </data>
+  <data name="textoSecureAction" xml:space="preserve">
+    <value>¿Estas seguro de realizar esta acción?</value>
+  </data>
+  <data name="buttonClosePayments" xml:space="preserve">
+    <value>Cerrar Pagos</value>
+  </data>
+  <data name="textoPostular" xml:space="preserve">
+    <value>Permite la asignación de las Facturas que desea Confirmar a través del Banco de su preferencia.</value>
+  </data>
+  <data name="buttonPaymentButton" xml:space="preserve">
+    <value>Boton de Pago</value>
+  </data>
+  <data name="buttonTransferir" xml:space="preserve">
+    <value>Transferir</value>
+  </data>
+  <data name="iconMoney" xml:space="preserve">
+    <value>fa fa-money</value>
+  </data>
+  <data name="textoInvoicesDetails" xml:space="preserve">
+    <value>Detalles de las Facturas</value>
+  </data>
+  <data name="titlePayInvoices" xml:space="preserve">
+    <value>Facturas Compradas</value>
+  </data>
+  <data name="textoEditingInvoice" xml:space="preserve">
+    <value>Una vez Cargadas las Facturas de forma Manual o Masiva, podrá editarlas y actualizar la información básica o Deducciones, antes de Postularlas a los Bancos Confirmantes.</value>
+  </data>
+  <data name="textoPress" xml:space="preserve">
+    <value>Presione</value>
+  </data>
+  <data name="textoMoreInformation" xml:space="preserve">
+    <value>para más información.</value>
+  </data>
+  <data name="titleSelectsInvoiceFinancing" xml:space="preserve">
+    <value>Selección de Facturas</value>
+  </data>
+  <data name="textoSubTitleFinancing" xml:space="preserve">
+    <value>Una vez Confirmada cada Factura por parte del Banco, usted podrá Solicitar o Cancelar el Financiamiento que será aplicado al momento de su pago en la Fecha de Vencimiento, tomándose en cuenta la disponibilidad en la Línea de Financiamiento asignada y el Vencimiento de la Factura (3 días antes).</value>
+  </data>
+  <data name="textoAyudaRegistoEmpresa" xml:space="preserve">
+    <value>Permite el Registro de una Empresa en el Sistema “TuF@ctoring”, con el fin de disfrutar de todas las bondades del Servicio de Venta y Gestión de Cuentas por Pagar de las Facturas de sus Proveedores, previa aceptación de Términos y Condiciones.</value>
+  </data>
+  <data name="textoAyudaRegistoInversionista" xml:space="preserve">
+    <value>Permite el Registro de un Inversionista en el Sistema “TuF@ctoring", con el fin de participar en el proceso de Subastas, ofertando el descuento para la Compra de las Facturas de su preferencia, previa aceptación de Términos y Condiciones.</value>
+  </data>
+  <data name="textoAyudaRegistoProveedor" xml:space="preserve">
+    <value>Permite el Registro de un Proveedor en el Sistema “TuF@ctoring”, con el fin de disfrutar del Servicio de Gestión de Cuentas por Cobrar de sus Facturas a los diferentes Clientes, previa aceptación de Términos y Condiciones.</value>
+  </data>
+  <data name="textoAyudaLimiteCredito" xml:space="preserve">
+    <value>Permite asignar el Monto de la Línea de Crédito a cada Cliente, con el cual podrá realizar las diferentes operaciones de sus Cuentas por Pagar a través del Banco Confirmante.</value>
+  </data>
+  <data name="textoAyudaPerfil" xml:space="preserve">
+    <value>Permite la revisión y actualización de Datos de la Empresa (Direcciones, Teléfono de Representante Legal, Persona Contacto y Cuentas Bancarias).</value>
+  </data>
+  <data name="textoAyudaPerfilBanco" xml:space="preserve">
+    <value>Permite la revisión y actualización de Datos del Banco Aliado (Direcciones, Teléfono de Representante Legal, Administrador y Cuentas Bancarias).</value>
+  </data>
+  <data name="textoAyudaPerfilInversionista" xml:space="preserve">
+    <value>Permite la revisión y actualización de Datos del Inversionista (Direcciones, Teléfono de Representante Legal y Cuentas Bancarias)</value>
+  </data>
+  <data name="textoAyudaPerfilProveedor" xml:space="preserve">
+    <value>Permite la revisión y actualización de Datos del Proveedor (Direcciones, Teléfono de Representante Legal, Persona Contacto, Cuentas Bancarias y Aceptación de Contratos Marco por Banco Aliado).</value>
+  </data>
+  <data name="textoAyudaSegmentar" xml:space="preserve">
+    <value>Permite la asignación de un Ejecutivo de Cuentas a los diferentes Perfiles (Empresas, Proveedor e Inversionista), según su clasificación o atención existente.</value>
+  </data>
+  <data name="textoAyudaVerificarDatos" xml:space="preserve">
+    <value>Permite ingresar el resultado de la evaluación de riesgo, de los diferentes Perfiles (Empresas, Proveedor e Inversionista) que desean tener una relación con el Banco como Confirmante o simplemente para solicitar una Cuenta para el manejo de sus operaciones.</value>
+  </data>
+  <data name="textoEjecutivoAyudaModal" xml:space="preserve">
+    <value>Por favor indique el Monto Máximo a ser asignado para realizar Operaciones en el Sistema:</value>
+  </data>
+  <data name="textoSegmentarAyudaModal" xml:space="preserve">
+    <value>Por favor seleccione el Ejecutivo de Cuentas correspondiente:</value>
+  </data>
+  <data name="textoVerificarAyudaModal" xml:space="preserve">
+    <value>Por favor seleccione la Calificación correspondiente:</value>
+  </data>
+  <data name="titleLimiteCreditoModal" xml:space="preserve">
+    <value>Asignar Monto Máximo de Riesgo</value>
+  </data>
+  <data name="titleSegmentarModal" xml:space="preserve">
+    <value>Asignar Ejecutivo de Cuentas</value>
+  </data>
+  <data name="titleVerificarModal" xml:space="preserve">
+    <value>Resultado de Evaluación</value>
+  </data>
+  <data name="iconConfirmingPeople" xml:space="preserve">
+    <value>fas fa-building</value>
+  </data>
+  <data name="textoAcceptTerm" xml:space="preserve">
+    <value>Acepto los</value>
+  </data>
+  <data name="textoUsoSistemTerm" xml:space="preserve">
+    <value>de uso del sistema.</value>
+  </data>
+  <data name="iconConfirmInvoice" xml:space="preserve">
+    <value>fas fa-clipboard-check</value>
+  </data>
+  <data name="textContentConfirm" xml:space="preserve">
+    <value>Permite revisar y confirmar las Facturas Postuladas por el Cliente.</value>
+  </data>
+  <data name="textContentBuy" xml:space="preserve">
+    <value>Permite revisar las Facturas Postuladas por Clientes (Confirming) o Proveedores (Venta Directa), debe recordar que las Ventas Directas deben ser Ofertadas, para el uso de Confirming debe Ofertar o Liberar. </value>
+  </data>
+  <data name="textAmountTotal" xml:space="preserve">
+    <value>por un Monto Total de</value>
+  </data>
+  <data name="textoContentPublicarFacturas" xml:space="preserve">
+    <value>Esta compuesta por dos Secciones, en las que podrá realizar diferentes tipos de Acciones sobre las Facturas mayores a 30 días, tales como:</value>
+  </data>
+  <data name="textoContentPublicarFacturas2" xml:space="preserve">
+    <value>1. Aceptar o Rechazar las diferentes Ofertas enviadas por el Banco (Facturas de Confirming o Venta Directa), con su respectivo Porcentaje de descuento.</value>
+  </data>
+  <data name="textoContentPublicarFacturas3" xml:space="preserve">
+    <value>2. Publicar Facturas en la próxima Subasta y Posponer Facturas al Vencimiento.</value>
+  </data>
+  <data name="textoContentFacturasVencimiento" xml:space="preserve">
+    <value>Contiene las Facturas que serán pagadas a los Proveedores en la Fecha de Vencimiento de cada una, las cuales están en esta bandeja según los siguientes escenarios:</value>
+  </data>
+  <data name="textoContentFacturasVencimiento2" xml:space="preserve">
+    <value>1. Facturas Confirmadas por el Banco, con Fecha de Vencimiento menor a 30 días.</value>
+  </data>
+  <data name="textoContentFacturasVencimiento3" xml:space="preserve">
+    <value>2. Facturas Pospuestas por el Proveedor, con Fecha de Vencimiento mayor o igual a 30 días. De igual forma estas Facturas pueden ser Publicadas para ser vendidas en el Mercado de Facturas.</value>
+  </data>
+  <data name="textoMercadoFacturasProveedor" xml:space="preserve">
+    <value>Consulta  detallada de la Subasta de Facturas que se encuentra Activa durante el Tiempo Restante identificado en el contador, ubicado al lado derecho de la pantalla. </value>
+  </data>
+  <data name="textoMercadoFacturasProveedor2" xml:space="preserve">
+    <value>La información presentada muestra sus Facturas Ofertadas y no Ofertadas por los Inversionistas</value>
+  </data>
+  <data name="textoCierreMercadoProveedores" xml:space="preserve">
+    <value>Muestra las Mejores Ofertas de Descuento realizadas por los Inversionistas. </value>
+  </data>
+  <data name="textoCierreMercadoProveedores2" xml:space="preserve">
+    <value>Usted cuenta con el Tiempo Restante del contador, para Aceptar la Oferta, de lo contrario regresarán a la bandeja de Publicación para el día siguiente.</value>
+  </data>
+  <data name="textoMercadoFacturasFactor" xml:space="preserve">
+    <value>Muestra la Subasta Diaria que se encuentra Activa, en la que Usted podrá Ofertar el descuento y revisar los cálculos de las Facturas de su preferencia.</value>
+  </data>
+  <data name="textoMercadoFacturasFactor2" xml:space="preserve">
+    <value>La Subasta estará abierta durante el Tiempo Restante identificado en el contador, ubicado al lado derecho de la pantalla y cada Factura estará identificada dependiendo si ha sido Ofertada o no, con una línea del lado izquierdo y su color varía según lo siguiente:</value>
+  </data>
+  <data name="textoAddNewInvoice2" xml:space="preserve">
+    <value>Para agregar Facturas Manualmente, presione </value>
+  </data>
+  <data name="buttonSaveDebtor" xml:space="preserve">
+    <value>Guardar Cliente</value>
+  </data>
+  <data name="buttonSaveSupplier" xml:space="preserve">
+    <value>Guardar Proveedor</value>
+  </data>
+  <data name="buttonNext" xml:space="preserve">
+    <value>Siguiente</value>
+  </data>
+  <data name="buttonPrevious" xml:space="preserve">
+    <value>Anterior</value>
+  </data>
+  <data name="placeholderLastName" xml:space="preserve">
+    <value>Ingrese el (los) Apellido (s)</value>
+  </data>
+  <data name="placeholderNames" xml:space="preserve">
+    <value>Ingrese el (los) Nombre (s)</value>
+  </data>
+  <data name="placeholderNombreComercial" xml:space="preserve">
+    <value>Ingrese el Nombre Comercial</value>
+  </data>
+  <data name="placeholderNombreLegal" xml:space="preserve">
+    <value>Ingrese el Nombre de la Empresa</value>
+  </data>
+  <data name="titleDatosPerson" xml:space="preserve">
+    <value>Datos Personales</value>
+  </data>
+  <data name="validatePasswordLength" xml:space="preserve">
+    <value>La Contraseña debe tener mínimo {2} y un máximo de {1} caracteres de longitud.</value>
+  </data>
+  <data name="validatePasswordMatch" xml:space="preserve">
+    <value>La Nueva Contraseña y la Confirmación no coinciden</value>
+  </data>
+  <data name="textoTokenMustSupplied" xml:space="preserve">
+    <value>Se debe proporcionar un token para restablecer la contraseña.</value>
+  </data>
+  <data name="textoSessionResetExpired" xml:space="preserve">
+    <value>Sesión para resetear contraseña expirada.</value>
+  </data>
+  <data name="textoInvalidToken" xml:space="preserve">
+    <value>Token invalido</value>
+  </data>
+  <data name="validateDataInvalid" xml:space="preserve">
+    <value>Datos Invalidos</value>
+  </data>
+  <data name="textoResetPasswordConfirmation1" xml:space="preserve">
+    <value>Tu contraseña ha sido restablecida. por favor</value>
+  </data>
+  <data name="textoResetPasswordConfirmation2" xml:space="preserve">
+    <value>Haga clic aquí para ingresar</value>
+  </data>
+  <data name="titleResetPassword" xml:space="preserve">
+    <value>Restablecer su contraseña</value>
+  </data>
+  <data name="buttonReset" xml:space="preserve">
+    <value>Restablecer</value>
+  </data>
+  <data name="titleForgotPassword" xml:space="preserve">
+    <value>¿Olvidaste tu contraseña?</value>
+  </data>
+  <data name="textoForgotPassword" xml:space="preserve">
+    <value>Simplemente ingrese su dirección de correo electrónico a continuación y le enviaremos un enlace para restablecer su contraseña</value>
+  </data>
+  <data name="selectPrefix" xml:space="preserve">
+    <value>Elige una etiqueta</value>
+  </data>
+  <data name="placeholderEnterNumber" xml:space="preserve">
+    <value>Ingresar</value>
+  </data>
+  <data name="buttonResetPassword" xml:space="preserve">
+    <value>Restablecer la Contraseña</value>
+  </data>
+  <data name="buttonCreateAccount" xml:space="preserve">
+    <value>¡Crea una cuenta!</value>
+  </data>
+  <data name="buttonAlreadyAccount" xml:space="preserve">
+    <value>¿Ya tienes una cuenta? ¡Inicia sesión!</value>
+  </data>
+  <data name="buttonReturnHome" xml:space="preserve">
+    <value>Volver al Inicio</value>
+  </data>
+  <data name="titleForgotPasswordConfirmation" xml:space="preserve">
+    <value>Correo enviado</value>
+  </data>
+  <data name="textoForgotPasswordConfirmation" xml:space="preserve">
+    <value>Por favor revise su correo electrónico para confirmar la contraseña</value>
+  </data>
+  <data name="number" xml:space="preserve">
+    <value>Número de Documento</value>
+  </data>
+  <data name="confirmPassword" xml:space="preserve">
+    <value>Contraseña de confirmación</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>Contraseña</value>
+  </data>
+  <data name="titlePasswordReset" xml:space="preserve">
+    <value>Contraseña restablecida</value>
+  </data>
+  <data name="titleModalAcceptAllOfferts" xml:space="preserve">
+    <value>Aceptación de Ofertas del Banco</value>
+  </data>
+  <data name="titleModalRefuseAllOfferts" xml:space="preserve">
+    <value>Rechazo de Ofertas del Banco</value>
+  </data>
+  <data name="titleModalPublishAll" xml:space="preserve">
+    <value>Publicación de Facturas</value>
+  </data>
+  <data name="titleModalPosponerAll" xml:space="preserve">
+    <value>Posponer Facturas</value>
+  </data>
+  <data name="titleModalAcceptAllOffersCierreMercado" xml:space="preserve">
+    <value>Aceptación de Ofertas del Mercado</value>
+  </data>
+  <data name="textoModalAcceptAllOffersCierreMercado" xml:space="preserve">
+    <value>¿Esta seguro de Aceptar todas las Ofertas seleccionadas?</value>
+  </data>
+  <data name="placeholderAccountNumber" xml:space="preserve">
+    <value>Ingrese Número de Cuenta</value>
+  </data>
+  <data name="placeholderDocumento" xml:space="preserve">
+    <value>Ingrese el N° de Documento</value>
+  </data>
+  <data name="buttonModifyAmount" xml:space="preserve">
+    <value>Modificar Monto</value>
+  </data>
+  <data name="titleModalOfertarMercadoFactor" xml:space="preserve">
+    <value>Oferta de Facturas</value>
+  </data>
+  <data name="textoModalOfertarMercadoFactor" xml:space="preserve">
+    <value>¿Está seguro de Ofertar la Factura</value>
+  </data>
+  <data name="textoModalOfertarMercadoFactor2" xml:space="preserve">
+    <value>por un Monto a Pagar</value>
+  </data>
+  <data name="interrogationSign" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="buttonCancel" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="textoModalOfertarMercadoFactor3" xml:space="preserve">
+    <value>de</value>
+  </data>
+  <data name="textoMejorarOfertaMercado" xml:space="preserve">
+    <value>Usted debe mejorar la Oferta actual</value>
+  </data>
+  <data name="buttonAfiliarConfirmant" xml:space="preserve">
+    <value>Afiliar</value>
+  </data>
+  <data name="textoSelectAll2" xml:space="preserve">
+    <value>Seleccionar todas sin Financiamiento</value>
+  </data>
+  <data name="textoQuitAll2" xml:space="preserve">
+    <value>Quitar seleccionadas sin Financiamiento</value>
+  </data>
+  <data name="buttonGuardarFactura" xml:space="preserve">
+    <value>Guardar Factura</value>
+  </data>
+  <data name="buttonAddDeductions" xml:space="preserve">
+    <value>Agregar Deducciones</value>
+  </data>
+  <data name="buttonReturn" xml:space="preserve">
+    <value>Regresar</value>
+  </data>
+  <data name="iconReturn" xml:space="preserve">
+    <value>fas fa-door-open</value>
+  </data>
+  <data name="errorCargaManualProveedor" xml:space="preserve">
+    <value>Debe seleccionar el Proveedor Emisor de la Factura</value>
+  </data>
+  <data name="errorMaxLengthInvoices" xml:space="preserve">
+    <value>Debe tener máximo 175 caracteres</value>
+  </data>
+  <data name="errorExpirationMinor" xml:space="preserve">
+    <value>La Fecha de Vencimiento de la Factura debe ser mayor a la Fecha de Emisión</value>
+  </data>
+  <data name="errorInvoiceExistente" xml:space="preserve">
+    <value>El Cliente ya tiene asociada la Factura para el Proveedor seleccionado</value>
+  </data>
+  <data name="errorFormatoInvalidoFactura" xml:space="preserve">
+    <value>El Número de Factura es inválido</value>
+  </data>
+  <data name="errorDeduccionSuperior" xml:space="preserve">
+    <value>Debe tener máximo 255 caracteres</value>
+  </data>
+  <data name="placeholderNumeroFacturaCargaManual" xml:space="preserve">
+    <value>Ingrese el Número de Factura</value>
+  </data>
+  <data name="placeholderInvoiceNumber" xml:space="preserve">
+    <value>Ingrese el Número de Factura</value>
+  </data>
+  <data name="placeholderSupplierCarga" xml:space="preserve">
+    <value>Seleccione</value>
+  </data>
+  <data name="errorAmountDeductions2" xml:space="preserve">
+    <value>Debe tener máximo 13 dígitos en la parte entera</value>
+  </data>
+  <data name="errorPorcentajeVacio" xml:space="preserve">
+    <value>El Monto de la Deducción debe ser mayor a 0</value>
+  </data>
+  <data name="errorPorcentajeIgual" xml:space="preserve">
+    <value>Las Deducciones no pueden ser iguales al Monto de la Factura</value>
+  </data>
+  <data name="errorPorcentajeSuperior" xml:space="preserve">
+    <value>Las Deducciones superan el Monto de la Factura</value>
+  </data>
+  <data name="titleConsultasFacturas" xml:space="preserve">
+    <value>Consultas de Facturas</value>
+  </data>
+  <data name="titleDetallesFacturas" xml:space="preserve">
+    <value>Detalle de Facturas</value>
+  </data>
+  <data name="buttonDetalles" xml:space="preserve">
+    <value>Detalle</value>
+  </data>
+  <data name="selectTypeStatus" xml:space="preserve">
+    <value>Seleccione un Estado</value>
+  </data>
+  <data name="titleStatusInvoices" xml:space="preserve">
+    <value>Estados de las Facturas</value>
+  </data>
+  <data name="textoFormatoTxtInvalido" xml:space="preserve">
+    <value>El Formato del archivo es inválido, solo se permiten archivos de texto plano (*.txt)</value>
+  </data>
+  <data name="errorArchivoMasivoManipulado" xml:space="preserve">
+    <value>El Formato seleccionado es inválido</value>
+  </data>
+  <data name="errorArchivoSinRegistros" xml:space="preserve">
+    <value>Archivo sin registros</value>
+  </data>
+  <data name="textoSelectAllWithFinancing" xml:space="preserve">
+    <value>Seleccionar todas con Financiamiento</value>
+  </data>
+  <data name="textoQuitAllWithFinancing" xml:space="preserve">
+    <value>Quitar seleccionadas con Financiamiento</value>
+  </data>
+  <data name="errorDeduccionDuplicada" xml:space="preserve">
+    <value>El Número de Deducción ya se encuentra asociado a esta Factura</value>
+  </data>
+  <data name="titleModalEliminarDeduccion" xml:space="preserve">
+    <value>Eliminar Deducción</value>
+  </data>
+  <data name="textoModalEliminarDeduccion" xml:space="preserve">
+    <value>Esta acción eliminará la Deducción seleccionada. ¿Desea continuar?</value>
+  </data>
+  <data name="branding" xml:space="preserve">
+    <value>TuF@ctoring</value>
+  </data>
+  <data name="titleQueriesInvoices" xml:space="preserve">
+    <value>Consulta de Facturas</value>
+  </data>
+  <data name="textoSecureRole" xml:space="preserve">
+    <value>Estas seguro de realizar esta acción al rol</value>
+  </data>
+  <data name="limitCreditAmountFrom" xml:space="preserve">
+    <value>Límite de Crédito Desde</value>
+  </data>
+  <data name="limitCreditAmountTo" xml:space="preserve">
+    <value>Límite de Crédito Hasta</value>
+  </data>
+  <data name="titleQueriesClientes" xml:space="preserve">
+    <value>Consulta de Clientes</value>
+  </data>
+  <data name="textoModalSolicitarFinanciamiento" xml:space="preserve">
+    <value>Las Solicitudes realizadas serán notificadas al Banco Confirmante a la brevedad posible.</value>
+  </data>
+  <data name="textoModalSeguroFinanciamiento" xml:space="preserve">
+    <value>¿Está seguro de solicitar Financiamiento para todas las Facturas seleccionadas?</value>
+  </data>
+  <data name="textoModalSeguroCancelarFinanciamiento" xml:space="preserve">
+    <value>¿Está seguro de solicitar la Cancelación de Financiamiento de todas las Facturas seleccionadas?</value>
+  </data>
+  <data name="titleModalCancelarFinanciamiento" xml:space="preserve">
+    <value>Cancelación de Financiamiento de Facturas</value>
+  </data>
+  <data name="titleModalConfirmarTodas" xml:space="preserve">
+    <value>Confirmación de Facturas</value>
+  </data>
+  <data name="textoModalConfirmarTodas" xml:space="preserve">
+    <value>¿Está seguro de Confirmar todas las Facturas seleccionadas?</value>
+  </data>
+  <data name="textoAmountToOffert" xml:space="preserve">
+    <value>Monto a Confirmar</value>
+  </data>
+  <data name="loginTextReturn" xml:space="preserve">
+    <value>Regresar al Inicio</value>
+  </data>
+  <data name="loginTextForgotPassword" xml:space="preserve">
+    <value>¿Olvidaste tu contraseña?</value>
+  </data>
+  <data name="titleDetallesClientes" xml:space="preserve">
+    <value>Detalle del Cliente</value>
+  </data>
+  <data name="placeholderStatusUsuario" xml:space="preserve">
+    <value>Seleccione</value>
+  </data>
+  <data name="placeholderTipoCliente" xml:space="preserve">
+    <value>Seleccione un Tipo de Cliente</value>
+  </data>
+  <data name="titleFilterStatusUsuario" xml:space="preserve">
+    <value>Estatus del Usuario</value>
+  </data>
+  <data name="titleFilterTipoCliente" xml:space="preserve">
+    <value>Tipo de Cliente</value>
+  </data>
+  <data name="textoAyudaConsultaClientes" xml:space="preserve">
+    <value>Muestra los Clientes (Empresas) que tiene asociado el Banco Aliado, para ser el Confirmante de las Facturas que adeudan a los diferentes Proveedores. Observándose su información básica y Límite de Crédito asignado.</value>
+  </data>
+  <data name="titleDetalleConsultaContacto" xml:space="preserve">
+    <value>Datos de Contacto</value>
+  </data>
+  <data name="titleDetalleConsultaDireccionCuenta" xml:space="preserve">
+    <value>Dirección y Cuenta Bancaria</value>
+  </data>
+  <data name="titleConsultaCliente" xml:space="preserve">
+    <value>Clientes Registrados</value>
+  </data>
+  <data name="titleConsultaFactuas" xml:space="preserve">
+    <value>Facturas </value>
+  </data>
+  <data name="titleDetalleConsultaDireccion" xml:space="preserve">
+    <value>Dirección</value>
+  </data>
+  <data name="textoAyudaConsultaFacturasConfirmant" xml:space="preserve">
+    <value>Muestra la información de todas las Facturas Postuladas al Banco Aliado, según los diferentes Estados por los que va pasando en el Sistema.</value>
+  </data>
+  <data name="textoAyudaConsultaInvoiceDebtor" xml:space="preserve">
+    <value>Muestra la información de todas las Facturas Cargadas, según los diferentes Estados por los que va pasando en el Sistema.</value>
+  </data>
+  <data name="textoAyudaConsultaInvoiceFactor" xml:space="preserve">
+    <value>Muestra la información de todas las Facturas Compradas a los Proveedores, las cuales se encuentran Pagadas o Pendientes por Pagar.</value>
+  </data>
+  <data name="textoAyudaConsultaInvoiceSupplier" xml:space="preserve">
+    <value>Muestra la información de todas las Facturas Cargadas por sus diferentes Clientes, según los diferentes Estados por los que va pasando en el Sistema.</value>
+  </data>
+  <data name="titleSecundarioConsultaClientes" xml:space="preserve">
+    <value>Clientes Asociados</value>
+  </data>
+  <data name="textoDetallesLimiteCredito" xml:space="preserve">
+    <value>Límite de Crédito</value>
+  </data>
+  <data name="placeholderDebtor" xml:space="preserve">
+    <value>Deudor</value>
+  </data>
+  <data name="placeholderSupplier" xml:space="preserve">
+    <value>Proveedor</value>
+  </data>
+  <data name="placeholderConfirmant" xml:space="preserve">
+    <value>Confirmante</value>
+  </data>
+  <data name="placeholderConfirmPassword" xml:space="preserve">
+    <value>Confirme la Contraseña</value>
+  </data>
+  <data name="placeholderPassword" xml:space="preserve">
+    <value>Ingrese la Contraseña</value>
+  </data>
+  <data name="placeholderLoginEmail" xml:space="preserve">
+    <value>Ingrese el Correo electrónico</value>
+  </data>
+  <data name="textoAsignarLimite" xml:space="preserve">
+    <value>Asignar Monto</value>
+  </data>
+  <data name="textoLimiteCreditoConFinaciacion" xml:space="preserve">
+    <value>FINANCIAMIENTO</value>
+  </data>
+  <data name="textoLimiteCreditoSinFinaciacion" xml:space="preserve">
+    <value>CREDITO</value>
+  </data>
+  <data name="errorTermDaysCargaMasiva" xml:space="preserve">
+    <value>La Fecha de Vencimiento debe ser superior a 4 días de la Fecha Actual</value>
+  </data>
+  <data name="textoCuentaAhorro" xml:space="preserve">
+    <value>Ahorro</value>
+  </data>
+  <data name="textoCuentaCorriente" xml:space="preserve">
+    <value>Corriente</value>
+  </data>
+  <data name="textoCuentaSolicitud" xml:space="preserve">
+    <value>Solicitud</value>
+  </data>
+  <data name="Iniciar sesion" xml:space="preserve">
+    <value>Iniciar Sesión</value>
+  </data>
+  <data name="titleLogin" xml:space="preserve">
+    <value>Iniciar sesión</value>
+  </data>
+  <data name="PasswordRequiresUpper" xml:space="preserve">
+    <value>La contraseña debe tener al menos una mayúscula ('A' - 'Z')</value>
+  </data>
+  <data name="PasswordRequiresNonAlphanumeric" xml:space="preserve">
+    <value>La contraseña debe tener al menos un carácter no alfanumérico</value>
+  </data>
+  <data name="PasswordRequiresDigit" xml:space="preserve">
+    <value>La contraseña debe tener al menos un dígito ('0' - '9')</value>
+  </data>
+  <data name="PasswordRequiresLower" xml:space="preserve">
+    <value>La contraseña debe tener al menos una minúscula('a' - 'z')</value>
+  </data>
+  <data name="invalidUserResetPassword" xml:space="preserve">
+    <value>Usuario invalido para cambiar la contraseña, por favor pida un nuevo Token</value>
+  </data>
+  <data name="load" xml:space="preserve">
+    <value>Cargando...</value>
+  </data>
+  <data name="titleDetails" xml:space="preserve">
+    <value>Detalles</value>
+  </data>
+  <data name="buttonPay" xml:space="preserve">
+    <value>Pagar</value>
+  </data>
+  <data name="buttonTransfer" xml:space="preserve">
+    <value>Transferir</value>
+  </data>
+  <data name="textoUsuarioPago" xml:space="preserve">
+    <value> Estimado Usuario.</value>
+  </data>
+  <data name="titleConfirmPay" xml:space="preserve">
+    <value>Confirmación de Pago de Factura</value>
+  </data>
+  <data name="titleTransfer" xml:space="preserve">
+    <value>Transferir</value>
+  </data>
+  <data name="titleNReference" xml:space="preserve">
+    <value>N° de Referencia</value>
+  </data>
+  <data name="titleAmountToPay" xml:space="preserve">
+    <value>Monto a Pagar</value>
+  </data>
+  <data name="titleNumberAccount" xml:space="preserve">
+    <value>Numero de Cuenta a Transferir</value>
+  </data>
+  <data name="titleDocument" xml:space="preserve">
+    <value>Documento de Identidad</value>
+  </data>
+  <data name="titleHolderTransfer" xml:space="preserve">
+    <value>Titular a Transferir</value>
+  </data>
+  <data name="titleBankMadeTransfer" xml:space="preserve">
+    <value>Banco de donde se realiza la Transferencia</value>
+  </data>
+  <data name="textoMesajeConfirmarLimite" xml:space="preserve">
+    <value>Esta seguro de modificar el Monto de Límite de Riesgo?</value>
+  </data>
+  <data name="placeholderNumberReference" xml:space="preserve">
+    <value>Número de referencia</value>
+  </data>
+  <data name="textoUsuarioPago2" xml:space="preserve">
+    <value>Usted está realizando un pago por</value>
+  </data>
+  <data name="placeholderBank" xml:space="preserve">
+    <value>Seleccione un Banco</value>
+  </data>
+  <data name="titleAccountNumber" xml:space="preserve">
+    <value>Número de cuenta</value>
+  </data>
+  <data name="ModificarLimiteRiesgo" xml:space="preserve">
+    <value>Modificar Límite de Riesgo</value>
+  </data>
+  <data name="titlePageGestionRoles" xml:space="preserve">
+    <value>Gestión de Roles</value>
+  </data>
+  <data name="titlePageGestionSettings" xml:space="preserve">
+    <value>Gestión de Ajustes</value>
+  </data>
+  <data name="titleGestionSettings" xml:space="preserve">
+    <value>Gestión de Ajustes</value>
+  </data>
+  <data name="iconSettings" xml:space="preserve">
+    <value>fas fa-cogs</value>
+  </data>
+  <data name="titleSettingData" xml:space="preserve">
+    <value>Ajustes</value>
+  </data>
+  <data name="textoContent" xml:space="preserve">
+    <value>Contenido</value>
+  </data>
+  <data name="placeholderContent" xml:space="preserve">
+    <value>Ingrese el Contenido</value>
+  </data>
+  <data name="textoDescription" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="placeholderDescription" xml:space="preserve">
+    <value>Ingrese la Descripción</value>
+  </data>
+  <data name="textoTypeContent" xml:space="preserve">
+    <value>Tipo de Contenido</value>
+  </data>
+  <data name="titlePagoFactura" xml:space="preserve">
+    <value>Pago de Facturas</value>
+  </data>
+  <data name="textLogin" xml:space="preserve">
+    <value>Inicio de sesión</value>
+  </data>
+  <data name="textForgotPassword" xml:space="preserve">
+    <value>¿ Olvido su contraseña ?</value>
+  </data>
+  <data name="3" xml:space="preserve">
+    <value>Permite la revisión y actualización de Datos del Inversionista (Direcciones y Cuentas Bancarias).</value>
+  </data>
+  <data name="buttonAccept" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>
+  <data name="buttonReject" xml:space="preserve">
+    <value>Rechazar</value>
+  </data>
+  <data name="textoBloquearCliente" xml:space="preserve">
+    <value>Está seguro de Rechazar la Conciliación del Pago? Esta acción Bloqueará al Inversionista en el Sistema</value>
+  </data>
+  <data name="textoConcliarCliente" xml:space="preserve">
+    <value>Está seguro de Conciliar el Pago?</value>
+  </data>
+  <data name="placeholderParticipante" xml:space="preserve">
+    <value>Seleccione</value>
+  </data>
+  <data name="titleFilterTipoParticipante" xml:space="preserve">
+    <value>Categoría</value>
+  </data>
+  <data name="titlePayAplication" xml:space="preserve">
+    <value>Aplicación de Pagos</value>
+  </data>
+  <data name="titleAccountOrigin" xml:space="preserve">
+    <value>Cuenta de Origen</value>
+  </data>
+  <data name="titleChangePassword" xml:space="preserve">
+    <value>Cambiar Contraseña</value>
+  </data>
+  <data name="titlePurchaseInvoice" xml:space="preserve">
+    <value>Compra de Facturas</value>
+  </data>
+  <data name="titleChangeToPassword" xml:space="preserve">
+    <value>Cambiar tu Contraseña</value>
+  </data>
+  <data name="placeholderNewPassword" xml:space="preserve">
+    <value>Nueva Contraseña</value>
+  </data>
+  <data name="buttonChangePassword" xml:space="preserve">
+    <value>Cambiar Contraseña</value>
+  </data>
+  <data name="invalidUserChangePassword" xml:space="preserve">
+    <value>Usuario invalido para cambiar la contraseña</value>
+  </data>
+  <data name="titlePayAppOverdue" xml:space="preserve">
+    <value>Pago de Facturas Vencidas</value>
+  </data>
+  <data name="titleConciliarPagos" xml:space="preserve">
+    <value>Conciliar Pagos</value>
+  </data>
+  <data name="titleConciliacion" xml:space="preserve">
+    <value>Conciliación</value>
+  </data>
+  <data name="titleAmountTotal" xml:space="preserve">
+    <value>Monto total a Pagar</value>
+  </data>
+  <data name="textoPayerAccount" xml:space="preserve">
+    <value>Cuenta Pagadora</value>
+  </data>
+  <data name="textoReceivingAccount" xml:space="preserve">
+    <value>Cuenta Receptora</value>
+  </data>
+  <data name="textoReceiptsNumber" xml:space="preserve">
+    <value>Número del Recibo</value>
+  </data>
+  <data name="textoTotalInvoices" xml:space="preserve">
+    <value>Cantidad de Facturas</value>
+  </data>
+  <data name="textoTotalAmount" xml:space="preserve">
+    <value>Monto Total a Pagar</value>
+  </data>
+  <data name="textoAmountTransfer" xml:space="preserve">
+    <value>Monto a Transferir</value>
+  </data>
+  <data name="textoReceiptsProcess" xml:space="preserve">
+    <value>Procesando Pago</value>
+  </data>
+  <data name="buttonOpenPayments" xml:space="preserve">
+    <value>Abrir Pagos</value>
+  </data>
+  <data name="iconPassword" xml:space="preserve">
+    <value>fas fa-key</value>
+  </data>
+  <data name="seguridad" xml:space="preserve">
+    <value>Seguridad</value>
+  </data>
+  <data name="perfil" xml:space="preserve">
+    <value>Perfil</value>
+  </data>
+  <data name="titleGestionUsuarios" xml:space="preserve">
+    <value>Gestión de Usuarios</value>
+  </data>
+  <data name="logout" xml:space="preserve">
+    <value>Cerrar sesión</value>
+  </data>
+  <data name="titleModalConfirmTransfer" xml:space="preserve">
+    <value>Confirmación de Operación</value>
+  </data>
+  <data name="titleSectionConciledsInvoices" xml:space="preserve">
+    <value>Pago de Facturas Conciliadas</value>
+  </data>
+  <data name="titleSectionExpiredsInvoices" xml:space="preserve">
+    <value>Pago de Facturas Vencidas</value>
+  </data>
+  <data name="titleDetailsInvoices" xml:space="preserve">
+    <value>Detalles de las Facturas</value>
+  </data>
+  <data name="textoModalConfirmTransfer" xml:space="preserve">
+    <value>¿Está seguro de realizar la operación?</value>
+  </data>
+  <data name="Como Inversionista" xml:space="preserve">
+    <value>Como Inversionista</value>
+  </data>
+  <data name="textoReceiptsUnPaid" xml:space="preserve">
+    <value>Factura no Pagada</value>
+  </data>
+  <data name="textoReceiptsPaid" xml:space="preserve">
+    <value>Factura Pagada</value>
+  </data>
+  <data name="textoOffertPro" xml:space="preserve">
+    <value>Oferta Propuesta</value>
+  </data>
+  <data name="placeholderCuit" xml:space="preserve">
+    <value>Ingrese el CUIT</value>
+  </data>
+  <data name="buttonCancelar" xml:space="preserve">
+    <value>Cancelar</value>
+  </data>
+  <data name="buttonToggleActivo" xml:space="preserve">
+    <value>Activar</value>
+  </data>
+  <data name="buttonToggleInactivo" xml:space="preserve">
+    <value>Desactivar</value>
+  </data>
+  <data name="placerholderPutDocument" xml:space="preserve">
+    <value>Ingrese el</value>
+  </data>
+  <data name="placeholderPutDocument" xml:space="preserve">
+    <value>Ingrese el</value>
+  </data>
+  <data name="errorCredentialsInvalid" xml:space="preserve">
+    <value>Número de Documento, Correo o Contraseña inválida. Por favor verifique sus datos e intente nuevamente.</value>
+  </data>
+  <data name="buttonSee" xml:space="preserve">
+    <value>Ver Contrato</value>
+  </data>
+  <data name="titleContratos" xml:space="preserve">
+    <value>Contratos</value>
+  </data>
+  <data name="textoContratoMarco" xml:space="preserve">
+    <value>Contrato Marco</value>
+  </data>
+  <data name="textoNoAplica" xml:space="preserve">
+    <value>No Aplica</value>
+  </data>
+  <data name="requirePasswordField" xml:space="preserve">
+    <value>La {0} es requerida</value>
+  </data>
+  <data name="loginSinConexion" xml:space="preserve">
+    <value>Se ha presentado un incoveniente debido a problemas de Red</value>
+  </data>
+  <data name="minimumLengthLoginPassword" xml:space="preserve">
+    <value>La Contraseña debe tener un mínimo de 8 caracteres</value>
+  </data>
+  <data name="requireEmailField" xml:space="preserve">
+    <value>El Correo Electrónico es requerido</value>
+  </data>
+  <data name="requirePasswordFieldLogin" xml:space="preserve">
+    <value>La Contraseña es requerida</value>
+  </data>
+  <data name="errorConexionLogin" xml:space="preserve">
+    <value>Se ha presentado un problema al realizar la conexión, por favor valide su cobertura de red.</value>
+  </data>
+  <data name="titleMontoTotalVigentePagar" xml:space="preserve">
+    <value>Vigentes por Pagar</value>
+  </data>
+  <data name="textoPostuledDated" xml:space="preserve">
+    <value>Fecha de Postulación</value>
+  </data>
+  <data name="titleStatusInvoice" xml:space="preserve">
+    <value>Estado de la Factura</value>
+  </data>
+  <data name="posted" xml:space="preserve">
+    <value>Postuladas</value>
+  </data>
+  <data name="confirmed" xml:space="preserve">
+    <value>Confirmadas</value>
+  </data>
+  <data name="offered" xml:space="preserve">
+    <value>Ofertadas</value>
+  </data>
+  <data name="released" xml:space="preserve">
+    <value>por publicar</value>
+  </data>
+  <data name="published" xml:space="preserve">
+    <value>Publicadas</value>
+  </data>
+  <data name="sold" xml:space="preserve">
+    <value>Aceptadas</value>
+  </data>
+  <data name="processing" xml:space="preserve">
+    <value>en Proceso de Pagos</value>
+  </data>
+  <data name="paid" xml:space="preserve">
+    <value>Pagada</value>
+  </data>
+  <data name="postponed" xml:space="preserve">
+    <value>Pospuestas</value>
+  </data>
+  <data name="overdue" xml:space="preserve">
+    <value>Vencidas</value>
+  </data>
+  <data name="finalize" xml:space="preserve">
+    <value>Completadas</value>
+  </data>
+  <data name="titleAPagar" xml:space="preserve">
+    <value>por un Monto Total:</value>
+  </data>
+  <data name="titleMontoTotalPagar" xml:space="preserve">
+    <value>por un  Monto Total por Pagar:</value>
+  </data>
+  <data name="titleChargeDate" xml:space="preserve">
+    <value>Fecha de Carga</value>
+  </data>
+  <data name="titleMontoTotalVigenteCobrar" xml:space="preserve">
+    <value>por Cobrar</value>
+  </data>
+  <data name="titleMontoTotalVigenteSold" xml:space="preserve">
+    <value>Compradas</value>
+  </data>
+  <data name="errorConnectionLogin" xml:space="preserve">
+    <value>Se ha presentado un inconveniente al establecer la conexión, por favor verifique su cobertura de red.</value>
+  </data>
+  <data name="errorRecaptchaBot" xml:space="preserve">
+    <value>Se ha detectado una conducta extraña, por favor ingrese sus datos nuevamente.</value>
+  </data>
+  <data name="notTokenRecaptcha" xml:space="preserve">
+    <value>Problemas de conexión detectados, por favor verifique su conexión a internet</value>
+  </data>
+  <data name="errorNumberOfDocument" xml:space="preserve">
+    <value>Número de Documento, Correo o Contraseña inválida. Por favor verifique sus datos e intente nuevamente.</value>
+  </data>
+  <data name="notConection" xml:space="preserve">
+    <value>Sin conexión</value>
+  </data>
+  <data name="wrongData" xml:space="preserve">
+    <value>Datos incorrectos</value>
+  </data>
+  <data name="draft" xml:space="preserve">
+    <value>Cargadas</value>
+  </data>
+  <data name="Bloquear Cliente" xml:space="preserve">
+    <value>Bloquear Cliente</value>
+  </data>
+  <data name="buttonAsignarPassword" xml:space="preserve">
+    <value>Crear Contraseña</value>
+  </data>
+  <data name="titleAsignarPassword" xml:space="preserve">
+    <value>Ingresar Contraseña por primera vez</value>
+  </data>
+  <data name="textoAsignarPassword" xml:space="preserve">
+    <value>Para activar su cuenta deberá establecer la contraseña inicial para acceder al sistema.</value>
+  </data>
+  <data name="selectListLogin" xml:space="preserve">
+    <value>Seleccione un Tipo de Identificación</value>
+  </data>
+  <data name="textInformationMassiveCharge" xml:space="preserve">
+    <value>Para almacenar las Facturas Procesadas, por favor presione el boton Guardar Facturas, de lo contrario, si requiere Cargar la Plantilla</value>
+  </data>
+  <data name="errorActivacionCuenta" xml:space="preserve">
+    <value>Usted no tiene Contraseña creada. Por favor active su usuario, desde el correo de Bienvenida y una vez que tenga la contraseña podrá Iniciar Sesión.</value>
+  </data>
+  <data name="errorBaseDatos" xml:space="preserve">
+    <value>Error al conectar con la base de datos</value>
+  </data>
+  <data name="invalidUser" xml:space="preserve">
+    <value>Usuario invalido</value>
+  </data>
+  <data name="acceptCookies" xml:space="preserve">
+    <value>Acepto</value>
+  </data>
+  <data name="weUseCookies" xml:space="preserve">
+    <value>Utilizamos cookies para mejorar tu experiencia como usuario. Si esta de acuerdo presione aceptar por favor</value>
+  </data>
+  <data name="invalidDocumentOrEmail" xml:space="preserve">
+    <value>Número de Documento o Correo inválido. Por favor verifique sus datos e intente nuevamente.</value>
+  </data>
+  <data name="newPassword" xml:space="preserve">
+    <value>Nueva contraseña</value>
+  </data>
+  <data name="textoBandera" xml:space="preserve">
+    <value>Seleccione el País a utilizar</value>
+  </data>
+  <data name="errorRepitCharacter" xml:space="preserve">
+    <value>La contraseña no debe tener más de 2 caracteres iguales consecutivos</value>
+  </data>
+  <data name="errorEnie" xml:space="preserve">
+    <value>La contraseña no debe tener ñ / Ñ</value>
+  </data>
+  <data name="informationMessagePassword" xml:space="preserve">
+    <value>Para crear la Contraseña, debe cumplir lo siguiente:</value>
+  </data>
+  <data name="forgotSend" xml:space="preserve">
+    <value>Petición para cambiar la contraseña enviada, por favor revisar su dirección de correo electrónico</value>
+  </data>
+  <data name="menuAplicacionPagos" xml:space="preserve">
+    <value>Aplicación de Pagos</value>
+  </data>
+  <data name="menuAsignarEjecutivo" xml:space="preserve">
+    <value>Asignar Ejecutivo</value>
+  </data>
+  <data name="menuCargaFacturas" xml:space="preserve">
+    <value>Carga de Facturas</value>
+  </data>
+  <data name="menuCierre" xml:space="preserve">
+    <value>Cierre</value>
+  </data>
+  <data name="menuClientes" xml:space="preserve">
+    <value>Clientes</value>
+  </data>
+  <data name="menuComprar" xml:space="preserve">
+    <value>Comprar</value>
+  </data>
+  <data name="menuConciliacion" xml:space="preserve">
+    <value>Conciliación</value>
+  </data>
+  <data name="menuConfirmar" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="menuConsultas" xml:space="preserve">
+    <value>Consultas</value>
+  </data>
+  <data name="menuEdicionFacturas" xml:space="preserve">
+    <value>Edición de Facturas</value>
+  </data>
+  <data name="menuFacturas" xml:space="preserve">
+    <value>Facturas</value>
+  </data>
+  <data name="menuFacturasCompradas" xml:space="preserve">
+    <value>Facturas Compradas</value>
+  </data>
+  <data name="menuFinanciar" xml:space="preserve">
+    <value>Financiar</value>
+  </data>
+  <data name="menuGenerales" xml:space="preserve">
+    <value>Generales</value>
+  </data>
+  <data name="menuGesitonFactura" xml:space="preserve">
+    <value>Gestion de Facturas:</value>
+  </data>
+  <data name="menuGestion" xml:space="preserve">
+    <value>Gestión</value>
+  </data>
+  <data name="menuGestionEmpresas" xml:space="preserve">
+    <value>Gestion de Empresa:</value>
+  </data>
+  <data name="menuLimiteCredito" xml:space="preserve">
+    <value>Límite de Credito</value>
+  </data>
+  <data name="menuMercado" xml:space="preserve">
+    <value>Mercado</value>
+  </data>
+  <data name="menuPago" xml:space="preserve">
+    <value>Pago</value>
+  </data>
+  <data name="menuPagos" xml:space="preserve">
+    <value>Pagos</value>
+  </data>
+  <data name="menuParametros" xml:space="preserve">
+    <value>Parámetros</value>
+  </data>
+  <data name="menuPostular" xml:space="preserve">
+    <value>Postular</value>
+  </data>
+  <data name="menuPublicar" xml:space="preserve">
+    <value>Publicar</value>
+  </data>
+  <data name="menuRegistroBanco" xml:space="preserve">
+    <value>Registro de Banco</value>
+  </data>
+  <data name="menuRegistroEmpresa" xml:space="preserve">
+    <value>Registro de Empresa</value>
+  </data>
+  <data name="menuRoles" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="menuSubastas" xml:space="preserve">
+    <value>Subastas</value>
+  </data>
+  <data name="menuVencimiento" xml:space="preserve">
+    <value>Vencimiento</value>
+  </data>
+  <data name="menuVerificacion" xml:space="preserve">
+    <value>Verificación</value>
+  </data>
+  <data name="PENDING_CONFIRMATION" xml:space="preserve">
+    <value>Por confirmar</value>
+  </data>
+  <data name="AMOUNT_CONFIRMATION" xml:space="preserve">
+    <value>Monto por confirmar</value>
+  </data>
+  <data name="AMOUNT_TO_OFFER" xml:space="preserve">
+    <value>Monto por ofertar</value>
+  </data>
+  <data name="PENDING_TO_OFFER" xml:space="preserve">
+    <value>Por ofertar</value>
+  </data>
+  <data name="PENDING_VERIFICATION" xml:space="preserve">
+    <value>Por verificar</value>
+  </data>
+  <data name="min8Character" xml:space="preserve">
+    <value>Mínimo 8 caracteres</value>
+  </data>
+  <data name="needAlphaMinMayus" xml:space="preserve">
+    <value>Ser alfanumérica y tener mínimo una mayúscula, una minúscula, un cáracter especial y un número</value>
+  </data>
+  <data name="notNeedEnie" xml:space="preserve">
+    <value>La contraseña no debe tener la letra 'ñ' / 'Ñ'</value>
+  </data>
+  <data name="notMore2Character" xml:space="preserve">
+    <value>No tener más de 2 caracteres iguales consecutivos</value>
+  </data>
+  <data name="errorCredentialsInvalidPerson" xml:space="preserve">
+    <value>Correo Electronico o Contraseña inválida. Por favor verifique sus datos e intente nuevamente.</value>
+  </data>
+  <data name="forgotAlready" xml:space="preserve">
+    <value>Petición de cambio de contraseña en proceso actualmente</value>
+  </data>
+  <data name="invalidEmail" xml:space="preserve">
+    <value>Correo electrónico invalido</value>
+  </data>
+  <data name="PENDING_QUOTAS" xml:space="preserve">
+    <value>Por asignar Limite</value>
+  </data>
+  <data name="PENDING_TO_SEGMENT" xml:space="preserve">
+    <value>Por asignar Ejecutivo</value>
+  </data>
+  <data name="InvalidUserName" xml:space="preserve">
+    <value>Error al realizar la petición, por favor inténtelo  nuevamente</value>
+  </data>
+  <data name="AMOUNT_OFFERED" xml:space="preserve">
+    <value>Monto ofertado</value>
+  </data>
+  <data name="AMOUNT_PUBLISH" xml:space="preserve">
+    <value>Monto a publicar</value>
+  </data>
+  <data name="PENDING_AGREEMENTS" xml:space="preserve">
+    <value>Contratos Marco por aceptar</value>
+  </data>
+  <data name="PENDING_INVITATION" xml:space="preserve">
+    <value>Invotaciones por aceptar</value>
+  </data>
+  <data name="PENDING_OFFERED" xml:space="preserve">
+    <value>Facturas ofertadas</value>
+  </data>
+  <data name="PENDING_PUBLISH" xml:space="preserve">
+    <value>Facturas por publicar</value>
+  </data>
+  <data name="textChangePassword" xml:space="preserve">
+    <value>Permite cambiar la Contraseña que se encuentra activa actualmente, para el uso del Sistema "TuFactoring".</value>
+  </data>
+  <data name="textoFinanciamientoInformation1" xml:space="preserve">
+    <value>Para cambiar la condición de Financiamiento, realice una de las siguientes acciones, según la cantidad de solicitudes a realizar:</value>
+  </data>
+  <data name="textoFinanciamientoInformation2" xml:space="preserve">
+    <value>1. Una (1) Factura: Marque el ícono, ubicado al lado derecho de la Factura o seleccione la Factura y luego marque el ícono en la ventana de detalle.</value>
+  </data>
+  <data name="textoFinanciamientoInformation3" xml:space="preserve">
+    <value>2. Todas las Facturas: Seleccione el ícono (⋮) del menú Opciones, seguido de la Opción requerida: ✔ Solicitar Financiamiento o Cancelar Financiamiento.</value>
+  </data>
+  <data name="textoFinanciamientoInformation4" xml:space="preserve">
+    <value>Nota: Cada Factura está identificada según tenga o no Financiamiento, con una línea del lado izquierdo y su color varía según lo siguiente:</value>
+  </data>
+  <data name="textoFinanciamientoInformation5" xml:space="preserve">
+    <value>1. Color Verde: Con Financiamiento.</value>
+  </data>
+  <data name="textoFinanciamientoInformation6" xml:space="preserve">
+    <value>2. Color Rojo: Sin Financiamiento.</value>
+  </data>
+  <data name="textoPostularInformation1" xml:space="preserve">
+    <value>Para Postular las Facturas, seleccione el Banco Confirmante y realice una de las siguientes acciones, según la cantidad de Facturas a ser asignadas:</value>
+  </data>
+  <data name="textoPostularInformation2" xml:space="preserve">
+    <value> 1. Una (1) Factura: Marque el Botón Postular de la Factura requerida.</value>
+  </data>
+  <data name="textoPostularInformation3" xml:space="preserve">
+    <value>2. Varias Facturas: Marque el indicador de las Facturas requeridas y posteriormente el Botón +Postular (ubicado al lado derecho del Banco Confirmante). Confirme la Postulación.</value>
+  </data>
+  <data name="textoPostularInformation4" xml:space="preserve">
+    <value>3. Todas las Facturas: Seleccione el ícono (⋮) del menú Opciones, seguido de las Opciones Seleccionar todas y +Postular. Confirme la Postulación.</value>
+  </data>
+  <data name="textoPostularInformation5" xml:space="preserve">
+    <value>Nota: Para cambiar la condición de Financiamiento de cada Factura, debe marcar el ícono, ubicado al lado derecho de la misma.</value>
+  </data>
+  <data name="textoPostularInformation6" xml:space="preserve">
+    <value>Financiamiento Activo:</value>
+  </data>
+  <data name="textoPostularInformation7" xml:space="preserve">
+    <value>Financiamiento Inactivo:</value>
+  </data>
+  <data name="textInformationMassiveCharge2" xml:space="preserve">
+    <value>nuevamente sin Guardar los cambios, seleccione la opcion Limpiar en ambas secciones (Facturas Procesadas y No Procesadas).</value>
+  </data>
+  <data name="threePointsOptions" xml:space="preserve">
+    <value>Opciones</value>
+  </data>
+  <data name="headersSuppliers" xml:space="preserve">
+    <value>Proveedores</value>
+  </data>
+  <data name="howDEBTOR" xml:space="preserve">
+    <value>como Empresa</value>
+  </data>
+  <data name="howSUPPLIER" xml:space="preserve">
+    <value>como Proveedor</value>
+  </data>
+  <data name="howFACTOR" xml:space="preserve">
+    <value>como Inversionista</value>
+  </data>
+  <data name="howCONFIRMANT" xml:space="preserve">
+    <value>como Banco</value>
+  </data>
+  <data name="howBACKOFFICE" xml:space="preserve">
+    <value>como Operativo</value>
+  </data>
+  <data name="passwordAssignLogin" xml:space="preserve">
+    <value>Su Contraseña ha sido creada satisfactoriamente. 
+Por favor inicie sesión para continuar.</value>
+  </data>
+  <data name="PENDING_EXPIRATION" xml:space="preserve">
+    <value>Facturas al Vencimiento</value>
+  </data>
+  <data name="MARKET_PUBLICATIONS" xml:space="preserve">
+    <value>Facturas en Mercado</value>
+  </data>
+  <data name="MY_OFFERS" xml:space="preserve">
+    <value>Mi ofertas</value>
+  </data>
+  <data name="PENDING_ACCEPT" xml:space="preserve">
+    <value>Pendientes por aceptar</value>
+  </data>
+  <data name="titleSessionExpired" xml:space="preserve">
+    <value>Atención</value>
+  </data>
+  <data name="textEstimadoUsuario" xml:space="preserve">
+    <value>Estimado Usuario</value>
+  </data>
+  <data name="textSessionExpired" xml:space="preserve">
+    <value>Su Tiempo de Sesión está a punto de Expirar. Desea mantener su Sesión activa?</value>
+  </data>
+  <data name="buttonIrLogin" xml:space="preserve">
+    <value>Ir al Login</value>
+  </data>
+  <data name="buttonExit" xml:space="preserve">
+    <value>Salir</value>
+  </data>
+  <data name="textoAmountCommission" xml:space="preserve">
+    <value>Gasto por Servicio</value>
+  </data>
+  <data name="textoAmountDiscount2" xml:space="preserve">
+    <value>Monto de Descuento</value>
+  </data>
+  <data name="buttonSendInvited" xml:space="preserve">
+    <value>Invitar</value>
+  </data>
+  <data name="buttonSi" xml:space="preserve">
+    <value>Si</value>
+  </data>
+  <data name="buttonNo" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="textoFacturaNoPostponed" xml:space="preserve">
+    <value>Factura no pospuesta</value>
+  </data>
+  <data name="textoAdvertenciaCuentasBancarias" xml:space="preserve">
+    <value>Usted debe asociar por lo menos una Cuenta Bancaria</value>
+  </data>
+  <data name="menuUsuario" xml:space="preserve">
+    <value>Perfil de Usuario</value>
+  </data>
+  <data name="textoDatosUsuario" xml:space="preserve">
+    <value>Datos del Usuario</value>
+  </data>
+  <data name="titleDetailPayments" xml:space="preserve">
+    <value>Detalle de los Pagos</value>
+  </data>
+  <data name="buttonPayments" xml:space="preserve">
+    <value>Pagos Realizados</value>
+  </data>
+  <data name="textoPaid" xml:space="preserve">
+    <value>Pagado</value>
+  </data>
+  <data name="textoUnPaid" xml:space="preserve">
+    <value>No Pagado</value>
+  </data>
+  <data name="invoicesToExpirateOffered" xml:space="preserve">
+    <value>Ofertada</value>
+  </data>
+  <data name="invoicesToExpiratePaid" xml:space="preserve">
+    <value>Pagada</value>
+  </data>
+  <data name="invoicesToExpiratePublished" xml:space="preserve">
+    <value>Publicada</value>
+  </data>
+  <data name="invoicesToExpirateReleased" xml:space="preserve">
+    <value>Por publicar</value>
+  </data>
+  <data name="invoicesToExpirateText" xml:space="preserve">
+    <value>La Factura se encuentra</value>
+  </data>
+  <data name="invoicesToExpirateProcessing" xml:space="preserve">
+    <value>en Proceso de Pago</value>
+  </data>
+  <data name="titleBloquearCliente" xml:space="preserve">
+    <value>Pago no Conciliado</value>
+  </data>
+  <data name="titleConcliarCliente" xml:space="preserve">
+    <value>Pago Conciliado</value>
+  </data>
+  <data name="buttonDetallesFactura" xml:space="preserve">
+    <value>Detalle de las Facturas</value>
+  </data>
+  <data name="invoicesToExpirateSold" xml:space="preserve">
+    <value>Vendida</value>
+  </data>
+  <data name="buttonTitleFacturas" xml:space="preserve">
+    <value>Detalles de Facturas</value>
+  </data>
+  <data name="buttonTitlePayments" xml:space="preserve">
+    <value>Detalles de Pagos</value>
+  </data>
+  <data name="payConfirmed" xml:space="preserve">
+    <value>Confirmado</value>
+  </data>
+  <data name="payRealized" xml:space="preserve">
+    <value>Pagado</value>
+  </data>
+  <data name="payUnconfirmed" xml:space="preserve">
+    <value>No Confirmado</value>
+  </data>
+  <data name="payUnrealized" xml:space="preserve">
+    <value>No Pagado</value>
+  </data>
+  <data name="textNoPayed" xml:space="preserve">
+    <value>No Pagada</value>
+  </data>
+  <data name="textPayed" xml:space="preserve">
+    <value>Pagada</value>
+  </data>
+  <data name="titleModalDetailPayment" xml:space="preserve">
+    <value>Monto Total del Pago</value>
+  </data>
+  <data name="titleQueryPayments" xml:space="preserve">
+    <value>Consulta de Pagos</value>
+  </data>
+  <data name="creditLimitAssigned" xml:space="preserve">
+    <value>Límite de Crédito Asignado</value>
+  </data>
+  <data name="creditLimitUsed" xml:space="preserve">
+    <value>Límite de Crédito Disponible</value>
+  </data>
+  <data name="creditLimitWithoutSelectedAmount" xml:space="preserve">
+    <value>Límite de Crédito Disponible con las Facturas Seleccionadas</value>
+  </data>
+  <data name="excedentAmount" xml:space="preserve">
+    <value>Monto Excedente</value>
+  </data>
+  <data name="textoPagosBanco" xml:space="preserve">
+    <value>Permite realizar los Pagos de las Facturas Compradas a los Proveedores (vía Confirming o Compra Directa), previa aceptación de la(s) Oferta(s).</value>
+  </data>
+  <data name="textoPagosFactor" xml:space="preserve">
+    <value>Permite realizar los Pagos de las Facturas Ofertadas que Ganaron en la Subasta Diaria, previa aceptación por parte de los Proveedores.</value>
+  </data>
+  <data name="textoDebtor" xml:space="preserve">
+    <value>EMPRESA</value>
+  </data>
+  <data name="textoFactor" xml:space="preserve">
+    <value>INVERSIONISTA</value>
+  </data>
+  <data name="textoProveedor" xml:space="preserve">
+    <value>PROVEEDOR</value>
+  </data>
+  <data name="excedeAmount1" xml:space="preserve">
+    <value>Monto Excedente del Límite de Crédito Disponible</value>
+  </data>
+  <data name="excedeAmount2" xml:space="preserve">
+    <value>Por favor verifique y de ser necesario desmarque las Facturas que exceden,</value>
+  </data>
+  <data name="excedeAmount3" xml:space="preserve">
+    <value>hasta llegar a la cobertura y culminar la Postulación.</value>
+  </data>
+  <data name="titleModalPosponer" xml:space="preserve">
+    <value>Posponer Factura</value>
+  </data>
+  <data name="titleModalPublicar" xml:space="preserve">
+    <value>Publicar Factura</value>
+  </data>
+  <data name="invoicesToExpirateConfirmed" xml:space="preserve">
+    <value>Confirmada</value>
+  </data>
+  <data name="filterAllInvoices" xml:space="preserve">
+    <value>Todas las Facturas</value>
+  </data>
+  <data name="filterNotOffered" xml:space="preserve">
+    <value>Facturas no Ofertadas</value>
+  </data>
+  <data name="filterOffered" xml:space="preserve">
+    <value>Facturas Ofertadas</value>
+  </data>
+  <data name="textoAyudaConciliar" xml:space="preserve">
+    <value>Permite Conciliar las Transferencias reportadas por los Inversionistas, correspondiente a los Pagos de las Facturas Compradas, cuando no tienen Cuenta Bancaria en los Bancos Confirmantes de las mismas.</value>
+  </data>
+  <data name="menuDropdownPagos" xml:space="preserve">
+    <value>Gestión de Pagos</value>
+  </data>
+  <data name="menuFacturasConciliadas" xml:space="preserve">
+    <value>Facturas Conciliadas</value>
+  </data>
+  <data name="menuFacturasVencidas" xml:space="preserve">
+    <value>Facturas Vencidas</value>
+  </data>
+  <data name="montoTotalPostular" xml:space="preserve">
+    <value>Monto Total a Postular</value>
+  </data>
+  <data name="complementTextPostulateInvoices" xml:space="preserve">
+    <value>a Postular por un Monto de </value>
+  </data>
+  <data name="titleDetailGroup" xml:space="preserve">
+    <value>Detalles del Grupo</value>
+  </data>
+  <data name="titleAccounting" xml:space="preserve">
+    <value>Contabilidad</value>
+  </data>
+  <data name="buttonEditGroup" xml:space="preserve">
+    <value>Editar Grupo</value>
+  </data>
+  <data name="titleGroupData" xml:space="preserve">
+    <value>Datos del Grupo</value>
+  </data>
+  <data name="textoProgram" xml:space="preserve">
+    <value>Servicio</value>
+  </data>
+  <data name="placeholderDescript" xml:space="preserve">
+    <value>Ingrese una descripción</value>
+  </data>
+  <data name="buttonAddDetails" xml:space="preserve">
+    <value>Agregar Detalles</value>
+  </data>
+  <data name="buttonVolver" xml:space="preserve">
+    <value>Volver</value>
+  </data>
+  <data name="placeholderAccount" xml:space="preserve">
+    <value>Ingrese la cuenta</value>
+  </data>
+  <data name="placeholderEvent" xml:space="preserve">
+    <value>Ingrese el Evento</value>
+  </data>
+  <data name="placeholderConcept" xml:space="preserve">
+    <value>Ingrese Concepto</value>
+  </data>
+  <data name="textoEvent" xml:space="preserve">
+    <value>Evento</value>
+  </data>
+  <data name="textoConcept" xml:space="preserve">
+    <value>Concepto</value>
+  </data>
+  <data name="textoAccount" xml:space="preserve">
+    <value>Cuenta</value>
+  </data>
+  <data name="textoCategory" xml:space="preserve">
+    <value>Categoria</value>
+  </data>
+  <data name="placeholderNameGroup" xml:space="preserve">
+    <value>Ingrese nombre del grupo contable</value>
+  </data>
+  <data name="buttonAddDetail" xml:space="preserve">
+    <value>Agregar Detalle</value>
+  </data>
+  <data name="menuContabilidad" xml:space="preserve">
+    <value>Contabilidad</value>
+  </data>
+  <data name="textAmountReceivable" xml:space="preserve">
+    <value>Monto Total a Recibir</value>
+  </data>
+  <data name="textQuotaNotAvailable" xml:space="preserve">
+    <value>Usted no tiene no tiene Límite de Crédito Disponible. </value>
+  </data>
+  <data name="textQuotaNotAvailable1" xml:space="preserve">
+    <value>Por favor contacte a su Ejecutivo de Cuentas asignado en el Banco Aliado.</value>
+  </data>
+  <data name="placeholderAddName" xml:space="preserve">
+    <value>Ingrese el nombre</value>
+  </data>
+  <data name="placeholderAddAbbreviation" xml:space="preserve">
+    <value>Ingresar la Abreviación</value>
+  </data>
+  <data name="titleFilterStatus" xml:space="preserve">
+    <value>Estatus</value>
+  </data>
+  <data name="placeholderSelect" xml:space="preserve">
+    <value>Seleccione</value>
+  </data>
+  <data name="true" xml:space="preserve">
+    <value>Activo</value>
+  </data>
+  <data name="false" xml:space="preserve">
+    <value>Inactivo</value>
+  </data>
+  <data name="textoNotResultadoFacturas" xml:space="preserve">
+    <value>No se encontraron Facturas Disponibles</value>
+  </data>
+  <data name="inText" xml:space="preserve">
+    <value>en</value>
+  </data>
+  <data name="notConexionDetected" xml:space="preserve">
+    <value>Se ha detectado problemas de conexión, comprueba tu conexión a Internet.</value>
+  </data>
+  <data name="titleAmountFromPaid" xml:space="preserve">
+    <value>Monto Pagado Desde</value>
+  </data>
+  <data name="titleAmountToPaid" xml:space="preserve">
+    <value>Monto Pagado Hasta</value>
+  </data>
+  <data name="textolimitCreditAmountFromDisponible" xml:space="preserve">
+    <value>Límite Disponible Desde</value>
+  </data>
+  <data name="textolimitCreditAmountToDisponible" xml:space="preserve">
+    <value>Límite Disponible Hasta</value>
+  </data>
+  <data name="textoSellFor" xml:space="preserve">
+    <value>Pagador</value>
+  </data>
+  <data name="titleQueriesCesion" xml:space="preserve">
+    <value>Consulta de Documentos de Cesión</value>
+  </data>
+  <data name="textoVerDocumentoCesion" xml:space="preserve">
+    <value>Ver Documento de Cesión</value>
+  </data>
+  <data name="titleDocumentCesion" xml:space="preserve">
+    <value>CONTRATO DE CESIÓN DE DERECHOS</value>
+  </data>
+  <data name="textoSystemTuFactoring" xml:space="preserve">
+    <value>SISTEMA  TUF@CTORING</value>
+  </data>
+  <data name="menuDocumentCesion" xml:space="preserve">
+    <value>Documentos de Cesión</value>
+  </data>
+  <data name="titlePlantillaConciliacion" xml:space="preserve">
+    <value>Archivo de Movimiento</value>
+  </data>
+  <data name="buttonLoadFile" xml:space="preserve">
+    <value>Cargar Archivo</value>
+  </data>
+  <data name="ProcesarArchivo" xml:space="preserve">
+    <value>Procesar Archivo</value>
+  </data>
+  <data name="textoMensajeArchivoConciliar" xml:space="preserve">
+    <value>¿Esta seguro de procesar el archivo</value>
+  </data>
+  <data name="titleQueryFinancing" xml:space="preserve">
+    <value>Consulta de Financiamiento</value>
+  </data>
+  <data name="::Detalle servicio 1" xml:space="preserve">
+    <value>Debes registrar toda la Información que solicita el sistema de Tufactoring para que tengas acceso a los  términos y condiciones del contrato que debes otorgar al banco. Una vez autorizado por el banco se realizará  de forma automática  la carga  diaria de tus cuentas por pagar al sistema de Tufactoring y así  el banco podrá gestionar  los procesos de notificación y cancelación al vencimiento de las obligaciones pendientes.</value>
+  </data>
+  <data name="::Detalle servicio 2" xml:space="preserve">
+    <value>Puedes ser invitado por un cliente a través del sistema o ingresar directamente para que registres toda la Información que solicita el sistema de Tufactoring. La aprobación por parte del banco aliado  es indispensable para que puedas acceder posteriormente a los contratos electrónicos de factoring sin recurso que otorgarás a los inversionistas que compren tus facturas en los procesos de subasta. En caso de que no desees participar en la subasta, el pago de tu factura lo recibirás del banco aliado al vencimiento de la factura.</value>
+  </data>
+  <data name="::Detalle servicio 3" xml:space="preserve">
+    <value>Debes registrar toda la Información que solicita el sistema de Tufactoring para que tengas acceso a los  términos y condiciones para operar. Debes poseer una cuenta en el sistema bancario y una vez hayas sido autorizado por nuestros bancos aliados, tendrás acceso diario a las subastas de facturas para que durante las jornadas puedas ofertar  sobre todas la facturas publicadas. En caso de ser  adjudicada la compra, recibirás contrato de factoring sin recurso otorgado por el vendedor  y la confirmación de pago al vencimiento de la factura (que hará el banco). El pago de la compra lo podrás realizar por medio de  botón de pago si tu cuenta esta con el banco aliado o con transferencia si tu cuenta pertenece a otra institución.</value>
+  </data>
+  <data name="Ver mas" xml:space="preserve">
+    <value>Ver más</value>
+  </data>
+  <data name="Servicios subtitulo" xml:space="preserve">
+    <value>Forma parte de la comunidad de Tufactoring a través de nuestros servicios. Por medio de los diferentes mecanismos de este mercado de facturas, las empresas contarán con el apoyo de nuestros bancos aliados para realizar la gestión de pago con o sin financiamiento de sus cuentas por pagar, los proveedores podrán vender sus facturas y los inversionistas acceder a la subasta de facturas y realizar la compra a descuento. Regístrate en Tufactoring y podrás encontrar sin trámites complejos  los mecanismos financieros para lograr con éxito tus objetivos.</value>
+  </data>
+  <data name="menuPagosFacturasCompradas" xml:space="preserve">
+    <value>Facturas Compradas</value>
+  </data>
+  <data name="menuPagosFacturasConciliadas" xml:space="preserve">
+    <value>Facturas Conciliadas</value>
+  </data>
+  <data name="menuPagosFacturasVencidas" xml:space="preserve">
+    <value>Facturas Vencidas</value>
+  </data>
+  <data name="textoReceiverFor" xml:space="preserve">
+    <value>Recibido Por</value>
+  </data>
+  <data name="textoReceiverAccount" xml:space="preserve">
+    <value>Cuenta Receptora</value>
+  </data>
+  <data name="textoNumberPaids" xml:space="preserve">
+    <value>Cantidad de Pagos</value>
+  </data>
+  <data name="textoMethod" xml:space="preserve">
+    <value>Método</value>
+  </data>
+  <data name="menuDropdownConsultaPagos" xml:space="preserve">
+    <value>Consulta de Pagos</value>
+  </data>
+  <data name="alliedBank" xml:space="preserve">
+    <value>Banco Aliado</value>
+  </data>
+  <data name="notAlliedBank" xml:space="preserve">
+    <value>Banco no Aliado</value>
+  </data>
+  <data name="textoBuyBy" xml:space="preserve">
+    <value>Comprador</value>
+  </data>
+  <data name="textopaidAt" xml:space="preserve">
+    <value>Fecha de Pago</value>
+  </data>
+  <data name="factorMarketBestOffer" xml:space="preserve">
+    <value>Mejor Oferta realizada por Usted.</value>
+  </data>
+  <data name="factorMarketBestOfferAnotherFactor" xml:space="preserve">
+    <value>Mejor Oferta realizada por otro Inversionista.</value>
+  </data>
+  <data name="factorMarketBlueColor" xml:space="preserve">
+    <value>Color Azul</value>
+  </data>
+  <data name="factorMarketCounterOffer" xml:space="preserve">
+    <value>Contra Ofertada por otro Inversionista.</value>
+  </data>
+  <data name="factorMarketGreenColor" xml:space="preserve">
+    <value>Color Verde</value>
+  </data>
+  <data name="factorMarketNotOffered" xml:space="preserve">
+    <value>No Ofertada.</value>
+  </data>
+  <data name="factorMarketRedColor" xml:space="preserve">
+    <value>Color Rojo</value>
+  </data>
+  <data name="factorMarketYellowColor" xml:space="preserve">
+    <value>Color Amarillo</value>
+  </data>
+  <data name="menuBancos" xml:space="preserve">
+    <value>Bancos Aliados</value>
+  </data>
+  <data name="titleAlliedBank" xml:space="preserve">
+    <value>Gestión de Bancos</value>
+  </data>
+  <data name="indexTuFactoringAllParticipants" xml:space="preserve">
+    <value>es una alternativa de financiamiento donde a través de un contrato el Proveedor cede la cobranza futura de los créditos, obteniendo a cambio el dinero inmediatamente de esas operaciones con un pequeño descuento. También podrá esperar al vencimiento de las Facturas para el cobro de las mismas, siempre con el respaldo de un</value>
+  </data>
+  <data name="textoProcess" xml:space="preserve">
+    <value>Procesando</value>
+  </data>
+  <data name="availableBanks" xml:space="preserve">
+    <value>Bancos Participantes</value>
+  </data>
+  <data name="textHelpBankManagement" xml:space="preserve">
+    <value>Permite realizar la gestión de Activación y Desactivación de los diferentes Bancos para su participación como Aliados en el Sistema.</value>
+  </data>
+  <data name="textHelpReconciledInvoices" xml:space="preserve">
+    <value>Permite realizar los Pagos Conciliados a los Proveedores, correspondientes a las Facturas Compradas por los Inversionistas y pagadas vía Transferencia Bancaria desde otro Banco.</value>
+  </data>
+  <data name="textHelpOverdueInvoices" xml:space="preserve">
+    <value>Permite realizar los Pagos de las Facturas en su Fecha de Vencimiento, a los diferentes Proveedores que quedaron en espera de esta expiración y a los Inversionistas con el reintegro del Valor Neto de las Facturas Compradas.</value>
+  </data>
+  <data name="draftStatus" xml:space="preserve">
+    <value>CARGADAS</value>
+  </data>
+  <data name="postedStatus" xml:space="preserve">
+    <value>POSTULADAS</value>
+  </data>
+  <data name="confirmedStatus" xml:space="preserve">
+    <value>CONFIRMADAS</value>
+  </data>
+  <data name="offeredStatus" xml:space="preserve">
+    <value>OFERTADAS</value>
+  </data>
+  <data name="releasedStatus" xml:space="preserve">
+    <value>POR PUBLICAR</value>
+  </data>
+  <data name="publishedStatus" xml:space="preserve">
+    <value>PUBLICADAS</value>
+  </data>
+  <data name="soldStatus" xml:space="preserve">
+    <value>ACEPTADAS</value>
+  </data>
+  <data name="processingStatus" xml:space="preserve">
+    <value>EN PROCESO DE PAGOS</value>
+  </data>
+  <data name="paidStatus" xml:space="preserve">
+    <value>PAGADAS</value>
+  </data>
+  <data name="postponedStatus" xml:space="preserve">
+    <value>EN ESPERA DEL VENCIMIENTO</value>
+  </data>
+  <data name="overdueStatus" xml:space="preserve">
+    <value>VENCIDAS</value>
+  </data>
+  <data name="finalizeStatus" xml:space="preserve">
+    <value>COMPLETADAS</value>
+  </data>
+  <data name="titleStatusChange" xml:space="preserve">
+    <value>Estado de la Operación</value>
+  </data>
+  <data name="titleChangeFrom" xml:space="preserve">
+    <value>Fecha de Operación Desde</value>
+  </data>
+  <data name="titleChangeTo" xml:space="preserve">
+    <value>Fecha de Operación Hasta</value>
+  </data>
+  <data name="draftChangeStatus" xml:space="preserve">
+    <value>CARGADO DE FACTURAS</value>
+  </data>
+  <data name="postedChangeStatus" xml:space="preserve">
+    <value>POSTULACIÓN</value>
+  </data>
+  <data name="confirmedChangeStatus" xml:space="preserve">
+    <value>CONFIRMACIÓN</value>
+  </data>
+  <data name="soldChangeStatus" xml:space="preserve">
+    <value>ACEPTACIÓN</value>
+  </data>
+  <data name="overdueChangeStatus" xml:space="preserve">
+    <value>VENCIMIENTO</value>
+  </data>
+  <data name="finalizeChangeStatus" xml:space="preserve">
+    <value>COMPLETACIÓN</value>
+  </data>
+  <data name="processingChangeStatus" xml:space="preserve">
+    <value>PROCESAMIENTO DE PAGOS</value>
+  </data>
+  <data name="paidChangeStatus" xml:space="preserve">
+    <value>PAGO</value>
+  </data>
+  <data name="offeredChangeStatus" xml:space="preserve">
+    <value>OFERTAS</value>
+  </data>
+  <data name="titleModalAmountFinanced" xml:space="preserve">
+    <value>Monto Total Financiado</value>
+  </data>
+  <data name="de ganar" xml:space="preserve">
+    <value>de ganar</value>
+  </data>
+  <data name="Es momento" xml:space="preserve">
+    <value>Es tiempo</value>
+  </data>
+  <data name="titleModalConfirmPayment" xml:space="preserve">
+    <value>Confirmación de Pago</value>
+  </data>
+  <data name="textSecureToPayment" xml:space="preserve">
+    <value>¿Está seguro de realizar el Pago por un Monto a Pagar de </value>
+  </data>
+  <data name="statePostponed" xml:space="preserve">
+    <value>Pospuesta</value>
+  </data>
+  <data name="textoAyudaConsultaPagosFacturasCompradas" xml:space="preserve">
+    <value>Contiene los Pagos realizados por las Facturas Compradas a los Proveedores, previa aceptación de la(s) Oferta(s).</value>
+  </data>
+  <data name="textoAyudaConsultaPagosFacturasConciliadas" xml:space="preserve">
+    <value>Contiene los Pagos realizados a los Proveedores previa Conciliación realizada por parte del Operativo de TuF@ctoring, correspondientes a las Facturas Compradas por los Inversionistas y pagadas vía Transferencia Bancaria desde otro Banco.</value>
+  </data>
+  <data name="textoAyudaConsultaPagosFacturasVencidas" xml:space="preserve">
+    <value>Contiene los Pagos realizados al Vencimiento de las Facturas, según los diferentes escenarios: Proveedores que quedaron en espera de expiración de sus Facturas e  Inversionistas a los que se les reintegra el Valor Neto de las Facturas Compradas.</value>
+  </data>
+  <data name="textoAyudaPerfilInversionistaPerson" xml:space="preserve">
+    <value>Permite la revisión y actualización de Datos del Inversionista (Direcciones y Cuentas Bancarias).</value>
+  </data>
+  <data name="textoAyudaPerfilOperativo" xml:space="preserve">
+    <value>Permite la revisión y actualización de Datos del Operativo (Direcciones, Teléfono de Representante Legal, Persona Contacto y Cuentas Bancarias).</value>
+  </data>
+  <data name="textoAyudaPrincipalesEmpresas" xml:space="preserve">
+    <value>Permite crear, aceptar, rechazar, cancelar, desactivar y consultar las Invitaciones recibidas y enviadas a los diferentes Clientes, con los que podrá participar en el Sistema. Recuerde que para el ingreso de Facturas de Venta Directa su Cliente debe estar registrado en el Sistema y usted debe esperar y aceptar la respectiva invitación.</value>
+  </data>
+  <data name="textoAyudaPrincipalesProveedores" xml:space="preserve">
+    <value>Permite crear, aceptar, cancelar, desactivar y consultar las Invitaciones recibidas y enviadas a los diferentes Proveedores, con los que podrá participar en el Sistema.</value>
+  </data>
+  <data name="textoAyudaRegistoBanco" xml:space="preserve">
+    <value>Permite el Registro de un Banco Aliado en el Sistema “TuFactoring”, con el fin de participar como Confirmante y Ofertar descuento sobre las Facturas de su preferencia o simplemente Liberarlas para su Publicación en las Subastas, previa aceptación de Términos y Condiciones.</value>
+  </data>
+  <data name="titleConsultaPagosFacturasCompradas" xml:space="preserve">
+    <value>Pago de Facturas Compradas</value>
+  </data>
+  <data name="textoMercadoFactorInformation1" xml:space="preserve">
+    <value>Para Ofertar la Facturas, realice lo siguiente:</value>
+  </data>
+  <data name="textoMercadoFactorInformation2" xml:space="preserve">
+    <value>1. Seleccione la Factura requerida, ingrese el Porcentaje de Descuento, revise los cálculos realizados de Ganancia, Rentabilidad Anualizada y Monto a Pagar. </value>
+  </data>
+  <data name="textoMercadoFactorInformation3" xml:space="preserve">
+    <value>2. Marque el botón Ofertar, para enviar su Oferta.</value>
+  </data>
+  <data name="textNote" xml:space="preserve">
+    <value>Nota</value>
+  </data>
+  <data name="textoMercadoFactorInformation4" xml:space="preserve">
+    <value>Al Vencimiento de la Factura, Usted recibirá el Valor Neto de la misma.</value>
+  </data>
+  <data name="textInformationCesionFactor" xml:space="preserve">
+    <value>Contiene el Documento de Cesión de Derecho de cada Factura comprada por el Inversionista.</value>
+  </data>
+  <data name="textInformationQueryPaymentsFactor" xml:space="preserve">
+    <value>Contiene los Pagos realizados por las Facturas Ofertadas que Ganaron en la Subasta Diaria, previa aceptación por parte de los Proveedores.</value>
+  </data>
+  <data name="textInformationBoughtInvoicesBank" xml:space="preserve">
+    <value>Contiene los Pagos realizados por las Facturas Compradas a los Proveedores, previa aceptación de la(s) Oferta(s).</value>
+  </data>
+  <data name="textInformationReconciledInvoicesQueryBank" xml:space="preserve">
+    <value>Contiene los Pagos realizados a los Proveedores previa Conciliación realizada por parte del Operativo de TuF@ctoring, correspondientes a las Facturas Compradas por los Inversionistas y pagadas vía Transferencia Bancaria desde otro Banco.</value>
+  </data>
+  <data name="textInformationOverdueInvoicesBank" xml:space="preserve">
+    <value>Contiene los Pagos realizados al Vencimiento de las Facturas, según los diferentes escenarios: Proveedores que quedaron en espera de expiración de sus Facturas e  Inversionistas a los que se les reintegra el Valor Neto de las Facturas Compradas.</value>
+  </data>
+  <data name="textoCargarFacturasInformation1" xml:space="preserve">
+    <value>Una vez descargada la Plantilla, siga los siguientes pasos para Cargar Facturas Masivamente:</value>
+  </data>
+  <data name="textoCargarFacturasInformation2" xml:space="preserve">
+    <value>1. Ingrese los datos de la Plantilla y guarde la información con formato .txt.</value>
+  </data>
+  <data name="textoCargarFacturasInformation3" xml:space="preserve">
+    <value>2. Realice la Carga del archivo .txt en el Sistema, a través del Botón “Cargar Plantilla”.</value>
+  </data>
+  <data name="textoCargarFacturasInformation4" xml:space="preserve">
+    <value>3. En la parte inferior de la pantalla se podrá visualizar el resultado de la extracción, en las Secciones Facturas Procesadas y Facturas no Procesadas.</value>
+  </data>
+  <data name="textoCargarFacturasInformation5" xml:space="preserve">
+    <value>4. Revise la información de la Sección Facturas No Procesadas, realice las correcciones en su Sistema, limpie la sección desde el menú Opciones y cargue nuevamente la plantilla.</value>
+  </data>
+  <data name="textoCargarFacturasInformation6" xml:space="preserve">
+    <value>5. Para culminar la carga en el Sistema, marque el botón Guardar Facturas, ubicado en la parte superior de la Sección Facturas Procesadas.</value>
+  </data>
+  <data name="textoEdicionFacturasInformation1" xml:space="preserve">
+    <value>Para modificar Facturas, siga los siguientes pasos: </value>
+  </data>
+  <data name="textoEdicionFacturasInformation2" xml:space="preserve">
+    <value>1. En la Sección</value>
+  </data>
+  <data name="textoEdicionFacturasInformation2.1" xml:space="preserve">
+    <value>, seleccione el Botón Editar del registro requerido. </value>
+  </data>
+  <data name="textoEdicionFacturasInformation3" xml:space="preserve">
+    <value>2. Se mostrará la ventana</value>
+  </data>
+  <data name="textoEdicionFacturasInformation3.1" xml:space="preserve">
+    <value>, con el detalle de la misma, donde podrá realizar ajustes puntuales y agregar o modificar las Deducciones, según el estado de la Factura. Finalmente presione el Botón Actualizar Factura, para grabar los cambios.</value>
+  </data>
+  <data name="textoEdicionFacturasInformation4" xml:space="preserve">
+    <value>Para eliminar Facturas, ubique el  registro requerido en la Sección</value>
+  </data>
+  <data name="textoEdicionFacturasInformation4.1" xml:space="preserve">
+    <value>, presione el Botón Eliminar y confirme la operación.</value>
+  </data>
+  <data name="textFilterIsEmpty" xml:space="preserve">
+    <value>No hay resultados para el Filtro aplicado.</value>
+  </data>
+  <data name="textInformationCesionBank" xml:space="preserve">
+    <value>Contiene el Documento de Cesión de Derecho de cada Factura comprada por el Banco.</value>
+  </data>
+  <data name="textContratoCesionDerechos" xml:space="preserve">
+    <value>Contrato de Cesión de Derechos</value>
+  </data>
+  <data name="titleFactor" xml:space="preserve">
+    <value>Inversionista</value>
+  </data>
+  <data name="placeholderFactor" xml:space="preserve">
+    <value>Inversionista</value>
+  </data>
+  <data name="confirmedToOverdueStatus" xml:space="preserve">
+    <value>CONFIRMADAS POR VENCER</value>
+  </data>
+  <data name="confirmedToOverdue" xml:space="preserve">
+    <value>Confirmadas por Vencer</value>
+  </data>
+  <data name="textInformationCesionProveedor" xml:space="preserve">
+    <value>Contiene el Documento de Cesión de Derecho de cada Factura vendida a los diferentes Bancos e Inversionistas.</value>
+  </data>
+  <data name="textoSeguridadInformation1" xml:space="preserve">
+    <value>Invitar Usuario:</value>
+  </data>
+  <data name="textoSeguridadInformation2" xml:space="preserve">
+    <value>1. Para agregar un usuario, presione el botón Invitar, indique el nombre del usuario, el correo electrónico con el que ingresará al sistema, seleccione el (los) Rol(es) según la función a desempeñar y haga click en el botón Crear para guardar la información.</value>
+  </data>
+  <data name="textoSeguridadInformation3" xml:space="preserve">
+    <value>2. El Usuario creado quedará asociado al Número de Documento principal de la Empresa y deberá Activar su Usuario desde el correo de Bienvenida, para comenzar a utilizar el Sistema.</value>
+  </data>
+  <data name="textoSeguridadInformation4" xml:space="preserve">
+    <value>Editar Usuario: </value>
+  </data>
+  <data name="textoSeguridadInformation5" xml:space="preserve">
+    <value>1. Para modificar la información de un usuario, presione el botón Editar, realice los cambios necesarios y haga click en el botón Actualizar para guardar la información.</value>
+  </data>
+  <data name="textoSeguridadInformation6" xml:space="preserve">
+    <value>Bloquear o Desbloquear Usuario: </value>
+  </data>
+  <data name="textoSeguridadInformation7" xml:space="preserve">
+    <value>1. Para cumplir esta acción, presione el botón Bloquear o Desbloquear y confirme la operación, haciendo click en el botón Aceptar.</value>
+  </data>
+  <data name="textoSeguridadInformation8" xml:space="preserve">
+    <value>Nota: Los Usuarios Bloqueados no podrán ingresar al Sistema.</value>
+  </data>
+  <data name="textoCompraFacturas6" xml:space="preserve">
+    <value>Financiamiento Solicitado:</value>
+  </data>
+  <data name="textoCompraFacturas7" xml:space="preserve">
+    <value>Financiamiento no Solicitado:</value>
+  </data>
+  <data name="textoCompraFacturas5" xml:space="preserve">
+    <value>La Condición de Financiamiento es solo Consulta.</value>
+  </data>
+  <data name="textoNota" xml:space="preserve">
+    <value>Nota:</value>
+  </data>
+  <data name="textoCompraFacturas4" xml:space="preserve">
+    <value>En la parte superior, podrá visualizar el Monto Total de las Facturas Disponibles.</value>
+  </data>
+  <data name="textoCompraFacturas3" xml:space="preserve">
+    <value>1. Seleccione el ícono (⋮) del menú Opciones y luego la Opción Liberar Todas. Para culminar confirme la Operación.</value>
+  </data>
+  <data name="textoCompraFacturas2" xml:space="preserve">
+    <value>Para Liberar las Facturas no Ofertadas</value>
+  </data>
+  <data name="textoCompraFacturas1" xml:space="preserve">
+    <value>2. Marque el botón Ofertar, para enviar la propuesta al Proveedor.</value>
+  </data>
+  <data name="textoCompraFacturas0" xml:space="preserve">
+    <value>1. Seleccione la Factura requerida, ingrese el Porcentaje de Descuento, revise los cálculos realizados de Rentabilidad Anualizada y Monto a Pagar. </value>
+  </data>
+  <data name="textoCompraFacturas" xml:space="preserve">
+    <value>Para Comprar la Facturas, realice lo siguiente:</value>
+  </data>
+  <data name="textoConfirmarFacturas5" xml:space="preserve">
+    <value>Una vez seleccionadas las Facturas, podrá visualizar el Monto total a Confirmar.</value>
+  </data>
+  <data name="textoConfirmarFacturas4" xml:space="preserve">
+    <value>Seleccione el ícono (⋮) del menú Opciones, luego la Opción Seleccionar todas y ✔Confirmar. Para culminar confirme la Operación.</value>
+  </data>
+  <data name="textoConfirmarFacturas4Title" xml:space="preserve">
+    <value>3. Todas las Facturas: </value>
+  </data>
+  <data name="textoConfirmarFacturas3Title" xml:space="preserve">
+    <value>2. Varias Facturas:</value>
+  </data>
+  <data name="textoConfirmarFacturas3" xml:space="preserve">
+    <value>Marque el indicador de selección de las Facturas requeridas, posteriormente seleccione el ícono (⋮) del menú Opciones y la Opción ✔Confirmar. Para culminar confirme la Operación.</value>
+  </data>
+  <data name="textoConfirmarFacturas2Title" xml:space="preserve">
+    <value>1. Una (1) Factura:</value>
+  </data>
+  <data name="textoConfirmarFacturas2" xml:space="preserve">
+    <value>Marque el indicador de selección de la Factura requerida y su respectivo Botón Confirmar. </value>
+  </data>
+  <data name="textoConfirmarFacturas1" xml:space="preserve">
+    <value>Para Confirmar las Facturas, realice una de las siguientes acciones, según la cantidad a procesar:</value>
+  </data>
+  <data name="textoMantenimientoCONFIRMANT" xml:space="preserve">
+    <value>Permite al Administrador de Seguridad, controlar el acceso al Sistema, de cada uno de los Usuarios que desempañarán funciones dentro del Banco, según el rol asignado y la permisología de cada uno.</value>
+  </data>
+  <data name="textoMantenimientoDEBTOR" xml:space="preserve">
+    <value>Permite al Administrador de Seguridad, controlar el acceso al Sistema, de cada uno de los Usuarios que desempañarán funciones dentro de la Empresa, según el rol asignado y la permisología de cada uno.</value>
+  </data>
+  <data name="textoMantenimientoFACTOR" xml:space="preserve">
+    <value>Permite al Administrador de Seguridad, controlar el acceso al Sistema, de cada uno de los Usuarios que desempañarán funciones dentro de la Empresa del Inversionista, según el rol asignado y la permisología de cada uno.</value>
+  </data>
+  <data name="textoMantenimientoSUPPLIER" xml:space="preserve">
+    <value>Permite al Administrador de Seguridad, controlar el acceso al Sistema, de cada uno de los Usuarios que desempañarán funciones dentro de la Empresa del Proveedor, según el rol asignado y la permisología de cada uno.</value>
+  </data>
+  <data name="textoMantenimientoBACKOFFICE" xml:space="preserve">
+    <value>Permite al Administrador de Seguridad, controlar el acceso al Sistema, de cada uno de los Usuarios que desempañarán funciones dentro de la Empresa "TuFactoring", según el rol asignado y la permisología de cada uno.</value>
+  </data>
+  <data name="textoMantenimiento" xml:space="preserve">
+    <value>Permite al Administrador de Seguridad, controlar el acceso al Sistema, de cada uno de los Usuarios que desempañarán funciones dentro de la Empresa "TuFactoring", según el rol asignado y la permisología de cada uno.</value>
+  </data>
+  <data name="offeredBankStatus" xml:space="preserve">
+    <value>OFERTADAS POR EL BANCO</value>
+  </data>
+  <data name="soldBankStatus" xml:space="preserve">
+    <value>COMPRADAS POR PAGAR</value>
+  </data>
+  <data name="canceledStatus" xml:space="preserve">
+    <value>CANCELADAS</value>
+  </data>
+  <data name="soldToOverdueStatus" xml:space="preserve">
+    <value>COMPRADAS POR VENCER</value>
+  </data>
+  <data name="soldToOverdue" xml:space="preserve">
+    <value>Compradas por Vencer</value>
+  </data>
+  <data name="soldBank" xml:space="preserve">
+    <value>Compradas por Pagar</value>
+  </data>
+  <data name="offeredBank" xml:space="preserve">
+    <value>Ofertadas por el Banco</value>
+  </data>
+  <data name="finalizeBank" xml:space="preserve">
+    <value>Canceladas</value>
+  </data>
+  <data name="textoModalAyudaPerfilBancoTexto1" xml:space="preserve">
+    <value>Para actualizar la información de las Secciones Direcciones, Representante Legal y Administrador, realice lo siguiente:</value>
+  </data>
+  <data name="textoModalAyudaPerfilEmpresatexto1" xml:space="preserve">
+    <value>Para actualizar esta información, modifique los datos editables según requiera y presione el Botón Actualizar para aplicar los cambios.</value>
+  </data>
+  <data name="textoModalAyudaPerfilEmpresatexto2" xml:space="preserve">
+    <value>1. Para actualizar esta información, presione el botón Agregar o Editar según corresponda, ingrese la información y guarde los cambios.  </value>
+  </data>
+  <data name="textoModalAyudaPerfilEmpresatexto3" xml:space="preserve">
+    <value>Permite visualizar los Términos y Condiciones asociados a la Empresa</value>
+  </data>
+  <data name="textoModalAyudaPerfilEmpresatexto4" xml:space="preserve">
+    <value>2. Para eliminar Cuentas, presione el botón Eliminar y confirme para la operación.</value>
+  </data>
+  <data name="textoModalAyudaPerfilEmpresatitulo1" xml:space="preserve">
+    <value>Secciones Direcciones, Representante Legal y / o Persona Contacto:</value>
+  </data>
+  <data name="textoModalAyudaPerfilEmpresatitulo2" xml:space="preserve">
+    <value>Sección Cuentas Bancarias:</value>
+  </data>
+  <data name="textoModalAyudaPerfilEmpresatitulo3" xml:space="preserve">
+    <value>Sección Contratos:</value>
+  </data>
+  <data name="textoModalAyudaPerfilInversionistaLegalTexto1" xml:space="preserve">
+    <value>Para actualizar la información de las Secciones Direcciones y Representante Legal, realice lo siguiente:</value>
+  </data>
+  <data name="textoModalAyudaPerfilInversionistaLegalTexto2" xml:space="preserve">
+    <value>1. Modifique la información editable según requiera.</value>
+  </data>
+  <data name="textoModalAyudaPerfilInversionistaLegalTexto3" xml:space="preserve">
+    <value>2. Presione el Botón Actualizar para aplicar los cambios.</value>
+  </data>
+  <data name="textoModalAyudaPerfilInversionistaLegalTexto4" xml:space="preserve">
+    <value>Para actualizar la información de Cuentas Bancarias, presione el botón Agregar, Editar o Eliminar, según corresponda, ingrese la información y Guarde los cambios en la ventana correspondiente.</value>
+  </data>
+  <data name="textoModalAyudaPerfilInversionistaPersonTexto1" xml:space="preserve">
+    <value>Para actualizar la información de las Secciones Direcciones, realice los cambios y presione el Botón Actualizar para aplicar los cambios.</value>
+  </data>
+  <data name="textoModalAyudaPerfilProveedortexto4" xml:space="preserve">
+    <value>Permite visualizar los Términos y Condiciones aceptar los Contratos Marco por cada Banco Aliado con el que podrá confirmar Facturas. Para aceptar, presione el botón Verificar y acepte cada Contrato.</value>
+  </data>
+  <data name="textoModalAyudaPrincipalesProveedoresTexto1" xml:space="preserve">
+    <value>1. Para invitar un Proveedor, presione el botón Agregar, ingrese la información y guarde los cambios en la ventana correspondiente.</value>
+  </data>
+  <data name="textoModalAyudaPrincipalesProveedoresTexto2" xml:space="preserve">
+    <value>2. Para cancelar la Invitación de un Proveedor, presione Cancelar o Desactivar.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto1" xml:space="preserve">
+    <value>1. Ingrese la información de Datos Comerciales y Direcciones.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto10" xml:space="preserve">
+    <value>3. Ingrese la información de Representante Legal.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto11" xml:space="preserve">
+    <value>4. Ingrese los datos de Cuentas Bancarias, presionando el botón Agregar de la sección y completando la información. Estos datos pueden ser complementados luego del Registro.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto12" xml:space="preserve">
+    <value>3. Verifique y acepte los Términos y Condiciones.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto13" xml:space="preserve">
+    <value>4. Presione el Botón Afiliarse para culminar el Registro.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto14" xml:space="preserve">
+    <value>2. Ingrese los datos de Cuentas Bancarias, presionando el botón Agregar de la sección y completando la información. Estos datos pueden ser complementados luego del Registro.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto15" xml:space="preserve">
+    <value>3. Ingrese la información de Representante Legal y Administrador.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto16" xml:space="preserve">
+    <value>5. Presione el Botón Afiliar para culminar el Registro.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto2" xml:space="preserve">
+    <value>2. Marque el Botón Siguiente para continuar, el cual se habilitará una vez ingresada la información requerida.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto3" xml:space="preserve">
+    <value>3. Ingrese la información de Representante Legal y Persona Contacto (esta última es Opcional).</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto4" xml:space="preserve">
+    <value>4. Ingrese los datos de Cuentas Bancarias y Principales Proveedores, presionando el botón Agregar de cada sección y completando la información. Estos datos pueden ser complementados luego del Registro.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto5" xml:space="preserve">
+    <value>5. Verifique y acepte los Términos y Condiciones.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto6" xml:space="preserve">
+    <value>6. Presione el Botón Afiliarse para culminar el Registro.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto7" xml:space="preserve">
+    <value>4. Ingrese los datos de Cuentas Bancarias y Principales Clientes, presionando el botón Agregar de cada sección y completando la información. Estos datos pueden ser complementados luego del Registro.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto8" xml:space="preserve">
+    <value>Al hacer Login por primera vez en el Sistema, Usted debe aceptar el Contrato Marco, para disfrutar de las bondades del Servicio.</value>
+  </data>
+  <data name="textoModalAyudaRegistroTexto9" xml:space="preserve">
+    <value>Nota:</value>
+  </data>
+  <data name="textoModalAyudaRegistroTitulo1" xml:space="preserve">
+    <value>Para Registrar la Empresa, realice lo siguiente:</value>
+  </data>
+  <data name="textoModalAyudaRegistroTitulo2" xml:space="preserve">
+    <value>Para Registrar el Proveedor, realice lo siguiente:</value>
+  </data>
+  <data name="textoModalAyudaRegistroTitulo3" xml:space="preserve">
+    <value>Para Registrar el Inversionista, realice lo siguiente:</value>
+  </data>
+  <data name="textoModalAyudaRegistroTitulo4" xml:space="preserve">
+    <value>Para Registrar el Banco, realice lo siguiente:</value>
+  </data>
+  <data name="titleModalAyuda" xml:space="preserve">
+    <value>TuF@ctoring</value>
+  </data>
+  <data name="soldSupplier" xml:space="preserve">
+    <value>Vendidas por Pagar</value>
+  </data>
+  <data name="soldSupplierStatus" xml:space="preserve">
+    <value>VENDIDAS POR PAGAR</value>
+  </data>
+  <data name="soldToOverdueSupplier" xml:space="preserve">
+    <value>Vendidas por Vencer</value>
+  </data>
+  <data name="soldToOverdueSupplierStatus" xml:space="preserve">
+    <value>VENDIDAS POR VENCER</value>
+  </data>
+  <data name="textDeductionForDiscount" xml:space="preserve">
+    <value>Deducción por Descuento</value>
+  </data>
+  <data name="textoPublicarFacturas0" xml:space="preserve">
+    <value>Para responder las</value>
+  </data>
+  <data name="textoPublicarFacturas0.1" xml:space="preserve">
+    <value>, realice lo siguiente:</value>
+  </data>
+  <data name="textoPublicarFacturas1" xml:space="preserve">
+    <value>1. Seleccione la Factura requerida y revise la información mostrada</value>
+  </data>
+  <data name="textoPublicarFacturas2" xml:space="preserve">
+    <value>2. Marque el botón Aceptar para notificar al Banco que realice el Pago correspondiente o Rechazar para regresar la Oferta al Banco para su Contra Oferta o Confirmación, este último no aplica para Venta Directa.</value>
+  </data>
+  <data name="textoFor" xml:space="preserve">
+    <value>Para</value>
+  </data>
+  <data name="textoPublicarFacturas3" xml:space="preserve">
+    <value>Una (1) Factura: </value>
+  </data>
+  <data name="textoPublicarFacturas3.1" xml:space="preserve">
+    <value>Seleccione la Factura requerida y marque el Botón Posponer o Publicar, según su necesidad. </value>
+  </data>
+  <data name="textoPublicarFacturas4" xml:space="preserve">
+    <value>Todas las Facturas:</value>
+  </data>
+  <data name="textoPublicarFacturas4.1" xml:space="preserve">
+    <value>Seleccione el ícono (⋮) del menú Opciones, luego la Opción Publicar Todas o Posponer Todas, según se requiera. Para culminar confirme la Operación.</value>
+  </data>
+  <data name="textoPublicarFacturas1.1" xml:space="preserve">
+    <value>(Días para el Vencimiento, Oferta del Banco, Valor Neto, Monto a Descontar, Costo Anualizado, Comisión de Servicio, Monto a Recibir, así como los datos básicos de la Factura). </value>
+  </data>
+  <data name="textoContentFacturasVencimiento4" xml:space="preserve">
+    <value>3. Facturas en proceso que aún no han sido Pagadas o Completadas, con Fecha de Vencimiento mayor a 30 días.</value>
+  </data>
+  <data name="textoFacturasVencimiento0" xml:space="preserve">
+    <value>(Mayores a 30 días), seleccione la Factura requerida y marque el Botón Publicar.</value>
+  </data>
+  <data name="textoFacturasVencimiento1" xml:space="preserve">
+    <value>Cada Factura está identificada según la cantidad de Días de Vencimiento, con una línea del lado izquierdo y su color varía según lo siguiente:</value>
+  </data>
+  <data name="textoFacturasVencimiento2" xml:space="preserve">
+    <value>Factura menor o Igual a 30 días.</value>
+  </data>
+  <data name="textoFacturasVencimiento3" xml:space="preserve">
+    <value>Factura mayor a 30 días.</value>
+  </data>
+  <data name="grayColor" xml:space="preserve">
+    <value>Color Gris</value>
+  </data>
+  <data name="textoFacturasVencimiento4" xml:space="preserve">
+    <value>Facturas Confirmadas por Vencer.</value>
+  </data>
+  <data name="textoMercadoFacturasSupplier0" xml:space="preserve">
+    <value>Para Consultar el detalle de cada Factura, seleccione la requerida y revise la información mostrada</value>
+  </data>
+  <data name="textoMercadoFacturasSupplier0.1" xml:space="preserve">
+    <value>(Días para el Vencimiento, Mejor Oferta, Valor Neto, Monto a Descontar, Costo Anualizado, Monto a Recibir, así como los datos básicos de la Factura).</value>
+  </data>
+  <data name="textoMercadoFacturasSupplier1" xml:space="preserve">
+    <value>Cada Factura está identificada dependiendo si ha sido Ofertada o no, con una línea del lado izquierdo y su color varía según lo siguiente:</value>
+  </data>
+  <data name="textoMercadoFacturasSupplier2" xml:space="preserve">
+    <value>Factura no Ofertada.</value>
+  </data>
+  <data name="textoMercadoFacturasSupplier3" xml:space="preserve">
+    <value>Factura Ofertada.</value>
+  </data>
+  <data name="textoCierreMercado0" xml:space="preserve">
+    <value>Aceptar las Ofertas</value>
+  </data>
+  <data name="textoCierreMercado0.1" xml:space="preserve">
+    <value>de los Inversionistas, realice lo siguiente:</value>
+  </data>
+  <data name="textoCierreMercado1" xml:space="preserve">
+    <value>1. Seleccione la Factura requerida y revise la información mostrada</value>
+  </data>
+  <data name="textoCierreMercado1.1" xml:space="preserve">
+    <value>(Días para el Vencimiento, Oferta del Inversionista, Valor Neto, Monto a Descontar, Costo Anualizado, Comisión de Servicio, Monto a Recibir, así como los datos básicos de la Factura). </value>
+  </data>
+  <data name="textoCierreMercado2" xml:space="preserve">
+    <value>2. Marque el botón Aceptar para notificar al Inversionista que realice el Pago correspondiente.</value>
+  </data>
+  <data name="textoPostularFacturas0" xml:space="preserve">
+    <value>Para Postular las Facturas, seleccione el Banco Confirmante y realice una de las siguientes acciones, según la cantidad de Facturas a ser asignadas:</value>
+  </data>
+  <data name="textoPostularFacturas1" xml:space="preserve">
+    <value>Marque el Botón Postular de la Factura requerida. </value>
+  </data>
+  <data name="variousInvoices" xml:space="preserve">
+    <value>Varias Facturas</value>
+  </data>
+  <data name="textoPostularFacturas2" xml:space="preserve">
+    <value>Marque el indicador de las Facturas requeridas y posteriormente el Botón +Postular (ubicado al lado derecho del Banco Confirmante). Confirme la Postulación.</value>
+  </data>
+  <data name="textoPostularFacturas3" xml:space="preserve">
+    <value>Seleccione el ícono (⋮) del menú Opciones, seguido de las Opciones Seleccionar todas y +Postular. Confirme la Postulación.</value>
+  </data>
+  <data name="textoPostularFacturas4" xml:space="preserve">
+    <value>Para cambiar la condición de Financiamiento de cada Factura, debe marcar el ícono, ubicado al lado derecho de la misma.</value>
+  </data>
+  <data name="titleConciliarMovements" xml:space="preserve">
+    <value>Movimientos no Conciliados</value>
+  </data>
+  <data name="textoModalAyudaLimiteTexto1" xml:space="preserve">
+    <value>Para asignar el Monto Máximo de Riesgo marque el Botón Establecer Monto o Modificar Monto del Cliente requerido y en la ventana de Información del Cliente, realice lo siguiente:</value>
+  </data>
+  <data name="textoModalAyudaLimiteTexto2" xml:space="preserve">
+    <value>1. Ingrese el valor correspondiente.</value>
+  </data>
+  <data name="textoModalAyudaLimiteTexto3" xml:space="preserve">
+    <value>2. Marque el Botón Asignar.</value>
+  </data>
+  <data name="textoModalAyudaSegmentarTexto1" xml:space="preserve">
+    <value>Para asignar el Ejecutivo de Cuentas marque el Botón Asignar del Cliente requerido y en la ventana de Información del Cliente, realice lo siguiente:</value>
+  </data>
+  <data name="textoModalAyudaSegmentarTexto2" xml:space="preserve">
+    <value>1. Seleccione un Ejecutivo de la lista.</value>
+  </data>
+  <data name="textoModalAyudaSegmentarTexto3" xml:space="preserve">
+    <value>2. Marque el Botón Asignar.</value>
+  </data>
+  <data name="textoModalAyudaVerificarTexto1" xml:space="preserve">
+    <value>Para actualizar el resultado de la Verificación, marque el Botón Verificar del Cliente requerido y en la ventana de Información del Cliente, realice lo siguiente:</value>
+  </data>
+  <data name="textoModalAyudaVerificarTexto2" xml:space="preserve">
+    <value>1. Resultado Positivo:</value>
+  </data>
+  <data name="textoModalAyudaVerificarTexto3" xml:space="preserve">
+    <value>Marque el Botón Aprobar.</value>
+  </data>
+  <data name="textoModalAyudaVerificarTexto4" xml:space="preserve">
+    <value>2. Resultado Negativo:</value>
+  </data>
+  <data name="textoModalAyudaVerificarTexto5" xml:space="preserve">
+    <value>Marque el Botón Rechazar.</value>
+  </data>
+  <data name="textoModalAyudaVerificarTexto6" xml:space="preserve">
+    <value>Una vez aprobado el Riesgo del Cliente, pasa a la bandeja de Segmentación y luego a Límite de Riesgo para su asignación, de lo contrario no podrá trabajar con el Banco como Confirmante.</value>
+  </data>
+  <data name="titleConsultaClientesOperativo" xml:space="preserve">
+    <value>Muestra los Cliente que participan en el Sistema con los diferenteres Perfiles (Bancos, Empresas, Proveedores, Inversionistas). Observándose su información básica de Contacto y Dirección, así como el Estado en que se encuentra.</value>
+  </data>
+  <data name="textoFinanciamientoFacturas0" xml:space="preserve">
+    <value>Para cambiar la condición de Financiamiento, realice una de las siguientes acciones, según la cantidad de solicitudes a realizar:</value>
+  </data>
+  <data name="textoFinanciamientoFacturas1" xml:space="preserve">
+    <value>Marque el Logo del Banco, ubicado al lado derecho de la Factura o seleccione la Factura y luego marque el ícono para Solicitar o Cancelar Financiamiento, en la ventana de detalle.</value>
+  </data>
+  <data name="textoFinanciamientoFacturas2" xml:space="preserve">
+    <value>Seleccione el ícono (⋮) del menú Opciones, seguido de la Opción requerida: ✔ Solicitar Financiamiento o Cancelar Financiamiento.</value>
+  </data>
+  <data name="textoFinanciamientoFacturas3" xml:space="preserve">
+    <value>Cada Factura está identificada según tenga o no Financiamiento, con una línea del lado izquierdo y su color varía según lo siguiente:</value>
+  </data>
+  <data name="textoFinanciamientoFacturas4" xml:space="preserve">
+    <value>Con Financiamiento.</value>
+  </data>
+  <data name="textoFinanciamientoFacturas5" xml:space="preserve">
+    <value>Sin Financiamiento.</value>
+  </data>
+  <data name="textoFinanciamientoFacturasInvoicesAll" xml:space="preserve">
+    <value>2. Todas las Facturas:</value>
+  </data>
+  <data name="textoConsultaFinanciamiento" xml:space="preserve">
+    <value>Muestra el Monto Asignado y Utilizado de Financiamiento por cada Cliente, totalizando por el Total a Pagar y el Total Financiado, con su respectivo detalle de Facturas asociadas por Proveedor, Fecha de Vencimiento, Valor Neto e Indicador de Financiamiento.</value>
+  </data>
+  <data name="textoAyudaConsultaInvoiceBackoffice" xml:space="preserve">
+    <value>Muestra la información de todas las Facturas Cargadas por las Empresas, según los diferentes Estados por los que va pasando en el Sistema.</value>
+  </data>
+  <data name="textoAyudaMantenimientoSettings" xml:space="preserve">
+    <value>Permite realizar la creación y configuración de cada uno de los parámetros que forman parte del Sistema.</value>
+  </data>
+  <data name="textoAyudaMantenimientoAuction" xml:space="preserve">
+    <value>Permite Consultar y Gestionar la Subasta que se ejecutara de automáticamente a diario en el Sistema.</value>
+  </data>
+  <data name="btnConciliar" xml:space="preserve">
+    <value>Conciliar</value>
+  </data>
+  <data name="textoAyudaModalConciliar1" xml:space="preserve">
+    <value>-  Para Cargar un archivo de Movimientos Bancarios:</value>
+  </data>
+  <data name="textoAyudaModalConciliar10" xml:space="preserve">
+    <value>-  Para autorizar y liberar Movimientos no Conciliados:</value>
+  </data>
+  <data name="textoAyudaModalConciliar11" xml:space="preserve">
+    <value>1. En la Sección Conciliar Pagos:</value>
+  </data>
+  <data name="textoAyudaModalConciliar12" xml:space="preserve">
+    <value>Seleccione el check del registro requerido, inmediatamente se activarán los botones de Conciliar de la Sección Movimientos no Conciliados.</value>
+  </data>
+  <data name="textoAyudaModalConciliar13" xml:space="preserve">
+    <value>2. En la Sección Movimientos no Conciliados:</value>
+  </data>
+  <data name="textoAyudaModalConciliar14" xml:space="preserve">
+    <value>Identifique el Movimiento asociado al Pago a liberar y marque el botón “Conciliar”, inmediatamente se mostrara un mensaje de confirmación con la Pagos a ser Conciliados, donde deberá Aceptar para liberar el registro a la bandeja de Pagos por Conciliar del Banco Confirmante, de lo contrario se mantendrá pendiente.</value>
+  </data>
+  <data name="textoAyudaModalConciliar15" xml:space="preserve">
+    <value>- Para eliminar Movimientos no Conciliados:</value>
+  </data>
+  <data name="textoAyudaModalConciliar16" xml:space="preserve">
+    <value>1.  En la Sección del mismo nombre: Marque el Botón “Eliminar”, inmediatamente se mostrara un mensaje de confirmación, donde deberá Aceptar la Eliminación, para borrar el registro.</value>
+  </data>
+  <data name="textoAyudaModalConciliar17" xml:space="preserve">
+    <value>- Para rechazar Pagos por Conciliar:</value>
+  </data>
+  <data name="textoAyudaModalConciliar18" xml:space="preserve">
+    <value>1. En la Sección Conciliar Pagos:</value>
+  </data>
+  <data name="textoAyudaModalConciliar19" xml:space="preserve">
+    <value>Seleccione el registro requerido y marque el botón “Rechazar”, para declinar la Conciliación del Pago reportado y Bloquear el Inversionista.</value>
+  </data>
+  <data name="textoAyudaModalConciliar2" xml:space="preserve">
+    <value>1. En la Sección Archivo de Movimientos:</value>
+  </data>
+  <data name="textoAyudaModalConciliar3" xml:space="preserve">
+    <value>Seleccione la Entidad Bancaria y el Tipo de Moneda al que se le asociarán los Movimientos Bancarios.</value>
+  </data>
+  <data name="textoAyudaModalConciliar4" xml:space="preserve">
+    <value>2. Realice la Carga del archivo .txt en el Sistema, marcando el botón “Cargar Archivo” y seleccionando el archivo con los Movimientos.</value>
+  </data>
+  <data name="textoAyudaModalConciliar5" xml:space="preserve">
+    <value>3. Una vez actualizada la información, según el resultado obtenido entre la comparación de los Movimientos Bancarios y las Transferencias reportadas por el Inversionista, se realizará lo siguiente:</value>
+  </data>
+  <data name="textoAyudaModalConciliar6" xml:space="preserve">
+    <value>* Resultado Coincidente</value>
+  </data>
+  <data name="textoAyudaModalConciliar7" xml:space="preserve">
+    <value>El registro no se mostrará en la Sección de Conciliar Pagos</value>
+  </data>
+  <data name="textoAyudaModalConciliar8" xml:space="preserve">
+    <value>* Resultado no Coincidente:</value>
+  </data>
+  <data name="textoAyudaModalConciliar9" xml:space="preserve">
+    <value>Se mostrará el registro en la Sección Movimientos no Conciliados y se mantendrá en la Sección Conciliar Pagos.</value>
+  </data>
+  <data name="textoModalMovementNotConciliado" xml:space="preserve">
+    <value>Está seguro de Eliminar el Movimiento no Conciliado?</value>
+  </data>
+  <data name="titleModalMovementNotConciliado" xml:space="preserve">
+    <value>Eliminar Movimiento no Conciliado</value>
+  </data>
+  <data name="textoAyudaContabilidad" xml:space="preserve">
+    <value>Permite realizar la creación y gestión de los Grupos Contables que serán asociados a cada Programa (Factoring &amp; Confirming) clasificado por Tipo de Moneda en el Sistema, para su posterior asignación a Eventos y Conceptos según una Cuenta Contable y su Categoría de Débito y Crédito.</value>
+  </data>
+  <data name="textoAyudaMantenimientoRoles" xml:space="preserve">
+    <value>Permite realizar la creación y gestión de Activación y Desactivación de los diferentes Roles que forman parte de la Seguridad de los Perfiles en el Sistema.</value>
+  </data>
+  <data name="textoAyudaConsultaPagosOperativo" xml:space="preserve">
+    <value>Contiene todos los Pagos realizados en el Sistema, correspondientes a Facturas Compradas por Inversionistas y Bancos, Pagos por Conciliaciones o Pagos al Vencimiento.</value>
+  </data>
+  <data name="titleConsultaPagosFactuas" xml:space="preserve">
+    <value>Facturas Compradas</value>
+  </data>
+  <data name="textoCargarFacturasInformation7" xml:space="preserve">
+    <value>Información complementaria de la Plantilla:</value>
+  </data>
+  <data name="textoCargarFacturasInformation8" xml:space="preserve">
+    <value>Estructura del archivo:</value>
+  </data>
+  <data name="textoCargarFacturasInformation9" xml:space="preserve">
+    <value>1. Número de Documento, solo la numeración con sus respectivos guiones (depende del formato del País)</value>
+  </data>
+  <data name="textoCargarFacturasInformation10" xml:space="preserve">
+    <value>2. Número de Factura, con sus respectivos guiones (depende del formato del País)</value>
+  </data>
+  <data name="textoCargarFacturasInformation12" xml:space="preserve">
+    <value>3. Código de la Moneda, código ISO 4217 (depende del País - ejemplo: USD)</value>
+  </data>
+  <data name="textoCargarFacturasInformation13" xml:space="preserve">
+    <value>4. Fecha de Emisión, con el formato AAAA-MM-DD</value>
+  </data>
+  <data name="textoCargarFacturasInformation14" xml:space="preserve">
+    <value>5. Fecha de Vencimiento, con el formato AAAA-MM-DD</value>
+  </data>
+  <data name="textoCargarFacturasInformation15" xml:space="preserve">
+    <value>6. Valor Neto, con dos (2) decimales y con punto (,) como separador de decimales (9999,99)</value>
+  </data>
+  <data name="textoCargarFacturasInformation16" xml:space="preserve">
+    <value>Premisas:</value>
+  </data>
+  <data name="textoCargarFacturasInformation17" xml:space="preserve">
+    <value>- Cada registro está compuesto de los 6 valores indicados en la Estructura del archivo</value>
+  </data>
+  <data name="textoCargarFacturasInformation18" xml:space="preserve">
+    <value>- Cada valor estará separado por una barra (|)</value>
+  </data>
+  <data name="textoCargarFacturasInformation19" xml:space="preserve">
+    <value>- No puede tener espacios en blanco</value>
+  </data>
+  <data name="textoCargarFacturasInformation20" xml:space="preserve">
+    <value>- Debe tener más de 1 registro</value>
+  </data>
+  <data name="textoCargarFacturasInformation21" xml:space="preserve">
+    <value>Nombre del archivo:</value>
+  </data>
+  <data name="textoCargarFacturasInformation22" xml:space="preserve">
+    <value>El nombre del archivo tendrá la siguiente nomenclatura</value>
+  </data>
+  <data name="textoCargarFacturasInformation23" xml:space="preserve">
+    <value>TuFactoring_Carga_Masiva_Empresa_MMM_AAAAMMDD.txt</value>
+  </data>
+  <data name="textoCargarFacturasInformation24" xml:space="preserve">
+    <value>, donde:</value>
+  </data>
+  <data name="textoCargarFacturasInformation25" xml:space="preserve">
+    <value>1. Empresa corresponde al nombre de la Empresa</value>
+  </data>
+  <data name="textoCargarFacturasInformation26" xml:space="preserve">
+    <value>2. AAAAMMDD corresponde a la fecha de Carga del Archivo</value>
+  </data>
+  <data name="textoCargarFacturasInformation27" xml:space="preserve">
+    <value>3. MMM corresponde al Código de la Moneda (ISO 4217)</value>
+  </data>
+  <data name="menuConfirmarDebtor" xml:space="preserve">
+    <value>Confirmar</value>
+  </data>
+  <data name="titleReview" xml:space="preserve">
+    <value>Revisión</value>
+  </data>
+  <data name="textoModalRechazarTodas" xml:space="preserve">
+    <value>¿Está seguro de Rechazar todas las Facturas seleccionadas?</value>
+  </data>
+  <data name="titleModalRechazarTodas" xml:space="preserve">
+    <value>Rechazo de Facturas</value>
+  </data>
+  <data name="editUserLegalBanks" xml:space="preserve">
+    <value>Editar Representante Legal</value>
+  </data>
+  <data name="textoProductConfirming" xml:space="preserve">
+    <value>Confirming</value>
+  </data>
+  <data name="textoProductDirect" xml:space="preserve">
+    <value>Venta Directa</value>
+  </data>
+  <data name="errorDebtorNotSelected" xml:space="preserve">
+    <value>Debe seleccionar el Cliente Asociado a la Factura</value>
+  </data>
+  <data name="textContentConfirmDebtor" xml:space="preserve">
+    <value>Permite Confirmar la aceptación de Notificación de Venta de la Factura de su Proveedor.</value>
+  </data>
+  <data name="productConfirming" xml:space="preserve">
+    <value>Confirming</value>
+  </data>
+  <data name="productDirect" xml:space="preserve">
+    <value>Venta Directa</value>
+  </data>
+  <data name="productType" xml:space="preserve">
+    <value>Tipo de Programa</value>
+  </data>
+  <data name="menuVentaDirecta" xml:space="preserve">
+    <value>Venta Directa</value>
+  </data>
+  <data name="menuPostularSupplier" xml:space="preserve">
+    <value>Postulación de Facturas</value>
+  </data>
+  <data name="percentageNotValid" xml:space="preserve">
+    <value>El Porcentaje asignado no es válido</value>
+  </data>
+  <data name="refusedDirectSell" xml:space="preserve">
+    <value>Rechazo de Factura</value>
+  </data>
+  <data name="sureToRefused" xml:space="preserve">
+    <value>¿Está seguro que desea rechazar la Factura </value>
+  </data>
+  <data name="DIRECT" xml:space="preserve">
+    <value>Venta Directa</value>
+  </data>
+  <data name="CONFIRMING" xml:space="preserve">
+    <value>Confirming</value>
+  </data>
+  <data name="selectTypeProgram" xml:space="preserve">
+    <value>Seleccione un Servicio</value>
+  </data>
+  <data name="textoAddNewInvoiceSupplier" xml:space="preserve">
+    <value>Permite al Proveedor Cargar las Facturas de los diferentes Clientes, de forma Manual o Masiva, para su posterior Postulación de Venta Directa a los Bancos Confirmantes.</value>
+  </data>
+  <data name="textoEditionInvoiceSupplier" xml:space="preserve">
+    <value>Una vez Cargadas las Facturas de forma Manual o Masiva, podrá editarlas y actualizar la información básica o Deducciones, antes de ser confirmadas por sus Clientes.</value>
+  </data>
+  <data name="textoPostularSupplier" xml:space="preserve">
+    <value>Permite la asignación de las Facturas que desea Vender de forma Directa al Banco Aliado de su preferencia.</value>
+  </data>
+  <data name="textoModalRevisionTodas" xml:space="preserve">
+    <value>¿Esta seguro de Aceptar todas las Facturas Seleccionadas?</value>
+  </data>
+  <data name="titleModalRevisarTodas" xml:space="preserve">
+    <value>Revisión de facturas</value>
+  </data>
+  <data name="revisedStatus" xml:space="preserve">
+    <value>REVISADAS</value>
+  </data>
+  <data name="revised" xml:space="preserve">
+    <value>Revisadas</value>
+  </data>
+  <data name="Fintech::Detalle servicio 1" xml:space="preserve">
+    <value>Registra toda la información solicitada y acepta los términos y condiciones, una vez autorizado recibirás tu clave de acceso y podrás invitar a todos tus proveedores e ingresar las cuentas por cobrar. Tufactoring se encargará de notificar y con la autorización de débito en cuenta, se cancelará las facturas al vencimiento.</value>
+  </data>
+  <data name="Fintech::Detalle servicio 2" xml:space="preserve">
+    <value>A través del sistema recibirás confirmación de las facturas ingresadas en el sistema por tus clientes y también podrás realizar la solicitud de venta directamente, así podrás recibir ofertas de descuento directamente de Tufactoring o podrás publicarlos en una subasta electrónica a través de nuestro sistema y obtener ofertas de diferentes inversionistas</value>
+  </data>
+  <data name="Fintech::Detalle servicio 3" xml:space="preserve">
+    <value>Debes registrar toda la Información que solicita el sistema de Tufactoring para que tengas acceso a los  términos y condiciones para operar. De tener una cuenta en los bancos aliados con los que operaren también los proveedores, y así tendrás acceso diario a las subastas de facturas para que durante las jornadas puedas ofertar  sobre todas la facturas publicadas. En caso de ser  adjudicada la compra, recibirás contrato de factoring sin recurso otorgado por el vendedor  y la confirmación de pago al vencimiento de la factura. El pago de la compra lo podrás realizar por medio de  botón de pago si tu cuenta esta con el banco aliado.</value>
+  </data>
+  <data name="Fintech::Resumen caracteristica 1" xml:space="preserve">
+    <value>Bajo los mecanismos de Confirmación de pago entre las empresas y  Tufactoring, recibirás el pago al vencimiento de la factura</value>
+  </data>
+  <data name="Fintech::Resumen caracteristica 3" xml:space="preserve">
+    <value>Como cliente de Tufactoring, tendrás acceso a todos lo servicios ofrecidos por medio de su plataforma para realizar la gestión de pago a tus proveedores</value>
+  </data>
+  <data name="Fintech::Resumen servicio 1" xml:space="preserve">
+    <value>Como nuestro cliente, podrás canalizar a través de nuestro sistema el pago de tus cuentas por pagar por medio de la aceptación de un contrato de confirming.</value>
+  </data>
+  <data name="Fintech::Resumen servicio 2" xml:space="preserve">
+    <value>Registrarte en el sistema Tufactoring y acepta la invitación que te envían tus clientes, recibirás confirmación de pago de tus facturas y ofertas de descuentos.</value>
+  </data>
+  <data name="Fintech::Resumen servicio 3" xml:space="preserve">
+    <value>El proceso de subasta te permite seleccionar las facturas que más se ajusten a tus necesidades y expectativas de inversión y así podrá realizar la oferta de descuento. Al cierre de la jornada de la subasta si tu oferta fue la ganadora serás notificado para que procedas al pago.</value>
+  </data>
+  <data name="Fintech::Servicios subtitulo" xml:space="preserve">
+    <value>Forma parte de la comunidad de Tufactoring a través de nuestros servicios. Por medio de los diferentes mecanismos las empresas contarán con el apoyo para realizar la gestión de pago de tus cuentas por pagar, los proveedores podrán vender sus facturas y los inversionistas acceder a la subasta de facturas y realizar la compra a descuento. </value>
+  </data>
+  <data name="Resumen Contactanos" xml:space="preserve">
+    <value>¡Llámanos o envíanos un correo electrónico y nos comunicaremos contigo lo antes posible!</value>
+  </data>
+  <data name="Síguenos" xml:space="preserve">
+    <value>Síguenos en las redes sociales:</value>
+  </data>
+  <data name="_Empty[1]" xml:space="preserve">
+    <value>Rechazo de Factura</value>
+  </data>
+  <data name="Contactanos" xml:space="preserve">
+    <value>Contactanos</value>
+  </data>
+  <data name="textoModalAyudaPrincipalesClientesTexto1" xml:space="preserve">
+    <value>1. Para aceptar la invitación de un Cliente, presione el botón Aceptar.</value>
+  </data>
+  <data name="textoModalAyudaPrincipalesClientesTexto2" xml:space="preserve">
+    <value>2. Para rechazar o cancelar la Invitación de un Proveedor, presione Rechazar, Cancelar o Desactivar.</value>
+  </data>
+  <data name="paidToOverdue" xml:space="preserve">
+    <value>Pagada por Vencer</value>
+  </data>
+  <data name="indexSupplierTuFactoring" xml:space="preserve">
+    <value>es una alternativa de financiamiento donde a través de un contrato el Proveedor cede la cobranza futura de los créditos, obteniendo a cambio el dinero inmediatamente de esas operaciones con un pequeño descuento. También podrá esperar al vencimiento de las Facturas para el cobro de las mismas, siempre con la confirmación de pago de su</value>
+  </data>
+  <data name="indexConfirmantTuFactoring" xml:space="preserve">
+    <value>es una alternativa de financiamiento donde a través de un contrato de Confirming el Banco confirma el pago a los Proveedores y a los Inversionistas que hacen operaciones de Factoring, permitiendo al Banco tener la primera opción de Oferta de Compra de las Facturas.</value>
+  </data>
+  <data name="indexDebtorTuFactoring" xml:space="preserve">
+    <value>es una alternativa donde tus Proveedores podrán realizar la Venta de sus Facturas a Instituciones Financieras o Inversionistas, gracias al Contrato de Confirming firmado por Ustedes.</value>
+  </data>
+  <data name="textoCargarFacturasInformation6Supplier" xml:space="preserve">
+    <value>5. Para culminar la carga en el Sistema, marque el botón Guardar Facturas, ubicado en la parte superior de la Sección Facturas Procesadas y proceda a Postular.</value>
+  </data>
+  <data name="textoAyudaAsociadosComplementacion" xml:space="preserve">
+    <value>3. Para agregar un Cliente, presione el botón Agregar, ingrese la información y guarde los cambios en la ventana correspondiente.</value>
+  </data>
+  <data name="textoRevisionContent" xml:space="preserve">
+    <value>Permite revisar las Facturas Postuladas por el Proveedor y que serán Confirmadas por el Cliente.</value>
+  </data>
+  <data name="textoRevisionFacturas2" xml:space="preserve">
+    <value>Marque el indicador de selección de la Factura requerida y su respectivo Botón Aceptar o Rechazar.</value>
+  </data>
+  <data name="textoRevisionFacturas3" xml:space="preserve">
+    <value>Marque el indicador de selección de las Facturas requeridas, posteriormente seleccione el ícono (⋮) del menú Opciones y la Opción ✔Aceptar o Rechaza. Para culminar confirme la Operación.</value>
+  </data>
+  <data name="textoRevisionFacturas4" xml:space="preserve">
+    <value>Seleccione el ícono (⋮) del menú Opciones, luego la Opción Seleccionar todas y ✔Aceptar o Rechazar, según se requiera. Para culminar confirme la Operación.</value>
+  </data>
+  <data name="textoRevisionFacturas5" xml:space="preserve">
+    <value>Una vez seleccionadas las Facturas, podrá visualizar el Monto total a procesar.</value>
+  </data>
+  <data name="textoContentPublicacionFacturas" xml:space="preserve">
+    <value>Permite Publicar Facturas en la próxima Subasta y Posponer Facturas al Vencimiento</value>
+  </data>
+  <data name="textoPublicacionFacturas0" xml:space="preserve">
+    <value>Para Publicar Facturas, realice lo siguiente:</value>
+  </data>
+  <data name="textoPublicacionFacturas1" xml:space="preserve">
+    <value>Seleccione la Factura requerida y marque el Botón Posponer o Publicar, según su necesidad.</value>
+  </data>
+  <data name="textoPublicacionFacturas2" xml:space="preserve">
+    <value>Seleccione el ícono (⋮) del menú Opciones, luego la Opción Publicar Todas o Posponer Todas, según se requiera. Para culminar confirme la Operación.</value>
+  </data>
+  <data name="textoOneInvoice" xml:space="preserve">
+    <value>1. Una (1) Factura: </value>
+  </data>
+  <data name="textoAllInvoice" xml:space="preserve">
+    <value>2. Todas las Facturas: </value>
+  </data>
+  <data name="menuOfertasBanco" xml:space="preserve">
+    <value>Ofertas del Banco</value>
+  </data>
+  <data name="textoCompraFacturas2.1" xml:space="preserve">
+    <value>(Solo aplica para las Postuladas por Clientes en Confirming)</value>
+  </data>
+  <data name="titleInvoiceConfirmationDebtor" xml:space="preserve">
+    <value>Confirmar Notificación de Ventas</value>
+  </data>
+  <data name="AMOUNT_CONFIRMATION_DIRECT" xml:space="preserve">
+    <value>Monto por Revisar</value>
+  </data>
+  <data name="textoModalAyudaPrincipalesProveedoresTexto3" xml:space="preserve">
+    <value>Para aceptar la Invitación de un Proveedor, presione el botón Aceptar.</value>
+  </data>
+  <data name="textoRevisarFacturas1" xml:space="preserve">
+    <value>Para Confirmar la revisión de las Facturas, realice una de las siguientes acciones, según la cantidad a procesar:</value>
+  </data>
+  <data name="textoConfirmingDebtorNota" xml:space="preserve">
+    <value>Nota: Antes de Confirmar las Facturas usted podrá editar cada una y agregar las deducciones correspondientes.</value>
+  </data>
+  <data name="rejectedStatus" xml:space="preserve">
+    <value>RECHAZADAS</value>
+  </data>
+  <data name="rejected" xml:space="preserve">
+    <value>Rechazadas</value>
+  </data>
+  <data name="rejectedForClientStatus" xml:space="preserve">
+    <value>RECHAZADAS POR EL CLIENTE</value>
+  </data>
+  <data name="amountTotalToConfirm" xml:space="preserve">
+    <value>Monto Total a Confirmar</value>
+  </data>
+  <data name="textoComissionServiceCierre" xml:space="preserve">
+    <value>Gasto por Servicio</value>
+  </data>
+  <data name="refuseAllBankOfferts" xml:space="preserve">
+    <value>Rechazar Todas</value>
+  </data>
+  <data name="rejectedForClient" xml:space="preserve">
+    <value>Rechazadas por el Cliente</value>
+  </data>
+  <data name="totalAmountConfirmaDebtor" xml:space="preserve">
+    <value>Monto Total a Confirmar</value>
+  </data>
+  <data name="confirmedForClientStatus" xml:space="preserve">
+    <value>NOTIFICACIÓN CONFIRMADA</value>
+  </data>
+  <data name="notificationConfirmedStatus" xml:space="preserve">
+    <value>NOTIFICACIÓN CONFIRMADA</value>
+  </data>
+  <data name="confirmedForClient" xml:space="preserve">
+    <value>con Notificación Confirmada</value>
+  </data>
+  <data name="dashboardFactor" xml:space="preserve">
+    <value>La Institución Financiera a través de TuF@ctoring, presenta una alternativa de inversión mediante la cual el Inversionista podrá ofertar porcentajes de descuento para la compra sobre facturas publicadas por los Proveedores. La recuperación de la inversión estará soportada mediante un contrato de Confirming otorgado por los Clientes deudores.</value>
+  </data>
+  <data name="textoFacturasDisponiblesConfirming" xml:space="preserve">
+    <value>de Confirming por un Monto Total de:</value>
+  </data>
+  <data name="textoFacturasDisponiblesDirecta" xml:space="preserve">
+    <value>de Venta Directa por un Monto Total de:</value>
+  </data>
+  <data name="textoTotalFacturas" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="textoTotalPor" xml:space="preserve">
+    <value>Total por:</value>
+  </data>
+  <data name="soldSupplierSingular" xml:space="preserve">
+    <value>Vendida por Pagar</value>
+  </data>
+  <data name="buttonAddDeductionsAbre" xml:space="preserve">
+    <value>Deducciones</value>
+  </data>
+  <data name="titleInvoiceDataDeductions" xml:space="preserve">
+    <value>Deducciones de la Factura</value>
+  </data>
+  <data name="Ver video" xml:space="preserve">
+    <value>Ver video</value>
+  </data>
+</root>

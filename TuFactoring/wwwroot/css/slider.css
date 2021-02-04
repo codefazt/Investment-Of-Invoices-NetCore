@@ -1,0 +1,41 @@
+﻿body {
+#    align-items: center;
+#    background: #E3E3E3;
+#    display: flex;
+#    height: 100vh;
+#    justify-content: center;
+}
+
+
+@keyframes slider {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-102%)
+    }
+}
+
+.slider {
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, .125);
+    height: 1.5em;
+    margin: auto;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    top:-1.5em;
+    left:-0.1em
+}
+
+.slide-track {
+    animation: slider 40s linear infinite;
+    display: flex;
+    width: 100%;
+}
+
+.slide {
+    height: 1em;
+    width: 100%;
+    font-weight:bold
+}
